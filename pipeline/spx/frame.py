@@ -16,11 +16,11 @@ from astropy.wcs import WCS
 LOG = logging.getLogger(__name__)
 
 BAD_BITS: tuple[str, ...] = (
-    "TRANSIENT", "OVERFLOW", "SUR_ERROR", "NONFUNC", "DICHROIC",
-    "MISSING_DATA", "HOT", "COLD", "PHANMISS", "NONLINEAR", "PERSIST",
-    "OUTLIER", "CROSSTALK", "GHOST", "GHOST_FPA", "GHOST_EXT",
-    "STREAK", "BLOOM", "SNOWBALL", "HALO",
+    "TRANSIENT", "SUR_ERROR", "NONFUNC", "MISSING_DATA", "HOT",
+    "COLD", "PERSIST", "OUTLIER", "CROSSTALK", "GHOST",
+    "GHOST_FPA", "GHOST_EXT", "STREAK", "HALO",
 )
+SAT_BITS: tuple[str, ...] = ("OVERFLOW", "NONLINEAR", "BLOOM")
 
 BANDS_UM = {
     1: (0.75, 1.09), 2: (1.10, 1.62), 3: (1.63, 2.41),
@@ -30,7 +30,8 @@ BANDS_UM = {
 EPOCH_COLUMNS = (
     "frame_id", "field_id", "obs_id", "detector", "collection",
     "processing_version", "mjd", "obs_time_utc", "wavelength_um",
-    "bandwidth_um", "x_pix", "y_pix", "bad_pixel_fraction", "target_bad",
+    "bandwidth_um", "x_pix", "y_pix", "bad_pixel_fraction",
+    "sat_pixel_fraction", "target_bad",
     "zodi_median_mjysr", "image_median_mjysr", "noise_mad_mjysr",
     "psf_fwhm_arcsec", "survey_pass", "source_url", "local_path",
     "downloaded_utc", "status",
@@ -43,26 +44,38 @@ _WARNED_BITS: set[str] = set()
 class Frame:
     image: np.ndarray
     bad: np.ndarray
+    sat: np.ndarray
     variance: np.ndarray
     wcs: WCS
     meta: dict
 
 
-def bad_mask(flags: np.ndarray, flags_header: fits.Header) -> np.ndarray:
-    """Mask only bad flag names defined in the FITS header."""
+def _named_mask(flags: np.ndarray, flags_header: fits.Header,
+                names: tuple[str, ...]) -> np.ndarray:
+    """Resolve bit positions by MSKN name, never by a fixed position."""
     bits = {
         str(value).strip().upper(): int(key[4:])
         for key, value in flags_header.items()
         if key.startswith("MSKN") and key[4:].isdigit()
     }
     mask_value = 0
-    for name in BAD_BITS:
+    for name in names:
         if name in bits:
             mask_value |= 1 << bits[name]
         elif name not in _WARNED_BITS:
             LOG.warning("FLAGS header has no %s bit", name)
             _WARNED_BITS.add(name)
     return (np.asarray(flags, dtype=np.uint64) & mask_value) != 0
+
+
+def bad_mask(flags: np.ndarray, flags_header: fits.Header) -> np.ndarray:
+    """Mask only unusable pixel flags named in BAD_BITS."""
+    return _named_mask(flags, flags_header, BAD_BITS)
+
+
+def sat_mask(flags: np.ndarray, flags_header: fits.Header) -> np.ndarray:
+    """Track saturation-type flags without masking them from the image."""
+    return _named_mask(flags, flags_header, SAT_BITS)
 
 
 def wavelength_at(hdul: fits.HDUList, ra_deg: float, dec_deg: float) -> tuple[float, float, float, float]:
@@ -104,6 +117,7 @@ def read_frame(path: Path, ra_deg: float, dec_deg: float) -> Frame:
         if image.ndim != 2 or any(array.shape != image.shape for array in (zodi, variance, flags)):
             raise ValueError("IMAGE, ZODI, VARIANCE and FLAGS must have matching 2D shapes")
         bad = bad_mask(flags, hdul["FLAGS"].header)
+        sat = sat_mask(flags, hdul["FLAGS"].header)
         image -= zodi
         image[bad] = np.nan
         wavelength_um, bandwidth_um, x_pix, y_pix = wavelength_at(hdul, ra_deg, dec_deg)
@@ -129,6 +143,7 @@ def read_frame(path: Path, ra_deg: float, dec_deg: float) -> Frame:
             "x_pix": x_pix,
             "y_pix": y_pix,
             "bad_pixel_fraction": bad_fraction,
+            "sat_pixel_fraction": float(sat.mean()),
             "target_bad": _target_bad(bad, x_pix, y_pix),
             "zodi_median_mjysr": _median(zodi),
             "image_median_mjysr": median,
@@ -137,7 +152,8 @@ def read_frame(path: Path, ra_deg: float, dec_deg: float) -> Frame:
             "survey_pass": "",
             "status": status,
         }
-        return Frame(image=image, bad=bad, variance=variance, wcs=WCS(header), meta=meta)
+        return Frame(image=image, bad=bad, sat=sat, variance=variance,
+                     wcs=WCS(header), meta=meta)
 
 
 def build_epochs(field_id: str, ra_deg: float, dec_deg: float) -> Path:
