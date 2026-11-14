@@ -2,19 +2,57 @@
 
 ## Discovery results
 
-- Run: 2026-11-14 07:04 UTC, branch `data/discovery`.
-- Working search method from this machine: **none verified**; outbound HTTPS connection timed out.
-- TAP endpoint (`irsa.ipac.caltech.edu:443`): `TimeoutError: timed out` before a query could run.
-- SIA2 uses the same IRSA host; its HTTPS connection also timed out.
-- Public cloud mirror (`nasa-irsa-spherex.s3.amazonaws.com:443`): `TimeoutError: timed out`.
-- Independent `curl -4 -I --max-time 12` checks to IRSA, Google, and S3 all timed out, indicating a machine/network access problem.
-- Real `spherex.plane` and `spherex.artifact` column names: **not obtained**.
-- M101 TAP rows, bandpass counts, MJD range, and URI collection prefixes: **not obtained**.
-- SIA2 row count and column names: **not obtained**.
-- D2 cutout size, transfer time, HDU headers, image shape, and target wavelength: **not obtained**; no FITS file was downloaded.
-- Flag bit table and per-bit fractions: **not obtained**. `SOURCE` must be excluded from a bad-pixel mask.
-- Proposed `BAD_BITS`: **pending real FLAGS header**; selecting names now would be a guess.
-- Machine-readable connection failures: `data/meta/discovery/results.json` (git-ignored).
-- Rerun when HTTPS access works: `python3 -u poc/discover.py` from the repo root.
+- Live run: 2026-11-14 08:44 UTC; TAP and SIA2 both worked from this machine.
+- M101 position: RA 210.80227°, Dec 54.34895°; SIA2 radius 1 arcsec; cutout size 0.1667°.
+- TAP returned 376 rows: D1 52, D2 84, D3 53, D4 53, D5 83, D6 51.
+- TAP MJD range: 60804.148555–61215.138195; URI prefixes identify `/spherex/dr1/` (246) and `/spherex/qr3/` (130).
+- SIA2 returned 376 rows. Its real column names are in `data/meta/discovery/sia_columns.json`.
+- The earliest D2 row is in DR1; its cutout is `data/raw/m101_earliest_d2_cutout.fits`.
+- First download took 26.919 s and produced 4.104 MB (decimal); later runs use the cached file.
+- HDUs: PRIMARY, IMAGE, FLAGS, VARIANCE, ZODI, EPSF, WCS-WAVE; the EPSF data span is 3.862 MB.
+- IMAGE is 98×98 pixels, matching 10 arcmin / 6.15 arcsec per pixel (~98 pixels).
+- Target pixel is (48.921, 48.498); spectral WCS with SIP disabled gives **1.506421 µm**.
+- IMAGE `MJD-OBS` is 60805.711547928; TAP `time_bounds_lower` is 60805.711548 (difference −0.006 s, from catalog rounding).
+- IMAGE `DATE-OBS` is 2025-05-10T17:04:37.741 UTC; `DATE` is the later HDU creation time, not the observation time.
+- FLAGS defines 22 named planes. `SOURCE` covers 92.201% of this cutout and is **not** a bad pixel.
+- Proposed conservative `BAD_BITS`: `TRANSIENT`, `OVERFLOW`, `SUR_ERROR`, `NONFUNC`, `DICHROIC`, `MISSING_DATA`, `HOT`, `COLD`, `PHANMISS`, `NONLINEAR`, `PERSIST`, `OUTLIER`, `CROSSTALK`, `GHOST`, `GHOST_FPA`, `GHOST_EXT`, `STREAK`, `BLOOM`, `SNOWBALL`, `HALO`. Review this policy with Science before product use.
+- The 4.104 MB cutout is smaller than the earlier ~8 MB EPSF estimate; it still carries the full EPSF table.
+
+### Real TAP column names
+
+- `spherex.plane`: `obsid`, `planeid`, `productid`, `creatorid`, `metarelease`, `datarelease`, `calibrationlevel`, `dataproducttype`, `quality_flag`, `metrics_sourcenumberdensity`, `metrics_background`, `metrics_backgroundstddev`, `metrics_fluxdensitylimit`, `metrics_maglimit`, `position_dimension_naxis1`, `position_dimension_naxis2`, `position_resolution`, `position_samplesize`, `position_timedependent`, `energy_bounds_lower`, `energy_bounds_upper`, `energy_bounds_samples`, `energy_emband`, `energy_dimension`, `energy_resolvingpower`, `energy_samplesize`, `energy_bandpassname`, `energy_transition_species`, `energy_transition_transition`, `energy_restwav`, `time_bounds_lower`, `time_bounds_upper`, `time_bounds_samples`, `time_dimension`, `time_resolution`, `time_samplesize`, `time_exposure`, `polarization_states`, `polarization_dimension`, `provenance_name`, `provenance_reference`, `provenance_version`, `provenance_project`, `provenance_producer`, `provenance_runid`, `provenance_lastexecuted`, `provenance_keywords`, `ipac_gid`, `mission_id`, `poly`, `pt`, `ipac_pub_date`, `lastmodified`, `obs_publisher_did`.
+- `spherex.artifact`: `planeid`, `artifactid`, `uri`, `producttype`, `releasetype`, `contenttype`, `contentlength`, `contentchecksum`, `ipac_gid`, `mission_id`, `ipac_pub_date`, `lastmodified`.
+- Example rows are in `data/meta/discovery/tap_columns.json`; all 376 M101 TAP rows are in `data/meta/discovery/m101_tap.csv` (local, git-ignored).
+
+### FLAGS bit planes in the D2 cutout
+
+| Bit | MSKN name | MSKD description | Pixels set |
+| ---: | --- | --- | ---: |
+| 0 | TRANSIENT | Transient detected during SUR | 0.187% |
+| 1 | OVERFLOW | Overflow detected during SUR | 0% |
+| 2 | SUR_ERROR | Error in onboard processing | 0.146% |
+| 6 | NONFUNC | Permanently unusable | 0.208% |
+| 7 | DICHROIC | Low efficiency due to dichroic | 0% |
+| 9 | MISSING_DATA | Onboard data lost | 0% |
+| 10 | HOT | Hot pixel | 0% |
+| 11 | COLD | Anomalously low signal | 0% |
+| 12 | FULLSAMPLE | Pixel full sample history is available | 0% |
+| 14 | PHANMISS | Phantom correction was not applied | 0% |
+| 15 | NONLINEAR | Nonlinearity correction cannot be applied reliably | 0% |
+| 17 | PERSIST | Persistent charge above threshold | 0.323% |
+| 19 | OUTLIER | Pixel flagged by Detect Outliers | 0.187% |
+| 20 | CROSSTALK | Pixel affected by crosstalk | 0% |
+| 21 | SOURCE | Pixel mapped to a known source | 92.201% |
+| 22 | GHOST | Affected by a bright source inside the exposure | 0% |
+| 23 | GHOST_FPA | Affected by a bright source on another detector | 0% |
+| 24 | GHOST_EXT | Pixel affected by a bright source outside FOV | 0% |
+| 25 | STREAK | Pixel affected by a streak | 0% |
+| 26 | BLOOM | Pixel part of a bloom artifact | 0% |
+| 27 | SNOWBALL | Pixel part of a snowball artifact | 0% |
+| 28 | HALO | Pixel part of a transient halo | 0.312% |
+
+Full precision fractions and descriptions are in `data/meta/discovery/flag_bits.json`; FITS headers are in `data/meta/discovery/header_sample.txt`.
 
 Installed versions: numpy 2.3.5, astropy 8.0.2, astroquery 0.4.11, pyvo 1.10.0, requests 2.32.4, reproject 0.21.0, Pillow 12.3.0, pyyaml 6.0.2, jsonschema 4.25.0, pandas 3.0.5, pytest 9.1.1, matplotlib 3.10.5.
+
+Run again from the repository root: `python3 -u poc/discover.py`.

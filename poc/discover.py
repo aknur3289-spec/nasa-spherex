@@ -100,25 +100,23 @@ def inspect_cutout(path: Path, tap_mjd: float) -> dict:
     with fits.open(path) as hdul:
         listing = io.StringIO()
         hdul.info(output=listing)
-        print(listing.getvalue())
+        hdu_info = listing.getvalue().replace(str(path), str(path.relative_to(ROOT)))
+        print(hdu_info)
         image = hdul["IMAGE"]
         flags = hdul["FLAGS"]
         headers = "\n\n".join(
-            f"[{name}]\n{hdul[name].header.tostring(sep=chr(10), endcard=False, padding=False)}"
-            for name in [0, "IMAGE", "FLAGS"]
-        )
+            f"[{name}]\n" + "\n".join(
+                line.rstrip() for line in hdul[name].header.tostring(
+                    sep="\n", endcard=False, padding=False).splitlines())
+            for name in [0, "IMAGE", "FLAGS"])
         (OUT / "header_sample.txt").write_text(headers + "\n")
         bits = []
         pixels = np.asarray(flags.data, dtype=np.uint64)
-        suffixes = [int(match.group(1)) for keyword in flags.header
-                    if (match := re.fullmatch(r"MSKN(\d+)", keyword))]
-        suffix_is_mask = bool(suffixes) and all(n > 0 and n & (n - 1) == 0 for n in suffixes)
         for keyword in flags.header:
             match = re.fullmatch(r"MSKN(\d+)", keyword)
             if match:
-                suffix = int(match.group(1))
-                bit = suffix.bit_length() - 1 if suffix_is_mask else suffix
-                mask = suffix if suffix_is_mask else 1 << suffix
+                bit = int(match.group(1))  # Header calls this the mask plane number.
+                mask = 1 << bit
                 name = text_value(flags.header[keyword]).strip()
                 desc = text_value(flags.header.get(f"MSKD{match.group(1)}", "")).strip()
                 fraction = float(np.count_nonzero(pixels & mask) / pixels.size)
@@ -136,24 +134,42 @@ def inspect_cutout(path: Path, tap_mjd: float) -> dict:
         wl_um = float(wl.to_value(u.um))
         print(f"Target pixel: ({x:.3f}, {y:.3f}); wavelength: {wl_um:.6f} um; bandwidth: {bw}")
         time_keywords = {key: text_value(image.header[key]) for key in image.header if key.startswith(("MJD", "DATE", "TIME"))}
-        print(f"IMAGE shape: {image.data.shape}; IMAGE time keywords: {time_keywords}; TAP MJD: {tap_mjd}")
+        expected_pixels = round(SIZE_DEG * 3600 / 6.15)
+        shape_near_expected = all(abs(n - expected_pixels) <= 2 for n in image.data.shape)
+        mjd_obs = image.header.get("MJD-OBS")
+        mjd_difference_seconds = (float(mjd_obs) - tap_mjd) * 86400 if mjd_obs is not None else None
+        print(f"IMAGE shape: {image.data.shape}; expected ~{expected_pixels}x{expected_pixels}: {shape_near_expected}")
+        print(f"IMAGE time keywords: {time_keywords}; TAP MJD: {tap_mjd}; MJD-OBS difference: {mjd_difference_seconds} s")
         return {"shape": list(image.data.shape), "target_pixel": [float(x), float(y)],
                 "wavelength_um": wl_um, "time_keywords": time_keywords, "tap_mjd": tap_mjd,
-                "bits": bits, "hdu_info": listing.getvalue(),
+                "expected_pixels_per_side": expected_pixels, "shape_near_expected": shape_near_expected,
+                "mjd_obs_difference_seconds": mjd_difference_seconds,
+                "bits": bits, "hdu_info": hdu_info,
                 "primary_version": text_value(hdul[0].header.get("VERSION", ""))}
 
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     RAW.mkdir(parents=True, exist_ok=True)
+    prior_path = OUT / "results.json"
+    prior_results = json.loads(prior_path.read_text()) if prior_path.exists() else {}
     results: dict = {"run_utc": datetime.now(timezone.utc).isoformat()}
     irsa_error = probe_https("irsa.ipac.caltech.edu")
     if irsa_error:
-        results["tap_error"] = f"IRSA HTTPS connection: {irsa_error}"
-        results["sia_error"] = f"IRSA HTTPS connection: {irsa_error}"
-        results["cloud_error"] = f"Public S3 HTTPS connection: {probe_https('nasa-irsa-spherex.s3.amazonaws.com') or 'reachable, but no cloud_access key available'}"
+        cloud_error = probe_https("nasa-irsa-spherex.s3.amazonaws.com")
+        if prior_results.get("cutout"):
+            results = prior_results
+            results["latest_access_check"] = {
+                "run_utc": datetime.now(timezone.utc).isoformat(),
+                "irsa_error": irsa_error,
+                "cloud_error": cloud_error,
+            }
+        else:
+            results["tap_error"] = f"IRSA HTTPS connection: {irsa_error}"
+            results["sia_error"] = f"IRSA HTTPS connection: {irsa_error}"
+            results["cloud_error"] = f"Public S3 HTTPS connection: {cloud_error or 'reachable, but no cloud_access key available'}"
         print("IRSA unavailable:", irsa_error)
-        print("Cloud fallback:", results["cloud_error"])
+        print("Cloud fallback:", cloud_error or "reachable, but no cloud_access key available")
         save_json("results.json", results)
         return
     try:
@@ -210,7 +226,14 @@ ORDER BY p.time_bounds_lower"""
         path = RAW / "m101_earliest_d2_cutout.fits"
         seconds, size_bytes, cached = fetch_cutout(cutout_url, path)
         results["cutout"] = {"source_url": url, "cutout_url": cutout_url, "path": str(path.relative_to(ROOT)),
-                              "download_seconds": seconds, "size_bytes": size_bytes, "cached": cached}
+                              "download_seconds": seconds, "size_bytes": size_bytes,
+                              "size_mb": size_bytes / 1_000_000, "cached": cached}
+        prior_cutout = prior_results.get("cutout", {})
+        if cached and prior_cutout.get("source_url") == url and prior_cutout.get("size_bytes") == size_bytes:
+            results["cutout"]["initial_download_seconds"] = prior_cutout.get(
+                "initial_download_seconds", prior_cutout.get("download_seconds"))
+        elif not cached:
+            results["cutout"]["initial_download_seconds"] = seconds
         print("Cutout download:", results["cutout"])
         results["cutout"].update(inspect_cutout(path, mjd))
     else:
