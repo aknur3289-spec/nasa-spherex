@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -11,6 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from astropy.time import Time
 from matplotlib.patches import Arc
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "figures"
@@ -196,8 +198,44 @@ def focus_curve_figure() -> None:
     save(fig, "focus_curve_synthetic")
 
 
+def add_detectability_footnote() -> None:
+    """Add the requested source/caveat beneath the existing detectability artwork."""
+    note = ("Planet Nine V = 21.9–22.7 from arXiv:2507.22297. Reflected-light estimate; "
+            "methane absorption can make it fainter in some SPHEREx bands.")
+    png_path, svg_path = OUT / "detectability.png", OUT / "detectability.svg"
+    with Image.open(png_path) as source:
+        image = source.convert("RGB")
+        band_h = 54
+        canvas = Image.new("RGB", (image.width, image.height + band_h), "white")
+        canvas.paste(image, (0, 0))
+        draw = ImageDraw.Draw(canvas)
+        font_path = matplotlib.get_data_path() + "/fonts/ttf/DejaVuSans.ttf"
+        font = ImageFont.truetype(font_path, 17)
+        draw.text((18, image.height + 13), note, fill=PALETTE["ink"], font=font)
+        canvas.save(png_path)
+
+    svg = svg_path.read_text(encoding="utf-8")
+    match = re.search(r'<svg([^>]*?)width="([0-9.]+)pt" height="([0-9.]+)pt" viewBox="0 0 ([0-9.]+) ([0-9.]+)"', svg)
+    if not match:
+        raise RuntimeError(f"Could not locate SVG dimensions in {svg_path}")
+    attrs, width, height, view_w, view_h = match.groups()
+    new_height = float(height) + 38
+    new_view_h = float(view_h) + 38
+    replacement = (f'<svg{attrs}width="{width}pt" height="{new_height:.6f}pt" '
+                   f'viewBox="0 0 {view_w} {new_view_h:.6f}"')
+    svg = svg[:match.start()] + replacement + svg[match.end():]
+    note_xml = (f' <text x="18" y="{float(view_h)+24:.3f}" '
+                'font-family="DejaVu Sans, sans-serif" font-size="10" '
+                f'fill="{PALETTE["ink"]}">{note}</text>\n')
+    svg = svg.replace("</svg>", note_xml + "</svg>")
+    svg_path.write_text(svg, encoding="utf-8")
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
+    if "--detectability-only" in sys.argv:
+        add_detectability_footnote()
+        return
     parallax_explainer()
     distance_recovery()
     focus_curve_figure()
