@@ -2,5 +2,5 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   base: './',
-  build: { rollupOptions: { input: { main: 'index.html', survey: 'survey.html' } } },
+  build: { rollupOptions: { input: { main: 'index.html', survey: 'survey.html', viewer: 'viewer.html' } } },
 });
