@@ -64,3 +64,25 @@ Run again from the repository root: `python3 -u poc/discover.py`.
 The local pass B science inventory is empty. Twenty-five detector-3 June 2026 template cutouts are available, but all are centered near the December sky position. None contains the circular-orbit prediction at any of the 48 requested distances with the 20-pixel search margin. The detailed skip ledger is `data/meta/neptune/dial_summary.json` (local data, outside Git). There is no measured peak or percentage error. No `field.json` or PNGs were published because contract v1.1 requires at least one covered step, and the 20% peak gate cannot be evaluated. There are no local `data/raw/neptune-blank` cutouts, so no negative-control field was attempted.
 
 The offline script loads Science's unchanged `_variance_snr` function from `poc/poc_b_dial_v2.py` if a covered cutout becomes available. Its current single-frame score would be diagnostic only; a matched-sky subtraction and Science signoff are still needed before publishing a dial field. This check cannot reproduce the earlier PoC B peak because its pass B sections along the distance track are not present in the specified local inventory.
+
+## Neptune dial full-frame staging — 2026-11-14
+
+`python3 pipeline/build_dial.py --neptune-field` uses the Science pair `2025W25_2A_0500_1` D1 and `2025W51_1A_0485_1` D2. It reads 10 arcmin sections from the full December L2 product through the public S3 mirror and caches each section in `data/raw/neptune-dial/`. The June 0.5 degree reference cutout is cached there too. The grid is `dial_grid(20, 45, step_px=15)`. Per-step SNR is the highest valid pixel `(image - median) / MAD noise` within 20 pixels; offset is that pixel's distance from the stamp centre. The report is `data/meta/neptune-dial/report.json`. A successful Science gate stages PNGs and `field.json` in that same ignored metadata directory; it does not publish to `web/public/data` while the Frontend validator is incompatible.
+
+### Proposed v1.1 dial additions for Frontend agreement
+
+The Python schema adds optional frame fields `collection` and `downloaded_utc`, and optional dial fields `ref_obs_id`, `target_obs_id`, `ref_detector`, `target_detector`, `truth_au`, `measured_au`, `measured_uncertainty_au`, and `note`. A step outside the full detector or within five arcmin of its edge has `outside_frame: true` and `frame`, `snr`, and `offset_px` set to `null`. Covered steps retain numeric SNR and offset and an existing frame ID. The Python semantic validator enforces this pairing. `web/src/data/validation.ts` and `web/src/contract.ts` currently require non-null step measurements, so Frontend must agree to and implement this additive shape before the staged dial is published. `docs/CONTRACT.md` is owned by Frontend and remains unchanged.
+
+### Measured result and publication gate
+
+The full-frame run evaluated 135 grid steps: 104 covered, 31 outside the detector margin. The smallest raw-image offset is 0.5 px at 36.79054 AU, 6.89565 AU above the ref-epoch JPL geocentric truth 29.89489 AU. This is not near the Science single-pair astrometric minimum of 29.9 AU and ~13.5 px in `docs/dial_table_neptune.csv`. The gate failed. No `neptune-dial` field or PNG was written to `web/public/data`; the detailed local report is `data/meta/neptune-dial/report.json`.
+
+| Our grid d (AU) | Raw-image offset (px) | Nearest Science d (AU) | Science model miss (px) |
+| ---: | ---: | ---: | ---: |
+| 36.23960 | 18.58 | 36.2 | 232.34 |
+| 36.51299 | 9.01 | 36.5 | 241.75 |
+| 36.79054 | 0.50 | 36.8 | 251.04 |
+| 37.07234 | 9.01 | 37.1 | 260.19 |
+| 37.35849 | 17.01 | 37.4 | 269.23 |
+
+The Science column is the predicted position's miss relative to known Neptune astrometry; our offset is the brightest pixel within a 20 px search circle. A near-centre unrelated source can therefore create a false minimum in the raw-image score. The negative-control field was not attempted after this failure.

@@ -210,6 +210,8 @@
           "type": "string",
           "minLength": 1
         },
+        "collection": {"type": "string", "minLength": 1},
+        "downloaded_utc": {"type": "string", "pattern": "Z$"},
         "width_px": {
           "type": "integer",
           "minimum": 1
@@ -323,6 +325,14 @@
         "reference_frame": {
           "$ref": "#/$defs/id"
         },
+        "ref_obs_id": {"type": "string", "minLength": 1},
+        "target_obs_id": {"type": "string", "minLength": 1},
+        "ref_detector": {"const": "D1"},
+        "target_detector": {"const": "D2"},
+        "truth_au": {"type": "number", "exclusiveMinimum": 0},
+        "measured_au": {"type": "number", "exclusiveMinimum": 0},
+        "measured_uncertainty_au": {"type": "number", "minimum": 0},
+        "note": {"type": "string", "minLength": 1},
         "model": {
           "type": "string",
           "minLength": 1
@@ -348,16 +358,17 @@
                 "exclusiveMinimum": 0
               },
               "frame": {
-                "$ref": "#/$defs/id"
+                "anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]
               },
+              "outside_frame": {"type": "boolean"},
               "pred": {
                 "$ref": "#/$defs/coordinate"
               },
               "snr": {
-                "type": "number"
+                "type": ["number", "null"]
               },
               "offset_px": {
-                "type": "number",
+                "type": ["number", "null"],
                 "minimum": 0
               }
             }

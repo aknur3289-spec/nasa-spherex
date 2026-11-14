@@ -125,3 +125,31 @@ def test_dial_bounds(field: tuple[dict, Path]) -> None:
     sample["dial"]["steps"][0]["offset_px"] = -1
     with pytest.raises(ValueError):
         validate_field(sample, directory)
+
+
+def test_dial_outside_step_requires_all_nulls(field: tuple[dict, Path]) -> None:
+    sample, directory = field
+    sample["schema_version"] = "1.1"
+    sample["kind"] = "dial"
+    for frame in sample["frames"]:
+        Image.new("RGB", (3, 4)).save(directory / frame["png"])
+        frame.update(width_px=3, height_px=4)
+    sample["dial"] = {
+        "reference_frame": sample["frames"][0]["id"], "model": "fixture",
+        "search_radius_px": 20, "steps": [{"distance_au": 20, "frame": None,
+                                        "pred": sample["center"], "snr": None,
+                                        "offset_px": None, "outside_frame": True},
+                                       {"distance_au": 30, "frame": sample["frames"][0]["id"],
+                                        "pred": sample["center"], "snr": 2,
+                                        "offset_px": 1}],
+        "peak_distance_au": 30, "truth": {"distance_au": 30, "source": "fixture"},
+        "negative_control_field": "other",
+    }
+    validate_field(sample, directory)
+    sample["dial"]["steps"][0]["snr"] = 1
+    with pytest.raises(ValueError, match="outside step"):
+        validate_field(sample, directory)
+    sample["dial"]["steps"][0]["snr"] = None
+    sample["dial"]["peak_distance_au"] = 20
+    with pytest.raises(ValueError, match="minimum covered offset"):
+        validate_field(sample, directory)

@@ -236,6 +236,66 @@ def _section_cutout(source: fits.HDUList, ra_deg: float, dec_deg: float,
     fits.HDUList(output).writeto(destination, overwrite=True)
 
 
+def fetch_dial_sections(row: dict, positions: list[tuple[float, float, float]],
+                        outdir: Path, margin_arcmin: float = 5) -> list[dict]:
+    """Cache 10 arcmin sections of one full public L2 frame, preserving outside steps."""
+    bucket, key = row.get("cloud_bucket"), row.get("cloud_key")
+    if bucket != "nasa-irsa-spherex" or not key:
+        raise ValueError("public SPHEREx S3 bucket/key required")
+    outdir.mkdir(parents=True, exist_ok=True)
+    index_path = outdir / "target_sections.json"
+    if index_path.is_file():
+        cached = json.loads(index_path.read_text())
+        if (cached.get("cloud_key") == key and cached.get("positions") == [list(p) for p in positions]
+                and all(result["path"] is None or _valid_fits(Path(result["path"]))
+                        for result in cached.get("results", []))
+                and len(cached.get("results", [])) == len(positions)):
+            return cached["results"]
+    from concurrent.futures import ThreadPoolExecutor
+
+    def worker(group: list[tuple[int, float, float, float]]) -> list[tuple[int, dict]]:
+        found = []
+        with fits.open(f"s3://{bucket}/{key}", use_fsspec=True,
+                       fsspec_kwargs={"anon": True}) as source:
+            image = source["IMAGE"]
+            wcs = WCS(image.header)
+            scale_arcsec = float(np.mean([abs(value.to_value(u.arcsec)) for value in wcs.proj_plane_pixel_scales()]))
+            margin_px = margin_arcmin * 60 / scale_arcsec
+            height, width = image.shape
+            for index, distance_au, ra_deg, dec_deg in group:
+                x, y = wcs.world_to_pixel_values(ra_deg, dec_deg)
+                inside = bool(np.isfinite(x) and np.isfinite(y) and
+                              margin_px <= x < width - margin_px and
+                              margin_px <= y < height - margin_px)
+                if not inside:
+                    found.append((index, {"distance_au": distance_au, "path": None,
+                                          "outside_frame": True}))
+                    continue
+                path = _local_path(row, ra_deg, dec_deg, 10 / 60, outdir)
+                if not _valid_fits(path):
+                    part = path.with_name(path.name + ".part")
+                    try:
+                        _section_cutout(source, ra_deg, dec_deg, 10 / 60, part)
+                        part.replace(path)
+                    finally:
+                        part.unlink(missing_ok=True)
+                found.append((index, {"distance_au": distance_au, "path": str(path),
+                                      "outside_frame": False}))
+        return found
+
+    groups = [[] for _ in range(min(8, max(1, len(positions))))]
+    for index, (distance_au, ra_deg, dec_deg) in enumerate(positions):
+        groups[index % len(groups)].append((index, distance_au, ra_deg, dec_deg))
+    with ThreadPoolExecutor(max_workers=len(groups)) as pool:
+        results = [entry for group in pool.map(worker, groups) for entry in group]
+    ordered = [entry for _, entry in sorted(results)]
+    temporary = index_path.with_suffix(".json.part")
+    temporary.write_text(json.dumps({"cloud_key": key, "positions": positions,
+                                     "results": ordered}, indent=2) + "\n")
+    temporary.replace(index_path)
+    return ordered
+
+
 def cutout_url(file_url: str, ra_deg: float, dec_deg: float, size_deg: float) -> str:
     """Build an IRSA square cutout URL in degrees."""
     return f"{file_url}?center={ra_deg},{dec_deg}d&size={size_deg}"

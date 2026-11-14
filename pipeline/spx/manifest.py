@@ -70,8 +70,20 @@ def validate_field(field: dict, outdir: Path | None = None, *, real_build: bool 
                     raise ValueError(f"{prefix}.diff_png: dimensions differ from frame")
     if field["kind"] == "dial":
         dial = field["dial"]
-        if dial["reference_frame"] not in ids or any(step["frame"] not in ids for step in dial["steps"]):
+        if dial["reference_frame"] not in ids or any(step["frame"] is not None and step["frame"] not in ids for step in dial["steps"]):
             raise ValueError("$.dial: referenced frame is missing")
+        for index, step in enumerate(dial["steps"]):
+            outside = step.get("outside_frame", False)
+            empty = all(step[key] is None for key in ("frame", "snr", "offset_px"))
+            full = all(step[key] is not None for key in ("frame", "snr", "offset_px"))
+            if not (outside and empty or not outside and full):
+                raise ValueError(f"$.dial.steps[{index}]: outside step must have null measurements; covered step must have measurements")
+        distances = [step["distance_au"] for step in dial["steps"]]
+        if distances != sorted(distances) or len(set(distances)) != len(distances):
+            raise ValueError("$.dial.steps: distances must be unique and ascending")
+        covered = [step for step in dial["steps"] if step["offset_px"] is not None]
+        if not covered or dial["peak_distance_au"] != min(covered, key=lambda step: step["offset_px"])["distance_au"]:
+            raise ValueError("$.dial.peak_distance_au: must match the minimum covered offset")
 
 
 def write_field(field: dict, outdir: Path, *, real_build: bool = False) -> None:

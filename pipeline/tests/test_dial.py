@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from astropy.wcs import WCS
 
-from pipeline.build_dial import _inside, _reference, _science_scorer
+from pipeline.build_dial import _inside, _peak, _reference, _science_scorer
 
 
 def test_reference_prefers_lowest_bad_fraction(tmp_path: Path) -> None:
@@ -40,3 +40,18 @@ def test_science_scorer_finds_peak_near_crosshair() -> None:
                                     np.zeros_like(image), 0.0)
     assert np.isfinite(snr) and snr > 0
     assert offset <= 20
+
+
+def test_dial_pixel_peak_uses_central_radius_and_bad_mask() -> None:
+    image = np.indices((101, 101))[0].astype(float) % 3
+    image[50, 51] = 10
+    image[50, 80] = 50
+    image[50, 49] = 100
+    bad = np.zeros_like(image, dtype=bool)
+    bad[50, 49] = True
+    result = _peak(image, bad)
+    assert result is not None
+    assert result[0] > 0
+    assert result[1] == 1
+
+
