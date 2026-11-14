@@ -97,3 +97,10 @@ The source is gone a year later while field stars stay → it is Neptune. Figure
 Noise estimated from the difference image (S/N up to 1e5, invalid); templates at a different wavelength
 leave star residuals (control shows peaks); 571 steps skipped incl. near 29.9 AU. Fix in v2: VARIANCE-based
 noise, wavelength-matched templates (|Δλ|/λ ≤ 2 %), skip diagnostics, SOURCE-flag test.
+
+## E3. PoC A — Honest Blink on real SPHEREx (M101: PASS; NEP: rerun; ECL: downloading)
+Owner: Data Engineering. M101: 12 honest pairs (|Δλ|/λ ≤ 2 %, Δt ≥ 150 d).
+Difference residual: honest pairs 1.03σ vs naive pairs 1.21σ → matched-wavelength comparison is consistent
+with noise; mismatched wavelength adds ~20 % spurious "change". Go/No-Go #1: PASS.
+NEP: 0 pairs due to a pass-assignment bug (poles are observed continuously) — fix: pair by Δt ≥ 150 d only.
+TODO: pair counts per group, spread (16–84 %), bootstrap error on the difference, residual vs Δλ/λ plot.
