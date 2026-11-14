@@ -86,3 +86,19 @@ The full-frame run evaluated 135 grid steps: 104 covered, 31 outside the detecto
 | 37.35849 | 17.01 | 37.4 | 269.23 |
 
 The Science column is the predicted position's miss relative to known Neptune astrometry; our offset is the brightest pixel within a 20 px search circle. A near-centre unrelated source can therefore create a false minimum in the raw-image score. The negative-control field was not attempted after this failure.
+
+### Centroid-distance revision — 2026-11-14
+
+The later offline run measured Neptune in a cached December D2 section at RA 359.636315915°, Dec −1.621025482°. Its flux-weighted centroid within five pixels of the target-time Horizons position is 0.275 px away. After ZODI subtraction, the source peak is 123.187 MJy/sr versus a local background of 0.022 MJy/sr (annulus MAD noise 0.023 MJy/sr). The sanity check passed.
+
+`offset_px` is now angular distance from each model prediction to that measured centroid divided by 6.15 arcsec/px. The previous brightest-peak offset remains as `raw_peak_offset_px` for covered steps. Of 135 grid steps, 104 have cached target sections and 31 are outside the detector margin. The minimum is **29.95873 AU at 13.23568 px**; ref-epoch JPL geocentric truth is **29.89489 AU** (absolute error **0.06385 AU**). The 29.9 ± 0.5 AU and 13 ± 3 px gates passed. `web/public/data/neptune-dial/` contains 105 PNGs and a validated v1.1 field manifest, and `web/public/data/index.json` lists the field.
+
+| Our d (AU) | Centroid offset (px) | Nearest Science d (AU) | Science model miss (px) |
+| ---: | ---: | ---: | ---: |
+| 29.59239 | 20.37 | 29.6 | 20.15 |
+| 29.77444 | 15.19 | 29.8 | 14.77 |
+| 29.95873 | 13.24 | 30.0 | 13.60 |
+| 30.14533 | 15.79 | 30.1 | 14.99 |
+| 30.33426 | 21.30 | 30.3 | 20.34 |
+
+The Python manifest validator accepts null frame/SNR/offset for outside steps. The current Frontend runtime validator in `web/src/data/validation.ts` still requires non-null values, so it will reject this dial entry until Frontend updates that contract handling. Science confirmation is pending.

@@ -141,7 +141,7 @@ def test_dial_outside_step_requires_all_nulls(field: tuple[dict, Path]) -> None:
                                         "offset_px": None, "outside_frame": True},
                                        {"distance_au": 30, "frame": sample["frames"][0]["id"],
                                         "pred": sample["center"], "snr": 2,
-                                        "offset_px": 1}],
+                                        "offset_px": 1, "raw_peak_offset_px": 0.5}],
         "peak_distance_au": 30, "truth": {"distance_au": 30, "source": "fixture"},
         "negative_control_field": "other",
     }

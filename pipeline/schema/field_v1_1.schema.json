@@ -370,6 +370,10 @@
               "offset_px": {
                 "type": ["number", "null"],
                 "minimum": 0
+              },
+              "raw_peak_offset_px": {
+                "type": "number",
+                "minimum": 0
               }
             }
           },
