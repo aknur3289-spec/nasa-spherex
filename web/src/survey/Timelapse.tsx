@@ -85,9 +85,13 @@ function SkyView({
   return (
     <div className={`tl-sky ${compact ? "compact" : ""} ${reduced ? "still" : ""}`}>
       {real ? (
-        frames.map((f, i) => (
-          <img key={f.src} src={f.src} alt="" className={`tl-frame ${i === index ? "on" : ""}`} />
-        ))
+        compact ? (
+          <img src={cur.src} alt="" className="tl-frame on" loading="lazy" decoding="async" />
+        ) : (
+          frames.map((f, i) => (
+            <img key={f.src} src={f.src} alt="" decoding="async" className={`tl-frame ${i === index ? "on" : ""}`} />
+          ))
+        )
       ) : (
         <div
           className="tl-photo"
@@ -295,6 +299,8 @@ export function Timelapse({
   const [loop, setLoop] = useState(true);
   const [recording, setRecording] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [rawPixels, setRawPixels] = useState(false);
+  const [showAllLog, setShowAllLog] = useState(false);
   const stageRef = useRef<HTMLElement>(null);
 
   // Preload images so the first play is smooth.
@@ -362,6 +368,7 @@ export function Timelapse({
   const last = frames[frames.length - 1];
   const gapNext = index < frames.length - 1 ? daysBetween(cur.date, frames[index + 1].date) : null;
   const progress = frames.length > 1 ? (index / (frames.length - 1)) * 100 : 0;
+  const hasObject = frames.some((f) => f.object);
   const prev = index > 0 ? frames[index - 1].object : undefined;
   const stepShift =
     prev && cur.object ? Math.hypot(cur.object[0] - prev[0], cur.object[1] - prev[1]).toFixed(1) : null;
@@ -370,6 +377,22 @@ export function Timelapse({
       ? Math.hypot(last.object[0] - first.object[0], last.object[1] - first.object[1]).toFixed(1)
       : null;
 
+  const scrubLabels = (() => {
+    const out: { i: number; text: string }[] = [];
+    const maxLabels = 6;
+    const step = Math.max(1, Math.ceil(frames.length / maxLabels));
+    let lastText = "";
+    frames.forEach((f, i) => {
+      if (i % step !== 0 && i !== frames.length - 1) return;
+      const [y, m] = f.date.split("-").map(Number);
+      const text = `${MONTHS[m - 1]} ${String(y).slice(2)}`;
+      if (text === lastText) return;
+      if (i === frames.length - 1 && out.length && out[out.length - 1].i > i - step / 2) out.pop();
+      out.push({ i, text });
+      lastText = text;
+    });
+    return out;
+  })();
   const avgGap = frames.length > 1 ? Math.round(daysBetween(first.date, last.date) / (frames.length - 1)) : 0;
   const bands = new Set(frames.map((f) => f.wavelengthUm.toFixed(2)));
 
@@ -393,12 +416,21 @@ export function Timelapse({
             </p>
           </div>
           <div className="detail-actions">
-            <button className={`button secondary ${trails ? "tl-on" : ""}`} onClick={() => setTrails(!trails)} aria-pressed={trails}>
-              Trails
-            </button>
-            <button className={`button secondary ${path ? "tl-on" : ""}`} onClick={() => setPath(!path)} aria-pressed={path}>
-              Path
-            </button>
+            {!real && (
+              <>
+                <button className={`button secondary ${trails ? "tl-on" : ""}`} onClick={() => setTrails(!trails)} aria-pressed={trails}>
+                  Trails
+                </button>
+                <button className={`button secondary ${path ? "tl-on" : ""}`} onClick={() => setPath(!path)} aria-pressed={path}>
+                  Path
+                </button>
+              </>
+            )}
+            {real && (
+              <button className={`button secondary ${rawPixels ? "tl-on" : ""}`} onClick={() => setRawPixels(!rawPixels)} aria-pressed={rawPixels}>
+                Raw pixels
+              </button>
+            )}
             <button className={`button secondary ${loop ? "tl-on" : ""}`} onClick={() => setLoop(!loop)} aria-pressed={loop}>
               Loop
             </button>
@@ -426,16 +458,13 @@ export function Timelapse({
           </div>
 
           <div
-            className="tl-view"
+            className={`tl-view ${rawPixels ? "raw" : "enhanced"}`}
             tabIndex={0}
             onKeyDown={onKey}
             aria-label="Timelapse image. Space plays or pauses, arrow keys step between observations."
           >
             {!loaded && <div className="tl-skeleton">Loading {frames.length} observations…</div>}
             <SkyView frames={frames} index={index} backdrop={backdrop} trails={trails} path={path} reduced={reduced} />
-            <div className="coordinates">
-              RA 06h 42m 18.7s <span /> DEC −23° 41′ 09″
-            </div>
           </div>
 
           <div className="tl-bar">
@@ -448,26 +477,36 @@ export function Timelapse({
             <button className="tl-step" onClick={() => go(index + 1)} aria-label="Next observation">
               <Chevron dir="right" />
             </button>
-            <div className="tl-track" role="group" aria-label="Observation dates">
-              <div className="tl-rail">
-                <i style={{ width: `${progress}%` }} />
+            <div className="tl-scrub">
+              <div className="tl-scrub-now" style={{ left: `${progress}%` }}>
+                {shortDate(cur.date).day} {shortDate(cur.date).year}
               </div>
-              {frames.map((f, i) => {
-                const d = shortDate(f.date);
-                return (
-                  <button
+              <div className="tl-scrub-ticks" aria-hidden="true">
+                {frames.map((f, i) => (
+                  <i
                     key={f.date + i}
-                    className={`tl-dot ${i === index ? "active" : i < index ? "past" : ""}`}
+                    className={i === index ? "on" : i < index ? "past" : ""}
                     style={{ left: `${frames.length > 1 ? (i / (frames.length - 1)) * 100 : 50}%` }}
-                    onClick={() => go(i)}
-                    aria-label={`Show ${f.date}`}
-                    aria-current={i === index}
-                  >
-                    <span />
-                    <b>{d.day}</b>
-                  </button>
-                );
-              })}
+                  />
+                ))}
+              </div>
+              <input
+                type="range"
+                min={0}
+                max={frames.length - 1}
+                value={index}
+                style={{ ["--p" as string]: `${progress}%` }}
+                onChange={(e) => go(Number(e.target.value))}
+                aria-label="Observation date"
+                aria-valuetext={cur.date}
+              />
+              <div className="tl-scrub-labels" aria-hidden="true">
+                {scrubLabels.map((l) => (
+                  <span key={l.i} style={{ left: `${frames.length > 1 ? (l.i / (frames.length - 1)) * 100 : 50}%` }}>
+                    {l.text}
+                  </span>
+                ))}
+              </div>
             </div>
             <div className="tl-speed" role="group" aria-label="Speed">
               {SPEEDS.map((sp) => (
@@ -481,28 +520,40 @@ export function Timelapse({
 
         <div className="glass confidence-card tl-now-card">
           <small>THIS OBSERVATION</small>
-          <div className="big-score tl-big" key={cur.date}>
-            {stepShift ?? "0.0"}
-            <sup>%</sup>
+          {hasObject ? (
+            <>
+              <div className="big-score tl-big" key={cur.date}>
+                {stepShift ?? "0.0"}
+                <sup>%</sup>
+              </div>
+              <h3>{stepShift === null ? "First image" : "Shift from previous"}</h3>
+              <p>
+                Stars line up between images taken in the same band. The circled source is the only one that changes
+                position.
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="big-score tl-big" key={cur.date}>
+                {cur.wavelengthUm.toFixed(2)}
+                <sup>μm</sup>
+              </div>
+              <h3>Infrared colour of this image</h3>
+              <p>
+                SPHEREx takes each picture in a slightly different infrared colour. Stars can look brighter or fainter
+                from one image to the next because of colour, not motion. Compare images of the same colour to find
+                things that really move.
+              </p>
+            </>
+          )}
+          <div className="metric">
+            <span>
+              Through sequence <b>{Math.round(progress)}%</b>
+            </span>
+            <i>
+              <em style={{ width: `${progress}%` }} />
+            </i>
           </div>
-          <h3>{stepShift === null ? "First image" : "Shift from previous"}</h3>
-          <p>
-            Stars line up between images taken in the same band. The circled source is the only one that changes
-            position.
-          </p>
-          {[
-            ["Through sequence", Math.round(progress)],
-            ["Of net shift so far", shift && cur.object && first.object ? Math.round((Math.hypot(cur.object[0] - first.object[0], cur.object[1] - first.object[1]) / Number(shift)) * 100) : 0],
-          ].map(([k, v]) => (
-            <div className="metric" key={k as string}>
-              <span>
-                {k} <b>{v}%</b>
-              </span>
-              <i>
-                <em style={{ width: `${v}%` }} />
-              </i>
-            </div>
-          ))}
           {[
             ["Date", cur.date],
             ["Wavelength", `${cur.wavelengthUm.toFixed(2)} μm`],
@@ -528,8 +579,8 @@ export function Timelapse({
       <section className="stat-grid">
         {[
           ["OBSERVATIONS", String(frames.length), `${daysBetween(first.date, last.date)} days`],
-          ["NET SHIFT", `${shift ?? "—"}%`, "of frame"],
-          ["BAND", bands.size === 1 ? `${[...bands][0]} μm` : `${Math.min(...frames.map((f) => f.wavelengthUm)).toFixed(2)}–${Math.max(...frames.map((f) => f.wavelengthUm)).toFixed(2)} μm`, "within 1%"],
+          hasObject ? ["NET SHIFT", `${shift ?? "—"}%`, "of frame"] : ["DETECTORS", String(new Set(frames.map((f) => f.detector)).size), "SPHEREx cameras used"],
+          ["BAND", bands.size === 1 ? `${[...bands][0]} μm` : `${Math.min(...frames.map((f) => f.wavelengthUm)).toFixed(1)}–${Math.max(...frames.map((f) => f.wavelengthUm)).toFixed(1)}`, bands.size === 1 ? "μm · same band" : `μm · ${bands.size} colours`],
           ["CADENCE", `${avgGap} d`, "average gap"],
         ].map((x) => (
           <div className="glass stat" key={x[0]}>
@@ -546,7 +597,7 @@ export function Timelapse({
             <small>OBSERVATION LOG</small>
             <h3>All epochs</h3>
           </div>
-          <div className="tl-legend">
+          {hasObject && <div className="tl-legend">
             <span>
               <i className="l-now" /> Now
             </span>
@@ -556,7 +607,7 @@ export function Timelapse({
             <span>
               <i className="l-path" /> Path
             </span>
-          </div>
+          </div>}
         </div>
         <div className="tl-log-head" aria-hidden="true">
           <span />
@@ -566,7 +617,7 @@ export function Timelapse({
           <span>Gap to next</span>
           <span />
         </div>
-        {frames.map((f, i) => (
+        {frames.map((f, i) => ({ f, i })).filter(({ i }) => showAllLog || i < 8 || i === index).map(({ f, i }) => (
           <button
             key={f.date + i}
             className={`tl-log-row ${i === index ? "selected" : ""}`}
@@ -585,6 +636,11 @@ export function Timelapse({
             <span>{i === index ? <em className="chip success">Showing</em> : null}</span>
           </button>
         ))}
+        {frames.length > 8 && (
+          <button className="text-link tl-log-more" onClick={() => setShowAllLog(!showAllLog)}>
+            {showAllLog ? "Show fewer" : `Show all ${frames.length} observations`}
+          </button>
+        )}
       </section>
     </main>
   );

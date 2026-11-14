@@ -253,15 +253,12 @@ function Home({ setScreen }: { setScreen: (s: Screen) => void }) {
 
       <section className="features">
         <Glass className="feature main-feature">
-          <div
-            className="feature-image"
-            style={{
-              backgroundImage: `linear-gradient(180deg, transparent, rgba(5,6,15,.9)), url(${spaceImage})`,
-            }}
-          >
-            <span className="target target-a" />
-            <span className="target target-b" />
-            <div className="scanline" />
+          <div className="feature-image feature-dial" aria-hidden="true">
+            <img src="data/dial/neptune_stamp.png" alt="" />
+            <span className="fd-neptune" />
+            <span className="fd-cross" />
+            <span className="fd-label">Neptune · SPHEREx</span>
+            <span className="fd-miss">closest match · 29.9 AU</span>
           </div>
           <div className="feature-copy">
             <span className="num">01</span>
@@ -275,11 +272,10 @@ function Home({ setScreen }: { setScreen: (s: Screen) => void }) {
           </div>
         </Glass>
         <Glass className="feature">
-          <div className="mini-orbit">
-            <span className="sun" />
-            <span className="ring r1" />
-            <span className="ring r2" />
-            <span className="planet" />
+          <div className="mini-film" aria-hidden="true">
+            {["m101", "nep", "ecl"].map((id) => (
+              <img key={id} src={imageUrl(id, "thumb.png")} alt="" loading="lazy" />
+            ))}
           </div>
           <div className="feature-copy">
             <span className="num">02</span>
@@ -463,6 +459,23 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
   );
 }
 
+const FRIENDLY: Record<string, { name: string; text: string }> = {
+  ecl: {
+    name: "Along the planets' path",
+    text: "A patch of the ecliptic, the band of sky where the Sun, Moon and planets travel. The best place to look for things that move.",
+  },
+  nep: {
+    name: "North Ecliptic Pole",
+    text: "SPHEREx passes over this spot more often than anywhere else, so it has the most repeat images.",
+  },
+  m101: {
+    name: "Pinwheel Galaxy (M101)",
+    text: "A large spiral galaxy. Nothing here should move, so it is a good check that the images line up.",
+  },
+};
+const friendly = (item?: FieldSummary) =>
+  item ? FRIENDLY[item.field_id] ?? { name: item.title, text: "" } : { name: "Sky Explorer", text: "" };
+
 const screens: Screen[] = ["home", "explore", "timelapse", "dial", "compare", "about"];
 
 export default function App() {
@@ -474,7 +487,8 @@ export default function App() {
   const [screenName, fieldId] = path.split("/");
   const screen = screens.find(value => value === screenName) ?? "home";
   const active = screen === "explore" || screen === "compare" || screen === "timelapse";
-  const catalog = index?.filter(item => item.status !== "pending");
+  const catalog = index?.filter(item => item.status !== "pending" && item.synthetic === false);
+  const [enhanced, setEnhanced] = useState(true);
   const selected = catalog?.find(item => item.field_id === fieldId)
     ?? catalog?.find(item => item.synthetic === false) ?? catalog?.[0];
   const id = active ? selected?.field_id : undefined;
@@ -531,18 +545,32 @@ export default function App() {
       {screen === "home" && <Home setScreen={navigate} />}
       {screen === "about" && <About />}
       {screen === "dial" && <ErrorBoundary><DistanceDial /></ErrorBoundary>}
-      {active && <main className="content-screen survey-observations">
-        <div className="section-title">
-          <h1>{selected?.title ?? "Sky Explorer"}</h1>
-          <label>Sky field <select value={selected?.field_id ?? ""} onChange={event => navigate(screen, event.target.value)}>
-            {catalog?.map(item => <option key={item.field_id} value={item.field_id}>{item.title}</option>)}
-          </select></label>
+      {active && <main className={`content-screen survey-observations ${enhanced ? "enhanced" : "raw"}`}>
+        {screen !== "timelapse" && <div className="obs-head">
+          <div>
+            <small>{screen === "compare" ? "COMPARE IMAGES" : "SKY EXPLORER"} · REAL SPHEREx DATA</small>
+            <h1>{friendly(selected).name}</h1>
+            <p>{friendly(selected).text}</p>
+          </div>
+          <button className={`button secondary ${enhanced ? "" : "tl-on"}`} aria-pressed={!enhanced} onClick={() => setEnhanced(!enhanced)}>
+            {enhanced ? "Show raw pixels" : "Smooth view"}
+          </button>
+        </div>}
+        <div className="field-cards" role="group" aria-label="Choose a sky field">
+          {catalog?.map(item => <button key={item.field_id} className={`glass field-card ${item.field_id === selected?.field_id ? "active" : ""}`}
+            aria-pressed={item.field_id === selected?.field_id} onClick={() => navigate(screen, item.field_id)}>
+            <img src={imageUrl(item.field_id, item.thumbnail ?? "thumb.png")} alt="" loading="lazy" />
+            <span>
+              <b>{friendly(item).name}</b>
+              <small>{item.n_frames ?? "?"} images · {item.date_range ? item.date_range.start_utc.slice(0, 7) + " → " + item.date_range.end_utc.slice(0, 7) : ""}</small>
+            </span>
+          </button>)}
         </div>
         {(error || fieldError) && <p role="alert">{error || fieldError}</p>}
         {!field && !error && !fieldError && <p role="status">{catalog?.length === 0 ? "No fields available." : "Loading observations…"}</p>}
         {field && <ErrorBoundary key={screen + "/" + field.field_id}>
           {screen === "timelapse" && timeline.length > 0
-            ? <Timelapse frames={timeline} synthetic={field.provenance.synthetic} title={field.title} backdrop={spaceImage} onBack={() => navigate("explore")} />
+            ? <Timelapse frames={timeline} synthetic={field.provenance.synthetic} title={friendly(selected).name} backdrop={spaceImage} onBack={() => navigate("explore")} />
             : <SimpleViewer field={field} survey search={search ?? (screen === "compare" ? "mode=compare" : undefined)} />}
         </ErrorBoundary>}
       </main>}
