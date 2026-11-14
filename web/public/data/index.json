@@ -10,5 +10,41 @@
     "kind": "dial",
     "title": "Parallax dial fixture",
     "thumbnail": "epoch-1.png"
+  },
+  {
+    "field_id": "ecl",
+    "kind": "static",
+    "thumbnail": "thumb.png",
+    "title": "Ecliptic test field",
+    "n_frames": 30,
+    "synthetic": false,
+    "date_range": {
+      "start_utc": "2025-07-22T04:19:53.064Z",
+      "end_utc": "2026-07-27T02:23:11.941Z"
+    }
+  },
+  {
+    "field_id": "m101",
+    "kind": "static",
+    "thumbnail": "thumb.png",
+    "title": "Pinwheel Galaxy (M101)",
+    "n_frames": 32,
+    "synthetic": false,
+    "date_range": {
+      "start_utc": "2025-05-10T17:11:04.533Z",
+      "end_utc": "2026-06-18T03:54:38.021Z"
+    }
+  },
+  {
+    "field_id": "nep",
+    "kind": "static",
+    "thumbnail": "thumb.png",
+    "title": "North Ecliptic Pole",
+    "n_frames": 31,
+    "synthetic": false,
+    "date_range": {
+      "start_utc": "2025-05-03T20:19:22.824Z",
+      "end_utc": "2026-09-29T16:00:13.869Z"
+    }
   }
 ]

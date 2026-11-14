@@ -6,6 +6,7 @@ export const copy = {
   previous: 'Previous', next: 'Next', details: 'Details', what: 'What you see',
   explanation: 'These infrared images show the same patch of sky on different dates. Play the sequence or compare two observations.',
   why: 'Why these frames?', trust: 'The default pair is the first high-trust pair, or the closest wavelength match when no high-trust pair is available.',
+  lowTrust: 'Different wavelengths: the difference can come from the filters and does not establish a change over time.',
   noPair: 'This field has no documented pair.', changes: 'Bright spots = things that changed between the two dates.',
   synthetic: 'Synthetic data', source: 'Open source file at IRSA', detector: 'Detector',
   planet: 'Could SPHEREx see Planet X?', hint: 'Press ▶ to see this patch of sky change',

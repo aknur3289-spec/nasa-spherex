@@ -18,7 +18,7 @@ function FrameImage({ field, frame }: { field: Field; frame: Frame }) {
     : <SkyImage src={imageUrl(field.field_id, frame.png)} alt={day(frame.obs_time_utc)} onError={() => setFailed(true)} />;
 }
 
-export function SimpleViewer({ field, search }: { field: Field & { timeline?: TimelineEntry[] }; search?: string }) {
+export function SimpleViewer({ field, search, survey = false }: { field: Field & { timeline?: TimelineEntry[] }; search?: string; survey?: boolean }) {
   const params = new URLSearchParams(search);
   const requested = modes.find(mode => mode === params.get('mode')) ?? 'play';
   const pairs = field.pairs.filter(pair => pair.a !== pair.b);
@@ -34,6 +34,8 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
   const [epoch, setEpoch] = useState(0);
   const [speed, setSpeed] = useState(1);
   const [split, setSplit] = useState(50);
+  const [blink, setBlink] = useState(false);
+  const [showAfter, setShowAfter] = useState(false);
   const [reduced, setReduced] = useState(() => matchMedia(query).matches);
   const [playing, setPlaying] = useState(!reduced);
   const [hint, setHint] = useState(() => !sessionStorage.getItem('parallax-interacted'));
@@ -43,6 +45,11 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
   const after = frames.find(frame => frame.id === bId && frame.id !== before?.id) ??
     frames.find(frame => frame.id === best?.b && frame.id !== before?.id) ??
     frames.find(frame => frame.id !== before?.id);
+  useEffect(() => {
+    if (!blink || reduced || mode !== 'compare') return;
+    const timer = window.setInterval(() => setShowAfter(value => !value), 850);
+    return () => clearInterval(timer);
+  }, [blink, reduced, mode]);
   const pair = pairs.find(pair => pair.a === before?.id && pair.b === after?.id);
   const validMode = mode === 'distance' && field.kind !== 'dial' || (mode === 'compare' || mode === 'changes') && !best ? 'play' : mode;
 
@@ -79,6 +86,7 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
     state.set('mode', next);
     if (a) state.set('a', a);
     if (b) state.set('b', b);
+    if (survey) { history.replaceState(null, '', location.hash.split('?')[0] + '?' + state); return; }
     history.replaceState(null, '', '#/field/' + field.field_id + '?' + state);
   }
   function dismissHint() {
@@ -111,7 +119,7 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
     return () => window.removeEventListener('keydown', keyboard);
   });
   if (!active) return <p>{copy.noFrames}</p>;
-  const current = validMode === 'play' ? active : before ?? active;
+  const current = validMode === 'play' ? active : validMode === 'compare' && blink && showAfter ? after ?? active : before ?? active;
   const ticks = frames.filter((_, index) => index === 0 || index === frames.length - 1 || index % Math.ceil(frames.length / 4) === 0);
 
   return <div className="viewer-layout">
@@ -125,7 +133,7 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
       </> : <div className="image-area" ref={stage} onPointerDown={dismissHint}>
         {validMode === 'changes' && before && after
           ? <DifferenceImage key={before.id + ':' + after.id} fieldId={field.field_id} a={before} b={after} path={pair?.diff_png} />
-          : validMode === 'compare' && before && after ? <div className="comparison">
+          : validMode === 'compare' && before && after ? blink ? <FrameImage key={(showAfter ? after : before).id} field={field} frame={showAfter ? after : before} /> : <div className="comparison">
             <FrameImage key={after.id} field={field} frame={after} />
             <div className="comparison-overlay" style={{ clipPath: 'inset(0 ' + (100 - split) + '% 0 0)' }}>
               <FrameImage key={before.id} field={field} frame={before} />
@@ -154,8 +162,22 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
         </details>
       </div>}
       {validMode === 'compare' && before && after && <>
-        <input type="range" min={0} max={100} value={split} className="compare-slider" aria-label={copy.split} title={copy.split}
-          onChange={event => setSplit(event.currentTarget.valueAsNumber)} />
+        <div className="date-pickers">
+          <button type="button" aria-pressed={blink} onClick={() => { setBlink(!blink); setShowAfter(false); }}>Blink</button>
+          {blink && reduced && <button type="button" onClick={() => setShowAfter(value => !value)}>Switch frame</button>}
+          <label>Documented pair<select value={pair ? pairs.indexOf(pair) : ""} onChange={event => {
+            const next = pairs[Number(event.target.value)];
+            if (!next) return;
+            setA(next.a); setB(next.b); updateUrl(mode, next.a, next.b);
+          }}>
+            <option value="" disabled>Custom pair</option>
+            {pairs.map((item, index) => <option key={index} value={index}>
+              {item.trust} · {day(frames.find(frame => frame.id === item.a)!.obs_time_utc)} → {day(frames.find(frame => frame.id === item.b)!.obs_time_utc)}
+            </option>)}
+          </select></label>
+        </div>
+        {!blink && <input type="range" min={0} max={100} value={split} className="compare-slider" aria-label={copy.split} title={copy.split}
+          onChange={event => setSplit(event.currentTarget.valueAsNumber)} />}
         <div className="date-pickers">{([copy.before, copy.after] as const).map((label, index) =>
           <label key={label}>{label}<select title={label} value={index ? after.id : before.id} onChange={event => {
             const value = event.target.value;
@@ -164,7 +186,8 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
           }}>{frames.map(frame => <option key={frame.id} value={frame.id} disabled={frame.id === (index ? before.id : after.id)}>
             {day(frame.obs_time_utc)}</option>)}</select></label>)}</div>
       </>}
-      {validMode === 'changes' && <p>{copy.changes}</p>}
+      {(validMode === 'compare' || validMode === 'changes') && pair?.trust === 'low' && <p role="status" className="trust low">Low trust · {copy.lowTrust}</p>}
+      {validMode === 'changes' && pair?.trust !== 'low' && <p>{copy.changes}</p>}
       <div className="mode-switch" aria-label={copy.modes}>
         {modes.slice(0, field.kind === 'dial' ? 4 : 3).map((value, index) => <button key={value} title={labels[index]}
           aria-pressed={validMode === value} disabled={(value === 'compare' || value === 'changes') && !best} onClick={() => choose(value)}>
@@ -176,7 +199,7 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
       <h2>{copy.what}</h2><p>{copy.explanation}</p>
       {field.provenance.synthetic && <span className="synthetic">{copy.synthetic}</span>}
       <details open><summary title={copy.details}>{copy.details}</summary>
-        {(validMode === 'play' || !after ? [current] : [current, after]).map(frame => <div className="metadata" key={frame.id}>
+        {(validMode === 'play' || !after ? [current] : [before ?? active, after]).map(frame => <div className="metadata" key={frame.id}>
           <div>{day(frame.obs_time_utc)} · {frame.wavelength_um.toFixed(2)} µm</div>
           <div>{copy.detector} {frame.detector}{frame.band && ' · ' + frame.band}</div>
           {!field.provenance.synthetic && <a href={frame.source_url} target="_blank" rel="noopener">{copy.source}</a>}
@@ -185,7 +208,7 @@ export function SimpleViewer({ field, search }: { field: Field & { timeline?: Ti
       {best && <details><summary title={copy.why}>{copy.why}</summary><p>{copy.trust}</p>
         {(validMode === 'play' ? best : pair) && <TrustBadge pair={(validMode === 'play' ? best : pair)!} />}
       </details>}
-      <a href="#/limits">{copy.planet}</a>
+      <a href={survey ? "./viewer.html#/limits" : "#/limits"}>{copy.planet}</a>
     </aside>
   </div>;
 }
