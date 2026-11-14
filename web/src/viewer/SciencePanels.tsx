@@ -1,17 +1,19 @@
 import { SkyImage } from '../ui/SkyImage';
 import { useEffect, useId, useState } from 'react';
-import type { Field, Frame } from '../contract';
+import { isOutsideFrame, type Field, type Frame } from '../contract';
 import { imageUrl } from '../data/loader';
 import './science-panels.css';
 
 const motionQuery = '(prefers-reduced-motion: reduce)';
 const format = (value: number) => new Intl.NumberFormat('en', { maximumFractionDigits: 1 }).format(value);
 
-function DialFrame({ frame, fieldId, caption }: { frame?: Frame; fieldId: string; caption: string }) {
+function DialFrame({ frame, fieldId, caption, outside }: { frame?: Frame; fieldId: string; caption: string; outside?: boolean }) {
   const [failed, setFailed] = useState(false);
   return <figure className="science-frame">
     <div className="science-image">
-      {frame && !failed
+      {outside
+        ? <div className="image-placeholder outside-frame" role="status"><b>Outside the frame</b><span>At this distance the predicted position falls off the detector, so there is no image to check.</span></div>
+        : frame && !failed
         ? <><SkyImage src={imageUrl(fieldId, frame.png)} alt={caption} onError={() => setFailed(true)} /><span className="crosshair" aria-hidden="true" /></>
         : <div className="image-placeholder" role="status">Image unavailable.</div>}
     </div>
@@ -64,16 +66,24 @@ export function DistanceDial({ field }: { field: Field }) {
   if (!dial || !length) return null;
   const step = steps[selected] ?? steps[0];
   const reference = field.frames.find(frame => frame.id === dial.reference_frame);
-  const candidate = field.frames.find(frame => frame.id === step.frame);
+  const outside = isOutsideFrame(step);
+  const candidate = outside ? undefined : field.frames.find(frame => frame.id === step.frame);
   const start = steps[0].distance_au;
   const end = steps[length - 1].distance_au;
-  const snr = steps.map(point => point.snr);
+  const measured = steps.filter(point => !isOutsideFrame(point)) as Extract<typeof steps[number], { snr: number }>[];
+  const snr = measured.map(point => point.snr);
   const minimum = Math.min(0, ...snr);
   const maximum = Math.max(0, ...snr);
   const x = (au: number) => 32 + 326 * Math.log(au / start) / (Math.log(end / start) || 1);
   const y = (signal: number) => 130 - 100 * (signal - minimum) / (maximum - minimum || 1);
-  const path = steps
-    .map((point, index) => (index ? 'L' : 'M') + x(point.distance_au) + ' ' + y(point.snr)).join(' ');
+  // Break the curve wherever the prediction leaves the detector.
+  let pen = 'M';
+  const path = steps.map(point => {
+    if (isOutsideFrame(point)) { pen = 'M'; return ''; }
+    const segment = pen + x(point.distance_au) + ' ' + y(point.snr);
+    pen = 'L';
+    return segment;
+  }).join(' ');
   const truthInRange = dial.truth.distance_au >= start && dial.truth.distance_au <= end;
   const truthLabel = field.provenance.synthetic ? 'Synthetic reference' : dial.truth.source;
   return <section className="science-section" aria-label="Distance dial">
@@ -82,7 +92,9 @@ export function DistanceDial({ field }: { field: Field }) {
       <DialFrame key={'reference-' + reference?.id} frame={reference} fieldId={field.field_id}
         caption={'Seen on ' + (reference?.obs_time_utc.slice(0, 10) ?? 'the reference date')} />
       <DialFrame key={'candidate-' + candidate?.id} frame={candidate} fieldId={field.field_id}
-        caption={'Later frame · ' + (candidate?.obs_time_utc.slice(0, 10) ?? 'date unavailable') + ' · ' + format(step.distance_au) + ' AU hypothesis'} />
+        outside={outside}
+        caption={outside ? 'Outside the frame · ' + format(step.distance_au) + ' AU hypothesis'
+          : 'Later frame · ' + (candidate?.obs_time_utc.slice(0, 10) ?? 'date unavailable') + ' · ' + format(step.distance_au) + ' AU hypothesis'} />
     </div>
     <div className="science-glass science-control">
       <label htmlFor="distance-control">Distance hypothesis <output>{format(step.distance_au)} AU</output></label>
@@ -99,7 +111,7 @@ export function DistanceDial({ field }: { field: Field }) {
     <div className="science-glass science-chart">
       <h3>Signal at the crosshair</h3>
       <p className="science-peak">{field.provenance.synthetic ? 'Synthetic peak' : 'Measured'} {format(dial.peak_distance_au)} AU</p>
-      <svg viewBox="0 0 380 156" role="img" aria-label={'Signal-to-noise ratio by distance. Current signal: ' + format(step.snr)}>
+      <svg viewBox="0 0 380 156" role="img" aria-label={'Signal-to-noise ratio by distance. Current signal: ' + (outside ? 'outside the frame' : format(step.snr))}>
         <path d="M32 28V130H358" fill="none" stroke="currentColor" opacity=".32" />
         {[30, 100, 300, 1000].filter(distance => distance >= start && distance <= end).map(distance =>
           <g key={distance}><path d={'M' + x(distance) + ' 30V130'} stroke="currentColor" opacity=".12" />
@@ -107,11 +119,17 @@ export function DistanceDial({ field }: { field: Field }) {
         {truthInRange && <line x1={x(dial.truth.distance_au)} x2={x(dial.truth.distance_au)}
           y1="22" y2="130" stroke="currentColor" opacity=".75" strokeDasharray="3 4" />}
         <path d={path} fill="none" stroke="#d4deee" strokeWidth="2" />
-        <circle cx={x(step.distance_au)} cy={y(step.snr)} r="4" fill="#fff" />
+        {steps.filter(isOutsideFrame).map(point =>
+          <path key={point.distance_au} d={'M' + x(point.distance_au) + ' 126v8'} stroke="currentColor" opacity=".35" />)}
+        {outside
+          ? <path d={'M' + x(step.distance_au) + ' 30V130'} stroke="#fff" strokeDasharray="2 3" opacity=".7" />
+          : <circle cx={x(step.distance_au)} cy={y(step.snr)} r="4" fill="#fff" />}
         {dial.peak_distance_au >= start && dial.peak_distance_au <= end &&
           <path d={'M' + x(dial.peak_distance_au) + ' 18v-10'} stroke="#f2b441" strokeWidth="2" />}
       </svg>
-      <p className="science-note">{truthLabel} {format(dial.truth.distance_au)} AU · Empty-sky curve unavailable for this field.</p>
+      <p className="science-note">{truthLabel} {format(dial.truth.distance_au)} AU · Empty-sky curve unavailable for this field.
+        {steps.length > measured.length && <> · {steps.length - measured.length} of {steps.length} distances fall outside the frame (gaps in the curve).</>}</p>
+      {dial.note && <p className="science-note">{dial.note}</p>}
     </div>
   </section>;
 }

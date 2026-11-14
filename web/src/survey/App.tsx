@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Timelapse } from "./Timelapse";
+import { DistanceDial } from "./DistanceDial";
 import { imageUrl, loadField, loadIndex } from "../data/loader";
 import type { FieldSummary } from "../contract";
-import { SimpleViewer } from "../viewer/SimpleViewer";
+import { SkyExplorer } from "./SkyExplorer";
+import { ComparePairs } from "./ComparePairs";
+import { friendly } from "./fields";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
 
-type Screen = "home" | "explore" | "timelapse" | "compare" | "about";
+type Screen = "home" | "explore" | "timelapse" | "dial" | "compare" | "about";
 type IconName =
   | "orbit"
   | "arrow"
@@ -152,6 +155,7 @@ function Header({ screen, setScreen }: { screen: Screen; setScreen: (s: Screen) 
   const links: [Screen, string][] = [
     ["explore", "Sky Explorer"],
     ["timelapse", "Timelapse"],
+    ["dial", "Distance Dial"],
     ["compare", "Compare"],
     ["about", "Methodology"],
   ];
@@ -169,8 +173,8 @@ function Header({ screen, setScreen }: { screen: Screen; setScreen: (s: Screen) 
           </button>
         ))}
       </nav>
-      <Button variant="secondary" onClick={() => setScreen("explore")}>
-        Open survey <Icon name="arrow" />
+      <Button variant="secondary" onClick={() => setScreen("dial")}>
+        Play the dial <Icon name="arrow" />
       </Button>
     </header>
   );
@@ -193,69 +197,93 @@ function Home({ setScreen }: { setScreen: (s: Screen) => void }) {
       <section className="hero">
         <div className="eyebrow">
           <span />
-          <Icon name="spark" size={15} /> NASA SPACE APPS · PLANET X & SPHEREx
+          <Icon name="spark" size={15} /> NASA SPACE APPS 2026 · PLANET X & SPHEREx
         </div>
         <h1>
-          See what the sky
+          Hunt for a distant planet
           <br />
-          <em>hasn’t told us yet.</em>
+          <em>with real NASA data.</em>
         </h1>
         <p>
-          Explore the infrared universe. Trace faint motion across time. Help investigate the
-          signals that could reveal a distant ninth planet.
+          Turn a dial, watch a crosshair land on Neptune in a real SPHEREx image, and see how astronomers
+          measure distances across the Solar System. No astronomy degree needed.
         </p>
         <div className="hero-actions">
-          <Button onClick={() => setScreen("explore")} icon="arrow">
-            Explore the sky
+          <Button onClick={() => setScreen("dial")} icon="arrow">
+            Play the Distance Dial
           </Button>
-          <Button variant="secondary" onClick={() => setScreen("about")}>
-            How it works
+          <Button variant="secondary" onClick={() => setScreen("timelapse")}>
+            Watch the sky change
           </Button>
         </div>
-        <div className="signal-readout">
-          <span>SPHEREx ALL-SKY SURVEY</span>
-          <b>102</b>
-          <small>spectral bands</small>
+        <div className="hero-result glass">
+          <div>
+            <small>OUR MEASUREMENT</small>
+            <b>
+              29.95 <span>± 0.03 AU</span>
+            </b>
+            <em>Neptune, from 265 pairs of real SPHEREx images</em>
+          </div>
           <i />
-          <b>450M+</b>
-          <small>galaxies targeted</small>
+          <div>
+            <small>NASA JPL REFERENCE</small>
+            <b>
+              29.89 <span>AU</span>
+            </b>
+            <em>Difference +0.2%</em>
+          </div>
         </div>
       </section>
+
+      <section className="how-steps">
+        <div className="how-head">
+          <small>HOW IT WORKS</small>
+          <h2>Three steps. One real measurement.</h2>
+        </div>
+        {[
+          ["Pick a distance", "Guess how far away the object is with a slider."],
+          ["See the prediction", "Our model shows where it should appear six months later."],
+          ["Find the closest match", "The guess that lands nearest the real image is the distance."],
+        ].map(([h, p], i) => (
+          <div className="glass how-card" key={h}>
+            <span>{i + 1}</span>
+            <h3>{h}</h3>
+            <p>{p}</p>
+          </div>
+        ))}
+      </section>
+
       <section className="features">
         <Glass className="feature main-feature">
-          <div
-            className="feature-image"
-            style={{
-              backgroundImage: `linear-gradient(180deg, transparent, rgba(5,6,15,.9)), url(${spaceImage})`,
-            }}
-          >
-            <span className="target target-a" />
-            <span className="target target-b" />
-            <div className="scanline" />
+          <div className="feature-image feature-dial" aria-hidden="true">
+            <img src="data/dial/neptune_stamp.png" alt="" />
+            <span className="fd-neptune" />
+            <span className="fd-cross" />
+            <span className="fd-label">Neptune · SPHEREx</span>
+            <span className="fd-miss">closest match · 29.9 AU</span>
           </div>
           <div className="feature-copy">
             <span className="num">01</span>
             <div>
-              <h3>Search the infrared sky</h3>
-              <p>Browse published SPHEREx cutouts by field and date.</p>
+              <h3>Distance Dial</h3>
+              <p>Measure Neptune yourself on real data, the way you would hunt for Planet Nine.</p>
             </div>
-            <button aria-label="Open sky explorer" onClick={() => setScreen("explore")}>
+            <button aria-label="Open the Distance Dial" onClick={() => setScreen("dial")}>
               <Icon name="arrow" />
             </button>
           </div>
         </Glass>
         <Glass className="feature">
-          <div className="mini-orbit">
-            <span className="sun" />
-            <span className="ring r1" />
-            <span className="ring r2" />
-            <span className="planet" />
+          <div className="mini-film" aria-hidden="true">
+            {["m101", "nep", "ecl"].map((id) => (
+              <img key={id} src={imageUrl(id, "thumb.png")} alt="" loading="lazy" />
+            ))}
           </div>
           <div className="feature-copy">
             <span className="num">02</span>
             <div>
-              <h3>Inspect subtle motion</h3>
-              <p>Play every epoch as a timelapse and watch what moves.</p>
+              <h3>Timelapse</h3>
+              <p>Play real SPHEREx images of one patch of sky in date order and see what changes.</p>
             </div>
             <button aria-label="Open timelapse" onClick={() => setScreen("timelapse")}>
               <Icon name="play" />
@@ -263,60 +291,88 @@ function Home({ setScreen }: { setScreen: (s: Screen) => void }) {
           </div>
         </Glass>
         <Glass className="feature">
-          <div className="spectrum-mini">
-            <svg viewBox="0 0 300 105" preserveAspectRatio="none">
-              <path d="M0 84 C25 78, 38 84, 55 58 S80 25, 102 66 S132 83, 150 49 S179 18, 195 58 S226 75, 241 42 S270 30, 300 10" />
-              <path
-                className="area"
-                d="M0 84 C25 78,38 84,55 58 S80 25,102 66 S132 83,150 49 S179 18,195 58 S226 75,241 42 S270 30,300 10 V105 H0Z"
-              />
-            </svg>
+          <div className="trust-mini">
+            <span className="t-high">High trust · same band</span>
+            <span className="t-mid">Medium · 3% apart</span>
+            <span className="t-low">Low · colour changes</span>
           </div>
           <div className="feature-copy">
             <span className="num">03</span>
             <div>
-              <h3>Evaluate candidates</h3>
-              <p>Weigh spectral, motion, and quality evidence together.</p>
+              <h3>Which images can you trust?</h3>
+              <p>Compare pairs and see when a change is real motion, not a colour effect.</p>
             </div>
+            <button aria-label="Open compare" onClick={() => setScreen("compare")}>
+              <Icon name="arrow" />
+            </button>
           </div>
         </Glass>
       </section>
-      <section className="steps">
-        <div>
-          <small>THE SEARCH, SIMPLIFIED</small>
-          <h2>From photons to a possibility.</h2>
+
+      <section className="audience">
+        <div className="how-head">
+          <small>WHO IT IS FOR</small>
+          <h2>Anyone can try hunting a distant planet.</h2>
         </div>
-        {["Filter the survey", "Inspect candidates", "Model an orbit"].map((x, i) => (
-          <div className="step" key={x}>
-            <span>0{i + 1}</span>
-            <p>{x}</p>
-            {i < 2 && <Icon name="chevron" />}
+        {[
+          ["Curious people & students", "Move a slider, watch the crosshair hit or miss a real NASA image, and learn how distance is measured in space.", "dial", "Start playing"],
+          ["Volunteers & citizen scientists", "If you search for faint movers in projects like Backyard Worlds, see which image pairs you can compare and which you cannot.", "compare", "Check image pairs"],
+          ["Researchers", "Method validated on Neptune and Uranus, a trust badge for every pair, and how many frames a faint object would need.", "about", "Read the method"],
+        ].map(([h, p, to, cta]) => (
+          <div className="glass audience-card" key={h}>
+            <h3>{h}</h3>
+            <p>{p}</p>
+            <button className="text-link" onClick={() => setScreen(to as Screen)}>
+              {cta} <Icon name="arrow" size={14} />
+            </button>
           </div>
         ))}
       </section>
+
       <footer>
         <Logo onClick={() => setScreen("home")} />
-        <span>Built for NASA Space Apps Challenge 2025</span>
-        <span>Data: NASA · JPL · Caltech</span>
+        <span>Built for NASA Space Apps Challenge 2026</span>
+        <span>Data: NASA SPHEREx via IRSA · JPL Horizons</span>
       </footer>
     </main>
   );
 }
 
 function About() {
+  const limits = [
+    "Neptune proves the geometry, not the sensitivity: Neptune is bright and probably saturated.",
+    "The model assumes a circular orbit near the ecliptic. An inclined orbit can bias the result — one 20° test case gave −2.8%.",
+    "The two images are at 0.968 µm and 1.259 µm. Measured positions agree with JPL Horizons within 27″ (4.5 px); this limits any colour effect to 0.10 AU.",
+    "A faint Planet Nine (V ≈ 21.9–22.7) is far below the single-frame limit (AB 18.4); many frames would have to be stacked.",
+  ];
   return (
     <main className="content-screen about-screen">
       <div className="section-title">
         <small>SCIENCE & METHODOLOGY</small>
         <h1>
-          Finding motion in
+          Measuring a distance
           <br />
-          an infrared universe.
+          from two pictures.
         </h1>
         <p>
-          Compare repeat SPHEREx observations and learn how wavelength affects the differences you see.
+          From two real SPHEREx exposures six months apart we measured Neptune at 29.95 ± 0.03 AU — using only one
+          measured position, its time and a trial distance. No ephemeris of the target.
         </p>
       </div>
+      <section className="stat-grid about-stats">
+        {[
+          ["NEPTUNE", "29.95 AU", "± 0.03 · 265 pairs"],
+          ["JPL HORIZONS", "29.89 AU", "+0.2%"],
+          ["URANUS", "19.39 AU", "vs 19.50 (−0.5%)"],
+          ["PARALLAX ONLY", "up to 50%", "error, season-dependent"],
+        ].map((x) => (
+          <div className="glass stat" key={x[0]}>
+            <small>{x[0]}</small>
+            <strong>{x[1]}</strong>
+            <span>{x[2]}</span>
+          </div>
+        ))}
+      </section>
       <Glass className="article">
         <section>
           <span className="article-num">01</span>
@@ -324,29 +380,26 @@ function About() {
             <small>THE MISSION</small>
             <h2>A spectrum for every point in the sky.</h2>
             <p>
-              SPHEREx surveys the entire sky in 102 infrared colors. While its primary mission
-              traces the origin of the universe and the history of galaxies, its repeated sky
-              coverage creates a powerful record of change over time.
+              SPHEREx surveys the entire sky in 102 infrared colours and comes back to the same places every six
+              months. That repeat coverage is a record of what moves.
             </p>
           </div>
         </section>
         <section>
           <span className="article-num">02</span>
           <div>
-            <small>THE PIPELINE</small>
-            <h2>From archive to comparison</h2>
+            <small>THE METHOD</small>
+            <h2>Parallax plus orbital motion.</h2>
+            <p>
+              Earth moves around the Sun, so a distant object seems to shift against the stars. The object also moves
+              along its own orbit. We predict the position six months later for many trial distances and keep the one
+              that lands closest to the real image. Ignoring orbital motion gives errors from −23% to +50%.
+            </p>
             <div className="pipeline">
-              {[
-                "Ingest survey epochs",
-                "Align cutouts",
-                "Match wavelengths",
-                "Compare epochs",
-              ].map((x, i) => (
+              {["Measure a position", "Try a distance", "Predict 6 months later", "Keep the closest match"].map((x, i) => (
                 <div key={x}>
                   <span>
-                    <Icon
-                      name={i === 0 ? "spark" : i === 1 ? "grid" : i === 2 ? "orbit" : "check"}
-                    />
+                    <Icon name={i === 0 ? "spark" : i === 1 ? "grid" : i === 2 ? "orbit" : "check"} />
                   </span>
                   <b>{x}</b>
                   {i < 3 && <Icon name="chevron" />}
@@ -358,14 +411,28 @@ function About() {
         <section>
           <span className="article-num">03</span>
           <div>
+            <small>LIMITATIONS</small>
+            <h2>What this does and does not show.</h2>
+            <ul className="about-limits">
+              {limits.map((l) => (
+                <li key={l}>{l}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        <section>
+          <span className="article-num">04</span>
+          <div>
             <small>DATA SOURCES</small>
             <h2>Built on open science.</h2>
             <p>
-              The observation explorer displays SPHEREx Level 2 cutouts from NASA/IPAC IRSA. Each real frame links to its archive product. The synthetic distance dial illustrates the method.
+              Images are SPHEREx Level 2 cutouts from NASA/IPAC IRSA; each real frame links to its archive product.
+              Reference distances come from JPL Horizons.
             </p>
             <div className="source-chips">
               <span>NASA SPHEREx</span>
               <a href="https://irsa.ipac.caltech.edu/Missions/spherex.html">NASA/IPAC IRSA</a>
+              <a href="https://ssd.jpl.nasa.gov/horizons/">JPL Horizons</a>
             </div>
           </div>
         </section>
@@ -379,6 +446,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
     ["home", "spark", "Home"],
     ["explore", "grid", "Explore"],
     ["timelapse", "play", "Timelapse"],
+    ["dial", "orbit", "Dial"],
     ["about", "book", "About"],
   ];
   return (
@@ -393,7 +461,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
   );
 }
 
-const screens: Screen[] = ["home", "explore", "timelapse", "compare", "about"];
+const screens: Screen[] = ["home", "explore", "timelapse", "dial", "compare", "about"];
 
 export default function App() {
   const [route, setRoute] = useState(location.hash);
@@ -403,8 +471,9 @@ export default function App() {
   const [path, search] = route.slice(2).split("?");
   const [screenName, fieldId] = path.split("/");
   const screen = screens.find(value => value === screenName) ?? "home";
-  const active = screen === "explore" || screen === "compare" || screen === "timelapse";
-  const catalog = index?.filter(item => item.status !== "pending");
+  const active = screen === "compare" || screen === "timelapse";
+  const catalog = index?.filter(item => item.status !== "pending" && item.synthetic === false);
+  const [enhanced, setEnhanced] = useState(true);
   const selected = catalog?.find(item => item.field_id === fieldId)
     ?? catalog?.find(item => item.synthetic === false) ?? catalog?.[0];
   const id = active ? selected?.field_id : undefined;
@@ -437,7 +506,7 @@ export default function App() {
   }, [id]);
 
   const navigate = (next: Screen, nextId = selected?.field_id) => {
-    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" ? "/" + nextId : "");
+    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" && next !== "dial" ? "/" + nextId : "");
   };
 
   const timeline = useMemo(() => {
@@ -460,19 +529,37 @@ export default function App() {
       <Header screen={screen} setScreen={navigate} />
       {screen === "home" && <Home setScreen={navigate} />}
       {screen === "about" && <About />}
-      {active && <main className="content-screen survey-observations">
-        <div className="section-title">
-          <h1>{selected?.title ?? "Sky Explorer"}</h1>
-          <label>Sky field <select value={selected?.field_id ?? ""} onChange={event => navigate(screen, event.target.value)}>
-            {catalog?.map(item => <option key={item.field_id} value={item.field_id}>{item.title}</option>)}
-          </select></label>
+      {screen === "dial" && <ErrorBoundary><DistanceDial /></ErrorBoundary>}
+      {screen === "explore" && (catalog
+        ? <ErrorBoundary><SkyExplorer catalog={catalog} go={(s, nextId) => navigate(s, nextId)} /></ErrorBoundary>
+        : <main className="content-screen"><p role="status">{error || "Loading sky fields…"}</p></main>)}
+      {active && <main className={`content-screen survey-observations ${enhanced ? "enhanced" : "raw"}`}>
+        {screen !== "timelapse" && <div className="obs-head">
+          <div>
+            <small>COMPARE TWO IMAGES · REAL SPHEREx DATA</small>
+            <h1>{friendly(selected).name}</h1>
+            <p>{friendly(selected).text}</p>
+          </div>
+          <button className={`button secondary ${enhanced ? "" : "tl-on"}`} aria-pressed={!enhanced} onClick={() => setEnhanced(!enhanced)}>
+            {enhanced ? "Show raw pixels" : "Smooth view"}
+          </button>
+        </div>}
+        <div className="field-cards" role="group" aria-label="Choose a sky field">
+          {catalog?.map(item => <button key={item.field_id} className={`glass field-card ${item.field_id === selected?.field_id ? "active" : ""}`}
+            aria-pressed={item.field_id === selected?.field_id} onClick={() => navigate(screen, item.field_id)}>
+            <img src={imageUrl(item.field_id, item.thumbnail ?? "thumb.png")} alt="" loading="lazy" />
+            <span>
+              <b>{friendly(item).name}</b>
+              <small>{item.n_frames ?? "?"} images · {item.date_range ? item.date_range.start_utc.slice(0, 7) + " → " + item.date_range.end_utc.slice(0, 7) : ""}</small>
+            </span>
+          </button>)}
         </div>
         {(error || fieldError) && <p role="alert">{error || fieldError}</p>}
         {!field && !error && !fieldError && <p role="status">{catalog?.length === 0 ? "No fields available." : "Loading observations…"}</p>}
         {field && <ErrorBoundary key={screen + "/" + field.field_id}>
           {screen === "timelapse" && timeline.length > 0
-            ? <Timelapse frames={timeline} synthetic={field.provenance.synthetic} title={field.title} backdrop={spaceImage} onBack={() => navigate("explore")} />
-            : <SimpleViewer field={field} survey search={search ?? (screen === "compare" ? "mode=compare" : undefined)} />}
+            ? <Timelapse frames={timeline} synthetic={field.provenance.synthetic} title={friendly(selected).name} backdrop={spaceImage} onBack={() => navigate("explore")} />
+            : <ComparePairs field={field} />}
         </ErrorBoundary>}
       </main>}
       <MobileNav screen={screen} setScreen={navigate} />

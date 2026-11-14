@@ -105,11 +105,25 @@ export function validateField(value: unknown, id: string): Field {
     requireValue(has(d.reference_frame) && nonempty(d.model) && positive(d.search_radius_px) &&
       positive(d.peak_distance_au) && positive(truth.distance_au) && nonempty(truth.source) &&
       safeId(d.negative_control_field) && Array.isArray(d.steps) && d.steps.length, 'Invalid dial metadata.');
+    requireValue((d.ref_obs_id === undefined || nonempty(d.ref_obs_id)) &&
+      (d.target_obs_id === undefined || nonempty(d.target_obs_id)) &&
+      (d.truth_au === undefined || positive(d.truth_au)) &&
+      (d.measured_au === undefined || positive(d.measured_au)) &&
+      (d.note === undefined || nonempty(d.note)), 'Invalid optional dial metadata.');
+    let inFrame = 0;
     for (const item of d.steps) {
       const s = object(item);
-      requireValue(has(s.frame) && positive(s.distance_au) && center(s.pred) && finite(s.snr) &&
-        finite(s.offset_px) && s.offset_px >= 0, 'Invalid dial step.');
+      requireValue(s.outside_frame === undefined || typeof s.outside_frame === 'boolean', 'Invalid dial step outside_frame flag.');
+      requireValue(positive(s.distance_au) && center(s.pred), 'Invalid dial step.');
+      if (s.outside_frame === true) {
+        // The predicted point is off every detector: no frame, signal or offset can exist.
+        requireValue(s.frame === null && s.snr === null && s.offset_px === null, 'Outside-frame dial step must have null frame, snr and offset_px.');
+      } else {
+        requireValue(has(s.frame) && finite(s.snr) && finite(s.offset_px) && s.offset_px >= 0, 'Invalid dial step.');
+        inFrame++;
+      }
     }
+    requireValue(inFrame > 0, 'Dial needs at least one step inside a frame.');
   }
   return value as Field;
 }
