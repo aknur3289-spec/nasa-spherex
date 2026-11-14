@@ -89,32 +89,44 @@ def parallax_explainer() -> None:
 
 def distance_recovery() -> None:
     rows = json.loads((ROOT / "docs" / "validation_geometry.json").read_text())
-    names = [r["body"].title() for r in rows]
-    values = np.array([[r["d_true_au"], r["d_fit_au"], r["d_fit_static_au"]] for r in rows])
-    errors = np.array([[0.0, r["err_pct"], r["err_static_pct"]] for r in rows])
     fig, ax = plt.subplots(figsize=(12, 6.75))
-    x = np.arange(len(rows)); width = .23
-    series = [("True distance", 0, PALETTE["ink"]),
-              ("Parallax + orbit", 1, PALETTE["blue"]),
-              ("Parallax only", 2, PALETTE["orange"])]
-    for label, j, color in series:
-        bars = ax.bar(x + (j - 1) * width, values[:, j], width, color=color, label=label, zorder=3)
-        for i, bar in enumerate(bars):
-            val = errors[i, j]
-            if j == 0:
-                continue
+    x = np.arange(len(rows)); width = .24
+    series = [("True distance", "d_true_au", None, PALETTE["ink"]),
+              ("Parallax + orbit", "d_fit_au", "err_pct", PALETTE["blue"]),
+              ("Parallax only", "d_fit_static_au", "err_static_pct", PALETTE["orange"])]
+    for j, (label, value_key, error_key, color) in enumerate(series):
+        values = [r[value_key] for r in rows]
+        bars = ax.bar(x + (j - 1) * width, values, width, color=color, label=label, zorder=3)
+        if error_key is None:
+            continue
+        for row, bar in zip(rows, bars):
+            val = row[error_key]
             err_label = "0.0%" if abs(val) < .05 else f"{val:+.1f}%"
-            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + .55, err_label,
-                    ha="center", va="bottom", fontsize=13, color=PALETTE["ink"])
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + .48, err_label,
+                    ha="center", va="bottom", fontsize=12, color=PALETTE["ink"])
+    def short_pair(row: dict) -> str:
+        start, end = (Time(value, scale="utc") for value in row["epoch_pair"].split(" → "))
+        left, right = start.datetime.strftime("%b"), end.datetime.strftime("%b")
+        if start.datetime.year == end.datetime.year:
+            return f"{left}→{right} '{str(end.datetime.year)[-2:]}"
+        return (f"{left} '{str(start.datetime.year)[-2:]}→{right}\n'"
+                f"{str(end.datetime.year)[-2:]}")
+    labels = [f"{row['body'].title()}\n{short_pair(row)}" for row in rows]
     ax.set_ylabel("Distance (AU)")
-    ax.set_xticks(x, names)
-    ax.set_ylim(0, 36)
+    ax.set_xticks(x, labels)
+    ax.set_ylim(0, max(max(r[k] for k in ("d_true_au", "d_fit_au", "d_fit_static_au"))
+                       for r in rows) + 8)
+    ax.tick_params(axis="x", labelsize=13)
     ax.grid(axis="y", color="#D9DEE3", lw=.8, zorder=0)
     ax.spines[["top", "right"]].set_visible(False)
     ax.legend(frameon=False, ncol=3, loc="upper left")
-    ax.text(.99, .89, "The orbit term is required", transform=ax.transAxes, ha="right", va="top",
-            fontsize=18, weight="bold", color=PALETTE["ink"])
-    fig.tight_layout()
+    seasonal = [r["err_static_pct"] for r in rows if r["body"] in {"neptune", "uranus"}]
+    model_max = max(abs(r["err_pct"]) for r in rows if r["body"] in {"neptune", "uranus"})
+    fmt = lambda value: f"{value:+.1f}".replace("-", "−")
+    note = (f"Ignoring orbital motion biases the distance by {fmt(min(seasonal))} % to "
+            f"{fmt(max(seasonal))} %, depending on season; our model stays within {model_max:.1f} %.")
+    fig.tight_layout(rect=(0, .16, 1, 1))
+    fig.text(.5, .055, note, ha="center", va="center", fontsize=12, color=PALETTE["gray"])
     save(fig, "distance_recovery")
 
 

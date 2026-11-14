@@ -1,8 +1,27 @@
 [
   {
     "body": "neptune",
+    "t0_utc": "2025-06-24T00:00:00.000",
+    "t1_utc": "2025-12-23T14:24:00.000",
+    "epoch_pair": "2025-06-24 \u2192 2025-12-23",
+    "elongation_t0_deg": 90.6,
+    "shift_arcmin": 163.6,
+    "d_true_au": 29.89,
+    "d_fit_au": 29.97,
+    "err_pct": 0.3,
+    "residual_arcsec": 82.4,
+    "d_fit_static_au": 41.98,
+    "err_static_pct": 40.5,
+    "within_20px_range_au": [
+      29.6,
+      30.2
+    ]
+  },
+  {
+    "body": "neptune",
     "t0_utc": "2025-12-21T00:00:00.000",
     "t1_utc": "2026-06-21T14:24:00.000",
+    "epoch_pair": "2025-12-21 \u2192 2026-06-21",
     "elongation_t0_deg": 90.0,
     "shift_arcmin": 296.1,
     "d_true_au": 29.89,
@@ -18,16 +37,35 @@
   },
   {
     "body": "uranus",
-    "t0_utc": "2026-02-16T00:00:00.000",
-    "t1_utc": "2026-08-17T14:24:00.000",
-    "elongation_t0_deg": 90.2,
-    "shift_arcmin": 475.2,
+    "t0_utc": "2025-08-25T00:00:00.000",
+    "t1_utc": "2026-02-23T14:24:00.000",
+    "epoch_pair": "2025-08-25 \u2192 2026-02-23",
+    "elongation_t0_deg": 90.7,
+    "shift_arcmin": 226.9,
+    "d_true_au": 19.51,
+    "d_fit_au": 19.38,
+    "err_pct": -0.7,
+    "residual_arcsec": 96.9,
+    "d_fit_static_au": 30.23,
+    "err_static_pct": 54.9,
+    "within_20px_range_au": [
+      19.3,
+      19.5
+    ]
+  },
+  {
+    "body": "uranus",
+    "t0_utc": "2026-02-17T00:00:00.000",
+    "t1_utc": "2026-08-18T14:24:00.000",
+    "epoch_pair": "2026-02-17 \u2192 2026-08-18",
+    "elongation_t0_deg": 89.2,
+    "shift_arcmin": 475.7,
     "d_true_au": 19.48,
     "d_fit_au": 19.49,
     "err_pct": 0.1,
-    "residual_arcsec": 97.9,
+    "residual_arcsec": 98.0,
     "d_fit_static_au": 14.37,
-    "err_static_pct": -26.3,
+    "err_static_pct": -26.2,
     "within_20px_range_au": [
       19.5,
       19.5
@@ -37,6 +75,7 @@
     "body": "saturn",
     "t0_utc": "2025-12-17T00:00:00.000",
     "t1_utc": "2026-06-17T14:24:00.000",
+    "epoch_pair": "2025-12-17 \u2192 2026-06-17",
     "elongation_t0_deg": 90.2,
     "shift_arcmin": 1078.8,
     "d_true_au": 9.52,

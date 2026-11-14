@@ -43,8 +43,8 @@ def helio_dist(body, t):
         return float(p.norm().to(u.AU).value)
 
 
-def run(body):
-    t0 = quadrature_time(body)
+def run(body, t0_iso=None):
+    t0 = Time(t0_iso, scale="utc") if t0_iso else quadrature_time(body)
     t1 = t0 + 182.6 * u.day
     ra0, dec0, _ = true_radec(body, t0)
     ra1, dec1, _ = true_radec(body, t1)
@@ -56,6 +56,7 @@ def run(body):
     ok = grid[off < 20 * PIX]
     return {
         "body": body, "t0_utc": t0.isot, "t1_utc": t1.isot,
+        "epoch_pair": f"{t0.datetime:%Y-%m-%d} → {t1.datetime:%Y-%m-%d}",
         "elongation_t0_deg": round(solar_elongation_deg(ra0, dec0, t0), 1),
         "shift_arcmin": round(float(shift), 1),
         "d_true_au": round(d_true, 2),
@@ -69,12 +70,18 @@ def run(body):
 
 
 if __name__ == "__main__":
-    rows = [run(b) for b in ("neptune", "uranus", "saturn")]
-    hdr = "| Body | d true | d fit | err % | residual \" | static-only fit | static err % | 20px window AU |"
+    rows = [
+        run("neptune", "2025-06-24"),
+        run("neptune", "2025-12-21"),
+        run("uranus", "2025-08-25"),
+        run("uranus", "2026-02-17"),
+        run("saturn"),
+    ]
+    hdr = "| Body | Epoch pair | d true | d fit | err % | residual \" | static-only fit | static err % | 20px window AU |"
     print(hdr)
-    print("|" + "---|" * 8)
+    print("|" + "---|" * 9)
     for r in rows:
-        print(f"| {r['body']} | {r['d_true_au']} | {r['d_fit_au']} | {r['err_pct']} | "
+        print(f"| {r['body']} | {r['epoch_pair']} | {r['d_true_au']} | {r['d_fit_au']} | {r['err_pct']} | "
               f"{r['residual_arcsec']} | {r['d_fit_static_au']} | {r['err_static_pct']} | {r['within_20px_range_au']} |")
     out = Path(__file__).resolve().parents[1] / "docs" / "validation_geometry.json"
     out.parent.mkdir(exist_ok=True)
