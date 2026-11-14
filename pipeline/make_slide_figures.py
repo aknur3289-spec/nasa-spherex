@@ -10,6 +10,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from astropy.time import Time
+from matplotlib.patches import Arc
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "figures"
@@ -44,8 +45,15 @@ def parallax_explainer() -> None:
     b_dec = body_r * np.array([np.cos(np.deg2rad(39)), np.sin(np.deg2rad(39))])
     ax.scatter(*e_june, s=190, color=PALETTE["blue"], edgecolor="white", linewidth=1.5, zorder=5)
     ax.scatter(*e_dec, s=190, color=PALETTE["sky"], edgecolor="white", linewidth=1.5, zorder=5)
-    ax.text(-1.9, -0.65, "June 2025", ha="center", color=PALETTE["ink"])
-    ax.text(2.05, -0.65, "December 2025", ha="center", color=PALETTE["ink"])
+    ax.text(-3.25, -0.12, "June 2025", ha="right", va="center", color=PALETTE["ink"])
+    ax.text(3.25, -0.12, "December 2025", ha="left", va="center", color=PALETTE["ink"])
+    baseline_y = -1.95
+    ax.plot([e_june[0], e_june[0]], [0, baseline_y], color=PALETTE["gray"], lw=1.0)
+    ax.plot([e_dec[0], e_dec[0]], [0, baseline_y], color=PALETTE["gray"], lw=1.0)
+    ax.annotate("", xy=(e_dec[0], baseline_y), xytext=(e_june[0], baseline_y),
+                arrowprops={"arrowstyle": "<->", "color": PALETTE["gray"], "lw": 1.4})
+    ax.text(0, baseline_y - .18, "baseline ≈ 2 AU", ha="center", va="top",
+            fontsize=14, color=PALETTE["gray"])
     for e, b, color in ((e_june, b_june, PALETTE["blue"]), (e_dec, b_dec, PALETTE["sky"])):
         ax.plot([e[0], b[0]], [e[1], b[1]], color=color, lw=2, alpha=.85, zorder=1)
         ax.scatter(*b, s=170, marker="D", color=PALETTE["orange"], edgecolor="white", linewidth=1.4, zorder=6)
@@ -56,12 +64,25 @@ def parallax_explainer() -> None:
     ax.annotate("", xy=(b_dec[0], b_dec[1]), xytext=(b_june[0], b_june[1]),
                 arrowprops={"arrowstyle": "-|>", "color": PALETTE["orange"], "lw": 2})
     ax.text(3.15, 3.15, "orbital motion", color=PALETTE["orange"], ha="center")
-    ax.annotate("parallax", xy=(0.9, .26), xytext=(-.05, 2.45), ha="center",
-                color=PALETTE["ink"], arrowprops={"arrowstyle": "->", "lw": 1.6, "color": PALETTE["gray"]})
-    ax.text(3.2, .35, "d", color=PALETTE["ink"], fontsize=18)
+    body_mid = (b_june + b_dec) / 2
+    sight_angles = sorted(np.degrees(np.arctan2(e[1] - body_mid[1], e[0] - body_mid[0]))
+                          for e in (e_june, e_dec))
+    ax.add_patch(Arc(body_mid, .62, .62, theta1=sight_angles[0], theta2=sight_angles[1],
+                     color=PALETTE["ink"], lw=1.6, zorder=7))
+    ax.annotate("parallax angle", xy=body_mid + np.array([-.28, -.18]),
+                xytext=(5.0, 1.45), ha="right", va="center", fontsize=15,
+                color=PALETTE["ink"], arrowprops={"arrowstyle": "->", "lw": 1.2,
+                                                 "color": PALETTE["gray"]})
+    d_end = body_mid
+    ax.plot([0, d_end[0]], [0, d_end[1]], color=PALETTE["gray"], lw=1.3,
+            ls=(0, (4, 4)), zorder=0)
+    d_mid = d_end * .53
+    ax.text(d_mid[0] - .06, d_mid[1] + .3, "d (distance)", rotation=35,
+            ha="center", va="bottom", fontsize=15, color=PALETTE["gray"],
+            rotation_mode="anchor")
     ax.text(.99, .04, "Not to scale", transform=ax.transAxes, ha="right", va="bottom",
             fontsize=12, color=PALETTE["gray"])
-    ax.set_xlim(-5.4, 5.4); ax.set_ylim(-2.3, 5.2)
+    ax.set_xlim(-5.4, 5.4); ax.set_ylim(-2.6, 5.2)
     fig.subplots_adjust(left=.04, right=.96, top=.96, bottom=.04)
     save(fig, "parallax_explainer")
 
@@ -80,7 +101,9 @@ def distance_recovery() -> None:
         bars = ax.bar(x + (j - 1) * width, values[:, j], width, color=color, label=label, zorder=3)
         for i, bar in enumerate(bars):
             val = errors[i, j]
-            err_label = "0%" if j == 0 else f"{val:+.1f}%"
+            if j == 0:
+                continue
+            err_label = "0.0%" if abs(val) < .05 else f"{val:+.1f}%"
             ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + .55, err_label,
                     ha="center", va="bottom", fontsize=13, color=PALETTE["ink"])
     ax.set_ylabel("Distance (AU)")
@@ -129,6 +152,18 @@ def focus_curve_figure() -> None:
     for label, steps, color in lines:
         ax.plot([s["distance_au"] for s in steps], [s["snr"] for s in steps],
                 lw=2.5, color=color, label=label)
+    peak_labels = [
+        (circular, f"{summary['runs']['circular']['peak_distance_au']:.1f} AU (model)", (-10, 16), "right"),
+        (static, f"{summary['runs']['static_baseline']['peak_distance_au']:.1f} AU "
+                 "(parallax only — wrong)", (8, -26), "left"),
+        (empty, f"{summary['runs']['empty_sky_control']['peak_distance_au']:.1f} AU\n(empty sky)",
+         (8, 30), "left"),
+    ]
+    for steps, label, offset, alignment in peak_labels:
+        peak = max(steps, key=lambda step: step["snr"])
+        ax.annotate(label, (peak["distance_au"], peak["snr"]), xytext=offset,
+                    textcoords="offset points", fontsize=13, color=PALETTE["ink"],
+                    ha=alignment, va="center", annotation_clip=False)
     truth = float(summary["truth_distance_au"])
     ax.axvline(truth, color=PALETTE["ink"], lw=1.8, ls=(0, (5, 4)))
     ax.annotate("Neptune, JPL 29.9 AU", xy=(truth, .78), xycoords=("data", "axes fraction"),
@@ -139,10 +174,11 @@ def focus_curve_figure() -> None:
     ax.set_xlim(14, 1100)
     ax.set_xlabel("Assumed distance (AU)")
     ax.set_ylabel("Signal-to-noise ratio")
+    ax.set_ylim(0, 300)
     ax.grid(color="#D9DEE3", lw=.8, zorder=0)
     ax.spines[["top", "right"]].set_visible(False)
     ax.legend(frameon=False, loc="upper right")
-    ax.text(.02, .97, "Synthetic images — method demo", transform=ax.transAxes,
+    ax.text(.63, .52, "Synthetic images — method demo", transform=ax.transAxes,
             ha="left", va="top", fontsize=14, color=PALETTE["gray"])
     fig.tight_layout()
     save(fig, "focus_curve_synthetic")
