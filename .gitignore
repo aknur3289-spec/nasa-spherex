@@ -8,3 +8,5 @@ out/
 data/meta/neptune/templates/
 *.part
 .DS_Store
+data/meta/neptune/search_windows/
+data/meta/neptune/sia/
