@@ -14,14 +14,15 @@
     },
     {
       "window_id": 2,
-      "catalog_exposures": 20,
-      "cutouts_ready": 20,
+      "catalog_exposures": 49,
+      "cutouts_ready": 49,
       "detectors_ready": {
-        "2": 8,
-        "3": 12
+        "1": 13,
+        "2": 18,
+        "3": 18
       },
       "mjd_min": 61017.782282014,
-      "mjd_max": 61022.673857836
+      "mjd_max": 61029.055005463
     },
     {
       "window_id": 3,

@@ -8,9 +8,9 @@ Templates are centred on each December science exposure's Neptune sky position, 
 | Window | Catalog | Ready |
 | --- | ---: | ---: |
 | 1 | 54 | 54 |
-| 2 | 20 | 20 |
+| 2 | 49 | 49 |
 | 3 | 0 | 0 |
 
-Template links: 57. Failed/pending science cutouts: 0.
+Template links: 138. Failed/pending science cutouts: 0.
 Paths: `epochs.csv`, `passes.json`, `templates.csv`, `templates/`, and `../neptune_cutouts.zip`.
 FITS cutouts and ZIP stay outside Git; only the CSV, JSON, and this handoff are committed.
