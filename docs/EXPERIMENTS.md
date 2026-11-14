@@ -104,3 +104,7 @@ Difference residual: honest pairs 1.03σ vs naive pairs 1.21σ → matched-wavel
 with noise; mismatched wavelength adds ~20 % spurious "change". Go/No-Go #1: PASS.
 NEP: 0 pairs due to a pass-assignment bug (poles are observed continuously) — fix: pair by Δt ≥ 150 d only.
 TODO: pair counts per group, spread (16–84 %), bootstrap error on the difference, residual vs Δλ/λ plot.
+
+## E3 update — H1 PASS (15:30)
+M101: 12 honest pairs; NEP (fixed pairing, Δt ≥ 150 d): 12 honest pairs. ECL: pending (network).
+Criterion "≥ 3 honest pairs in 2 of 3 fields" — met. Residual (M101): honest 1.03σ vs naive 1.21σ.
