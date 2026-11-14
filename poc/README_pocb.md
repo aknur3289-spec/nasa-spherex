@@ -53,3 +53,29 @@ BAD, SATURATION, and never-mask groups.
 JPL Horizons returned HTTP 502 for the batched window-3 ephemerides; the
 validated Horizons helper used its astropy fallback. The IRSA 503 cutout failures
 from the earlier access attempt were bypassed by the successful S3 section path.
+
+## Variance and wavelength matched rerun (v2)
+
+Run the revised analysis with:
+
+```sh
+source ~/nasa-spherex/.venv/bin/activate
+PYTHONPATH=pipeline:poc python poc/poc_b_dial_v2.py
+```
+
+The v2 scorer uses `VARIANCE_target + scale² × VARIANCE_template` for aperture
+noise, and selects a same-family window-3 template by its WCS-WAVE value at the
+target position (2% match, then 5% fallback). The scale is the median of the
+five brightest matched-star flux ratios. SIA track queries are cached under
+gitignored `data/raw/sia_track_cache_v2.json`; sections and wave tables use the
+section cache. The v2 chart and full per-step ledger are
+`out/focus_neptune_v2.png` and `out/focus_neptune_v2.json`;
+`out/peak_stamp_v2.png` shows the circular-run peak when one exists.
+
+The sanity stamp has SOURCE on Neptune and all three brightest nearby stars, so
+the conditional SOURCE-unflagged metric was not applicable. The v2 run used
+variance-based S/N only. It completed in 699.1 seconds and downloaded zero new
+sections on the final cached run (nine sections served from S3). No circular or
+static peak met the 15% distance criterion; the control had no matched template
+steps after the 5% wavelength check. Full skip reasons and summaries are in the
+v2 JSON.
