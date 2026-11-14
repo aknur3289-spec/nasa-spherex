@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "field_id": "demo",
+  "kind": "static",
+  "title": "Demo sky field",
+  "description": "Synthetic star field with a moving marker.",
+  "center": {
+    "ra_deg": 45,
+    "dec_deg": 20
+  },
+  "size_arcmin": 12,
+  "pixel_scale_arcsec": 1,
+  "frames": [
+    {
+      "id": "epoch-1",
+      "png": "epoch-1.png",
+      "obs_time_utc": "2030-01-01T00:00:00Z",
+      "mjd": 62502,
+      "survey_pass": 1,
+      "detector": 1,
+      "band": "Demo A",
+      "wavelength_um": 1.2,
+      "center": {
+        "ra_deg": 45,
+        "dec_deg": 20
+      },
+      "bad_pixel_fraction": 0,
+      "stretch": {
+        "kind": "asinh",
+        "lo": 0,
+        "hi": 1,
+        "unit": "synthetic"
+      },
+      "source_url": "https://example.invalid/demo/1",
+      "obs_id": "demo-1",
+      "processing_version": "demo-1"
+    },
+    {
+      "id": "epoch-2",
+      "png": "epoch-2.png",
+      "obs_time_utc": "2030-02-01T00:00:00Z",
+      "mjd": 62533,
+      "survey_pass": 2,
+      "detector": 1,
+      "band": "Demo A",
+      "wavelength_um": 1.2,
+      "center": {
+        "ra_deg": 45,
+        "dec_deg": 20
+      },
+      "bad_pixel_fraction": 0,
+      "stretch": {
+        "kind": "asinh",
+        "lo": 0,
+        "hi": 1,
+        "unit": "synthetic"
+      },
+      "source_url": "https://example.invalid/demo/2",
+      "obs_id": "demo-2",
+      "processing_version": "demo-1"
+    },
+    {
+      "id": "epoch-3",
+      "png": "epoch-3.png",
+      "obs_time_utc": "2030-03-01T00:00:00Z",
+      "mjd": 62561,
+      "survey_pass": 3,
+      "detector": 1,
+      "band": "Demo A",
+      "wavelength_um": 1.2,
+      "center": {
+        "ra_deg": 45,
+        "dec_deg": 20
+      },
+      "bad_pixel_fraction": 0,
+      "stretch": {
+        "kind": "asinh",
+        "lo": 0,
+        "hi": 1,
+        "unit": "synthetic"
+      },
+      "source_url": "https://example.invalid/demo/3",
+      "obs_id": "demo-3",
+      "processing_version": "demo-1"
+    }
+  ],
+  "pairs": [
+    {
+      "a": "epoch-1",
+      "b": "epoch-2",
+      "dlambda_frac": 0,
+      "dt_days": 31,
+      "trust": "high"
+    }
+  ],
+  "provenance": {
+    "mission": "SPHEREx viewer fixture",
+    "archive": "Synthetic fixture",
+    "collections": [
+      "demo"
+    ],
+    "doi": "synthetic",
+    "downloaded_utc": "2030-03-01T00:00:00Z",
+    "pipeline_commit": "synthetic",
+    "cached": true,
+    "synthetic": true
+  }
+}
