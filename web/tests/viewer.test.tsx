@@ -1,89 +1,76 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, act } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import App from '../src/App';
-import { BlinkViewer } from '../src/viewer/BlinkViewer';
+import { SimpleViewer } from '../src/viewer/SimpleViewer';
+import { integerScale, pixelCentre } from '../src/ui/pixels';
 import type { Field } from '../src/contract';
-import index from '../public/data/index.json';
 import staticFixture from '../public/data/fixture-static/field.json';
 import dialFixture from '../public/data/fixture-dial/field.json';
+import index from '../public/data/index.json';
 
+let reduced: boolean;
 const field = staticFixture as Field;
-
 beforeEach(() => {
-  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(null);
-  vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({
-    matches: true,
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-  }));
+  reduced = true;
+  vi.stubGlobal('matchMedia', () => ({ matches: reduced, addEventListener() {}, removeEventListener() {} }));
 });
-
 afterEach(() => {
-  cleanup();
-  window.history.replaceState(null, "", "/");
-  vi.unstubAllGlobals();
-  vi.restoreAllMocks();
-  vi.useRealTimers();
+  cleanup(); vi.unstubAllGlobals(); vi.useRealTimers(); sessionStorage.clear(); history.replaceState(null, '', '/');
 });
-
-test('loads both fixtures and initially renders the first high-trust pair', async () => {
-  vi.stubGlobal('fetch', vi.fn(async (url: string) => Response.json(
-    url.endsWith('/index.json') ? [...index, { ...index[0], field_id: 'pending-field', title: 'Pending field', status: 'pending' }] : url.includes('fixture-dial') ? dialFixture : field,
-  )));
+test('catalog renders new index entries and hides pending and missing fields', async () => {
+  const extra = { ...index[0], field_id: 'new-field', title: 'New field' };
+  vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+    if (url.endsWith('index.json')) return Response.json([
+      ...index, extra, { ...extra, field_id: 'pending', title: 'Pending field', status: 'pending' },
+      { ...extra, field_id: 'missing', title: 'Missing field' },
+    ]);
+    if (url.includes('/missing/')) return new Response(null, { status: 404 });
+    if (url.includes('/new-field/')) return Response.json({ ...field, field_id: 'new-field' });
+    return Response.json(field);
+  }));
   render(<App />);
-  expect(await screen.findByText('High trust · wavelengths differ 0.8% · 183 days apart')).toBeTruthy();
-  expect(screen.getByRole("img").getAttribute("alt")).toBe("Sky field, frame epoch-1");
-  expect(screen.queryByText('Pending field')).toBeNull();
-  fireEvent.click(screen.getByRole('link', { name: /Parallax dial fixture/ }));
-  expect(await screen.findByText("Signal at the crosshair")).toBeTruthy();
+  expect(await screen.findByText('+2 coming soon')).toBeTruthy();
+  const catalog = screen.getByRole('complementary', { name: 'Sky fields' });
+  expect(within(catalog).getAllByRole('link')).toHaveLength(3);
+  expect(within(catalog).queryByText('Pending field')).toBeNull();
+  expect(within(catalog).queryByText('Missing field')).toBeNull();
+  fireEvent.click(within(catalog).getByRole('link', { name: /New field/ }));
+  expect(await screen.findByRole('heading', { name: 'New field' })).toBeTruthy();
 });
-
-test('Space toggles frames and the arrow keys change pair', () => {
-  render(<BlinkViewer field={field} />);
-  fireEvent.keyDown(window, { key: '3' });
-  expect(screen.getByRole('img').getAttribute('alt')).toBe('Sky field, frame epoch-1');
-  fireEvent.keyDown(window, { code: 'Space' });
-  expect(screen.getByRole('img').getAttribute('alt')).toBe('Sky field, frame epoch-2');
-  fireEvent.keyDown(window, { key: 'ArrowLeft' });
-  expect(screen.getByText(/Medium trust/)).toBeTruthy();
-  fireEvent.keyDown(window, { key: ' ' });
-  expect(screen.getByRole('img').getAttribute('alt')).toBe('Sky field, frame epoch-3');
-});
-
-test('reduced motion disables automatic blinking', () => {
+test('play follows UTC order and stops on the last frame', () => {
+  reduced = false;
   vi.useFakeTimers();
-  render(<BlinkViewer field={field} />);
-  fireEvent.keyDown(window, { key: '2' });
+  render(<SimpleViewer field={{ ...field, frames: [...field.frames].reverse() }} />);
+  expect(screen.getByRole('img').getAttribute('alt')).toBe('1 Jan 2030');
   act(() => vi.advanceTimersByTime(850));
-  expect(screen.getByRole('img').getAttribute('alt')).toBe('Sky field, frame epoch-1');
-  fireEvent.click(screen.getByRole('button', { name: 'Toggle frame' }));
-  expect(screen.getByRole('img').getAttribute('alt')).toBe('Sky field, frame epoch-2');
+  expect(screen.getByRole('img').getAttribute('alt')).toBe('3 Jul 2030');
+  act(() => vi.advanceTimersByTime(850));
+  expect(screen.getByRole('img').getAttribute('alt')).toBe('1 Aug 2030');
+  act(() => vi.advanceTimersByTime(850));
+  expect(screen.getByRole('button', { name: 'Start playback' })).toBeTruthy();
 });
-
-test('rejects a same-frame pair and displays one frame when no distinct B exists', () => {
-  render(<BlinkViewer field={{ ...field, frames: [field.frames[0]], pairs: [
-    { ...field.pairs[0], b: field.pairs[0].a },
-  ] }} />);
-  expect(screen.getAllByRole('img')).toHaveLength(1);
-  expect(screen.queryByLabelText('Observation pair')).toBeNull();
+test('compare defaults to high trust and labels options by date', () => {
+  render(<SimpleViewer field={field} search="mode=compare" />);
+  const after = screen.getByLabelText('After') as HTMLSelectElement;
+  expect(after.selectedOptions[0].textContent).toBe('3 Jul 2030');
+  expect(screen.queryByRole('button', { name: 'Distance', exact: true })).toBeNull();
 });
-
-test('labels synthetic data', () => {
-  render(<BlinkViewer field={field} />);
-  expect(screen.getByText('Synthetic data')).toBeTruthy();
+test('distance mode is available for dial fields', () => {
+  render(<SimpleViewer field={dialFixture as Field} search="mode=distance&d=30" />);
+  expect(screen.getByRole('button', { name: 'Distance', exact: true })).toBeTruthy();
+  expect(screen.getByText('Signal at the crosshair')).toBeTruthy();
 });
-
-test('a broken PNG shows a placeholder and leaves the other frame available', () => {
-  render(<BlinkViewer field={field} />);
-  fireEvent.error(screen.getByRole('img', { name: 'Sky field, frame epoch-1' }));
-  expect(screen.getByRole('status').textContent).toContain('Image unavailable for frame epoch-1');
-  expect(screen.getByRole('img', { name: 'Sky field, frame epoch-2' })).toBeTruthy();
+test('reduced motion disables autoplay and a broken image has a placeholder', () => {
+  vi.useFakeTimers();
+  render(<SimpleViewer field={field} />);
+  act(() => vi.advanceTimersByTime(2000));
+  expect(screen.getByRole('img').getAttribute('alt')).toBe('1 Jan 2030');
+  fireEvent.error(screen.getByRole('img'));
+  expect(screen.getByRole('status').textContent).toContain('Image unavailable');
 });
-
-test('integer scaling and pixel-centre mapping preserve the source grid', async () => {
-  const { integerScale, pixelCentre } = await import('../src/ui/pixels');
-  expect(integerScale(590, 99)).toBe(5);
+test('integer scale uses complete source pixels and maps their centres', () => {
+  expect(integerScale(390, 99)).toBe(3);
   expect(integerScale(594, 99)).toBe(6);
   expect(pixelCentre(7, 6)).toBe(45);
 });

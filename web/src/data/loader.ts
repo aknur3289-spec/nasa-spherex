@@ -51,3 +51,15 @@ export async function loadTimeline(field: Field, signal?: AbortSignal): Promise<
   return field.frames.map(frame => ({ frame_id: frame.id, obs_time_utc: frame.obs_time_utc, mjd: frame.mjd }))
     .sort((a, b) => Date.parse(a.obs_time_utc) - Date.parse(b.obs_time_utc));
 }
+
+export async function fieldExists(id: string, signal?: AbortSignal): Promise<boolean | undefined> {
+  if (!safeId(id)) return false;
+  try {
+    const response = await fetch(root() + id + '/field.json', { method: 'HEAD', signal });
+    if (response.status === 404 || response.status === 410) return false;
+    if (response.ok && response.headers.get('content-type')?.includes('text/html')) return false;
+    return response.ok ? true : undefined;
+  } catch {
+    return undefined;
+  }
+}

@@ -27,6 +27,20 @@ export function DistanceDial({ field }: { field: Field }) {
   const steps = [...(dial?.steps ?? [])].sort((a, b) => a.distance_au - b.distance_au);
   const length = steps.length;
   useEffect(() => {
+    const distance = Number(new URLSearchParams(location.hash.split('?')[1]).get('d'));
+    if (distance > 0 && length) setSelected(steps.reduce((best, step, i) =>
+      Math.abs(Math.log(step.distance_au / distance)) < Math.abs(Math.log(steps[best].distance_au / distance)) ? i : best, 0));
+  }, [field]);
+  useEffect(() => {
+    const distance = steps[selected]?.distance_au;
+    if (!distance) return;
+    const state = new URLSearchParams(location.hash.split('?')[1]);
+    state.set('mode', 'distance');
+    state.set('d', String(distance));
+    history.replaceState(null, '', '#/field/' + field.field_id + '?' + state);
+  }, [selected, field]);
+
+  useEffect(() => {
     const media = window.matchMedia(motionQuery);
     const update = () => setReducedMotion(media.matches);
     media.addEventListener('change', update);
@@ -127,7 +141,7 @@ export function Detectability() {
       <text x="42" y="176">30</text><text x="142" y="176">100</text><text x="334" y="176" textAnchor="end">1000</text>
       <text x="190" y="192" textAnchor="middle">Distance (AU)</text>
     </svg>
-    <ul className="science-legend"><li>Single frame</li><li>Stack only</li><li>Below threshold</li></ul>
+    <ul className="science-legend"><li>Visible in one image</li><li>Visible only by stacking</li><li>Too faint</li></ul>
     <label className="science-frame-count" htmlFor={inputId}>Stack size <output>{count} frames · +{format(gain)} mag</output></label>
     <input id={inputId} type="range" min="1" max="300" value={count} onChange={event => setCount(event.currentTarget.valueAsNumber)} />
     <p className="science-note">Order-of-magnitude estimate in reflected light. Ignores methane absorption and differences between visible and near-infrared brightness.</p>

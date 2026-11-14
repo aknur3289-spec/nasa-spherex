@@ -16,6 +16,6 @@ export function SkyImage({ src, alt, onError }: { src: string; alt: string; onEr
     <img src={src} alt={alt} onError={onError} onLoad={event => {
       const { naturalWidth: width, naturalHeight: height } = event.currentTarget;
       setNative({ width, height });
-    }} style={native ? { width: native.width * scale, height: native.height * scale } : undefined} />
+    }} style={native && available >= native.width ? { width: native.width * scale, height: native.height * scale } : undefined} />
   </div>;
 }
