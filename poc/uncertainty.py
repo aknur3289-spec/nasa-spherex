@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import math
+import argparse
 import sys
 from pathlib import Path
 
@@ -148,8 +149,22 @@ def summarize(name, filename, s_min, s_max, rng):
 
 
 def main():
-    results = {name: summarize(name, *spec, np.random.default_rng(BOOTSTRAP_SEED))
-               for name, spec in RUNS.items()}
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--full-body", choices=("neptune", "uranus"))
+    args = parser.parse_args()
+    if args.full_body:
+        name = f"{args.full_body}_full"
+        filename = f"astrometric_distance_{args.full_body}_full.json"
+        output_path = ROOT / "poc" / "out" / f"uncertainty_{args.full_body}_full.json"
+        if output_path.exists():
+            raise FileExistsError(f"Refusing to overwrite {output_path}")
+        s_min, s_max = (200.0, 1500.0) if args.full_body == "neptune" else (400.0, 3000.0)
+        results = {name: summarize(name, filename, s_min, s_max,
+                                   np.random.default_rng(BOOTSTRAP_SEED))}
+    else:
+        output_path = ROOT / "poc" / "out" / "uncertainty.json"
+        results = {name: summarize(name, *spec, np.random.default_rng(BOOTSTRAP_SEED))
+                   for name, spec in RUNS.items()}
     failed = [(name, check) for name, result in results.items()
               for check, passed in result["checks"].items() if not passed]
     for name, result in results.items():
@@ -168,17 +183,16 @@ def main():
             print(name, json.dumps({k: v for k, v in result.items() if k != "pairs"}, sort_keys=True))
             print(name, "failed_checks", [check for check, passed in result["checks"].items() if not passed])
         return 2
-    neptune = results["neptune_all"]
-    half_width = neptune["bootstrap_half_width_au"]
-    uncertainty = max(half_width, neptune["sigma_centroid_au"])
+    headline = results.get("neptune_all", next(iter(results.values())))
+    half_width = headline["bootstrap_half_width_au"]
+    uncertainty = max(half_width, headline["sigma_centroid_au"])
     U = max(0.01, math.ceil(uncertainty * 100 - 1e-12) / 100)
     output = {"bootstrap_resamples": BOOTSTRAP_RESAMPLES,
               "bootstrap_seed": BOOTSTRAP_SEED,
               "headline_uncertainty_U_au": U,
               "headline_uncertainty_rule": "ceil(max(bootstrap CI half-width, centroid sigma) to 0.01 AU; minimum 0.01 AU)",
               "runs": results}
-    out_path = ROOT / "poc" / "out" / "uncertainty.json"
-    out_path.write_text(json.dumps(output, indent=2, allow_nan=False) + "\n")
+    output_path.write_text(json.dumps(output, indent=2, allow_nan=False) + "\n")
     print("SANITY CHECKS PASSED")
     for name, result in results.items():
         print(name, json.dumps({k: v for k, v in result.items() if k != "pairs"}, sort_keys=True))
