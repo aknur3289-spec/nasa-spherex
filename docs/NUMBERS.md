@@ -1,19 +1,31 @@
 # Numbers for website and slides (single source of truth)
 
-| Quote | Value | Source | Note |
-|---|---|---|---|
-| Neptune distance, our model, real SPHEREx images | 29.94 AU | EXPERIMENTS E4e; poc/out/astrometric_distance.json | median over exposure pairs |
-| Neptune distance, JPL Horizons | 29.89 AU | same file, truth_r_au = 29.888 | |
-| Error of our model | 0.2 % | (29.936 − 29.888) / 29.888 = 0.16 % | quote "0.2 %"; 29.94 vs 29.89 rounded gives 0.17 % — both round to 0.2 % |
-| Parallax-only model, same data | 41.6 AU | E4e, static median 41.60 | |
-| Parallax-only error | +39 % | (41.60 − 29.89) / 29.89 = 39.2 % | |
-| Identity check, June 2025 | 77.8 MJy/sr | E4b, peak within 3 px | |
-| Identity check, June 2026 | 0.43 MJy/sr | E4b | background σ = 0.91 → consistent with empty sky |
-| Astrometric offset from JPL | 0.7–2.0″ | E4e | < 1/3 SPHEREx pixel (6.15″) |
-| Parallax-only bias range by season | −26 % to +55 % | E1b | our model within 0.7 % |
+## HEADLINE (use these on site/slides)
 
-## Real-data distance recovery (B-lite, 2026-11-14)
-- Neptune, 265 pairs: 29.95 AU vs JPL 29.89 (+0.22%); parallax-only 40.59 (+35.8%)
-- Uranus, 9 pairs: 19.39 AU vs JPL 19.50 (-0.54%); parallax-only 29.31 (+50.4%)
-- Neptune Dec->Jun, 9 pairs: 29.87 AU vs JPL 29.88 (-0.06%); parallax-only 22.99 (-23.1%)
-- Parallax-only error range: -23% to +50%, sign set by season
+- Neptune: 29.95 AU vs JPL 29.89 AU (heliocentric distance; truth is the mean of the window-1 and window-2 ephemeris r_au values), +0.2%, 265 exposure pairs. Unrounded error: +0.21564491688982756%; documentation rounding: +0.22%.
+- Uranus: 19.39 AU vs JPL 19.50 AU, −0.5%. Unrounded error: −0.5375286289975401%; documentation rounding: −0.54%.
+- Parallax-only distance errors across the validated seasonal pairs: −23% to +50%.
+
+The former 29.94 AU Neptune value is historical/superseded: it is the 9-pair June–December result, 29.935715308957782 AU vs 29.88803609144112 AU (+0.1595260972343264%, +0.16% to two decimals). It is not the headline.
+
+The dial table uses ONE exposure pair: ref 2025W25_2A_0500_1 → target 2025W51_1A_0485_1. At 0.1 AU grid spacing, the model minimum is 29.9 AU and the parallax-only minimum is 41.6 AU. These are single-pair table values, not the 265-pair headline.
+
+## Additional documented measurements
+
+| Measurement | Value | Evidence |
+|---|---:|---|
+| Neptune all-pairs circular median | 29.95 AU; +0.22% | astrometric_distance_all.json; unrounded error +0.21564491688982756% |
+| Neptune all-pairs parallax-only median | 40.59 AU; +35.8% | astrometric_distance_all.json |
+| Uranus circular median | 19.39 AU; −0.54% | astrometric_distance_uranus.json; unrounded error −0.5375286289975401% |
+| Uranus parallax-only median | 29.31 AU; +50.4% | astrometric_distance_uranus.json |
+| Neptune W2→W3 circular median | 29.87 AU; −0.06% | astrometric_distance_neptune_w23.json; unrounded error −0.0582995166831021% |
+| Neptune W2→W3 parallax-only median | 22.99 AU; −23.1% | astrometric_distance_neptune_w23.json |
+| Identity check, June 2025 | 77.8 MJy/sr | EXPERIMENTS E4b; peak within 3 px |
+| Identity check, June 2026 | 0.43 MJy/sr | EXPERIMENTS E4b; background σ=0.91 MJy/sr |
+| Measured-to-Horizons astrometric offsets | see SCIENCE_SUMMARY.md | Per-exposure centroid offsets |
+
+See [SCIENCE_SUMMARY.md](SCIENCE_SUMMARY.md) for the measurement method, uncertainty estimates, and limitations.
+
+## Detectability context
+
+Single-frame limit AB 18.4; Planet Nine reflected-light estimate V=21.9–22.7 from arXiv:2507.22297. V is used as a near-IR proxy, and methane absorption is ignored in the simple limit calculation; see docs/limits.json and EXPERIMENTS.md.
