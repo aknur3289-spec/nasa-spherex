@@ -2,9 +2,12 @@
 from pathlib import Path
 
 import numpy as np
+import pytest
+from astropy.io import fits
 from astropy.wcs import WCS
 
-from pipeline.build_dial import _inside, _peak, _reference, _science_scorer
+import pipeline.build_dial as dial
+from pipeline.build_dial import _inside, _neptune_centroid, _peak, _reference, _science_scorer
 
 
 def test_reference_prefers_lowest_bad_fraction(tmp_path: Path) -> None:
@@ -53,5 +56,30 @@ def test_dial_pixel_peak_uses_central_radius_and_bad_mask() -> None:
     assert result is not None
     assert result[0] > 0
     assert result[1] == 1
+
+
+def test_neptune_centroid_requires_bright_nearby_source(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(dial, "ROOT", tmp_path)
+    wcs = WCS(naxis=2)
+    wcs.wcs.ctype = ["RA---TAN", "DEC--TAN"]
+    wcs.wcs.crval = [359.6, -1.6]
+    wcs.wcs.crpix = [51, 51]
+    wcs.wcs.cdelt = [-6.15 / 3600, 6.15 / 3600]
+    yy, xx = np.indices((101, 101))
+    background = 0.01 * ((xx + yy) % 3)
+    source = 80 * np.exp(-((xx - 50.3) ** 2 + (yy - 50.2) ** 2) / 2)
+    def save(image: np.ndarray) -> None:
+        fits.HDUList([fits.PrimaryHDU(),
+                      fits.ImageHDU(image.astype(np.float32), header=wcs.to_header(), name="IMAGE"),
+                      fits.ImageHDU(np.zeros_like(image, dtype=np.float32), name="ZODI"),
+                      fits.ImageHDU(np.zeros_like(image, dtype=np.int32), name="FLAGS")]).writeto(
+                          tmp_path / "target.fits", overwrite=True)
+    save(background + source)
+    result = _neptune_centroid([{"path": "target.fits", "distance_au": 29.9}], 359.6, -1.6)
+    assert result["horizons_offset_px"] < 1
+    assert result["peak_mjysr"] > 50
+    save(background + 0.1 * source)
+    with pytest.raises(ValueError, match="sanity failed"):
+        _neptune_centroid([{"path": "target.fits", "distance_au": 29.9}], 359.6, -1.6)
 
 

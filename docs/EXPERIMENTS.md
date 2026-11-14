@@ -20,3 +20,7 @@ Per-detector selected pair counts (strict/loose, no 12-pair field cap):
 - ecl: D1 38/38, D2 39/39, D3 36/36.
 
 Limitations: Residuals are diagnostic for the selected pairs, not a controlled significance test.
+
+## Neptune dial raw-peak negative result — 2026-11-14
+
+On the cached full-frame sections for `2025W25_2A_0500_1` → `2025W51_1A_0485_1`, choosing the brightest pixel within 20 px of each predicted position gave a false minimum at **36.79 AU with 0.5 px offset**. The JPL target was near 29.89 AU, and the Science astrometric table places its single-pair model minimum near 29.9 AU. A field star, rather than Neptune, can be nearest to the crosshair in a raw frame. This criterion is unsuitable as `neptune-dial.offset_px`; the dial now uses distance to Neptune's measured target-frame centroid. Raw peak offsets remain diagnostic only.

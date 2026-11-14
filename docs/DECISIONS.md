@@ -10,3 +10,5 @@
 - diff_png: ACCEPTED for v1.1 — optional per pair, relative path "diff/<a>-<b>.png", same size as frames; v1.1 frames require width_px, height_px; schema_version "1.1".
 - timeline.json: ACCEPTED for v1.1 — optional file next to field.json: array of {frame_id, obs_time_utc, mjd}, every frame exactly once, sorted by UTC, values copied from field.json.
 - v1.0 schema stays; add checks: non-empty description, doi, band (if present); dial: search_radius_px > 0, >= 1 step, offset_px >= 0; semantic validator (unique frame ids, refs exist, a != b, trust matches dlambda_frac thresholds, source_url rules real vs synthetic).
+
+neptune-dial offset_px metric changed by Data to distance from pred(d) to Neptune's measured centroid (matches docs/dial_table_neptune.csv); brightest-peak criterion gave a false minimum at 36.79 AU. Science was offline; to be confirmed Sunday morning.

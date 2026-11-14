@@ -16,5 +16,11 @@
     "kind": "static",
     "thumbnail": "nep/thumb.png",
     "title": "North Ecliptic Pole"
+  },
+  {
+    "field_id": "neptune-dial",
+    "kind": "dial",
+    "thumbnail": "neptune-dial/ref.png",
+    "title": "Neptune Distance Dial"
   }
 ]
