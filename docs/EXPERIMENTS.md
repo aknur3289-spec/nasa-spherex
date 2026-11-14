@@ -108,3 +108,20 @@ TODO: pair counts per group, spread (16–84 %), bootstrap error on the differen
 ## E3 update — H1 PASS (15:30)
 M101: 12 honest pairs; NEP (fixed pairing, Δt ≥ 150 d): 12 honest pairs. ECL: pending (network).
 Criterion "≥ 3 honest pairs in 2 of 3 fields" — met. Residual (M101): honest 1.03σ vs naive 1.21σ.
+
+## E1b. Parallax-only bias flips sign with season (DONE)
+| Pair | Model (parallax+orbit) | Parallax-only |
+|---|---|---|
+| Neptune Jun→Dec 2025 | 29.97 AU (+0.3 %) | 41.98 AU (+40.5 %) |
+| Neptune Dec 2025→Jun 2026 | 29.88 AU (−0.0 %) | 23.21 AU (−22.3 %) |
+| Uranus Aug 2025→Feb 2026 | 19.38 AU (−0.7 %) | 30.23 AU (+54.9 %) |
+| Uranus Feb→Aug 2026 | 19.49 AU (+0.1 %) | 14.37 AU (−26.2 %) |
+The parallactic shift reverses between the two half-year pairs; prograde orbital motion does not.
+Our model stays within 0.7 %. Synthetic dial at t0 = 2025-06-24: model 29.72 AU (−0.6 %),
+parallax-only 41.78 AU (+40 %), empty sky no peak. Supersedes the t0 = 2025-06-10 numbers in E2b.
+
+## E4d. Focus curve on real data, v2 (NOT FEASIBLE on full grid — documented)
+VARIANCE-based noise and wavelength-matched templates (|Δλ|/λ ≤ 2 %) implemented (commit dcb1473).
+Most grid steps skipped: no_lambda_match / no_matched_stars / no_window2_coverage. Reason: across
+15–1000 AU the predicted position spans degrees of sky, and a same-wavelength template is needed at every
+position. Decision: full-range dial shown on synthetic data (labelled); real data validated by astrometry (E4e).
