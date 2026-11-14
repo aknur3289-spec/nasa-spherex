@@ -1963,6 +1963,7 @@ input[type="range"]::-webkit-slider-thumb {
   }
 }
 .tl-irsa {
+  box-sizing: border-box;
   margin-top: 18px;
   text-decoration: none;
 }
