@@ -2,7 +2,7 @@
 # Science lead approves final list. Titles/descriptions are user-facing: English, no discovery claims.
 defaults:
   size_arcmin: 10
-  detectors: [2]                # START WITH ONE DETECTOR: each cutout carries an ~8 MB ePSF table.
+  detectors: [1, 2, 3]              # START WITH ONE DETECTOR: each cutout carries an ~8 MB ePSF table.
                                 # Add 1 and 3 only if PoC A finds too few pairs and download speed allows.
   limit: 150                    # max exposures per field, spread evenly in time (all passes represented)
   collections: [spherex_dr1, spherex_qr3]
