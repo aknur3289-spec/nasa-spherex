@@ -126,7 +126,7 @@ Most grid steps skipped: no_lambda_match / no_matched_stars / no_window2_coverag
 15–1000 AU the predicted position spans degrees of sky, and a same-wavelength template is needed at every
 position. Decision: full-range dial shown on synthetic data (labelled); real data validated by astrometry (E4e).
 
-## E4e. PoC B-lite — astrometric distance of Neptune from REAL SPHEREx images (PASS)
+## E4e. PoC B-lite — astrometric distance of Neptune from REAL SPHEREx images (historical 9-pair run)
 Neptune centroided in SPHEREx Level 2 exposures, June 2025 (window 1) and December 2025 (window 2), detectors D1–D3;
 9 exposure combinations. Measured positions agree with JPL Horizons to 0.7–2.0″ (< 1/3 SPHEREx pixel).
 | Model | Distance | Error vs JPL 29.89 AU |
@@ -134,7 +134,7 @@ Neptune centroided in SPHEREx Level 2 exposures, June 2025 (window 1) and Decemb
 | Parallax + circular orbit (ours) | 29.94 AU | +0.16 % (spread over 9 pairs below the 0.3 % grid step) |
 | Parallax only | 41.60 AU [41.44–41.94] | +39 % |
 Residual at the minimum ≈ 80″ (~13 px), the known circular-orbit approximation residual (cf. E1).
-Figure: poc/out/astrometric_residual.png. Script: poc/poc_b_astrometry.py (commit dbbf7ef).
+Figure: poc/out/astrometric_residual.png. Reproduce: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry.py` (JSON produced in commit `dbbf7ef`). This is the historical 9-pair result; the headline is the 265-pair median below.
 
 ## Go/No-Go #2 (17:00) — PARTIAL GO
 Real data: distance recovered from SPHEREx images to 0.2 %; Neptune confirmed as a mover (E4b).
@@ -142,11 +142,17 @@ Full-range dial: synthetic demo (labelled). Limitation stated: needs same-wavele
 
 ## E4f-E4h. Real-data validation, astrometric B-lite (2026-11-14)
 
+Headline: E4f Neptune June→December, all 265 exposure pairs. The following exact commands and commits produced each JSON:
+
 | Run | Pairs | Truth (JPL) | Ours (circular) | Error | Parallax-only | Error |
 |---|---|---|---|---|---|---|
 | E4f Neptune Jun->Dec, all exposures | 265 | 29.89 AU | 29.95 AU (p16-p84 29.93-29.96) | +0.22% | 40.59 AU | +35.8% |
 | E4g Uranus Aug->Feb (positive control) | 9 | 19.50 AU | 19.39 AU | -0.54% | 29.31 AU | +50.4% |
 | E4h Neptune Dec->Jun (season flip) | 9 | 29.88 AU | 29.87 AU | -0.06% | 22.99 AU | -23.1% |
+
+- E4f headline: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry.py --all-local` — `poc/out/astrometric_distance_all.json`, commit `a3b038f`.
+- E4g Uranus: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry.py --body uranus` — `poc/out/astrometric_distance_uranus.json`, commit `14795fd`.
+- E4h Neptune W2→W3: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry.py --body neptune --epoch-a 2 --epoch-b 3` — `poc/out/astrometric_distance_neptune_w23.json`, commit `48687de`.
 
 Conclusions:
 - Recovery is within 0.6% for two planets and both seasonal orders.
