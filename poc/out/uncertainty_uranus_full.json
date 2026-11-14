@@ -1,0 +1,4032 @@
+{
+  "bootstrap_resamples": 10000,
+  "bootstrap_seed": 42,
+  "headline_uncertainty_U_au": 0.02,
+  "headline_uncertainty_rule": "ceil(max(bootstrap CI half-width, centroid sigma) to 0.01 AU; minimum 0.01 AU)",
+  "runs": {
+    "uranus_full": {
+      "run": "uranus_full",
+      "source_json": "poc/out/astrometric_distance_uranus_full.json",
+      "truth_au": 19.497891625669517,
+      "headline_median_au": 19.436951540983262,
+      "n_pairs": 570,
+      "refined_median_au": 19.416781405061577,
+      "p16_au": 19.409854795379484,
+      "p84_au": 19.462439323074822,
+      "bootstrap_ci_68_au": [
+        19.4164356684916,
+        19.417145722900962
+      ],
+      "bootstrap_half_width_au": 0.00035502720468016946,
+      "bootstrap_resamples": 10000,
+      "bootstrap_seed": 42,
+      "sensitivity_arcsec_per_au": 555.142346404023,
+      "sensitivity_min_required": 400.0,
+      "sensitivity_max_required": 3000.0,
+      "offset_rms_arcsec": 9.927672848459215,
+      "offset_max_arcsec": 49.01655150316497,
+      "sigma_centroid_au": 0.01788311216531485,
+      "bound_max_au": 0.0882954647950628,
+      "grid_step_au": 0.04532198864032111,
+      "pairs": [
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.413253550524075,
+          "residual_arcsec": 91.10574736024834,
+          "sensitivity_arcsec_per_au": 547.5391610119724
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.464106814902596,
+          "residual_arcsec": 50.36195781234181,
+          "sensitivity_arcsec_per_au": 545.3604337720944
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41316588395354,
+          "residual_arcsec": 92.92324879016914,
+          "sensitivity_arcsec_per_au": 544.4158121285723
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.413301298388266,
+          "residual_arcsec": 92.52895651129988,
+          "sensitivity_arcsec_per_au": 544.4068876288588
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.413953528102944,
+          "residual_arcsec": 93.71486750142935,
+          "sensitivity_arcsec_per_au": 544.3760494160774
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.413989505985146,
+          "residual_arcsec": 93.56280265542871,
+          "sensitivity_arcsec_per_au": 544.3713408399135
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.412500405370597,
+          "residual_arcsec": 92.97072373286734,
+          "sensitivity_arcsec_per_au": 543.8588518431817
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.411998531710648,
+          "residual_arcsec": 92.77238357395673,
+          "sensitivity_arcsec_per_au": 543.8768372368432
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.413210059275364,
+          "residual_arcsec": 89.65084236031012,
+          "sensitivity_arcsec_per_au": 540.3937630614397
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46214872554547,
+          "residual_arcsec": 104.63125993605834,
+          "sensitivity_arcsec_per_au": 538.3514995596823
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.460456665880844,
+          "residual_arcsec": 104.90608952922273,
+          "sensitivity_arcsec_per_au": 538.4182117083066
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.406266031404996,
+          "residual_arcsec": 94.63976047969689,
+          "sensitivity_arcsec_per_au": 527.7746046535337
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.403233771906983,
+          "residual_arcsec": 95.59592928804904,
+          "sensitivity_arcsec_per_au": 521.3491744655804
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.403647869373305,
+          "residual_arcsec": 95.96744573726704,
+          "sensitivity_arcsec_per_au": 521.32781727637
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.403661720040095,
+          "residual_arcsec": 95.83705840884362,
+          "sensitivity_arcsec_per_au": 521.3220833403908
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.412881726702516,
+          "residual_arcsec": 91.20504875036612,
+          "sensitivity_arcsec_per_au": 547.5605302863319
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46373216820579,
+          "residual_arcsec": 50.46125906731532,
+          "sensitivity_arcsec_per_au": 545.3817963309696
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.412792451704174,
+          "residual_arcsec": 93.02239433016055,
+          "sensitivity_arcsec_per_au": 544.4370663291659
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41292785444637,
+          "residual_arcsec": 92.62810190333647,
+          "sensitivity_arcsec_per_au": 544.4281418052539
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.413580064166343,
+          "residual_arcsec": 93.81401274827547,
+          "sensitivity_arcsec_per_au": 544.3973026395901
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.413616037366644,
+          "residual_arcsec": 93.66194775335354,
+          "sensitivity_arcsec_per_au": 544.392593992967
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.412126691385332,
+          "residual_arcsec": 93.06984209382334,
+          "sensitivity_arcsec_per_au": 543.8800859801743
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.411624838794822,
+          "residual_arcsec": 92.87150178102935,
+          "sensitivity_arcsec_per_au": 543.8980715370867
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.412834391466784,
+          "residual_arcsec": 89.74981101380429,
+          "sensitivity_arcsec_per_au": 540.4148837399026
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.461771413756885,
+          "residual_arcsec": 104.73022921811652,
+          "sensitivity_arcsec_per_au": 538.3725693617525
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.460079420771535,
+          "residual_arcsec": 105.00505863462949,
+          "sensitivity_arcsec_per_au": 538.4392826509535
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.40588315828824,
+          "residual_arcsec": 94.73826491200036,
+          "sensitivity_arcsec_per_au": 527.795342561929
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.40284697079245,
+          "residual_arcsec": 95.69423534696345,
+          "sensitivity_arcsec_per_au": 521.3697341610452
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.40326103386196,
+          "residual_arcsec": 96.06575166523052,
+          "sensitivity_arcsec_per_au": 521.3483770931192
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.403274879921508,
+          "residual_arcsec": 95.93536418728736,
+          "sensitivity_arcsec_per_au": 521.3426430375182
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41271912718774,
+          "residual_arcsec": 91.32673701884454,
+          "sensitivity_arcsec_per_au": 547.5729799922667
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46356800982901,
+          "residual_arcsec": 50.58294676915374,
+          "sensitivity_arcsec_per_au": 545.3942370848827
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.412629132543593,
+          "residual_arcsec": 93.14390683057401,
+          "sensitivity_arcsec_per_au": 544.4494621341473
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.412764529338467,
+          "residual_arcsec": 92.74961423560507,
+          "sensitivity_arcsec_per_au": 544.4405375799141
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.413416724220898,
+          "residual_arcsec": 93.9355249123211,
+          "sensitivity_arcsec_per_au": 544.4096979981365
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.413452695157567,
+          "residual_arcsec": 93.78345974908554,
+          "sensitivity_arcsec_per_au": 544.40498930461
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.411963251627697,
+          "residual_arcsec": 93.1913239521909,
+          "sensitivity_arcsec_per_au": 543.8924724087292
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.411461412478232,
+          "residual_arcsec": 92.99298346981338,
+          "sensitivity_arcsec_per_au": 543.9104580515404
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.412670078649022,
+          "residual_arcsec": 89.87112409775102,
+          "sensitivity_arcsec_per_au": 540.4272169324644
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46160607726682,
+          "residual_arcsec": 104.85154262861296,
+          "sensitivity_arcsec_per_au": 538.3848739488894
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.459914124406605,
+          "residual_arcsec": 105.12637185955406,
+          "sensitivity_arcsec_per_au": 538.4515879345497
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.40571569421068,
+          "residual_arcsec": 94.85905549309336,
+          "sensitivity_arcsec_per_au": 527.8074983181291
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.4026777861598,
+          "residual_arcsec": 95.81480314890497,
+          "sensitivity_arcsec_per_au": 521.3818078448243
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.403091830845415,
+          "residual_arcsec": 96.18631931738784,
+          "sensitivity_arcsec_per_au": 521.3604507990575
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.403105674946406,
+          "residual_arcsec": 96.05593167147089,
+          "sensitivity_arcsec_per_au": 521.3547166800323
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.412979892626097,
+          "residual_arcsec": 91.27350279586611,
+          "sensitivity_arcsec_per_au": 547.5673808382282
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46382988247878,
+          "residual_arcsec": 50.52971700315607,
+          "sensitivity_arcsec_per_au": 545.3886198299126
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.412891023721524,
+          "residual_arcsec": 93.09075934542889,
+          "sensitivity_arcsec_per_au": 544.4439308731379
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.413026426526194,
+          "residual_arcsec": 92.69646684435115,
+          "sensitivity_arcsec_per_au": 544.435006255375
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41367862378876,
+          "residual_arcsec": 93.88237765771238,
+          "sensitivity_arcsec_per_au": 544.4041670477362
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.413714597443022,
+          "residual_arcsec": 93.73031258044539,
+          "sensitivity_arcsec_per_au": 544.3994583811843
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41222535127534,
+          "residual_arcsec": 93.13819153907326,
+          "sensitivity_arcsec_per_au": 543.8869532784631
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41172350602983,
+          "residual_arcsec": 92.93985109951343,
+          "sensitivity_arcsec_per_au": 543.9049390176858
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.412933534407234,
+          "residual_arcsec": 89.81807508684932,
+          "sensitivity_arcsec_per_au": 540.4217646521937
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.461869831083167,
+          "residual_arcsec": 104.79849739420929,
+          "sensitivity_arcsec_per_au": 538.3794353899456
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.460177860651164,
+          "residual_arcsec": 105.07332658118268,
+          "sensitivity_arcsec_per_au": 538.4461493341258
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.405984312770663,
+          "residual_arcsec": 94.80626450735538,
+          "sensitivity_arcsec_per_au": 527.8022797781358
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.40294920874656,
+          "residual_arcsec": 95.76212253560143,
+          "sensitivity_arcsec_per_au": 521.37669966503
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.40336327022262,
+          "residual_arcsec": 96.13363881049096,
+          "sensitivity_arcsec_per_au": 521.3553423217132
+        },
+        {
+          "epoch_a_obs_id": "2025W34_1B_0488_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.403377117358726,
+          "residual_arcsec": 96.00325124912835,
+          "sensitivity_arcsec_per_au": 521.3496082633726
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41435283691905,
+          "residual_arcsec": 88.94009868181752,
+          "sensitivity_arcsec_per_au": 556.5136346824166
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.464389342902148,
+          "residual_arcsec": 48.201157920742894,
+          "sensitivity_arcsec_per_au": 554.3126806803597
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41427062597702,
+          "residual_arcsec": 90.76062781632815,
+          "sensitivity_arcsec_per_au": 553.3781608299108
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41440399848825,
+          "residual_arcsec": 90.36635123740156,
+          "sensitivity_arcsec_per_au": 553.3691590440149
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.415044681015324,
+          "residual_arcsec": 91.55232666100083,
+          "sensitivity_arcsec_per_au": 553.338066820489
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.415080144326904,
+          "residual_arcsec": 91.40026812187494,
+          "sensitivity_arcsec_per_au": 553.3333280822067
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41360678583053,
+          "residual_arcsec": 90.80856956718188,
+          "sensitivity_arcsec_per_au": 552.8198067122366
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.413113051306688,
+          "residual_arcsec": 90.61018507084212,
+          "sensitivity_arcsec_per_au": 552.8380003526755
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.414322564668872,
+          "residual_arcsec": 87.49166977773683,
+          "sensitivity_arcsec_per_au": 549.3422072311797
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46244838974972,
+          "residual_arcsec": 102.47663591824332,
+          "sensitivity_arcsec_per_au": 547.2790942759134
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.460783792056606,
+          "residual_arcsec": 102.75131158074014,
+          "sensitivity_arcsec_per_au": 547.3465408623723
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.407504170791125,
+          "residual_arcsec": 92.48898030760927,
+          "sensitivity_arcsec_per_au": 536.6907585895964
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.404535845736046,
+          "residual_arcsec": 93.44873059052907,
+          "sensitivity_arcsec_per_au": 530.2515461014652
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.40494296378801,
+          "residual_arcsec": 93.82028649566617,
+          "sensitivity_arcsec_per_au": 530.2299905430568
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.40495663183052,
+          "residual_arcsec": 93.68990331308981,
+          "sensitivity_arcsec_per_au": 530.2242372915081
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.419320751654425,
+          "residual_arcsec": 90.11419206611997,
+          "sensitivity_arcsec_per_au": 556.3057442338388
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.469354116553202,
+          "residual_arcsec": 49.37523528367647,
+          "sensitivity_arcsec_per_au": 554.1061245121282
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41925934739243,
+          "residual_arcsec": 91.9333667069725,
+          "sensitivity_arcsec_per_au": 553.1717086938233
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.419392816796048,
+          "residual_arcsec": 91.5390888017762,
+          "sensitivity_arcsec_per_au": 553.1627081876712
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.420033624145464,
+          "residual_arcsec": 92.7250627867782,
+          "sensitivity_arcsec_per_au": 553.1316279908872
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.420069131582835,
+          "residual_arcsec": 92.57300294305448,
+          "sensitivity_arcsec_per_au": 553.1268905185148
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.418609758422658,
+          "residual_arcsec": 91.98107238170884,
+          "sensitivity_arcsec_per_au": 552.6131508787336
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41811626477138,
+          "residual_arcsec": 91.78268666781081,
+          "sensitivity_arcsec_per_au": 552.6313248159937
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.4193400110687,
+          "residual_arcsec": 88.66287423193391,
+          "sensitivity_arcsec_per_au": 549.1374341325421
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46748266778135,
+          "residual_arcsec": 103.64783254555641,
+          "sensitivity_arcsec_per_au": 547.0747147398378
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.465817572941443,
+          "residual_arcsec": 103.92250713937075,
+          "sensitivity_arcsec_per_au": 547.142146736266
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41262053206406,
+          "residual_arcsec": 93.6561865302472,
+          "sensitivity_arcsec_per_au": 536.4906355253073
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.40970405515333,
+          "residual_arcsec": 94.61424515034776,
+          "sensitivity_arcsec_per_au": 530.0536686493234
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.410111444206425,
+          "residual_arcsec": 94.98579985172569,
+          "sensitivity_arcsec_per_au": 530.0321143456299
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.410125179063154,
+          "residual_arcsec": 94.8554153932005,
+          "sensitivity_arcsec_per_au": 530.026362187847
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.415619645510844,
+          "residual_arcsec": 90.4015716051119,
+          "sensitivity_arcsec_per_au": 556.4728543405757
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.465663043696733,
+          "residual_arcsec": 49.66260982393062,
+          "sensitivity_arcsec_per_au": 554.2718250236833
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.415542522585223,
+          "residual_arcsec": 92.22015767987929,
+          "sensitivity_arcsec_per_au": 553.3377400893087
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.415675915569103,
+          "residual_arcsec": 91.82587920164164,
+          "sensitivity_arcsec_per_au": 553.3287385879299
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41631661277723,
+          "residual_arcsec": 93.01185257963553,
+          "sensitivity_arcsec_per_au": 553.2976491566274
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.4163520860099,
+          "residual_arcsec": 92.85979216934714,
+          "sensitivity_arcsec_per_au": 553.2929107280186
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.414890063668675,
+          "residual_arcsec": 92.2677607011537,
+          "sensitivity_arcsec_per_au": 552.7789954855106
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41439668262773,
+          "residual_arcsec": 92.06937445325997,
+          "sensitivity_arcsec_per_au": 552.7971721545049
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.415601527438884,
+          "residual_arcsec": 88.94899615889251,
+          "sensitivity_arcsec_per_au": 549.302206547383
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.463730574653134,
+          "residual_arcsec": 103.93395211249137,
+          "sensitivity_arcsec_per_au": 547.2391641915797
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46206588852376,
+          "residual_arcsec": 104.20862620281743,
+          "sensitivity_arcsec_per_au": 547.3066080088007
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.408808116402252,
+          "residual_arcsec": 93.94054500087329,
+          "sensitivity_arcsec_per_au": 536.6519138569785
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.40585271912961,
+          "residual_arcsec": 94.89784489067354,
+          "sensitivity_arcsec_per_au": 530.2132688121211
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.406259895858167,
+          "residual_arcsec": 95.26939904254938,
+          "sensitivity_arcsec_per_au": 530.1917133353496
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0316_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.406273582117134,
+          "residual_arcsec": 95.13901400959267,
+          "sensitivity_arcsec_per_au": 530.1859602799146
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.416859100267427,
+          "residual_arcsec": 90.98348748635046,
+          "sensitivity_arcsec_per_au": 557.2889080032832
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46683307483353,
+          "residual_arcsec": 50.24500073038842,
+          "sensitivity_arcsec_per_au": 555.0856393349554
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41678717929555,
+          "residual_arcsec": 92.80133789547875,
+          "sensitivity_arcsec_per_au": 554.1529570881136
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41692039999803,
+          "residual_arcsec": 92.40705997685947,
+          "sensitivity_arcsec_per_au": 554.1439484117132
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.417560092291726,
+          "residual_arcsec": 93.59303871861233,
+          "sensitivity_arcsec_per_au": 554.1128343914422
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.417595525708855,
+          "residual_arcsec": 93.44097794044688,
+          "sensitivity_arcsec_per_au": 554.1080933726569
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.416136683095065,
+          "residual_arcsec": 92.84880667772399,
+          "sensitivity_arcsec_per_au": 553.5940940646052
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.415644046308472,
+          "residual_arcsec": 92.65041505724668,
+          "sensitivity_arcsec_per_au": 553.6122900268458
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.416853290001026,
+          "residual_arcsec": 89.52934382431017,
+          "sensitivity_arcsec_per_au": 550.1164750505752
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.464910312057857,
+          "residual_arcsec": 104.51475083549683,
+          "sensitivity_arcsec_per_au": 548.0514463482448
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.463248109315845,
+          "residual_arcsec": 104.78940863357765,
+          "sensitivity_arcsec_per_au": 548.1189584692278
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41009508121941,
+          "residual_arcsec": 94.51865457018852,
+          "sensitivity_arcsec_per_au": 537.4641038436417
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.407157380343573,
+          "residual_arcsec": 95.47500483680473,
+          "sensitivity_arcsec_per_au": 531.0246511232173
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.407563954248076,
+          "residual_arcsec": 95.84656202130108,
+          "sensitivity_arcsec_per_au": 531.0030768293863
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.407577639266968,
+          "residual_arcsec": 95.71617641666128,
+          "sensitivity_arcsec_per_au": 530.9973221219999
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.416323952434862,
+          "residual_arcsec": 90.4299106606897,
+          "sensitivity_arcsec_per_au": 557.3172687440157
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.466294453465835,
+          "residual_arcsec": 49.69143730001774,
+          "sensitivity_arcsec_per_au": 555.1139853015922
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.416249871655182,
+          "residual_arcsec": 92.24849404668596,
+          "sensitivity_arcsec_per_au": 554.1811512992099
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41638308205419,
+          "residual_arcsec": 91.854216859007,
+          "sensitivity_arcsec_per_au": 554.1721423673488
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41702275554323,
+          "residual_arcsec": 93.04019644198634,
+          "sensitivity_arcsec_per_au": 554.141026790643
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.417058184398414,
+          "residual_arcsec": 92.88813637349418,
+          "sensitivity_arcsec_per_au": 554.1362855976541
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.415598981418313,
+          "residual_arcsec": 92.29609044059383,
+          "sensitivity_arcsec_per_au": 553.622259731838
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.415106361517996,
+          "residual_arcsec": 92.09769941884217,
+          "sensitivity_arcsec_per_au": 553.6404563210348
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.41631299200549,
+          "residual_arcsec": 88.97733117989415,
+          "sensitivity_arcsec_per_au": 550.1444748158912
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.464367672323505,
+          "residual_arcsec": 103.9627471810557,
+          "sensitivity_arcsec_per_au": 548.0793899165519
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.462705536725466,
+          "residual_arcsec": 104.23740539451866,
+          "sensitivity_arcsec_per_au": 548.1469042731895
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.409544336207208,
+          "residual_arcsec": 93.96881442281997,
+          "sensitivity_arcsec_per_au": 537.4915761206863
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.406601195993257,
+          "residual_arcsec": 94.92608850731624,
+          "sensitivity_arcsec_per_au": 531.0518683283502
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.40700774112911,
+          "residual_arcsec": 95.2976463942915,
+          "sensitivity_arcsec_per_au": 531.0302935696692
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.407021418404025,
+          "residual_arcsec": 95.16726148883836,
+          "sensitivity_arcsec_per_au": 531.0245387460368
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.416143428226803,
+          "residual_arcsec": 90.75729163397136,
+          "sensitivity_arcsec_per_au": 557.3300530634251
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46611210048527,
+          "residual_arcsec": 50.01881431465334,
+          "sensitivity_arcsec_per_au": 555.1267727905481
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.416068525078842,
+          "residual_arcsec": 92.57541550582782,
+          "sensitivity_arcsec_per_au": 554.1938791521453
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.416201729423047,
+          "residual_arcsec": 92.18113787180054,
+          "sensitivity_arcsec_per_au": 554.1848701840524
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.416841388956637,
+          "residual_arcsec": 93.36711698477052,
+          "sensitivity_arcsec_per_au": 554.1537541449452
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.41687681542698,
+          "residual_arcsec": 93.21505647450518,
+          "sensitivity_arcsec_per_au": 554.1490129088871
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41541749431074,
+          "residual_arcsec": 92.62293182617992,
+          "sensitivity_arcsec_per_au": 553.6349777765088
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41492488704368,
+          "residual_arcsec": 92.4245403849306,
+          "sensitivity_arcsec_per_au": 553.6531744729161
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.416130518846387,
+          "residual_arcsec": 89.3037313516747,
+          "sensitivity_arcsec_per_au": 550.1571370576006
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.464184131762444,
+          "residual_arcsec": 104.28914594163395,
+          "sensitivity_arcsec_per_au": 548.0920252109048
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.462522036256516,
+          "residual_arcsec": 104.56380374861399,
+          "sensitivity_arcsec_per_au": 548.159540263235
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.40935824887923,
+          "residual_arcsec": 94.29384974453248,
+          "sensitivity_arcsec_per_au": 537.5040535154728
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.406413168238775,
+          "residual_arcsec": 95.25054233867516,
+          "sensitivity_arcsec_per_au": 531.0642593519157
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.406819694742765,
+          "residual_arcsec": 95.62209981656672,
+          "sensitivity_arcsec_per_au": 531.0426846256643
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.40683336995469,
+          "residual_arcsec": 95.49171447210864,
+          "sensitivity_arcsec_per_au": 531.0369297345534
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.4164525612291,
+          "residual_arcsec": 89.97121379969502,
+          "sensitivity_arcsec_per_au": 557.3213057087996
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46642337009073,
+          "residual_arcsec": 49.23275514226648,
+          "sensitivity_arcsec_per_au": 555.1179791134351
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.416379108315112,
+          "residual_arcsec": 91.7904344868457,
+          "sensitivity_arcsec_per_au": 554.1852085518968
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.416512320893105,
+          "residual_arcsec": 91.39615794259065,
+          "sensitivity_arcsec_per_au": 554.1761994873726
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41715199011478,
+          "residual_arcsec": 92.58213829469578,
+          "sensitivity_arcsec_per_au": 554.1450837597814
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.417187420192583,
+          "residual_arcsec": 92.43007884544475,
+          "sensitivity_arcsec_per_au": 554.1403425401436
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41572833863371,
+          "residual_arcsec": 91.83814181465364,
+          "sensitivity_arcsec_per_au": 553.626321004464
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.415235719759753,
+          "residual_arcsec": 91.63975128466785,
+          "sensitivity_arcsec_per_au": 553.6445178947612
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.416443083260376,
+          "residual_arcsec": 88.51999457296101,
+          "sensitivity_arcsec_per_au": 550.1485558276939
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46449736789839,
+          "residual_arcsec": 103.5054212155813,
+          "sensitivity_arcsec_per_au": 548.0834586750225
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.4628352400173,
+          "residual_arcsec": 103.78007969311024,
+          "sensitivity_arcsec_per_au": 548.1509737654907
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.40967721981835,
+          "residual_arcsec": 93.51336903451416,
+          "sensitivity_arcsec_per_au": 537.4957374799004
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.406735589888463,
+          "residual_arcsec": 94.47144861586209,
+          "sensitivity_arcsec_per_au": 531.0560683495535
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.4071421409074,
+          "residual_arcsec": 94.84300713997324,
+          "sensitivity_arcsec_per_au": 531.0344931680455
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0369_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.407155819103235,
+          "residual_arcsec": 94.7126228453227,
+          "sensitivity_arcsec_per_au": 531.0287383798997
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41671509659264,
+          "residual_arcsec": 90.5525154427045,
+          "sensitivity_arcsec_per_au": 558.8305360676186
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.466553095625738,
+          "residual_arcsec": 49.814905672587116,
+          "sensitivity_arcsec_per_au": 556.6233252259011
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41664275636427,
+          "residual_arcsec": 92.37094977796798,
+          "sensitivity_arcsec_per_au": 555.6924211406224
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.416775630827605,
+          "residual_arcsec": 91.97667473603708,
+          "sensitivity_arcsec_per_au": 555.6833989942106
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.417413492061378,
+          "residual_arcsec": 93.16266515979444,
+          "sensitivity_arcsec_per_au": 555.6522357020363
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.417448835655474,
+          "residual_arcsec": 93.01060555795796,
+          "sensitivity_arcsec_per_au": 555.6474894594141
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.415993952349474,
+          "residual_arcsec": 92.41850926942638,
+          "sensitivity_arcsec_per_au": 555.1332304045998
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.415502686306027,
+          "residual_arcsec": 92.22010966117375,
+          "sensitivity_arcsec_per_au": 555.1514624034462
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.416708143923202,
+          "residual_arcsec": 89.09962054201964,
+          "sensitivity_arcsec_per_au": 551.6534619265101
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.464630353041578,
+          "residual_arcsec": 104.08585094129296,
+          "sensitivity_arcsec_per_au": 549.584719001784
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.4629727571083,
+          "residual_arcsec": 104.36048090472796,
+          "sensitivity_arcsec_per_au": 549.6523594511239
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.409965916864845,
+          "residual_arcsec": 94.09055550679336,
+          "sensitivity_arcsec_per_au": 538.9952164463481
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.40703534220249,
+          "residual_arcsec": 95.04759807614276,
+          "sensitivity_arcsec_per_au": 532.5532702724363
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.407440733279497,
+          "residual_arcsec": 95.4191624495286,
+          "sensitivity_arcsec_per_au": 532.5316617254389
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.407454384251473,
+          "residual_arcsec": 95.28877762950289,
+          "sensitivity_arcsec_per_au": 532.5259035977224
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.415521014373134,
+          "residual_arcsec": 90.79831418584124,
+          "sensitivity_arcsec_per_au": 558.8880086641989
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.465350552050424,
+          "residual_arcsec": 50.060701644035504,
+          "sensitivity_arcsec_per_au": 556.6808353363434
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.415443598825355,
+          "residual_arcsec": 92.61634799480703,
+          "sensitivity_arcsec_per_au": 555.7495423122042
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.415576445938576,
+          "residual_arcsec": 92.22207256591987,
+          "sensitivity_arcsec_per_au": 555.740519902173
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41621426087691,
+          "residual_arcsec": 93.40806259034099,
+          "sensitivity_arcsec_per_au": 555.7093538148687
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.416249592622826,
+          "residual_arcsec": 93.25600260388093,
+          "sensitivity_arcsec_per_au": 555.7046072867821
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.414793879661,
+          "residual_arcsec": 92.66383765034949,
+          "sensitivity_arcsec_per_au": 555.1902905171384
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.414302658404868,
+          "residual_arcsec": 92.46543766819697,
+          "sensitivity_arcsec_per_au": 555.2085232286089
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.41550199242277,
+          "residual_arcsec": 89.34456396065563,
+          "sensitivity_arcsec_per_au": 551.7101734361565
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.463419527301134,
+          "residual_arcsec": 104.33079384828626,
+          "sensitivity_arcsec_per_au": 549.6413182556857
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.4617620885165,
+          "residual_arcsec": 104.60542343200198,
+          "sensitivity_arcsec_per_au": 549.7089621335522
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.408736087761593,
+          "residual_arcsec": 94.33430439460973,
+          "sensitivity_arcsec_per_au": 539.05078846486
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.405793037150453,
+          "residual_arcsec": 95.29083576059458,
+          "sensitivity_arcsec_per_au": 532.6082963823065
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.40619834822068,
+          "residual_arcsec": 95.66239977733322,
+          "sensitivity_arcsec_per_au": 532.5866877619759
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.40621198383333,
+          "residual_arcsec": 95.53201457117093,
+          "sensitivity_arcsec_per_au": 532.5809293235184
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41597505576551,
+          "residual_arcsec": 91.1255612875752,
+          "sensitivity_arcsec_per_au": 558.8726946435579
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46580701579409,
+          "residual_arcsec": 50.38794559413437,
+          "sensitivity_arcsec_per_au": 556.665499948386
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.415899493433642,
+          "residual_arcsec": 92.94316902569702,
+          "sensitivity_arcsec_per_au": 555.7343563186795
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.416032348202602,
+          "residual_arcsec": 92.54889318417588,
+          "sensitivity_arcsec_per_au": 555.7253340069838
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.416670170490125,
+          "residual_arcsec": 93.73488277835753,
+          "sensitivity_arcsec_per_au": 555.6941688834405
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.4167055059012,
+          "residual_arcsec": 93.58282238262925,
+          "sensitivity_arcsec_per_au": 555.6894224591092
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.415250119800312,
+          "residual_arcsec": 92.99058444824756,
+          "sensitivity_arcsec_per_au": 555.175126818845
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41475889009749,
+          "residual_arcsec": 92.7921840729483,
+          "sensitivity_arcsec_per_au": 555.1933592930619
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.41596045094964,
+          "residual_arcsec": 89.67090189910925,
+          "sensitivity_arcsec_per_au": 551.6951370207029
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.463879196954966,
+          "residual_arcsec": 104.65713092168444,
+          "sensitivity_arcsec_per_au": 549.626308484182
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46222172287726,
+          "residual_arcsec": 104.93176011353904,
+          "sensitivity_arcsec_per_au": 549.6939513897292
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.409203513347677,
+          "residual_arcsec": 94.65937960126368,
+          "sensitivity_arcsec_per_au": 539.0361655625552
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.40626513521267,
+          "residual_arcsec": 95.61537434169908,
+          "sensitivity_arcsec_per_au": 532.5938749290716
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.40667046760475,
+          "residual_arcsec": 95.98693798616962,
+          "sensitivity_arcsec_per_au": 532.5722663545237
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0454_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.406684109426394,
+          "residual_arcsec": 95.85655237534085,
+          "sensitivity_arcsec_per_au": 532.5665079999991
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41359037079245,
+          "residual_arcsec": 87.80092455264521,
+          "sensitivity_arcsec_per_au": 561.7052235474325
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.463179185745012,
+          "residual_arcsec": 47.064945625778115,
+          "sensitivity_arcsec_per_au": 559.4905709373986
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41350628161421,
+          "residual_arcsec": 89.62297659482252,
+          "sensitivity_arcsec_per_au": 558.5623737183347
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.413638474676087,
+          "residual_arcsec": 89.22870930785828,
+          "sensitivity_arcsec_per_au": 558.5533271315363
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41428409419664,
+          "residual_arcsec": 90.41472348316856,
+          "sensitivity_arcsec_per_au": 558.5215783698217
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.414319253095236,
+          "residual_arcsec": 90.26266848842788,
+          "sensitivity_arcsec_per_au": 558.5168220264195
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.412857941222022,
+          "residual_arcsec": 89.67114613488395,
+          "sensitivity_arcsec_per_au": 558.0024701271938
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41236879003485,
+          "residual_arcsec": 89.47273421292226,
+          "sensitivity_arcsec_per_au": 558.0207863914459
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.413553657634342,
+          "residual_arcsec": 86.35575426739985,
+          "sensitivity_arcsec_per_au": 554.5180351491144
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46123905005608,
+          "residual_arcsec": 101.3435039906999,
+          "sensitivity_arcsec_per_au": 552.4418571162722
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.45958209638121,
+          "residual_arcsec": 101.61808522354328,
+          "sensitivity_arcsec_per_au": 552.5100758204106
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.406829192643936,
+          "residual_arcsec": 91.35721368443687,
+          "sensitivity_arcsec_per_au": 541.8447115354501
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.403882233352824,
+          "residual_arcsec": 92.31873215744487,
+          "sensitivity_arcsec_per_au": 535.3970402408806
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.404285360213407,
+          "residual_arcsec": 92.69031201981208,
+          "sensitivity_arcsec_per_au": 535.3753699593892
+        },
+        {
+          "epoch_a_obs_id": "2025W34_2B_0624_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.404298910722954,
+          "residual_arcsec": 92.55993105373152,
+          "sensitivity_arcsec_per_au": 535.3696051968485
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41813032904795,
+          "residual_arcsec": 87.09906323973907,
+          "sensitivity_arcsec_per_au": 563.3204098158595
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.467549982471095,
+          "residual_arcsec": 46.364179747971846,
+          "sensitivity_arcsec_per_au": 561.1026833161674
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41806481846743,
+          "residual_arcsec": 88.92231614767728,
+          "sensitivity_arcsec_per_au": 560.1763966033594
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41819672735626,
+          "residual_arcsec": 88.52805290268397,
+          "sensitivity_arcsec_per_au": 560.167333954285
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41882927319271,
+          "residual_arcsec": 89.7140823925492,
+          "sensitivity_arcsec_per_au": 560.1360268462115
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.41886437457766,
+          "residual_arcsec": 89.56202931880354,
+          "sensitivity_arcsec_per_au": 560.1312652426886
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.417422428358226,
+          "residual_arcsec": 88.97068131486914,
+          "sensitivity_arcsec_per_au": 559.6163269754683
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.416935112043323,
+          "residual_arcsec": 88.77225985835818,
+          "sensitivity_arcsec_per_au": 559.6346669154399
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.41813921965248,
+          "residual_arcsec": 85.65646106013936,
+          "sensitivity_arcsec_per_au": 556.1306919078513
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46567232954168,
+          "residual_arcsec": 100.64523802741834,
+          "sensitivity_arcsec_per_au": 554.0509434908482
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.464028007996113,
+          "residual_arcsec": 100.91978488277779,
+          "sensitivity_arcsec_per_au": 554.1189660437586
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41148057968783,
+          "residual_arcsec": 90.66137195081122,
+          "sensitivity_arcsec_per_au": 543.4567591675568
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.40859043241852,
+          "residual_arcsec": 91.6243712888608,
+          "sensitivity_arcsec_per_au": 537.0082396087715
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.408992487836358,
+          "residual_arcsec": 91.99596053539737,
+          "sensitivity_arcsec_per_au": 536.9865275625465
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.40900606155623,
+          "residual_arcsec": 91.86558102193226,
+          "sensitivity_arcsec_per_au": 536.9807597354151
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41770191432854,
+          "residual_arcsec": 86.99946132199946,
+          "sensitivity_arcsec_per_au": 563.344030974007
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46711826594113,
+          "residual_arcsec": 46.26458198987884,
+          "sensitivity_arcsec_per_au": 561.1263123281806
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.417634634250124,
+          "residual_arcsec": 88.8228286923981,
+          "sensitivity_arcsec_per_au": 560.1998862144064
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41776653371974,
+          "residual_arcsec": 88.42856556651772,
+          "sensitivity_arcsec_per_au": 560.1908234017772
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41839906662375,
+          "residual_arcsec": 89.61459521174089,
+          "sensitivity_arcsec_per_au": 560.1595148887142
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.418434163928296,
+          "residual_arcsec": 89.46254225006705,
+          "sensitivity_arcsec_per_au": 560.1547531585835
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.416991922310896,
+          "residual_arcsec": 88.87121375176326,
+          "sensitivity_arcsec_per_au": 559.6397940932601
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.416504620085128,
+          "residual_arcsec": 88.67279237031008,
+          "sensitivity_arcsec_per_au": 559.6581345563338
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.417706585213914,
+          "residual_arcsec": 85.55710325012646,
+          "sensitivity_arcsec_per_au": 556.1540285749032
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46523780964798,
+          "residual_arcsec": 100.54588338482219,
+          "sensitivity_arcsec_per_au": 554.074231456496
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.463593543562617,
+          "residual_arcsec": 100.82043024397406,
+          "sensitivity_arcsec_per_au": 554.1422558837581
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.411039547122627,
+          "residual_arcsec": 90.56235143819345,
+          "sensitivity_arcsec_per_au": 543.4796780461818
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.408145009688155,
+          "residual_arcsec": 91.5254934082382,
+          "sensitivity_arcsec_per_au": 537.0309576311629
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.408547040429166,
+          "residual_arcsec": 91.89708277642636,
+          "sensitivity_arcsec_per_au": 537.0092452465241
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.408560608046187,
+          "residual_arcsec": 91.76670337135609,
+          "sensitivity_arcsec_per_au": 537.0034773254739
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.417618262481998,
+          "residual_arcsec": 85.86794346000234,
+          "sensitivity_arcsec_per_au": 563.3521526097331
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.467034544903864,
+          "residual_arcsec": 45.13308401582382,
+          "sensitivity_arcsec_per_au": 561.1343869890283
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.417550831715587,
+          "residual_arcsec": 87.69286186590377,
+          "sensitivity_arcsec_per_au": 560.207968581265
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.417682733620104,
+          "residual_arcsec": 87.29860026431325,
+          "sensitivity_arcsec_per_au": 560.1989054843579
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.418315268472316,
+          "residual_arcsec": 88.48463158139701,
+          "sensitivity_arcsec_per_au": 560.1675961999548
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.418350366530433,
+          "residual_arcsec": 88.33258011561541,
+          "sensitivity_arcsec_per_au": 560.1628343531725
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.416908081982598,
+          "residual_arcsec": 87.74151709861997,
+          "sensitivity_arcsec_per_au": 559.6478704073008
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41642077499975,
+          "residual_arcsec": 87.54309706744881,
+          "sensitivity_arcsec_per_au": 559.6662115261399
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.417622557792768,
+          "residual_arcsec": 84.42889570496122,
+          "sensitivity_arcsec_per_au": 556.1620644347478
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46515308314773,
+          "residual_arcsec": 99.41768689755543,
+          "sensitivity_arcsec_per_au": 554.082250517187
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.463508818880836,
+          "residual_arcsec": 99.69223491117508,
+          "sensitivity_arcsec_per_au": 554.1502764460386
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41095412398699,
+          "residual_arcsec": 89.43874679481365,
+          "sensitivity_arcsec_per_au": 543.4876111913906
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.408058993557624,
+          "residual_arcsec": 90.40384831580407,
+          "sensitivity_arcsec_per_au": 537.0388363316852
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.408461033767942,
+          "residual_arcsec": 90.77543911124243,
+          "sensitivity_arcsec_per_au": 537.01712310974
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0087_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.40847459863243,
+          "residual_arcsec": 90.64506118723516,
+          "sensitivity_arcsec_per_au": 537.0113552262492
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41784554033575,
+          "residual_arcsec": 89.59025460534951,
+          "sensitivity_arcsec_per_au": 566.4504905904483
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.466993210930305,
+          "residual_arcsec": 48.85726043692389,
+          "sensitivity_arcsec_per_au": 564.224582362754
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.417778568860093,
+          "residual_arcsec": 91.41006613398287,
+          "sensitivity_arcsec_per_au": 563.3021137555954
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.4179097822556,
+          "residual_arcsec": 91.01580463349545,
+          "sensitivity_arcsec_per_au": 563.2930233456968
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.418538668693603,
+          "residual_arcsec": 92.2018549880998,
+          "sensitivity_arcsec_per_au": 563.2616138677781
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.418573588893818,
+          "residual_arcsec": 92.04979996084032,
+          "sensitivity_arcsec_per_au": 563.256841565582
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.417139455687145,
+          "residual_arcsec": 91.45780736510078,
+          "sensitivity_arcsec_per_au": 562.7413862202663
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41665488353136,
+          "residual_arcsec": 91.25936401246659,
+          "sensitivity_arcsec_per_au": 562.7598010060437
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.417850778966258,
+          "residual_arcsec": 88.14031317265925,
+          "sensitivity_arcsec_per_au": 559.2514132387129
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46511675133417,
+          "residual_arcsec": 103.13088954121274,
+          "sensitivity_arcsec_per_au": 557.163843936253
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.463481599378188,
+          "residual_arcsec": 103.40537088618812,
+          "sensitivity_arcsec_per_au": 557.2321349620631
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41122286005536,
+          "residual_arcsec": 93.13476784814186,
+          "sensitivity_arcsec_per_au": 546.5656331095973
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.408345979851713,
+          "residual_arcsec": 94.09331679911399,
+          "sensitivity_arcsec_per_au": 540.1121006933996
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.40874564541792,
+          "residual_arcsec": 94.4649177336687,
+          "sensitivity_arcsec_per_au": 540.0903188055953
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0305_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.40875915693347,
+          "residual_arcsec": 94.33453544187194,
+          "sensitivity_arcsec_per_au": 540.0845437253124
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.415022073392485,
+          "residual_arcsec": 87.86798624800666,
+          "sensitivity_arcsec_per_au": 568.0481937728414
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.464058447061216,
+          "residual_arcsec": 47.13595240079709,
+          "sensitivity_arcsec_per_au": 565.8169363151737
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.414943796833512,
+          "residual_arcsec": 89.69001543486345,
+          "sensitivity_arcsec_per_au": 564.8969540883958
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41507463787409,
+          "residual_arcsec": 89.29575858693119,
+          "sensitivity_arcsec_per_au": 564.8878493876922
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.415701759188643,
+          "residual_arcsec": 90.4818231824217,
+          "sensitivity_arcsec_per_au": 564.8563830481309
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.41573657292574,
+          "residual_arcsec": 90.32977095252986,
+          "sensitivity_arcsec_per_au": 564.851604846907
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.414304246000256,
+          "residual_arcsec": 89.73813105321001,
+          "sensitivity_arcsec_per_au": 564.335779000581
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41380986663874,
+          "residual_arcsec": 89.53968081797566,
+          "sensitivity_arcsec_per_au": 564.3547339868481
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.415000240995475,
+          "residual_arcsec": 86.42277930528473,
+          "sensitivity_arcsec_per_au": 560.8429596766149
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.462131757177595,
+          "residual_arcsec": 101.414251401282,
+          "sensitivity_arcsec_per_au": 558.7514051623998
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.460501164645283,
+          "residual_arcsec": 101.68870402537466,
+          "sensitivity_arcsec_per_au": 558.8198341990676
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.408334744506686,
+          "residual_arcsec": 91.4236843966879,
+          "sensitivity_arcsec_per_au": 548.1490626469161
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.405470846872035,
+          "residual_arcsec": 92.38497380914693,
+          "sensitivity_arcsec_per_au": 541.6905320812352
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.405869271083624,
+          "residual_arcsec": 92.75658398446768,
+          "sensitivity_arcsec_per_au": 541.6687149578229
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.40588271409564,
+          "residual_arcsec": 92.62620404075068,
+          "sensitivity_arcsec_per_au": 541.6629360419779
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41464226859659,
+          "residual_arcsec": 86.85721269537596,
+          "sensitivity_arcsec_per_au": 568.0694464382799
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.463675259574636,
+          "residual_arcsec": 46.125192940189116,
+          "sensitivity_arcsec_per_au": 565.8382162548899
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.414562605275403,
+          "residual_arcsec": 88.68061151695868,
+          "sensitivity_arcsec_per_au": 564.9180822075001
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.41469343960263,
+          "residual_arcsec": 88.28635600583058,
+          "sensitivity_arcsec_per_au": 564.9089772872338
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.415320556187584,
+          "residual_arcsec": 89.47242203330427,
+          "sensitivity_arcsec_per_au": 564.8775093771021
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.415355366910195,
+          "residual_arcsec": 89.32037112183237,
+          "sensitivity_arcsec_per_au": 564.8727310389241
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.413911503686087,
+          "residual_arcsec": 88.72896605520435,
+          "sensitivity_arcsec_per_au": 564.3573938708694
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.413427877088353,
+          "residual_arcsec": 88.53051677186018,
+          "sensitivity_arcsec_per_au": 564.3758663822753
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.41461709150392,
+          "residual_arcsec": 85.41492874638551,
+          "sensitivity_arcsec_per_au": 560.8639433345619
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46174694721144,
+          "residual_arcsec": 100.40640731959829,
+          "sensitivity_arcsec_per_au": 558.7723442698588
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.460116396912692,
+          "residual_arcsec": 100.68086107638673,
+          "sensitivity_arcsec_per_au": 558.8407753058817
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.407978052718953,
+          "residual_arcsec": 90.4198971699913,
+          "sensitivity_arcsec_per_au": 548.1682365584411
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.405076937860798,
+          "residual_arcsec": 91.38291568549847,
+          "sensitivity_arcsec_per_au": 541.7109483962345
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.405475345908776,
+          "residual_arcsec": 91.75452709376702,
+          "sensitivity_arcsec_per_au": 541.6891307383509
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0404_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.405488781993615,
+          "residual_arcsec": 91.62414845531818,
+          "sensitivity_arcsec_per_au": 541.6833518042522
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.41952279246825,
+          "residual_arcsec": 86.32644050595637,
+          "sensitivity_arcsec_per_au": 569.8017886532925
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46839384192746,
+          "residual_arcsec": 45.595714684014396,
+          "sensitivity_arcsec_per_au": 567.5663036496229
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.41946346037634,
+          "residual_arcsec": 88.15082457270475,
+          "sensitivity_arcsec_per_au": 566.6491469208578
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.4195939863795,
+          "residual_arcsec": 87.75657343237036,
+          "sensitivity_arcsec_per_au": 566.6400245663875
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.420218956914375,
+          "residual_arcsec": 88.94265681519666,
+          "sensitivity_arcsec_per_au": 566.6085043294014
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.420253708285603,
+          "residual_arcsec": 88.79060776114602,
+          "sensitivity_arcsec_per_au": 566.6037201386207
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41882954280899,
+          "residual_arcsec": 88.19933437508624,
+          "sensitivity_arcsec_per_au": 566.087793201755
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.418347856675176,
+          "residual_arcsec": 88.00087338615378,
+          "sensitivity_arcsec_per_au": 566.1062928620063
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.41954602142423,
+          "residual_arcsec": 84.88626569199174,
+          "sensitivity_arcsec_per_au": 562.5935643866112
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.466528300142198,
+          "residual_arcsec": 99.87896189323617,
+          "sensitivity_arcsec_per_au": 560.4973643119183
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46490281669037,
+          "residual_arcsec": 100.15337460133064,
+          "sensitivity_arcsec_per_au": 560.5659556961452
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.412991619915484,
+          "residual_arcsec": 89.89402392515628,
+          "sensitivity_arcsec_per_au": 549.8965931023035
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.41015083178721,
+          "residual_arcsec": 90.85824333589038,
+          "sensitivity_arcsec_per_au": 543.4384017687238
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.41054808353744,
+          "residual_arcsec": 91.22986552645958,
+          "sensitivity_arcsec_per_au": 543.4165388574356
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.41056154869101,
+          "residual_arcsec": 91.09948819307274,
+          "sensitivity_arcsec_per_au": 543.4107563875465
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.419234396258787,
+          "residual_arcsec": 87.43901887900901,
+          "sensitivity_arcsec_per_au": 569.8188010308193
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46810201322045,
+          "residual_arcsec": 46.70828468667046,
+          "sensitivity_arcsec_per_au": 567.5833708732911
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.419173687284374,
+          "residual_arcsec": 89.26185848175494,
+          "sensitivity_arcsec_per_au": 566.666078658423
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.419304201522973,
+          "residual_arcsec": 88.86760585343077,
+          "sensitivity_arcsec_per_au": 566.6569564243889
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.4199291588444,
+          "residual_arcsec": 90.0536877151746,
+          "sensitivity_arcsec_per_au": 566.6254353563453
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.41996390559486,
+          "residual_arcsec": 89.9016371794993,
+          "sensitivity_arcsec_per_au": 566.6206511565614
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.418539531797443,
+          "residual_arcsec": 89.31009909852726,
+          "sensitivity_arcsec_per_au": 566.104710761096
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.418057864490407,
+          "residual_arcsec": 89.1116366545215,
+          "sensitivity_arcsec_per_au": 566.1232104121462
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.419254348016167,
+          "residual_arcsec": 85.99554761846314,
+          "sensitivity_arcsec_per_au": 562.6104039403544
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.466235354039046,
+          "residual_arcsec": 100.98824345576632,
+          "sensitivity_arcsec_per_au": 560.5141650657939
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.464609926407388,
+          "residual_arcsec": 101.2626546466837,
+          "sensitivity_arcsec_per_au": 560.5827571039573
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.412694123662693,
+          "residual_arcsec": 90.9987190818678,
+          "sensitivity_arcsec_per_au": 549.9131592881616
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.409850165317593,
+          "residual_arcsec": 91.96098492890441,
+          "sensitivity_arcsec_per_au": 543.454842320835
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.410247383563906,
+          "residual_arcsec": 92.33260578216108,
+          "sensitivity_arcsec_per_au": 543.4329798397588
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.410260845845848,
+          "residual_arcsec": 92.20222697558118,
+          "sensitivity_arcsec_per_au": 543.4271972551865
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.419459524442388,
+          "residual_arcsec": 86.8898622697037,
+          "sensitivity_arcsec_per_au": 569.8123231091756
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.468328898673096,
+          "residual_arcsec": 46.15913603724254,
+          "sensitivity_arcsec_per_au": 567.5768471034297
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.419399837003365,
+          "residual_arcsec": 88.71346857058826,
+          "sensitivity_arcsec_per_au": 566.6596567574379
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.419530357350048,
+          "residual_arcsec": 88.31921669112796,
+          "sensitivity_arcsec_per_au": 566.6505344386514
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.42015531573315,
+          "residual_arcsec": 89.50529935665956,
+          "sensitivity_arcsec_per_au": 566.6190138509888
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.42019006515069,
+          "residual_arcsec": 89.35324955922138,
+          "sensitivity_arcsec_per_au": 566.6142296612022
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41876586878898,
+          "residual_arcsec": 88.76184277030978,
+          "sensitivity_arcsec_per_au": 566.0982988008593
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.418284195422935,
+          "residual_arcsec": 88.56338101113937,
+          "sensitivity_arcsec_per_au": 566.1167985019143
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.419481907581034,
+          "residual_arcsec": 85.44802747587497,
+          "sensitivity_arcsec_per_au": 562.6040465349686
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.466463353956602,
+          "residual_arcsec": 100.44072711872057,
+          "sensitivity_arcsec_per_au": 560.5078194015546
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.464837907371408,
+          "residual_arcsec": 100.71513893771012,
+          "sensitivity_arcsec_per_au": 560.5764113217818
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.412926249207757,
+          "residual_arcsec": 90.45347585615326,
+          "sensitivity_arcsec_per_au": 549.9069924299332
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.410084735801433,
+          "residual_arcsec": 91.41671167509759,
+          "sensitivity_arcsec_per_au": 543.4487655057482
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.410481970072123,
+          "residual_arcsec": 91.78833322251876,
+          "sensitivity_arcsec_per_au": 543.4269027438582
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0541_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.410495434803828,
+          "residual_arcsec": 91.65795514858296,
+          "sensitivity_arcsec_per_au": 543.4211202215978
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.421243299223015,
+          "residual_arcsec": 86.67500283397142,
+          "sensitivity_arcsec_per_au": 570.0682821898527
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.470095728388632,
+          "residual_arcsec": 45.944506130517844,
+          "sensitivity_arcsec_per_au": 567.8318130463416
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.421191016830456,
+          "residual_arcsec": 88.49899831753676,
+          "sensitivity_arcsec_per_au": 566.9156675868661
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.421321496808986,
+          "residual_arcsec": 88.10474741824059,
+          "sensitivity_arcsec_per_au": 566.9065427643632
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.421946080179442,
+          "residual_arcsec": 89.29083336283514,
+          "sensitivity_arcsec_per_au": 566.8750168719222
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.421980825946005,
+          "residual_arcsec": 89.13878410023807,
+          "sensitivity_arcsec_per_au": 566.870231990773
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.420558806349483,
+          "residual_arcsec": 88.54743753126402,
+          "sensitivity_arcsec_per_au": 566.3543282358688
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.420077392089713,
+          "residual_arcsec": 88.34897391073913,
+          "sensitivity_arcsec_per_au": 566.3728341428293
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.42128329640296,
+          "residual_arcsec": 85.23400029421411,
+          "sensitivity_arcsec_per_au": 562.8601251768333
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46824265520427,
+          "residual_arcsec": 100.22691532038577,
+          "sensitivity_arcsec_per_au": 560.7631793627727
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.4666180247654,
+          "residual_arcsec": 100.5013200916325,
+          "sensitivity_arcsec_per_au": 560.8317942404159
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41477630901832,
+          "residual_arcsec": 90.24058513794617,
+          "sensitivity_arcsec_per_au": 550.1630553592528
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.41194528794723,
+          "residual_arcsec": 91.20430970143693,
+          "sensitivity_arcsec_per_au": 543.7055064046397
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.412342349947014,
+          "residual_arcsec": 91.57593335846283,
+          "sensitivity_arcsec_per_au": 543.6836371362126
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0564_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.41235583281672,
+          "residual_arcsec": 91.44555572309311,
+          "sensitivity_arcsec_per_au": 543.6778541769045
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.42085539561036,
+          "residual_arcsec": 86.4088994407936,
+          "sensitivity_arcsec_per_au": 570.5974890431554
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.469662890079082,
+          "residual_arcsec": 45.678752230750526,
+          "sensitivity_arcsec_per_au": 568.3595721299811
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.42080156506023,
+          "residual_arcsec": 88.23323992506029,
+          "sensitivity_arcsec_per_au": 567.4440542231566
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.420931931997774,
+          "residual_arcsec": 87.83899028077825,
+          "sensitivity_arcsec_per_au": 567.4349243068386
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.421555926309832,
+          "residual_arcsec": 89.02508098332902,
+          "sensitivity_arcsec_per_au": 567.4033794923131
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.42159064180434,
+          "residual_arcsec": 88.87303229750076,
+          "sensitivity_arcsec_per_au": 567.3985926268273
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.42016962660959,
+          "residual_arcsec": 88.28173485128531,
+          "sensitivity_arcsec_per_au": 566.8825903984155
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.419688652619595,
+          "residual_arcsec": 88.08326815617045,
+          "sensitivity_arcsec_per_au": 566.901110011955
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.420891692152445,
+          "residual_arcsec": 84.96863408199471,
+          "sensitivity_arcsec_per_au": 563.3875690227923
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.467806802983596,
+          "residual_arcsec": 99.96187749542582,
+          "sensitivity_arcsec_per_au": 561.2892488747947
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46618366047615,
+          "residual_arcsec": 100.23627127312501,
+          "sensitivity_arcsec_per_au": 561.3579121579154
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.414383316014973,
+          "residual_arcsec": 89.97619764021543,
+          "sensitivity_arcsec_per_au": 550.688227933338
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.411550672985218,
+          "residual_arcsec": 90.94033834138317,
+          "sensitivity_arcsec_per_au": 544.2297175769614
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.411947347313983,
+          "residual_arcsec": 91.31196497638332,
+          "sensitivity_arcsec_per_au": 544.2078355624461
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.411960815023015,
+          "residual_arcsec": 91.18158776045229,
+          "sensitivity_arcsec_per_au": 544.2020513410675
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.421038356069737,
+          "residual_arcsec": 86.47105358720512,
+          "sensitivity_arcsec_per_au": 570.592842331503
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46984656072446,
+          "residual_arcsec": 45.74090839619936,
+          "sensitivity_arcsec_per_au": 568.3549166007809
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.420985269840493,
+          "residual_arcsec": 88.29531829492056,
+          "sensitivity_arcsec_per_au": 567.4394560357387
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.421115638543863,
+          "residual_arcsec": 87.9010685842627,
+          "sensitivity_arcsec_per_au": 567.4303261809796
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.421739629134528,
+          "residual_arcsec": 89.08715924348917,
+          "sensitivity_arcsec_per_au": 567.3987819146546
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.42177434571025,
+          "residual_arcsec": 88.93511048676845,
+          "sensitivity_arcsec_per_au": 567.393995101077
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.42035347623213,
+          "residual_arcsec": 88.34379999063798,
+          "sensitivity_arcsec_per_au": 566.8780005127805
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.419872503570026,
+          "residual_arcsec": 88.14533320001424,
+          "sensitivity_arcsec_per_au": 566.8965199251071
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.42107642298403,
+          "residual_arcsec": 85.03062660666713,
+          "sensitivity_arcsec_per_au": 563.3830275051187
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.467991867410245,
+          "residual_arcsec": 100.02387234577047,
+          "sensitivity_arcsec_per_au": 561.2847138800932
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46636872256036,
+          "residual_arcsec": 100.298265968263,
+          "sensitivity_arcsec_per_au": 561.3533766256695
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.414571541845064,
+          "residual_arcsec": 90.03796590639404,
+          "sensitivity_arcsec_per_au": 550.6838479344295
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.41174092503678,
+          "residual_arcsec": 91.00201156838277,
+          "sensitivity_arcsec_per_au": 544.2254077563967
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.41213760267288,
+          "residual_arcsec": 91.37363815852926,
+          "sensitivity_arcsec_per_au": 544.2035258811038
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.412151072901572,
+          "residual_arcsec": 91.24326087179605,
+          "sensitivity_arcsec_per_au": 544.1977416857003
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.420022723729634,
+          "residual_arcsec": 87.74214003696768,
+          "sensitivity_arcsec_per_au": 570.6431408647062
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.468822752617086,
+          "residual_arcsec": 47.01198574379842,
+          "sensitivity_arcsec_per_au": 568.405294600038
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.419965239244927,
+          "residual_arcsec": 89.56460410120557,
+          "sensitivity_arcsec_per_au": 567.4894636620118
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.420095583776284,
+          "residual_arcsec": 89.17035265701294,
+          "sensitivity_arcsec_per_au": 567.4803336396664
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.42071955993412,
+          "residual_arcsec": 90.35644155009473,
+          "sensitivity_arcsec_per_au": 567.4487858164349
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.420754265984794,
+          "residual_arcsec": 90.20439106619114,
+          "sensitivity_arcsec_per_au": 567.443998781184
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41933264008513,
+          "residual_arcsec": 89.61277192724354,
+          "sensitivity_arcsec_per_au": 566.9279583284238
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41885169612024,
+          "residual_arcsec": 89.4143034347016,
+          "sensitivity_arcsec_per_au": 566.9464787994617
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.420050319593017,
+          "residual_arcsec": 86.29786946518935,
+          "sensitivity_arcsec_per_au": 563.4326986783896
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46696196809319,
+          "residual_arcsec": 101.29111526289101,
+          "sensitivity_arcsec_per_au": 561.3342795140162
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.465338935323796,
+          "residual_arcsec": 101.56550709946623,
+          "sensitivity_arcsec_per_au": 561.4029462060502
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41351540410177,
+          "residual_arcsec": 91.29985758435123,
+          "sensitivity_arcsec_per_au": 550.7329993463769
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.410683972768922,
+          "residual_arcsec": 92.26162212547344,
+          "sensitivity_arcsec_per_au": 544.2736882141891
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.411080586847415,
+          "residual_arcsec": 92.63324715461845,
+          "sensitivity_arcsec_per_au": 544.2518061105409
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0604_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.411094044128056,
+          "residual_arcsec": 92.50286814776649,
+          "sensitivity_arcsec_per_au": 544.2460216673264
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.420916930199983,
+          "residual_arcsec": 87.07396262188105,
+          "sensitivity_arcsec_per_au": 570.9270283668371
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.469696022331167,
+          "residual_arcsec": 46.344037047077386,
+          "sensitivity_arcsec_per_au": 568.6882149045722
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.4208632497287,
+          "residual_arcsec": 88.89739210382439,
+          "sensitivity_arcsec_per_au": 567.7731580957567
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.420993543801963,
+          "residual_arcsec": 88.50314218373933,
+          "sensitivity_arcsec_per_au": 567.7640252043851
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.42161715558156,
+          "residual_arcsec": 89.68923487043214,
+          "sensitivity_arcsec_per_au": 567.7324692501812
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.421651852289386,
+          "residual_arcsec": 89.53718547110462,
+          "sensitivity_arcsec_per_au": 567.7276812632389
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.42023171430046,
+          "residual_arcsec": 88.94572539035761,
+          "sensitivity_arcsec_per_au": 567.2116296467145
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.419751028491493,
+          "residual_arcsec": 88.74725561981566,
+          "sensitivity_arcsec_per_au": 567.2301574364815
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.420953567207132,
+          "residual_arcsec": 85.63175367045025,
+          "sensitivity_arcsec_per_au": 563.7161751614393
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46784112703685,
+          "residual_arcsec": 100.62521103496994,
+          "sensitivity_arcsec_per_au": 561.6169834495252
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.466218938132553,
+          "residual_arcsec": 100.89959652548889,
+          "sensitivity_arcsec_per_au": 561.6856763532235
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.414449889804818,
+          "residual_arcsec": 90.63658470071178,
+          "sensitivity_arcsec_per_au": 551.0156725690712
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.411619655232023,
+          "residual_arcsec": 91.5995623748453,
+          "sensitivity_arcsec_per_au": 544.5566666982322
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.412016076793115,
+          "residual_arcsec": 91.97118997328228,
+          "sensitivity_arcsec_per_au": 544.5347772429384
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.412029539710502,
+          "residual_arcsec": 91.84081194959109,
+          "sensitivity_arcsec_per_au": 544.5289922375141
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.420851158752058,
+          "residual_arcsec": 87.57421403615419,
+          "sensitivity_arcsec_per_au": 570.9337567150326
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.469628898107377,
+          "residual_arcsec": 46.84428661657117,
+          "sensitivity_arcsec_per_au": 568.6949629560025
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.4207971245465,
+          "residual_arcsec": 89.39695249231347,
+          "sensitivity_arcsec_per_au": 567.7798660023958
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.420927414215583,
+          "residual_arcsec": 89.00270191162866,
+          "sensitivity_arcsec_per_au": 567.7707331624246
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.42155102053377,
+          "residual_arcsec": 90.18879394237264,
+          "sensitivity_arcsec_per_au": 567.7391768864192
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.421585715636255,
+          "residual_arcsec": 90.03674388147726,
+          "sensitivity_arcsec_per_au": 567.7343889028058
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.420165532165655,
+          "residual_arcsec": 89.44516531747624,
+          "sensitivity_arcsec_per_au": 567.2183340101705
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.419684854188453,
+          "residual_arcsec": 89.24669487697156,
+          "sensitivity_arcsec_per_au": 567.2368618283845
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.420886951689912,
+          "residual_arcsec": 86.1305302234842,
+          "sensitivity_arcsec_per_au": 563.7228601666884
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.467774005090302,
+          "residual_arcsec": 101.12398925628051,
+          "sensitivity_arcsec_per_au": 561.6236511128511
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.466151838786402,
+          "residual_arcsec": 101.39837400480386,
+          "sensitivity_arcsec_per_au": 561.6923443472057
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.414381849536067,
+          "residual_arcsec": 91.13330914026658,
+          "sensitivity_arcsec_per_au": 551.0222903491517
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.41155092766026,
+          "residual_arcsec": 92.09541294389301,
+          "sensitivity_arcsec_per_au": 544.5632504522135
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.411947336241468,
+          "residual_arcsec": 92.46703995937108,
+          "sensitivity_arcsec_per_au": 544.5413611703325
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.41196079859226,
+          "residual_arcsec": 92.3366612773266,
+          "sensitivity_arcsec_per_au": 544.535576122836
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.42126866864925,
+          "residual_arcsec": 87.83499510384624,
+          "sensitivity_arcsec_per_au": 570.9183100003058
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.47004817289549,
+          "residual_arcsec": 47.1050680188596,
+          "sensitivity_arcsec_per_au": 568.6795215712621
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.421216313311273,
+          "residual_arcsec": 89.65739720895424,
+          "sensitivity_arcsec_per_au": 567.7645375248321
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.421346607315083,
+          "residual_arcsec": 89.2631463102987,
+          "sensitivity_arcsec_per_au": 567.755404910457
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.421970211584963,
+          "residual_arcsec": 90.44923803845974,
+          "sensitivity_arcsec_per_au": 567.7238499974942
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.42200490916795,
+          "residual_arcsec": 90.29718765658984,
+          "sensitivity_arcsec_per_au": 567.7190621622325
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.42058504309215,
+          "residual_arcsec": 89.70555140198329,
+          "sensitivity_arcsec_per_au": 567.2030255930558
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.420104364508322,
+          "residual_arcsec": 89.50708062259237,
+          "sensitivity_arcsec_per_au": 567.2215528018035
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.421308451226516,
+          "residual_arcsec": 86.39059366116601,
+          "sensitivity_arcsec_per_au": 563.7076699433402
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.468196685755924,
+          "residual_arcsec": 101.38405477827779,
+          "sensitivity_arcsec_per_au": 561.6084877500789
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46657450111546,
+          "residual_arcsec": 101.65843912204264,
+          "sensitivity_arcsec_per_au": 561.6771792708602
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.414811214318117,
+          "residual_arcsec": 91.3923760712486,
+          "sensitivity_arcsec_per_au": 551.0074886313578
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.41198488431886,
+          "residual_arcsec": 92.35405661042525,
+          "sensitivity_arcsec_per_au": 544.5486164833275
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.412381302251994,
+          "residual_arcsec": 92.72568335617402,
+          "sensitivity_arcsec_per_au": 544.5267277055449
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.41239477043435,
+          "residual_arcsec": 92.59530435589967,
+          "sensitivity_arcsec_per_au": 544.5209427266562
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.42249099321476,
+          "residual_arcsec": 87.41153558489437,
+          "sensitivity_arcsec_per_au": 570.865984221113
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.471277240502133,
+          "residual_arcsec": 46.68161504446917,
+          "sensitivity_arcsec_per_au": 568.6271866937174
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.422443753599293,
+          "residual_arcsec": 89.2345842599475,
+          "sensitivity_arcsec_per_au": 567.7125584333469
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.42257406557288,
+          "residual_arcsec": 88.840333992916,
+          "sensitivity_arcsec_per_au": 567.7034263664829
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.423197668308386,
+          "residual_arcsec": 90.02642639783387,
+          "sensitivity_arcsec_per_au": 567.6718758797168
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.423232374929363,
+          "residual_arcsec": 89.87437663873948,
+          "sensitivity_arcsec_per_au": 567.6670884230514
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.421813450559377,
+          "residual_arcsec": 89.2828511485055,
+          "sensitivity_arcsec_per_au": 567.151105228332
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.42133276054352,
+          "residual_arcsec": 89.0843809474768,
+          "sensitivity_arcsec_per_au": 567.1696306469528
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.422542927051673,
+          "residual_arcsec": 85.96851476196491,
+          "sensitivity_arcsec_per_au": 563.6560946711606
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.469435140722847,
+          "residual_arcsec": 100.96197909643351,
+          "sensitivity_arcsec_per_au": 561.5570132374252
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.467812878936112,
+          "residual_arcsec": 101.23636397031721,
+          "sensitivity_arcsec_per_au": 561.6256992310462
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.41606921720895,
+          "residual_arcsec": 90.97222311514383,
+          "sensitivity_arcsec_per_au": 550.9570523668
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.413256291787103,
+          "residual_arcsec": 91.934726603922,
+          "sensitivity_arcsec_per_au": 544.4986831780959
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.413652756489327,
+          "residual_arcsec": 92.30635394394142,
+          "sensitivity_arcsec_per_au": 544.4767954687396
+        },
+        {
+          "epoch_a_obs_id": "2025W35_1A_0628_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.413666240960545,
+          "residual_arcsec": 92.17597556577176,
+          "sensitivity_arcsec_per_au": 544.4710107352444
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.391691936533295,
+          "residual_arcsec": 59.95965470399604,
+          "sensitivity_arcsec_per_au": 573.1135902705629
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.4402847331816,
+          "residual_arcsec": 19.23052285632677,
+          "sensitivity_arcsec_per_au": 570.8699421274425
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.39152523208396,
+          "residual_arcsec": 61.81885763433995,
+          "sensitivity_arcsec_per_au": 569.9497076301961
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.391653214206123,
+          "residual_arcsec": 61.42464365364003,
+          "sensitivity_arcsec_per_au": 569.9406297290949
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.392270298657735,
+          "residual_arcsec": 62.61077893565124,
+          "sensitivity_arcsec_per_au": 569.9091868381638
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.392304339826538,
+          "residual_arcsec": 62.4587642556256,
+          "sensitivity_arcsec_per_au": 569.904404182558
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.390847238658317,
+          "residual_arcsec": 61.87341704789722,
+          "sensitivity_arcsec_per_au": 569.3876943948239
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.39038704770472,
+          "residual_arcsec": 61.67497468120117,
+          "sensitivity_arcsec_per_au": 569.4054025473682
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.39145646990117,
+          "residual_arcsec": 58.59378171101524,
+          "sensitivity_arcsec_per_au": 565.8811768258179
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.438164582544104,
+          "residual_arcsec": 73.58780620910652,
+          "sensitivity_arcsec_per_au": 563.7774095217837
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.4365249466272,
+          "residual_arcsec": 73.86220748674837,
+          "sensitivity_arcsec_per_au": 563.8473044293765
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.38442090131931,
+          "residual_arcsec": 63.70457983213038,
+          "sensitivity_arcsec_per_au": 553.1491380181418
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.38131215578327,
+          "residual_arcsec": 64.71260395224385,
+          "sensitivity_arcsec_per_au": 546.6751104711535
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.381706034589826,
+          "residual_arcsec": 65.08426690424702,
+          "sensitivity_arcsec_per_au": 546.6532046847977
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.381719305264394,
+          "residual_arcsec": 64.95392300502591,
+          "sensitivity_arcsec_per_au": 546.6474025825896
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.422358531582958,
+          "residual_arcsec": 89.21620726249697,
+          "sensitivity_arcsec_per_au": 571.7043917484679
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.47107190943468,
+          "residual_arcsec": 48.48684991336843,
+          "sensitivity_arcsec_per_au": 569.4633426536833
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.42231045429471,
+          "residual_arcsec": 91.0367683806272,
+          "sensitivity_arcsec_per_au": 568.5497930875811
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.42244058009361,
+          "residual_arcsec": 90.6425172490025,
+          "sensitivity_arcsec_per_au": 568.5406533802638
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.423063231105967,
+          "residual_arcsec": 91.82861453762168,
+          "sensitivity_arcsec_per_au": 568.5090735028407
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.42309788867881,
+          "residual_arcsec": 91.67656280043278,
+          "sensitivity_arcsec_per_au": 568.5042831245703
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.421680926445813,
+          "residual_arcsec": 91.08459442142497,
+          "sensitivity_arcsec_per_au": 567.9881644821793
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.421200957389328,
+          "residual_arcsec": 90.88611623358354,
+          "sensitivity_arcsec_per_au": 568.0067111113565
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.422408431123664,
+          "residual_arcsec": 87.76787904761288,
+          "sensitivity_arcsec_per_au": 564.4919870532833
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.469230793784053,
+          "residual_arcsec": 102.76188793479083,
+          "sensitivity_arcsec_per_au": 562.3906809827873
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.467610929565044,
+          "residual_arcsec": 103.03625154827986,
+          "sensitivity_arcsec_per_au": 562.4594433389794
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.415940883852368,
+          "residual_arcsec": 92.76412970675189,
+          "sensitivity_arcsec_per_au": 551.7897683398471
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.413130767181414,
+          "residual_arcsec": 93.72345829623985,
+          "sensitivity_arcsec_per_au": 545.3300411930021
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.413526589557307,
+          "residual_arcsec": 94.09508794167375,
+          "sensitivity_arcsec_per_au": 545.3081344243038
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_2",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.41354005782573,
+          "residual_arcsec": 93.96470734558054,
+          "sensitivity_arcsec_per_au": 545.3023476675174
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.419502737346072,
+          "residual_arcsec": 90.14624724885759,
+          "sensitivity_arcsec_per_au": 571.8394049347419
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.46819877120575,
+          "residual_arcsec": 49.41688468897211,
+          "sensitivity_arcsec_per_au": 569.5983672509464
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.419442734352383,
+          "residual_arcsec": 91.96537862879651,
+          "sensitivity_arcsec_per_au": 568.6839785831447
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.419572811227894,
+          "residual_arcsec": 91.57112612440675,
+          "sensitivity_arcsec_per_au": 568.6748376615063
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.420195426728665,
+          "residual_arcsec": 92.7572220305166,
+          "sensitivity_arcsec_per_au": 568.643248133551
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.42023006118913,
+          "residual_arcsec": 92.60516892259207,
+          "sensitivity_arcsec_per_au": 568.6384568892323
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.418810987724928,
+          "residual_arcsec": 92.01295534723208,
+          "sensitivity_arcsec_per_au": 568.1222091283937
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.418331072216564,
+          "residual_arcsec": 91.81447579245692,
+          "sensitivity_arcsec_per_au": 568.1407595398375
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.419524309926746,
+          "residual_arcsec": 88.69486603150423,
+          "sensitivity_arcsec_per_au": 564.6252088319025
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.46633628870925,
+          "residual_arcsec": 103.68887629911346,
+          "sensitivity_arcsec_per_au": 562.5236360708639
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.464716681734583,
+          "residual_arcsec": 103.96323844700152,
+          "sensitivity_arcsec_per_au": 562.5924106608004
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.412992121503706,
+          "residual_arcsec": 93.68685592069237,
+          "sensitivity_arcsec_per_au": 551.920710042022
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.41016095205722,
+          "residual_arcsec": 94.64436311783575,
+          "sensitivity_arcsec_per_au": 545.4593521079472
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.410556646364032,
+          "residual_arcsec": 95.01599151825864,
+          "sensitivity_arcsec_per_au": 545.4374429527705
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_3",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.410570077148925,
+          "residual_arcsec": 94.885609548006,
+          "sensitivity_arcsec_per_au": 545.4316555582453
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.421130116691543,
+          "residual_arcsec": 89.76622916224082,
+          "sensitivity_arcsec_per_au": 571.7681543199408
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.469835805282134,
+          "residual_arcsec": 49.03687230902669,
+          "sensitivity_arcsec_per_au": 569.5270825558655
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.4210768813717,
+          "residual_arcsec": 91.58596921414623,
+          "sensitivity_arcsec_per_au": 568.6131931292884
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.421206986093807,
+          "residual_arcsec": 91.19171730394005,
+          "sensitivity_arcsec_per_au": 568.6040527928167
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.421829620287685,
+          "residual_arcsec": 92.37781384499962,
+          "sensitivity_arcsec_per_au": 568.5724683381122
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.42186426797179,
+          "residual_arcsec": 92.22576132327485,
+          "sensitivity_arcsec_per_au": 568.5676775503385
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.420446395582402,
+          "residual_arcsec": 91.63365204554202,
+          "sensitivity_arcsec_per_au": 568.0515032301166
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.41996645087509,
+          "residual_arcsec": 91.43517303707118,
+          "sensitivity_arcsec_per_au": 568.0700517911404
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.421167772955872,
+          "residual_arcsec": 88.31614791490306,
+          "sensitivity_arcsec_per_au": 564.5549649630769
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.467985197782884,
+          "residual_arcsec": 103.3101610635673,
+          "sensitivity_arcsec_per_au": 562.453528840022
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46636545102067,
+          "residual_arcsec": 103.58452371592459,
+          "sensitivity_arcsec_per_au": 562.5222974038329
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.414676691609642,
+          "residual_arcsec": 93.30995345732596,
+          "sensitivity_arcsec_per_au": 551.8515633387502
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.411853197234823,
+          "residual_arcsec": 94.26823800947727,
+          "sensitivity_arcsec_per_au": 545.3913131132567
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.412248961952585,
+          "residual_arcsec": 94.63986697132678,
+          "sensitivity_arcsec_per_au": 545.3694051138932
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0023_4",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.41226241406203,
+          "residual_arcsec": 94.50948558882281,
+          "sensitivity_arcsec_per_au": 545.3636180640569
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.4193440437667,
+          "residual_arcsec": 88.40001089555247,
+          "sensitivity_arcsec_per_au": 572.1669463672828
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.468013972399564,
+          "residual_arcsec": 47.67088756150965,
+          "sensitivity_arcsec_per_au": 569.9249224206517
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.419283693487444,
+          "residual_arcsec": 90.22153387419496,
+          "sensitivity_arcsec_per_au": 569.0110186165755
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.419413707914565,
+          "residual_arcsec": 89.8272842743094,
+          "sensitivity_arcsec_per_au": 569.0018742011864
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.420035962003354,
+          "residual_arcsec": 91.01338540992442,
+          "sensitivity_arcsec_per_au": 568.9702726927088
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.420070580588252,
+          "residual_arcsec": 90.86133475625442,
+          "sensitivity_arcsec_per_au": 568.9654801149665
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41865221586859,
+          "residual_arcsec": 90.26952453871006,
+          "sensitivity_arcsec_per_au": 568.449174043633
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.418172562480205,
+          "residual_arcsec": 90.07104502522157,
+          "sensitivity_arcsec_per_au": 568.4677335657915
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.41936476767271,
+          "residual_arcsec": 86.95373458402601,
+          "sensitivity_arcsec_per_au": 564.9516709682982
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.466149415949722,
+          "residual_arcsec": 101.94795905736802,
+          "sensitivity_arcsec_per_au": 562.8492332563743
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.464530709468335,
+          "residual_arcsec": 102.22231617963963,
+          "sensitivity_arcsec_per_au": 562.9180391747957
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.412833527239705,
+          "residual_arcsec": 91.9527954580457,
+          "sensitivity_arcsec_per_au": 552.2458249475893
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.41000277084529,
+          "residual_arcsec": 92.91331300741612,
+          "sensitivity_arcsec_per_au": 545.7838802784476
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.410398248434024,
+          "residual_arcsec": 93.28494522187296,
+          "sensitivity_arcsec_per_au": 545.7619622057517
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0048_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.410411669466438,
+          "residual_arcsec": 93.1545655904807,
+          "sensitivity_arcsec_per_au": 545.7561740970107
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_3",
+          "d_refined_au": 19.415751708150562,
+          "residual_arcsec": 88.6424103339913,
+          "sensitivity_arcsec_per_au": 572.6585358286853
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0067_4",
+          "d_refined_au": 19.464402184598733,
+          "residual_arcsec": 47.91351502487608,
+          "sensitivity_arcsec_per_au": 570.4142646629514
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_1",
+          "d_refined_au": 19.415676582153264,
+          "residual_arcsec": 90.46340943827707,
+          "sensitivity_arcsec_per_au": 569.5011139795243
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_2",
+          "d_refined_au": 19.415806452051203,
+          "residual_arcsec": 90.06915994606044,
+          "sensitivity_arcsec_per_au": 569.4919656404746
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_3",
+          "d_refined_au": 19.41642825372283,
+          "residual_arcsec": 91.25526349966778,
+          "sensitivity_arcsec_per_au": 569.4603425828595
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0367_4",
+          "d_refined_au": 19.41646282102781,
+          "residual_arcsec": 91.1032125061221,
+          "sensitivity_arcsec_per_au": 569.4555479634598
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_1",
+          "d_refined_au": 19.41504275536488,
+          "residual_arcsec": 90.51130572691287,
+          "sensitivity_arcsec_per_au": 568.9390225732978
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W06_2A_0417_2",
+          "d_refined_au": 19.414563478578902,
+          "residual_arcsec": 90.3128234610951,
+          "sensitivity_arcsec_per_au": 568.957593591586
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_1",
+          "d_refined_au": 19.415737206304012,
+          "residual_arcsec": 87.19501464067963,
+          "sensitivity_arcsec_per_au": 565.4400383998227
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_2",
+          "d_refined_au": 19.462482110364856,
+          "residual_arcsec": 102.18945697365523,
+          "sensitivity_arcsec_per_au": 563.3364005337404
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W07_1A_0029_3",
+          "d_refined_au": 19.46086473582155,
+          "residual_arcsec": 102.46380605453055,
+          "sensitivity_arcsec_per_au": 563.405247425514
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W07_2A_0240_1",
+          "d_refined_au": 19.409139821281702,
+          "residual_arcsec": 92.19247094191753,
+          "sensitivity_arcsec_per_au": 552.729644887351
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_1",
+          "d_refined_au": 19.406307811519586,
+          "residual_arcsec": 93.15229646219225,
+          "sensitivity_arcsec_per_au": 546.2641614778582
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_2",
+          "d_refined_au": 19.406669230757785,
+          "residual_arcsec": 93.52393000921452,
+          "sensitivity_arcsec_per_au": 546.2436556153164
+        },
+        {
+          "epoch_a_obs_id": "2025W35_2A_0075_1",
+          "epoch_b_obs_id": "2026W07_2A_0594_3",
+          "d_refined_au": 19.406682597603144,
+          "residual_arcsec": 93.39354992492733,
+          "sensitivity_arcsec_per_au": 546.2378659964488
+        }
+      ],
+      "checks": {
+        "sensitivity": true,
+        "sigma_centroid": true,
+        "bound_max": true,
+        "median_matches_headline": true,
+        "truth_error_below_1pct": true
+      }
+    }
+  }
+}

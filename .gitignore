@@ -1,4 +1,13 @@
 node_modules/
+_incoming/
 dist/
 __pycache__/
 .venv/
+.venv/
+data/raw/
+out/
+data/meta/neptune/templates/
+*.part
+.DS_Store
+data/meta/neptune/search_windows/
+data/meta/neptune/sia/
