@@ -1,0 +1,17 @@
+{
+  "field_id": "ecl",
+  "status": "missing_epochs",
+  "n_frames": 0,
+  "n_passes": 0,
+  "pass_mid_mjd": {},
+  "pass_mid_utc": {},
+  "n_pairs_strict": 0,
+  "n_pairs_loose": 0,
+  "pairs_per_detector": {},
+  "best_pair": null,
+  "naive_gap_pair": null,
+  "R_honest": null,
+  "R_naive": null,
+  "verdict": "unavailable",
+  "residual_error": null
+}
