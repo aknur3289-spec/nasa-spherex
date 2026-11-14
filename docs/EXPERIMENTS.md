@@ -142,9 +142,7 @@ Full-range dial: synthetic demo (labelled). Limitation stated: needs same-wavele
 
 ## E4f-E4h. Real-data validation, astrometric B-lite (2026-11-14)
 
-Headline: E4f Neptune June→December, all 265 exposure pairs. The following exact commands and commits produced each JSON:
-
-Refined headline distance and uncertainty: 29.949243 AU; U=0.03 AU. Bootstrap 68% CI [29.948053, 29.950459] AU; centroid sigma=0.021034 AU; positional sensitivity S=278.220245 arcsec/AU; fit_distance geomspace step=0.069966 AU. Pair scatter remains separately reported in poc/out/astrometric_distance_all.json.
+Historical results E4f–E4h are retained for comparison. New full-data headline runs are E4i Neptune and E4j Uranus.
 
 | Run | Pairs | Truth (JPL) | Ours (circular) | Error | Parallax-only | Error |
 |---|---|---|---|---|---|---|
@@ -156,7 +154,21 @@ Refined headline distance and uncertainty: 29.949243 AU; U=0.03 AU. Bootstrap 68
 - E4g Uranus: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry.py --body uranus` — `poc/out/astrometric_distance_uranus.json`, commit `14795fd`.
 - E4h Neptune W2→W3: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry.py --body neptune --epoch-a 2 --epoch-b 3` — `poc/out/astrometric_distance_neptune_w23.json`, commit `48687de`.
 
+## E4i-E4j. Full-handoff all-pairs astrometry (2026-11-14)
+
+| Run | Window dates and input → used exposures | Pairs | Truth | Refined circular median (p16–p84) | Bootstrap 68% CI | U | σ_centroid | Parallax-only median (error) |
+|---|---|---:|---:|---|---|---:|---:|---:|
+| E4i Neptune Jun→Dec | Jun 16–Jul 5 2025: 54→53; Dec 8–20 2025: 49→19 | 1,007 | 29.888036 AU | 29.947842 (29.933399–29.966790) AU | 29.947141–29.948924 AU | 0.03 AU | 0.020744 AU | 40.930306 AU (+36.95%) |
+| E4j Uranus Aug→Feb | Aug 19–28 2025: 69→38; Feb 5–17 2026: 44→15 | 570 | 19.497892 AU | 19.416781 (19.409855–19.462439) AU | 19.416436–19.417146 AU | 0.02 AU | 0.017883 AU | 28.973156 AU (+48.60%) |
+
+The Uranus Data Eng handoff is in `_incoming/uranus/data/meta/uranus/epochs.csv` (181 FITS present: window 1=69, window 2=43, window 3=69; one window-2 CSV row has a missing FITS). No HANDOFF/README file was present. Only windows 1 and 2 enter E4j. Neptune handoff contains no window-3 rows; E4i uses windows 1 and 2 only.
+
+- E4i: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry_full.py --body neptune`; uncertainty: `python poc/uncertainty.py --full-body neptune`; JSONs `poc/out/astrometric_distance_neptune_full.json`, `poc/out/uncertainty_neptune_full.json`; run-output commit `7916365`.
+- E4j: `PYTHONPATH=pipeline:poc python poc/poc_b_astrometry_full.py --body uranus --data-root _incoming/uranus`; uncertainty: `python poc/uncertainty.py --full-body uranus`; JSONs `poc/out/astrometric_distance_uranus_full.json`, `poc/out/uncertainty_uranus_full.json`; run-output commit `7916365`.
+
+Both new runs pass all sensitivity, sigma, maximum-bound, headline-match, and truth-error checks. The decision rule updates both headlines: E4i is within 0.03 AU of the prior 29.95 AU value; E4j is within 0.05 AU of 19.39 AU.
+
 Conclusions:
-- Recovery is within 0.6% for two planets and both seasonal orders.
-- Parallax-only bias flips sign with season (+36% vs -23%), as predicted by validate_geometry.
-- 265 Neptune pairs give a tight distribution: the 9-pair result was not a lucky pick.
+- Full-set recovery is within 0.21% for Neptune and 0.42% for Uranus.
+- Parallax-only bias flips sign with season; E4i/E4j full-set errors are +36.95% and +48.60%, while W2→W3 is −23.1%.
+- The 1,007-pair Neptune and 570-pair Uranus estimates replace the earlier smaller-pair headlines.
