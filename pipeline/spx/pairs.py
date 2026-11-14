@@ -27,7 +27,10 @@ def assign_survey_pass(mjd: np.ndarray, gap_days: float = 45.0) -> np.ndarray:
     if not len(times):
         return passes
     order = np.argsort(times, kind="stable")
-    sorted_passes = 1 + np.cumsum(np.r_[False, np.diff(times[order]) > gap_days])
+    sorted_times = times[order]
+    sorted_passes = 1 + np.cumsum(np.r_[False, np.diff(sorted_times) > gap_days])
+    if sorted_passes[-1] == 1 and sorted_times[-1] - sorted_times[0] > 150:
+        sorted_passes = 1 + np.floor((sorted_times - sorted_times[0]) / 182.6).astype(np.int64)
     passes[order] = sorted_passes
     return passes
 
@@ -134,8 +137,6 @@ def _candidates(frames: pd.DataFrame, *, min_dt_days: float = 0) -> list[dict]:
         for first in range(len(rows)):
             for second in range(first + 1, len(rows)):
                 a, b = rows[first][1], rows[second][1]
-                if a["survey_pass"] == b["survey_pass"]:
-                    continue
                 if b["mjd"] - a["mjd"] < min_dt_days:
                     continue
                 candidates.append(_pair(a, b, "honest"))
@@ -154,7 +155,7 @@ def match_pairs(
     frames: pd.DataFrame, max_dlam_frac: float = 0.05,
     min_dt_days: float = 150.0, max_pairs: int = 12,
 ) -> pd.DataFrame:
-    """Choose diverse same-detector, cross-pass pairs with matched wavelength."""
+    """Choose diverse same-detector pairs at least min_dt_days apart."""
     if not np.isfinite(max_dlam_frac) or max_dlam_frac < 0:
         raise ValueError("max_dlam_frac must be finite and nonnegative")
     if not np.isfinite(min_dt_days) or min_dt_days < 0:

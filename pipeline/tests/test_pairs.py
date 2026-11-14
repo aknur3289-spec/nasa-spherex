@@ -38,6 +38,29 @@ def test_passes_follow_gaps_and_keep_input_order() -> None:
     assert assign_survey_pass(np.array([100.0, 145.0, 190.1])).tolist() == [1, 1, 2]
 
 
+def test_continuous_nep_series_has_display_passes_and_pairs() -> None:
+    times = np.arange(60000.0, 60402.0, 2.0)
+    passes = assign_survey_pass(times)
+    assert len(set(passes)) >= 2
+    assert passes[0] == 1
+    assert passes[92] == 2
+    assert passes[183] == 3
+    source = pd.DataFrame({
+        "frame_id": [f"f{i}" for i in range(len(times))],
+        "mjd": times,
+        "detector": 2,
+        "wavelength_um": 1.2,
+        "bad_pixel_fraction": 0.01,
+        "target_bad": False,
+        "status": "ok",
+        "survey_pass": 1,
+    })
+    selected = match_pairs(source)
+    assert len(selected) > 0
+    assert (selected["dt_days"] >= 150).all()
+    assert (selected["pass_a"] == selected["pass_b"]).all()
+
+
 @pytest.mark.parametrize("gap,expected", [
     (0.02, "high"), (0.0201, "medium"),
     (0.05, "medium"), (0.0501, "low"),
