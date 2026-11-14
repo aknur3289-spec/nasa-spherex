@@ -293,12 +293,12 @@ const FIGURES = [
   {
     src: "figures/distance_recovery.svg",
     title: "Distance recovery",
-    text: "Neptune 29.95 AU vs JPL 29.89 AU (+0.2%); Uranus 19.39 vs 19.50 AU (−0.5%).",
+    text: "Neptune 29.95 AU vs JPL 29.89 AU (+0.2%); Uranus 19.42 ± 0.02 vs 19.50 AU (−0.4%).",
   },
   {
-    src: "figures/astrometric_hist_all.png",
-    title: "All 265 exposure pairs",
-    text: "Distribution of fitted distances over 265 Neptune pairs. The headline value is their median.",
+    src: "figures/astrometric_hist_neptune_full.png",
+    title: "All 1,007 exposure pairs",
+    text: "Distribution of fitted distances over 1,007 Neptune pairs. The headline value is their median.",
   },
   {
     src: "figures/detectability.svg",
@@ -497,10 +497,10 @@ export function DistanceDial() {
 
       <section className="stat-grid">
         {[
-          ["NEPTUNE, 265 PAIRS", "29.95 AU", "± 0.03 AU (median)"],
+          ["NEPTUNE, 1,007 PAIRS", "29.95 AU", "± 0.03 AU (median)"],
           ["JPL HORIZONS", "29.89 AU", "+0.2% difference"],
-          ["URANUS CHECK", "19.39 AU", "vs 19.50 AU (−0.5%)"],
-          ["PARALLAX ONLY", "up to 50%", "error (−23% to +50%)"],
+          ["URANUS CHECK", "19.42 AU", "± 0.02 · vs 19.50 AU (−0.4%)"],
+          ["PARALLAX ONLY", "up to 49%", "error (−23.1% to +48.6%)"],
         ].map((s) => (
           <div className="glass stat" key={s[0]}>
             <small>{s[0]}</small>
@@ -510,7 +510,7 @@ export function DistanceDial() {
         ))}
       </section>
       <p className="dial-footnote">
-        The dial above uses one exposure pair at 0.1 AU steps. The headline 29.95 AU is the median of 265 pairs
+        The dial above uses one exposure pair at 0.1 AU steps. The headline 29.95 AU is the median of 1,007 pairs
         fitted on a finer grid. The method assumes a circular orbit near the ecliptic; Neptune validates the geometry,
         not the sensitivity needed for a faint Planet Nine.
       </p>

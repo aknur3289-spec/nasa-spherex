@@ -222,7 +222,7 @@ function Home({ setScreen }: { setScreen: (s: Screen) => void }) {
             <b>
               29.95 <span>± 0.03 AU</span>
             </b>
-            <em>Neptune, from 265 pairs of real SPHEREx images</em>
+            <em>Neptune, from 1,007 pairs of real SPHEREx images</em>
           </div>
           <i />
           <div>
@@ -361,10 +361,10 @@ function About() {
       </div>
       <section className="stat-grid about-stats">
         {[
-          ["NEPTUNE", "29.95 AU", "± 0.03 · 265 pairs"],
+          ["NEPTUNE", "29.95 AU", "± 0.03 · 1,007 pairs"],
           ["JPL HORIZONS", "29.89 AU", "+0.2%"],
-          ["URANUS", "19.39 AU", "vs 19.50 (−0.5%)"],
-          ["PARALLAX ONLY", "up to 50%", "error, season-dependent"],
+          ["URANUS", "19.42 AU", "± 0.02 · vs 19.50 (−0.4%)"],
+          ["PARALLAX ONLY", "up to 49%", "error, season-dependent"],
         ].map((x) => (
           <div className="glass stat" key={x[0]}>
             <small>{x[0]}</small>
@@ -393,7 +393,7 @@ function About() {
             <p>
               Earth moves around the Sun, so a distant object seems to shift against the stars. The object also moves
               along its own orbit. We predict the position six months later for many trial distances and keep the one
-              that lands closest to the real image. Ignoring orbital motion gives errors from −23% to +50%.
+              that lands closest to the real image. Ignoring orbital motion gives errors from −23.1% to +48.6%.
             </p>
             <div className="pipeline">
               {["Measure a position", "Try a distance", "Predict 6 months later", "Keep the closest match"].map((x, i) => (

@@ -23,7 +23,9 @@ export const isOutsideFrame = (s: DialStep): s is DialStepOutside => s.outside_f
 export type Dial = {
   reference_frame: string; model: string; search_radius_px: number;
   steps: DialStep[];
-  peak_distance_au: number; truth: { distance_au: number; source: string }; negative_control_field: string;
+  peak_distance_au: number; truth: { distance_au: number; source: string };
+  /** Optional: id of an empty-sky control field, when one exists. */
+  negative_control_field?: string | null;
   /** v1.1 optional provenance of the dial. */
   ref_obs_id?: string; target_obs_id?: string; truth_au?: number; measured_au?: number; note?: string;
 };

@@ -8,7 +8,8 @@ const finite = (v: unknown): v is number => typeof v === 'number' && Number.isFi
 const positive = (v: unknown) => finite(v) && v > 0;
 const natural = (v: unknown) => finite(v) && v >= 0 && Number.isInteger(v);
 const pixelSize = (v: unknown) => natural(v) && Number(v) > 0 && Number(v) <= 0x7fffffff;
-const utc = (v: unknown) => nonempty(v) && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,3})?Z$/.test(v) &&
+// ISO-8601 UTC; Python writes microseconds (6 digits), JS writes milliseconds (3).
+const utc = (v: unknown) => nonempty(v) && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,9})?Z$/.test(v) &&
   Number.isFinite(Date.parse(v)) && new Date(v).toISOString().slice(0, 19) === v.slice(0, 19);
 
 function requireValue(ok: unknown, message: string): asserts ok {
@@ -84,7 +85,8 @@ export function validateField(value: unknown, id: string): Field {
       const { width_px, height_px } = frame;
       requireValue(pixelSize(width_px) && pixelSize(height_px), 'Invalid frame dimensions.');
       const size = width_px + 'x' + height_px;
-      requireValue(dimensions === undefined || dimensions === size, 'Inconsistent field frame dimensions.');
+      // Dial crops come from different detectors and may differ by a pixel; only static fields feed difference images.
+      requireValue(f.kind === 'dial' || dimensions === undefined || dimensions === size, 'Inconsistent field frame dimensions.');
       dimensions = size;
     }
     ids.add(frame.id);
@@ -104,7 +106,7 @@ export function validateField(value: unknown, id: string): Field {
     const truth = object(d.truth);
     requireValue(has(d.reference_frame) && nonempty(d.model) && positive(d.search_radius_px) &&
       positive(d.peak_distance_au) && positive(truth.distance_au) && nonempty(truth.source) &&
-      safeId(d.negative_control_field) && Array.isArray(d.steps) && d.steps.length, 'Invalid dial metadata.');
+      (d.negative_control_field === undefined || d.negative_control_field === null || safeId(d.negative_control_field)) && Array.isArray(d.steps) && d.steps.length, 'Invalid dial metadata.');
     requireValue((d.ref_obs_id === undefined || nonempty(d.ref_obs_id)) &&
       (d.target_obs_id === undefined || nonempty(d.target_obs_id)) &&
       (d.truth_au === undefined || positive(d.truth_au)) &&

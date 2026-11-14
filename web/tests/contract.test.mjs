@@ -145,3 +145,21 @@ test('v1.1 dial: accepts outside_frame steps with null frame/snr/offset and opti
     assert.throws(() => validateField(copy, 'fixture-static'), FieldError);
   }
 });
+
+test('accepts microsecond UTC timestamps, dial crops of slightly different size, and no control field', () => {
+  const field = structuredClone(fixture);
+  field.schema_version = '1.1';
+  for (const f of field.frames) { f.width_px = 97; f.height_px = 98; }
+  field.frames[0].width_px = 98; field.frames[0].height_px = 97;
+  field.provenance.downloaded_utc = '2026-11-14T16:38:45.722945Z';
+  field.kind = 'dial';
+  field.pairs = [];
+  field.dial = {
+    reference_frame: field.frames[0].id, model: 'circular', search_radius_px: 20,
+    steps: [{ distance_au: 29.96, frame: field.frames[1].id, pred: field.center, snr: 5, offset_px: 13.24 }],
+    peak_distance_au: 29.96, truth: { distance_au: 29.89, source: 'JPL Horizons' },
+  };
+  assert.equal(validateField(field, 'fixture-static').kind, 'dial');
+  field.kind = 'static'; delete field.dial;
+  assert.throws(() => validateField(field, 'fixture-static'), FieldError);
+});
