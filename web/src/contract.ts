@@ -8,10 +8,24 @@ export type Frame = {
   source_url: string; obs_id: string; processing_version: string;
 };
 export type Pair = { a: string; b: string; dlambda_frac: number; dt_days: number; trust: 'high' | 'medium' | 'low'; diff_png?: string };
+/** A step whose predicted position falls inside a frame. */
+export type DialStepInFrame = {
+  distance_au: number; pred: Coordinates; outside_frame?: false;
+  frame: string; snr: number; offset_px: number;
+};
+/** v1.1: the predicted position lands outside every detector, so there is no image or measurement. */
+export type DialStepOutside = {
+  distance_au: number; pred: Coordinates; outside_frame: true;
+  frame: null; snr: null; offset_px: null;
+};
+export type DialStep = DialStepInFrame | DialStepOutside;
+export const isOutsideFrame = (s: DialStep): s is DialStepOutside => s.outside_frame === true;
 export type Dial = {
   reference_frame: string; model: string; search_radius_px: number;
-  steps: { distance_au: number; frame: string; pred: Coordinates; snr: number; offset_px: number }[];
+  steps: DialStep[];
   peak_distance_au: number; truth: { distance_au: number; source: string }; negative_control_field: string;
+  /** v1.1 optional provenance of the dial. */
+  ref_obs_id?: string; target_obs_id?: string; truth_au?: number; measured_au?: number; note?: string;
 };
 export type Provenance = {
   mission: string; archive: string; collections: string[]; doi: string;

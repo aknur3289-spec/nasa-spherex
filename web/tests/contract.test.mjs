@@ -115,3 +115,33 @@ test('all three real handoff fields load with their timelines, PNGs and pair dif
     }
   }
 });
+
+test('v1.1 dial: accepts outside_frame steps with null frame/snr/offset and optional dial metadata', () => {
+  const field = structuredClone(fixture);
+  field.kind = 'dial';
+  field.dial = {
+    reference_frame: 'epoch-1', model: 'synthetic', search_radius_px: 8,
+    steps: [
+      { distance_au: 20, frame: 'epoch-2', pred: field.center, snr: 4, offset_px: 1 },
+      { distance_au: 45, outside_frame: true, frame: null, pred: field.center, snr: null, offset_px: null },
+    ],
+    peak_distance_au: 20, truth: { distance_au: 29.89, source: 'JPL Horizons' },
+    negative_control_field: 'control',
+    ref_obs_id: 'ref-1', target_obs_id: 'tgt-1', truth_au: 29.89, measured_au: 29.95, note: '31 of 135 steps fall outside the detector.',
+  };
+  assert.equal(validateField(field, 'fixture-static').dial.steps[1].outside_frame, true);
+  const bad = [
+    f => f.dial.steps[1].snr = 3,
+    f => f.dial.steps[1].frame = 'epoch-2',
+    f => { f.dial.steps[0].frame = null; },
+    f => f.dial.steps[1].outside_frame = 'yes',
+    f => f.dial.measured_au = -1,
+    f => f.dial.note = '',
+    f => f.dial.steps = [f.dial.steps[1]],
+  ];
+  for (const mutate of bad) {
+    const copy = structuredClone(field);
+    mutate(copy);
+    assert.throws(() => validateField(copy, 'fixture-static'), FieldError);
+  }
+});
