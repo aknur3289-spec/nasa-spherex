@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Field, FieldSummary } from "../contract";
 import { imageUrl, loadField } from "../data/loader";
 import { fmtDec, fmtRa, friendly, niceDate } from "./fields";
+import { SkySearch } from "./SkySearch";
 
 /**
  * Sky Explorer: WHERE the data is. An all-sky map with every real field,
@@ -109,6 +110,8 @@ export function SkyExplorer({ catalog, go }: { catalog: FieldSummary[]; go: Go }
   return (
     <main className="app-screen sky-explorer">
       <div className="sx-backdrop" aria-hidden="true" />
+
+      <SkySearch fields={catalog.map((c) => fields[c.field_id]).filter(Boolean)} go={go} />
 
       <aside className="glass sx-panel sx-filters" aria-label="Filter the sky">
         <div className="panel-title">
