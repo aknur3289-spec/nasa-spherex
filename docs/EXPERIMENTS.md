@@ -87,3 +87,13 @@ Message: the predicted Planet Nine box (290–800 AU, V 21.9–22.7) lies below 
 Neptune, 2025-06-01: RA differs by 4.6″, Dec by 1.4″ (< 1 SPHEREx pixel of 6.15″); r = 29.8910 vs 29.8903 AU.
 Results computed with the astropy fallback (inside agent sandboxes) are therefore valid. Final numbers on
 slides are quoted against JPL Horizons (queried from the team laptop).
+
+## E4b. Identity check — Neptune is a mover, not a star (DONE, real data)
+Same sky position (Neptune's ephemeris position, June 2025) in two epochs:
+window 1 (June 2025): peak within 3 px = 77.8 MJy/sr; window 3 (June 2026): 0.43 MJy/sr (background σ 0.91).
+The source is gone a year later while field stars stay → it is Neptune. Figure: poc/out/identity_check.png.
+
+## E4c. Focus curve on real data, v1 (FAILED — diagnosed)
+Noise estimated from the difference image (S/N up to 1e5, invalid); templates at a different wavelength
+leave star residuals (control shows peaks); 571 steps skipped incl. near 29.9 AU. Fix in v2: VARIANCE-based
+noise, wavelength-matched templates (|Δλ|/λ ≤ 2 %), skip diagnostics, SOURCE-flag test.
