@@ -31,6 +31,7 @@ _reported_hdu_sets: set[tuple[str, ...]] = set()
 _local_by_obs: dict[str, Path | None] = {}
 _section_index_loaded = False
 _section_index: dict[tuple[str, str], list[Path]] = {}
+_wcs_wave_cache: dict[str, dict] = {}
 
 
 def spherex_collections() -> list[str]:
@@ -218,7 +219,8 @@ def section_cache_path(row, bounds):
     return RAW / "sections" / name, identity
 
 
-def _save_section(path, row, source, bounds, image, flags, image_header, flag_header):
+def _save_section(path, row, source, bounds, image, flags, image_header, flag_header,
+                  variance=None, variance_header=None, wcs_wave=None, wcs_wave_header=None):
     path.parent.mkdir(parents=True, exist_ok=True)
     primary = fits.PrimaryHDU()
     primary.header["OBS_ID"] = str(row.get("obs_id", ""))
@@ -226,9 +228,14 @@ def _save_section(path, row, source, bounds, image, flags, image_header, flag_he
     primary.header["SOURCE"] = source
     for key, value in zip(("X0", "Y0", "X1", "Y1"), bounds):
         primary.header[key] = int(value)
-    fits.HDUList([primary,
-                  fits.ImageHDU(np.asarray(image), header=image_header.copy(), name="IMAGE"),
-                  fits.ImageHDU(np.asarray(flags), header=flag_header.copy(), name="FLAGS")]).writeto(path, overwrite=True)
+    hdus = [primary,
+            fits.ImageHDU(np.asarray(image), header=image_header.copy(), name="IMAGE"),
+            fits.ImageHDU(np.asarray(flags), header=flag_header.copy(), name="FLAGS")]
+    if variance is not None:
+        hdus.append(fits.ImageHDU(np.asarray(variance), header=(variance_header or fits.Header()).copy(), name="VARIANCE"))
+    if wcs_wave is not None:
+        hdus.append(fits.BinTableHDU(data=wcs_wave, header=(wcs_wave_header or fits.Header()).copy(), name="WCS-WAVE"))
+    fits.HDUList(hdus).writeto(path, overwrite=True)
 
 
 def load_cached_section(path):
@@ -239,10 +246,12 @@ def load_cached_section(path):
         return {"image": np.asarray(image_hdu.data, dtype=float), "flags": np.asarray(flag_hdu.data),
                 "wcs": WCS(image_hdu.header).celestial, "x0": bounds[0], "y0": bounds[1],
                 "source": str(primary.get("SOURCE", "cached")), "path": str(path), "bounds": bounds,
-                "flag_header": flag_hdu.header.copy(), "image_header": image_hdu.header.copy(), "errors": []}
+                "flag_header": flag_hdu.header.copy(), "image_header": image_hdu.header.copy(),
+                "variance": np.asarray(hdul["VARIANCE"].data, dtype=float) if "VARIANCE" in hdul else None,
+                "wcs_wave": hdul["WCS-WAVE"].data.copy() if "WCS-WAVE" in hdul else None, "errors": []}
 
 
-def _find_cached_section(row, positions):
+def _find_cached_section(row, positions, require_aux=True):
     global _section_index_loaded
     section_dir = RAW / "sections"
     if not _section_index_loaded:
@@ -259,6 +268,8 @@ def _find_cached_section(row, positions):
     for path in _section_index.get(key, []):
         try:
             with fits.open(path, memmap=False) as hdul:
+                if require_aux and ("VARIANCE" not in hdul or "WCS-WAVE" not in hdul):
+                    continue
                 ph = hdul[0].header
                 bounds = tuple(int(ph[k]) for k in ("X0", "Y0", "X1", "Y1"))
                 wcs = WCS(hdul["IMAGE"].header).celestial
@@ -277,8 +288,8 @@ def _find_cached_section(row, positions):
     return None
 
 
-def find_cached_section(row, positions):
-    return _find_cached_section(row, positions)
+def find_cached_section(row, positions, require_aux=True):
+    return _find_cached_section(row, positions, require_aux=require_aux)
 
 
 def _irsa_section_fallback(row, positions, size_px=1200):
@@ -303,13 +314,19 @@ def _irsa_section_fallback(row, positions, size_px=1200):
                 image_hdu, flag_hdu = hdul["IMAGE"], hdul["FLAGS"]
                 image = np.asarray(image_hdu.data, dtype=float)
                 flags = np.asarray(flag_hdu.data)
+                variance_hdu = hdul["VARIANCE"]
+                variance = np.asarray(variance_hdu.data, dtype=float)
+                wave_hdu = hdul["WCS-WAVE"]
+                wcs_wave = wave_hdu.data.copy()
                 wcs = WCS(image_hdu.header, fobj=hdul).celestial
                 bounds = (0, 0, image.shape[1], image.shape[0])
                 path, _ = section_cache_path(row, bounds)
-                _save_section(path, row, "irsa", bounds, image, flags, image_hdu.header, flag_hdu.header)
+                _save_section(path, row, "irsa", bounds, image, flags, image_hdu.header, flag_hdu.header,
+                              variance, variance_hdu.header, wcs_wave, wave_hdu.header)
                 return {"image": image, "flags": flags, "wcs": wcs, "x0": 0, "y0": 0,
                         "source": "irsa", "path": str(path), "bounds": bounds,
-                        "flag_header": flag_hdu.header.copy(), "image_header": image_hdu.header.copy(), "errors": []}
+                        "flag_header": flag_hdu.header.copy(), "image_header": image_hdu.header.copy(),
+                        "variance": variance, "wcs_wave": wcs_wave, "errors": []}
         except Exception as exc:
             last_error = exc
             print(f"irsa section cutout attempt {attempt}/4 failed: {exc!r}")
@@ -324,6 +341,38 @@ def read_section(row, positions):
         cached = _find_cached_section(row, positions)
         if cached is not None:
             return cached
+        cached_image_flags = _find_cached_section(row, positions, require_aux=False)
+        if cached_image_flags is not None:
+            try:
+                bucket, key, region = _cloud_location(row)
+                aux_sources = [
+                    ("s3", f"s3://{bucket}/{key}", {"anon": True, "client_kwargs": {"region_name": region}}),
+                    ("https", f"https://{bucket}.s3.amazonaws.com/{key}", {"block_size": 8 * 1024 * 1024}),
+                ]
+                for source, remote_url, fs_kwargs in aux_sources:
+                    try:
+                        with fits.open(remote_url, memmap=False, use_fsspec=True,
+                                       fsspec_kwargs=fs_kwargs) as hdul:
+                            x0, y0, x1, y1 = cached_image_flags["bounds"]
+                            variance_hdu = hdul["VARIANCE"]
+                            variance = np.asarray(variance_hdu.section[y0:y1, x0:x1], dtype=float)
+                            wave_hdu = hdul["WCS-WAVE"]
+                            wcs_wave = wave_hdu.data.copy()
+                            variance_header = variance_hdu.header.copy()
+                            wave_header = wave_hdu.header.copy()
+                        _save_section(Path(cached_image_flags["path"]), row, cached_image_flags["source"],
+                                      cached_image_flags["bounds"], cached_image_flags["image"],
+                                      cached_image_flags["flags"], cached_image_flags["image_header"],
+                                      cached_image_flags["flag_header"], variance, variance_header,
+                                      wcs_wave, wave_header)
+                        result = load_cached_section(Path(cached_image_flags["path"]))
+                        result["source"] = source
+                        result["cache_hit"] = False
+                        return result
+                    except Exception as exc:
+                        print(f"{source} auxiliary VARIANCE/WCS-WAVE read failed for {obs_id}: {exc!r}")
+            except Exception as exc:
+                print(f"cloud_access parse failed for cached-section auxiliaries {obs_id}: {exc!r}")
     try:
         cloud = _cloud_location(row) if local_path is None else None
     except Exception as exc:
@@ -348,20 +397,114 @@ def read_section(row, positions):
                 path, _ = section_cache_path(row, bounds)
                 if path.exists() and source != "local":
                     cached = load_cached_section(path)
-                    cached["cache_hit"] = True
-                    return cached
+                    if cached["variance"] is not None and cached["wcs_wave"] is not None:
+                        cached["cache_hit"] = True
+                        return cached
                 x0, y0, x1, y1 = bounds
                 image = np.asarray(image_hdu.section[y0:y1, x0:x1], dtype=float)
                 flags = np.asarray(flags_hdu.section[y0:y1, x0:x1])
+                variance_hdu = hdul["VARIANCE"]
+                variance = np.asarray(variance_hdu.section[y0:y1, x0:x1], dtype=float)
+                wave_hdu = hdul["WCS-WAVE"]
+                wcs_wave = wave_hdu.data.copy()
                 image_header, flag_header = image_hdu.header.copy(), flags_hdu.header.copy()
-            _save_section(path, row, source, bounds, image, flags, image_header, flag_header)
+                variance_header, wave_header = variance_hdu.header.copy(), wave_hdu.header.copy()
+            _save_section(path, row, source, bounds, image, flags, image_header, flag_header,
+                          variance, variance_header, wcs_wave, wave_header)
             _section_index.setdefault((obs_id, _detector(row)), []).append(path)
             return {"image": image, "flags": flags, "wcs": wcs, "x0": bounds[0], "y0": bounds[1],
                     "source": source, "path": str(path), "bounds": bounds,
-                    "flag_header": flag_header, "image_header": image_header, "errors": errors}
+                    "flag_header": flag_header, "image_header": image_header,
+                    "variance": variance, "wcs_wave": wcs_wave, "errors": errors}
         except Exception as exc:
             errors.append({"source": source, "error": repr(exc)})
             print(f"{source} section read failed for {obs_id}: {exc!r}")
     section = _irsa_section_fallback(row, positions)
     section["errors"] = errors
     return section
+
+
+def _load_wcs_wave(row):
+    url_key = str(row.get("access_url", ""))
+    if url_key in _wcs_wave_cache:
+        return _wcs_wave_cache[url_key]
+    obs_id = str(row.get("obs_id", ""))
+    local_path = _local_exposure(obs_id)
+    sources = []
+    if local_path is not None:
+        sources.append(("local", str(local_path), {}))
+    else:
+        try:
+            bucket, key, region = _cloud_location(row)
+            sources.extend([
+                ("s3", f"s3://{bucket}/{key}", {"anon": True, "client_kwargs": {"region_name": region}}),
+                ("https", f"https://{bucket}.s3.amazonaws.com/{key}", {"block_size": 8 * 1024 * 1024}),
+            ])
+        except Exception as exc:
+            print(f"cloud_access parse failed for WCS-WAVE {obs_id}: {exc!r}")
+    errors = []
+    for source, url, kwargs in sources:
+        try:
+            open_args = {} if source == "local" else {"use_fsspec": True, "fsspec_kwargs": kwargs}
+            with fits.open(url, memmap=False, **open_args) as hdul:
+                ih = hdul["IMAGE"].header.copy()
+                wave_hdu = hdul["WCS-WAVE"]
+                table = wave_hdu.data.copy()
+                wh = wave_hdu.header.copy()
+            value = {"wcs": WCS(ih).celestial, "table": table, "source": source, "errors": errors,
+                     "image_header": ih, "wave_header": wh}
+            _wcs_wave_cache[url_key] = value
+            return value
+        except Exception as exc:
+            errors.append({"source": source, "error": repr(exc)})
+            print(f"{source} WCS-WAVE read failed for {obs_id}: {exc!r}")
+    # Final metadata fallback uses only a small IRSA cutout, with the required waits.
+    ra = float(row.get("s_ra", 0.0)); dec = float(row.get("s_dec", 0.0))
+    cut_url = row["access_url"] + ("&" if "?" in row["access_url"] else "?") + urlencode({"center": f"{ra:.10f},{dec:.10f}", "size": "0.15"})
+    last_error = None
+    for attempt, delay in enumerate((0, 20, 60, 120), 1):
+        if delay:
+            time.sleep(delay)
+        try:
+            response = requests.get(cut_url, timeout=180)
+            if not response.ok:
+                raise RuntimeError(f"HTTP {response.status_code} {response.reason}; response body: {response.text[:1000]!r}")
+            with fits.open(io.BytesIO(response.content), memmap=False) as hdul:
+                value = {"wcs": WCS(hdul["IMAGE"].header, fobj=hdul).celestial,
+                         "table": hdul["WCS-WAVE"].data.copy(), "source": "irsa", "errors": errors,
+                         "image_header": hdul["IMAGE"].header.copy(), "wave_header": hdul["WCS-WAVE"].header.copy()}
+            _wcs_wave_cache[url_key] = value
+            return value
+        except Exception as exc:
+            last_error = exc
+            print(f"irsa WCS-WAVE cutout attempt {attempt}/4 failed for {obs_id}: {exc!r}")
+    raise RuntimeError(f"all WCS-WAVE sources failed for {obs_id}; IRSA final error: {last_error!r}; prior={errors!r}") from last_error
+
+
+def _interpolate_wavelength(table, wcs, ra, dec):
+    x, y = wcs.world_to_pixel(SkyCoord(float(ra)*u.deg, float(dec)*u.deg))
+    # WCS-WAVE control points use FITS 1-based detector pixels.
+    x, y = float(x)+1.0, float(y)+1.0
+    xs = np.asarray(table["X"][0], dtype=float)
+    ys = np.asarray(table["Y"][0], dtype=float)
+    values = np.asarray(table["VALUES"][0], dtype=float)
+    ix = int(np.clip(np.searchsorted(xs, x)-1, 0, len(xs)-2))
+    iy = int(np.clip(np.searchsorted(ys, y)-1, 0, len(ys)-2))
+    tx = float(np.clip((x-xs[ix])/(xs[ix+1]-xs[ix]), 0, 1))
+    ty = float(np.clip((y-ys[iy])/(ys[iy+1]-ys[iy]), 0, 1))
+    wave = ((1-ty)*((1-tx)*values[iy,ix,0] + tx*values[iy,ix+1,0])
+            + ty*((1-tx)*values[iy+1,ix,0] + tx*values[iy+1,ix+1,0]))
+    return float(wave)
+
+
+def wavelength_from_section(section, ra, dec):
+    if section.get("wcs_wave") is None:
+        raise ValueError("section has no WCS-WAVE table")
+    return _interpolate_wavelength(section["wcs_wave"], section["wcs"], ra, dec)
+
+
+def wavelength_at(row, ra, dec):
+    """Interpolate the WCS-WAVE table at a sky position; returns microns + source."""
+    record = _load_wcs_wave(row)
+    return (_interpolate_wavelength(record["table"], record["wcs"], ra, dec),
+            record["source"], record.get("errors", []))
