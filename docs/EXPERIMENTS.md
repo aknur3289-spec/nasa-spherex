@@ -52,3 +52,33 @@ Single-frame limit AB 18.4 (verify in Explanatory Supplement); stack gain 1.25·
 
 Caveats: V used as proxy for near-IR AB; methane absorption ignored → real limits are worse.
 Literature brightness for nominal Planet Nine: V ≈ 21.9–22.7 (arXiv 2507.22297) — fainter than the single-frame limit.
+
+## E2b. Dial builder, synthetic, contract-valid (DONE)
+`python pipeline/build_dial.py --provider synthetic --out out` (branch feat/sci-dial, commit 75a5fed)
+Passes docs/CONTRACT.md (Python contract_check + frontend validateField).
+
+| Run | Peak, AU | Truth, AU | Error | Peak / median |
+|---|---|---|---|---|
+| Circular orbit model | 30.28 | 29.89 | +1.3 % | 72 |
+| Parallax-only (static) baseline | 42.52 | 29.89 | +42 % | 72 |
+| Empty sky, dec0 + 1° | no peak | — | — | 1.0 |
+
+## E3a. Neptune and Uranus observing windows + archive coverage (DONE)
+`poc/find_windows.py`, `poc/probe_coverage.py`. Elongation 85–95°.
+
+| Body | Window | Dates | SPHEREx exposures | Collection |
+|---|---|---|---|---|
+| Neptune | 1 | 2025-06-19 … 06-28 | 44 | spherex_dr1 |
+| Neptune | 2 | 2025-12-17 … 12-25 | 27 | spherex_dr1 |
+| Neptune | 3 | 2026-06-21 … 07-01 | 86 | spherex_qr3 |
+| Uranus | 1–3 | 2025-08 / 2026-02 / 2026-08 | present (exclude *_cube products) | dr1 / qr3 |
+
+## E4a. Neptune sanity check on a real exposure (DONE)
+Exposure 2025W25_2A_0500_1, detector D1, June 2025. Cutout centred on the JPL/astropy ephemeris position
+at the exposure time: a bright compact source sits on the crosshair (poc/out/sanity_window1.png).
+Identity check against a June-2026 exposure of the same sky: PENDING.
+
+## E5b. Detectability figure (DONE)
+docs/figures/detectability.png/.svg, data docs/limits.json (schema limits-1.0).
+Message: the predicted Planet Nine box (290–800 AU, V 21.9–22.7) lies below the single-frame (AB 18.4),
+100-frame (20.9) and 300-frame (21.5) limits → not expected to be detectable by SPHEREx alone.
