@@ -2236,3 +2236,182 @@ input[type="range"]::-webkit-slider-thumb {
 .survey-observations .scrubber { flex:1; min-width:120px; }
 .survey-observations input[type=range] { width:100%; }
 @media(max-width:740px) { .survey-observations .viewer-layout { grid-template-columns:1fr; } }
+
+/* ---------- F5 Distance Dial ---------- */
+.dial-screen .detail-actions .button.dial-on {
+  border-color: rgba(61, 214, 255, 0.45);
+  background: rgba(61, 214, 255, 0.12);
+}
+.dial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.dial-legend {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+.dial-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dial-legend i {
+  display: inline-block;
+  width: 18px;
+  height: 0;
+}
+.lg-model {
+  border-top: 2.5px solid var(--cyan);
+}
+.lg-naive {
+  border-top: 2px dashed var(--violet);
+}
+.lg-truth {
+  border-top: 1.5px dotted #34d399;
+}
+.dial-chart {
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: ew-resize;
+  user-select: none;
+}
+.dial-grid {
+  stroke: rgba(255, 255, 255, 0.07);
+}
+.dial-tick {
+  font: 11px "DM Mono", monospace;
+  fill: var(--text-3);
+}
+.dial-axis {
+  font: 11px Inter, sans-serif;
+  fill: var(--text-2);
+}
+.dial-model {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.dial-naive {
+  fill: none;
+  stroke: var(--violet);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+.dial-truth {
+  stroke: #34d399;
+  stroke-width: 1.5;
+  stroke-dasharray: 2 4;
+}
+.dial-cursor {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+.dial-dot {
+  fill: #fff;
+  stroke: var(--cyan);
+  stroke-width: 3;
+}
+.dial-min {
+  fill: var(--cyan);
+}
+.dial-min.naive {
+  fill: var(--violet);
+}
+.dial-note {
+  font: 11px "DM Mono", monospace;
+  fill: #fff;
+}
+.dial-note.naive {
+  fill: #c4b5fd;
+}
+.dial-note.truth {
+  fill: #6ee7b7;
+}
+.dial-knob {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-2);
+}
+.dial-knob input {
+  margin: 0;
+}
+.dial-knob b {
+  font: 18px "DM Mono", monospace;
+  color: #fff;
+  min-width: 86px;
+  text-align: right;
+}
+.dial-scale {
+  display: flex;
+  justify-content: space-between;
+  font: 10px "DM Mono", monospace;
+  color: var(--text-3);
+  margin-top: -6px;
+}
+.dial-readout .metric .dial-sub {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-3);
+}
+.dial-footnote {
+  margin: 14px 2px 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 900px;
+}
+.dial-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+.dial-figure {
+  margin: 0;
+  padding: 10px;
+  border-radius: 22px;
+}
+.dial-figure-img {
+  display: block;
+  background: #fff;
+  border-radius: 14px;
+  padding: 8px;
+}
+.dial-figure img {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+}
+.dial-figure figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 6px 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+.dial-figure figcaption b {
+  font-size: 14px;
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .dial-legend {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dial-knob {
+    grid-template-columns: 1fr auto;
+  }
+  .dial-knob > span {
+    display: none;
+  }
+}

@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { Timelapse } from "./Timelapse";
+import { DistanceDial } from "./DistanceDial";
 import { imageUrl, loadField, loadIndex } from "../data/loader";
 import type { FieldSummary } from "../contract";
 import { SimpleViewer } from "../viewer/SimpleViewer";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
 
-type Screen = "home" | "explore" | "timelapse" | "compare" | "about";
+type Screen = "home" | "explore" | "timelapse" | "dial" | "compare" | "about";
 type IconName =
   | "orbit"
   | "arrow"
@@ -152,6 +153,7 @@ function Header({ screen, setScreen }: { screen: Screen; setScreen: (s: Screen) 
   const links: [Screen, string][] = [
     ["explore", "Sky Explorer"],
     ["timelapse", "Timelapse"],
+    ["dial", "Distance Dial"],
     ["compare", "Compare"],
     ["about", "Methodology"],
   ];
@@ -379,6 +381,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
     ["home", "spark", "Home"],
     ["explore", "grid", "Explore"],
     ["timelapse", "play", "Timelapse"],
+    ["dial", "orbit", "Dial"],
     ["about", "book", "About"],
   ];
   return (
@@ -393,7 +396,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
   );
 }
 
-const screens: Screen[] = ["home", "explore", "timelapse", "compare", "about"];
+const screens: Screen[] = ["home", "explore", "timelapse", "dial", "compare", "about"];
 
 export default function App() {
   const [route, setRoute] = useState(location.hash);
@@ -437,7 +440,7 @@ export default function App() {
   }, [id]);
 
   const navigate = (next: Screen, nextId = selected?.field_id) => {
-    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" ? "/" + nextId : "");
+    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" && next !== "dial" ? "/" + nextId : "");
   };
 
   const timeline = useMemo(() => {
@@ -460,6 +463,7 @@ export default function App() {
       <Header screen={screen} setScreen={navigate} />
       {screen === "home" && <Home setScreen={navigate} />}
       {screen === "about" && <About />}
+      {screen === "dial" && <ErrorBoundary><DistanceDial /></ErrorBoundary>}
       {active && <main className="content-screen survey-observations">
         <div className="section-title">
           <h1>{selected?.title ?? "Sky Explorer"}</h1>
