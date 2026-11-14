@@ -82,3 +82,8 @@ Identity check against a June-2026 exposure of the same sky: PENDING.
 docs/figures/detectability.png/.svg, data docs/limits.json (schema limits-1.0).
 Message: the predicted Planet Nine box (290–800 AU, V 21.9–22.7) lies below the single-frame (AB 18.4),
 100-frame (20.9) and 300-frame (21.5) limits → not expected to be detectable by SPHEREx alone.
+
+## E6. Ephemeris cross-check: astropy builtin vs JPL Horizons (DONE)
+Neptune, 2025-06-01: RA differs by 4.6″, Dec by 1.4″ (< 1 SPHEREx pixel of 6.15″); r = 29.8910 vs 29.8903 AU.
+Results computed with the astropy fallback (inside agent sandboxes) are therefore valid. Final numbers on
+slides are quoted against JPL Horizons (queried from the team laptop).
