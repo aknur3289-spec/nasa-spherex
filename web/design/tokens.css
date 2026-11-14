@@ -1,0 +1,41 @@
+:root {
+  --surface: rgba(255,255,255,.06);
+  --line: rgba(255,255,255,.14);
+  --glass-radius: 26px;
+  --glass-highlight: inset 0 1px 0 rgba(255,255,255,.18), 0 16px 45px rgba(0,0,0,.26);
+  --nav-clearance: 88px;
+}
+html { scroll-padding-top: var(--nav-clearance); }
+.site-header { position: fixed; inset: 0 0 auto; }
+#main-content { padding-top: var(--nav-clearance); }
+.skip-link:not(:focus) { clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; white-space: nowrap; }
+.skip-link:focus { clip-path: none; z-index: 30; }
+.glass, .observation-sheet, .science-glass {
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-highlight);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  backdrop-filter: blur(28px) saturate(170%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass, .observation-sheet, .science-glass { background: rgba(18,22,30,.92); }
+}
+.living-stars { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: .72; }
+body { isolation: isolate; }
+.pixel-stage { display: grid; place-items: center; overflow: hidden; aspect-ratio: 1; background: #000; }
+.pixel-stage img { image-rendering: pixelated; object-fit: contain; max-width: 100%; background: #000; }
+.observation-stage, .science-frame { background: #000; }
+.hero-word { display: inline-block; animation: focus-word .7s both; animation-delay: calc(var(--word) * 75ms); }
+@keyframes focus-word { from { filter: blur(9px); opacity: 0; transform: translateY(9px); } }
+@media (max-width:480px) { :root { --nav-clearance: 100px; } }
+
+.observation-panel { position: relative; }
+.frame-stamp { position: absolute; bottom: 12px; left: 12px; background: #000; color: #fff; padding: 6px 9px; border-radius: 7px; font: .82rem var(--mono); }
+@media (min-width: 900px) {
+  .observation-viewer:not(.home-player) { display: grid; grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr); gap: 16px 24px; align-items: start; }
+  .observation-viewer:not(.home-player) > :is(.viewer-synthetic,.description) { grid-column: 1 / -1; margin-block: 0; }
+}
+
+.tour-launch, .tour-caption { position: fixed; z-index: 6; bottom: 16px; }
+.tour-launch { right: 16px; }
+.tour-caption { left: 50%; transform: translateX(-50%); width: min(calc(100% - 24px), 510px); padding: 16px; background-color: rgba(18,22,30,.94); }
+.tour-caption > span { font: .75rem var(--mono); }

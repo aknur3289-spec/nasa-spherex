@@ -1,98 +1,121 @@
+import { GuidedTour } from './ui/GuidedTour';
+import type { CSSProperties } from 'react';
+import { Starfield } from './ui/Starfield';
 import { useEffect, useState } from 'react';
-import type { Field, FieldSummary, Frame } from './contract';
+import type { FieldSummary } from './contract';
 import { imageUrl, loadField, loadIndex } from './data/loader';
+import { BlinkViewer } from './viewer/BlinkViewer';
+import { ErrorBoundary } from './viewer/ErrorBoundary';
+import { Detectability, DistanceDial } from './viewer/SciencePanels';
 
-const date = (frame: Frame) => frame.obs_time_utc.slice(0, 10);
-const metadata = (frame: Frame) => (frame.band ?? 'Detector ' + frame.detector) + ' · ' + frame.wavelength_um + ' µm';
-
-function Viewer({ field }: { field: Field }) {
-  const frames = [...field.frames].sort((a, b) => Date.parse(a.obs_time_utc) - Date.parse(b.obs_time_utc));
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(Math.min(1, frames.length - 1));
-  const [target, setTarget] = useState<'A' | 'B'>('B');
-  const [blink, setBlink] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [second, setSecond] = useState(false);
-  useEffect(() => {
-    if (!blink || !playing) return;
-    const timer = window.setInterval(() => setSecond(value => !value), 850);
-    return () => window.clearInterval(timer);
-  }, [blink, playing, a, b]);
-
-  if (!frames.length) return <p>No frames in this field.</p>;
-  const framePanel = (slot: 'A' | 'B', index: number, hidden = false) => {
-    const frame = frames[index];
-    return <figure key={slot} hidden={hidden}>
-      <img src={imageUrl(field.field_id, frame.png)} alt={'Sky field, frame ' + frame.id} />
-      <figcaption><strong>{slot} · {date(frame)}</strong><span>{metadata(frame)}</span></figcaption>
-    </figure>;
-  };
-  return <>
-    <div className="controls" aria-label="Comparison mode">
-      <button aria-pressed={!blink} onClick={() => { setBlink(false); setPlaying(false); }}>Side by side</button>
-      <button aria-pressed={blink} disabled={frames.length < 2} onClick={() => {
-        if (!blink) { setSecond(false); setBlink(true); setPlaying(true); }
-      }}>Blink</button>
-      {blink && <button onClick={() => setPlaying(value => !value)}>{playing ? 'Pause' : 'Play'}</button>}
-    </div>
-    <div className={blink ? 'images blink' : 'images'}>
-      {framePanel('A', a, blink && second)}
-      {framePanel('B', b, blink && !second)}
-    </div>
-    <section className="timeline" aria-label="Observation timeline">
-      <div className="timeline-head"><h2>Timeline</h2><div className="controls" aria-label="Frame to replace">
-        <button aria-pressed={target === 'A'} onClick={() => setTarget('A')}>Set A</button>
-        <button aria-pressed={target === 'B'} onClick={() => setTarget('B')}>Set B</button>
-      </div></div>
-      <ol>{frames.map((frame, i) => <li key={frame.id}>
-        <button aria-pressed={i === (target === 'A' ? a : b)} onClick={() => {
-          (target === 'A' ? setA : setB)(i);
-          setSecond(target === 'B');
-        }}>
-          <strong>{date(frame)} {i === a && ' · A'}{i === b && ' · B'}</strong><span>{metadata(frame)}</span>
-        </button>
-      </li>)}</ol>
-    </section>
-  </>;
+const fieldRoute = (id: string) => '#field/' + id;
+function Skeleton() {
+  return <div className="player-skeleton" role="status" aria-label="Loading observations">
+    <div /><span />
+  </div>;
 }
 
 export default function App() {
+  const [route, setRoute] = useState(() => window.location.hash);
   const [index, setIndex] = useState<FieldSummary[]>();
-  const [id, setId] = useState('');
-  const [field, setField] = useState<Field>();
-  const [error, setError] = useState('');
+  const [indexError, setIndexError] = useState('');
+  const [result, setResult] = useState<{ id: string; field?: Awaited<ReturnType<typeof loadField>>; error?: string }>();
+  const view = route === '#limits' ? 'limits' : route === '#dial' ? 'dial' : route.startsWith('#field/') ? 'field' : 'home';
+  const selectedId = view === 'field' ? route.slice(7)
+    : view === 'dial' ? index?.find(item => item.kind === 'dial')?.field_id
+    : view === 'home' ? (index?.find(item => item.kind === 'static') ?? index?.[0])?.field_id
+    : undefined;
+
+  useEffect(() => {
+    const update = () => setRoute(window.location.hash);
+    window.addEventListener('hashchange', update);
+    return () => window.removeEventListener('hashchange', update);
+  }, []);
+
   useEffect(() => {
     const controller = new AbortController();
-    loadIndex(controller.signal).then(list => {
-      if (controller.signal.aborted) return;
-      setIndex(list);
-      setId(list[0]?.field_id ?? '');
-    }).catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    loadIndex(controller.signal).then(items => {
+      if (!controller.signal.aborted) setIndex(items.filter(item => item.status !== 'pending'));
+    }).catch(error => {
+      if (!controller.signal.aborted) setIndexError(error.message);
+    });
     return () => controller.abort();
   }, []);
+
   useEffect(() => {
-    if (!id) return;
+    if (!selectedId) return;
     const controller = new AbortController();
-    loadField(id, controller.signal).then(value => {
-      if (!controller.signal.aborted) setField(value);
-    }).catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    loadField(selectedId, controller.signal).then(field => {
+      if (!controller.signal.aborted) setResult({ id: selectedId, field });
+    }).catch(error => {
+      if (!controller.signal.aborted) setResult({ id: selectedId, error: error.message });
+    });
     return () => controller.abort();
-  }, [id]);
-  const current = field?.field_id === id ? field : undefined;
-  return <main>
-    <header><div className="brand">✧ SPHEREx</div>
-      {current?.provenance.synthetic && <div className="badge">DEMO DATA</div>}
+  }, [selectedId]);
+
+  const current = result && result.id === selectedId ? result : undefined;
+  const field = current?.field;
+  const error = indexError || current?.error;
+  const pending = !error && (!index || (!!selectedId && !current));
+  const dial = field?.kind === 'dial' && view !== 'home';
+
+  return <>
+    <Starfield />
+    <a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); document.getElementById("main-content")?.focus(); }}>Skip to content</a>
+    <header className="site-header">
+      <nav className="site-nav glass" aria-label="Main navigation">
+        <a className="wordmark" href="#home"><span className="wordmark-icon" aria-hidden="true">✦</span>Parallax Dial</a>
+        <div className="nav-links">
+          <a href="#home" aria-current={view === 'home' || view === 'field' ? 'page' : undefined}>Explore</a>
+          <a href="#dial" aria-current={view === 'dial' ? 'page' : undefined}>Distance Dial</a>
+          <a href="#limits" aria-current={view === 'limits' ? 'page' : undefined}>Detectability</a>
+        </div>
+      </nav>
     </header>
-    <h1>Compare observations</h1>
-    {index && index.length > 0 && <label>Sky field <select value={id} onChange={e => {
-      setError(''); setField(undefined); setId(e.target.value);
-    }}>{index.map(item => <option key={item.field_id} value={item.field_id}>{item.title}</option>)}</select></label>}
-    {error && <p role="alert">{error}</p>}
-    {!error && (!index || (id && !current)) && <p role="status">Loading observations…</p>}
-    {index?.length === 0 && <p>No sky fields available.</p>}
-    {current && <>
-      <p className="description">{current.description}</p>
-      <Viewer key={current.field_id} field={current} />
-    </>}
-  </main>;
+    <main id="main-content" tabIndex={-1}>
+      <div className={view === 'home' ? 'page-intro home-intro' : 'page-intro'}>
+        <div className="intro-content">
+          {view === 'home' ? <>
+            <p className="eyebrow"><span aria-hidden="true">✧</span> SPHEREx Sky Explorer</p>
+            <h1>{"See the infrared sky change.".split(" ").map((word, index) => <span key={word}><span className="hero-word" style={{ "--word": index } as CSSProperties}>{word}</span>{" "}</span>)}</h1>
+            <p>Compare views of the same patch of sky and see how motion can reveal distance.</p>
+            <a className="intro-link" href="#gallery">Browse sky fields <span aria-hidden="true">↓</span></a>
+          </> : <>
+            <a className="back-link" href="#home">← Explore sky fields</a>
+            <h1>{view === 'limits' ? 'What can SPHEREx see?' : view === 'dial' ? 'Distance Dial' : field?.title ?? 'Sky field'}</h1>
+            {view === 'dial' && <p>Explore how a change in viewpoint can reveal an object’s distance.</p>}
+          </>}
+        </div>
+      </div>
+      <div className="page-body">
+        {view === 'limits' ? <Detectability /> : <>
+          {error && <p className="glass notice" role="alert">{error}</p>}
+          {pending && <Skeleton />}
+          {field && <ErrorBoundary key={view + field.field_id}>
+            {dial ? <DistanceDial field={field} /> : <BlinkViewer field={field} home={view === 'home'} />}
+          </ErrorBoundary>}
+          {!pending && !error && !field && <p className="glass notice">No fields available for this view.</p>}
+        </>}
+        {view === 'home' && <section className="gallery" id="gallery" aria-labelledby="gallery-title">
+          <div className="gallery-head">
+            <div><h2 id="gallery-title">Explore the sky</h2><p>Choose a field to compare its observation dates.</p></div>
+
+          </div>
+          <div className="gallery-grid">
+            {index?.map(item => <a className="field-card glass" href={fieldRoute(item.field_id)} key={item.field_id}>
+              <img src={imageUrl(item.field_id, item.thumbnail)} alt="" loading="lazy"
+                onError={event => { event.currentTarget.hidden = true; }} />
+              <div className="field-card-copy">
+                <span>{item.kind === 'dial' ? 'Distance dial' : 'Sky field'}</span>
+                <h3>{item.title}</h3><span aria-hidden="true" className="card-arrow">↗</span>
+              </div>
+            </a>)}
+
+          </div>
+        </section>}
+        <footer>Parallax Dial <span>·</span> An independent SPHEREx sky explorer</footer>
+      </div>
+      <GuidedTour fieldId={index?.find(item => item.kind === "static")?.field_id} />
+    </main>
+  </>;
 }
