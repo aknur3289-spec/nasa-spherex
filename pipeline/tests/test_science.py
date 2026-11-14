@@ -55,3 +55,10 @@ def test_dial_grid_is_fine_enough():
     g = dial_grid(15, 1000, step_px=15)
     shift_px = 72600.0 / g
     assert np.max(np.abs(np.diff(shift_px))) <= 15.01
+
+
+def test_ang_sep_broadcasts_scalar_vs_array():
+    d = ang_sep_deg(10.0, 5.0, np.array([10.0, 11.0, 10.0, 10.0, 12.0]), np.array([5.0, 5.0, 6.0, 4.0, 5.0]))
+    assert d.shape == (5,)
+    assert abs(d[0]) < 1e-9 and abs(d[2] - 1.0) < 1e-9
+    assert abs(float(ang_sep_deg(0, 0, 0, 1)) - 1.0) < 1e-9
