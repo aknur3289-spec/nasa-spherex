@@ -1,5 +1,7 @@
 # Static field contract 1.0
 
+## FROZEN 2026-11-14 14:00 — changes only via v1.1 (additive) or v2 (breaking)
+
 The offline pipeline writes `web/public/data/index.json` and one directory per field. Each field directory contains `field.json`, PNGs and optional FITS files. All asset paths are relative to that field directory. The application uses the Vite base URL for the index and never substitutes demo data for unavailable observations.
 
 | Object | Required keys |
@@ -23,4 +25,4 @@ Field kind is `static` or `dial`. Dial data is required for dial fields. Dial re
 
 Real frames include an HTTPS URL for the original IRSA product or catalog record. Fixture frames use `https://example.invalid/` and set `provenance.synthetic` to true. `cached` and `synthetic` are booleans and collections is a nonempty array of strings. The app displays DEMO DATA for synthetic fields.
 
-See [the complete demo](../web/public/data/demo/field.json) and [TypeScript definitions](../web/src/contract.ts). Additive changes bump the minor version. Breaking changes require Dev3 approval, a new major version, and an entry in docs/DECISIONS.md.
+See [the complete demo](../web/public/data/fixture-static/field.json) and [TypeScript definitions](../web/src/contract.ts). Additive changes bump the minor version. Breaking changes require Dev3 approval, a new major version, and an entry in docs/DECISIONS.md.

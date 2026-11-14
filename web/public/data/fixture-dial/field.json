@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "field_id": "fixture-dial",
+  "kind": "dial",
+  "title": "Parallax dial fixture",
+  "description": "Synthetic distance scan with an underlying signal peak at 30 AU.",
+  "center": {
+    "ra_deg": 45,
+    "dec_deg": 20
+  },
+  "size_arcmin": 12,
+  "pixel_scale_arcsec": 1,
+  "frames": [
+    {
+      "id": "epoch-1",
+      "png": "epoch-1.png",
+      "obs_time_utc": "2030-01-01T00:00:00Z",
+      "mjd": 62502,
+      "survey_pass": 1,
+      "detector": 1,
+      "band": "Synthetic A",
+      "wavelength_um": 1.2,
+      "center": {
+        "ra_deg": 45,
+        "dec_deg": 20
+      },
+      "bad_pixel_fraction": 0,
+      "stretch": {
+        "kind": "asinh",
+        "lo": 0,
+        "hi": 1,
+        "unit": "synthetic"
+      },
+      "source_url": "https://example.invalid/fixture-dial/1",
+      "obs_id": "dial-1",
+      "processing_version": "synthetic-1"
+    },
+    {
+      "id": "epoch-2",
+      "png": "epoch-2.png",
+      "obs_time_utc": "2030-07-03T00:00:00Z",
+      "mjd": 62685,
+      "survey_pass": 2,
+      "detector": 1,
+      "band": "Synthetic A",
+      "wavelength_um": 1.2096,
+      "center": {
+        "ra_deg": 45,
+        "dec_deg": 20
+      },
+      "bad_pixel_fraction": 0,
+      "stretch": {
+        "kind": "asinh",
+        "lo": 0,
+        "hi": 1,
+        "unit": "synthetic"
+      },
+      "source_url": "https://example.invalid/fixture-dial/2",
+      "obs_id": "dial-2",
+      "processing_version": "synthetic-1"
+    },
+    {
+      "id": "epoch-3",
+      "png": "epoch-3.png",
+      "obs_time_utc": "2030-08-01T00:00:00Z",
+      "mjd": 62714,
+      "survey_pass": 3,
+      "detector": 1,
+      "band": "Synthetic A",
+      "wavelength_um": 1.25,
+      "center": {
+        "ra_deg": 45,
+        "dec_deg": 20
+      },
+      "bad_pixel_fraction": 0,
+      "stretch": {
+        "kind": "asinh",
+        "lo": 0,
+        "hi": 1,
+        "unit": "synthetic"
+      },
+      "source_url": "https://example.invalid/fixture-dial/3",
+      "obs_id": "dial-3",
+      "processing_version": "synthetic-1"
+    }
+  ],
+  "pairs": [
+    {
+      "a": "epoch-1",
+      "b": "epoch-3",
+      "dlambda_frac": 0.04166666666666667,
+      "dt_days": 212,
+      "trust": "medium"
+    },
+    {
+      "a": "epoch-1",
+      "b": "epoch-2",
+      "dlambda_frac": 0.008,
+      "dt_days": 183,
+      "trust": "high"
+    }
+  ],
+  "provenance": {
+    "mission": "SPHEREx viewer fixture",
+    "archive": "Synthetic fixture",
+    "collections": [
+      "synthetic-fixtures"
+    ],
+    "doi": "synthetic",
+    "downloaded_utc": "2030-08-01T00:00:00Z",
+    "pipeline_commit": "synthetic",
+    "cached": true,
+    "synthetic": true
+  },
+  "dial": {
+    "reference_frame": "epoch-1",
+    "model": "Synthetic log-distance response",
+    "search_radius_px": 6,
+    "steps": [
+      {
+        "distance_au": 15.0,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 7.422038,
+        "offset_px": 0.693147
+      },
+      {
+        "distance_au": 21.973596,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 10.891299,
+        "offset_px": 0.311356
+      },
+      {
+        "distance_au": 32.189263,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 11.940613,
+        "offset_px": 0.070436
+      },
+      {
+        "distance_au": 47.154258,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 9.780567,
+        "offset_px": 0.452227
+      },
+      {
+        "distance_au": 69.076576,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 5.985382,
+        "offset_px": 0.834018
+      },
+      {
+        "distance_au": 101.19072,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 2.736592,
+        "offset_px": 1.21581
+      },
+      {
+        "distance_au": 148.234937,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 0.9348,
+        "offset_px": 1.597601
+      },
+      {
+        "distance_au": 217.150312,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 0.238571,
+        "offset_px": 1.979392
+      },
+      {
+        "distance_au": 318.104889,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 0.045489,
+        "offset_px": 2.361184
+      },
+      {
+        "distance_au": 465.993897,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 0.00648,
+        "offset_px": 2.742975
+      },
+      {
+        "distance_au": 682.637457,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 0.00069,
+        "offset_px": 3.124767
+      },
+      {
+        "distance_au": 1000,
+        "frame": "epoch-2",
+        "pred": {
+          "ra_deg": 45,
+          "dec_deg": 20
+        },
+        "snr": 5.5e-05,
+        "offset_px": 3.506558
+      }
+    ],
+    "peak_distance_au": 30,
+    "truth": {
+      "distance_au": 30,
+      "source": "Synthetic response model"
+    },
+    "negative_control_field": "fixture-static"
+  }
+}

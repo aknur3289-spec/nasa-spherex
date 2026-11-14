@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "field_id": "demo",
+  "field_id": "fixture-static",
   "kind": "static",
-  "title": "Demo sky field",
+  "title": "Static star field",
   "description": "Synthetic star field with a moving marker.",
   "center": {
     "ra_deg": 45,
@@ -18,7 +18,7 @@
       "mjd": 62502,
       "survey_pass": 1,
       "detector": 1,
-      "band": "Demo A",
+      "band": "Synthetic A",
       "wavelength_um": 1.2,
       "center": {
         "ra_deg": 45,
@@ -31,19 +31,19 @@
         "hi": 1,
         "unit": "synthetic"
       },
-      "source_url": "https://example.invalid/demo/1",
-      "obs_id": "demo-1",
-      "processing_version": "demo-1"
+      "source_url": "https://example.invalid/fixture-static/1",
+      "obs_id": "static-1",
+      "processing_version": "synthetic-1"
     },
     {
       "id": "epoch-2",
       "png": "epoch-2.png",
-      "obs_time_utc": "2030-02-01T00:00:00Z",
-      "mjd": 62533,
+      "obs_time_utc": "2030-07-03T00:00:00Z",
+      "mjd": 62685,
       "survey_pass": 2,
       "detector": 1,
-      "band": "Demo A",
-      "wavelength_um": 1.2,
+      "band": "Synthetic A",
+      "wavelength_um": 1.2096,
       "center": {
         "ra_deg": 45,
         "dec_deg": 20
@@ -55,19 +55,19 @@
         "hi": 1,
         "unit": "synthetic"
       },
-      "source_url": "https://example.invalid/demo/2",
-      "obs_id": "demo-2",
-      "processing_version": "demo-1"
+      "source_url": "https://example.invalid/fixture-static/2",
+      "obs_id": "static-2",
+      "processing_version": "synthetic-1"
     },
     {
       "id": "epoch-3",
       "png": "epoch-3.png",
-      "obs_time_utc": "2030-03-01T00:00:00Z",
-      "mjd": 62561,
+      "obs_time_utc": "2030-08-01T00:00:00Z",
+      "mjd": 62714,
       "survey_pass": 3,
       "detector": 1,
-      "band": "Demo A",
-      "wavelength_um": 1.2,
+      "band": "Synthetic A",
+      "wavelength_um": 1.25,
       "center": {
         "ra_deg": 45,
         "dec_deg": 20
@@ -79,17 +79,24 @@
         "hi": 1,
         "unit": "synthetic"
       },
-      "source_url": "https://example.invalid/demo/3",
-      "obs_id": "demo-3",
-      "processing_version": "demo-1"
+      "source_url": "https://example.invalid/fixture-static/3",
+      "obs_id": "static-3",
+      "processing_version": "synthetic-1"
     }
   ],
   "pairs": [
     {
       "a": "epoch-1",
+      "b": "epoch-3",
+      "dlambda_frac": 0.04166666666666667,
+      "dt_days": 212,
+      "trust": "medium"
+    },
+    {
+      "a": "epoch-1",
       "b": "epoch-2",
-      "dlambda_frac": 0,
-      "dt_days": 31,
+      "dlambda_frac": 0.008,
+      "dt_days": 183,
       "trust": "high"
     }
   ],
@@ -97,10 +104,10 @@
     "mission": "SPHEREx viewer fixture",
     "archive": "Synthetic fixture",
     "collections": [
-      "demo"
+      "synthetic-fixtures"
     ],
     "doi": "synthetic",
-    "downloaded_utc": "2030-03-01T00:00:00Z",
+    "downloaded_utc": "2030-08-01T00:00:00Z",
     "pipeline_commit": "synthetic",
     "cached": true,
     "synthetic": true
