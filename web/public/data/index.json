@@ -1,8 +1,20 @@
 [
   {
-    "field_id": "demo",
+    "field_id": "ecl",
     "kind": "static",
-    "title": "Demo sky field",
-    "thumbnail": "epoch-1.png"
+    "thumbnail": "ecl/thumb.png",
+    "title": "Ecliptic test field"
+  },
+  {
+    "field_id": "m101",
+    "kind": "static",
+    "thumbnail": "m101/thumb.png",
+    "title": "Pinwheel Galaxy (M101)"
+  },
+  {
+    "field_id": "nep",
+    "kind": "static",
+    "thumbnail": "nep/thumb.png",
+    "title": "North Ecliptic Pole"
   }
 ]
