@@ -139,3 +139,16 @@ Figure: poc/out/astrometric_residual.png. Script: poc/poc_b_astrometry.py (commi
 ## Go/No-Go #2 (17:00) — PARTIAL GO
 Real data: distance recovered from SPHEREx images to 0.2 %; Neptune confirmed as a mover (E4b).
 Full-range dial: synthetic demo (labelled). Limitation stated: needs same-wavelength templates per sky position.
+
+## E4f-E4h. Real-data validation, astrometric B-lite (2026-11-14)
+
+| Run | Pairs | Truth (JPL) | Ours (circular) | Error | Parallax-only | Error |
+|---|---|---|---|---|---|---|
+| E4f Neptune Jun->Dec, all exposures | 265 | 29.89 AU | 29.95 AU (p16-p84 29.93-29.96) | +0.22% | 40.59 AU | +35.8% |
+| E4g Uranus Aug->Feb (positive control) | 9 | 19.50 AU | 19.39 AU | -0.54% | 29.31 AU | +50.4% |
+| E4h Neptune Dec->Jun (season flip) | 9 | 29.88 AU | 29.87 AU | -0.06% | 22.99 AU | -23.1% |
+
+Conclusions:
+- Recovery is within 0.6% for two planets and both seasonal orders.
+- Parallax-only bias flips sign with season (+36% vs -23%), as predicted by validate_geometry.
+- 265 Neptune pairs give a tight distribution: the 9-pair result was not a lucky pick.
