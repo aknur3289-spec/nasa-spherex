@@ -92,7 +92,8 @@ def predict_radec(ra0: float, dec0: float, t0: Time, d_au: float, times: Time,
 
 
 def ang_sep_deg(ra1, dec1, ra2, dec2):
-    """Great-circle separation, degrees (vectorised)."""
+    """Great-circle separation, degrees. Inputs broadcast (scalar vs array is fine)."""
+    ra1, dec1, ra2, dec2 = np.broadcast_arrays(*(np.asarray(x, dtype=float) for x in (ra1, dec1, ra2, dec2)))
     a, b = _unit(ra1, dec1), _unit(ra2, dec2)
     return np.degrees(np.arctan2(np.linalg.norm(np.cross(a, b, axis=0), axis=0),
                                  np.sum(a * b, axis=0)))
