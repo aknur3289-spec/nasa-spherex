@@ -2,7 +2,7 @@ node_modules/
 dist/
 __pycache__/
 .venv/
-data/
+/data/
 .venv/
 *.part
 .DS_Store
