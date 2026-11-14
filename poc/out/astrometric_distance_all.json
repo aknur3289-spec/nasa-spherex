@@ -1,0 +1,3579 @@
+{
+  "body": "neptune",
+  "truth_r_au": 29.88803609144112,
+  "truth_source": "mean r_au in windows_neptune.csv, windows 1 and 2",
+  "n_input_rows": 75,
+  "n_quality_skipped": 17,
+  "quality_skipped": [
+    {
+      "obs_id": "2025W25_2A_0628_4",
+      "status": "ok",
+      "bad_frac": 0.68
+    },
+    {
+      "obs_id": "2025W50_1A_0182_1",
+      "status": "ok",
+      "bad_frac": 0.68
+    },
+    {
+      "obs_id": "2025W50_1A_0182_2",
+      "status": "ok",
+      "bad_frac": 0.72
+    },
+    {
+      "obs_id": "2025W50_1A_0182_3",
+      "status": "ok",
+      "bad_frac": 0.56
+    },
+    {
+      "obs_id": "2025W50_1A_0310_2",
+      "status": "ok",
+      "bad_frac": 0.52
+    },
+    {
+      "obs_id": "2025W50_1A_0324_4",
+      "status": "ok",
+      "bad_frac": 0.56
+    },
+    {
+      "obs_id": "2025W50_1A_0692_1",
+      "status": "ok",
+      "bad_frac": 0.56
+    },
+    {
+      "obs_id": "2025W50_1A_0692_2",
+      "status": "ok",
+      "bad_frac": 0.64
+    },
+    {
+      "obs_id": "2025W50_1A_0692_3",
+      "status": "ok",
+      "bad_frac": 0.64
+    },
+    {
+      "obs_id": "2025W50_1A_0692_4",
+      "status": "ok",
+      "bad_frac": 0.76
+    },
+    {
+      "obs_id": "2025W50_1A_0810_1",
+      "status": "ok",
+      "bad_frac": 0.56
+    },
+    {
+      "obs_id": "2025W50_1A_0810_2",
+      "status": "ok",
+      "bad_frac": 0.52
+    },
+    {
+      "obs_id": "2025W50_1A_0810_3",
+      "status": "ok",
+      "bad_frac": 0.64
+    },
+    {
+      "obs_id": "2025W50_2A_0562_1",
+      "status": "ok",
+      "bad_frac": 0.76
+    },
+    {
+      "obs_id": "2025W50_2A_0562_2",
+      "status": "ok",
+      "bad_frac": 0.8
+    },
+    {
+      "obs_id": "2025W50_2A_0562_3",
+      "status": "ok",
+      "bad_frac": 0.76
+    },
+    {
+      "obs_id": "2025W50_2A_0577_4",
+      "status": "ok",
+      "bad_frac": 0.72
+    }
+  ],
+  "measurement_errors": [],
+  "fit_grid": {
+    "n": 4000,
+    "min_au": 20.0,
+    "max_au": 60.0,
+    "step_au": 0.01000250062515562
+  },
+  "per_exposure_offset_arcsec": {
+    "median": 2.6998091385891874,
+    "max": 27.418433278090802
+  },
+  "exposures": {
+    "1": [
+      {
+        "obs_id": "2025W25_1B_0085_1",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60842.377973553,
+        "wavelength_um": 0.880502604754486,
+        "bad_frac": 0.32,
+        "sat_frac": 0.04,
+        "eph_ra_deg": 2.10539,
+        "eph_dec_deg": -0.51682,
+        "measured_ra_deg": 2.10541489597372,
+        "measured_dec_deg": -0.5167496165485413,
+        "offset_arcsec": 0.2687633115719179,
+        "offset_px": 0.042471920308471474,
+        "peak_snr_variance": 245.36591824026223,
+        "peak_mjysr": 135.9241485595703,
+        "background_mjysr": 0.4391590356826782,
+        "saturated_pixels_within_centroid": 1,
+        "local_path": "data/raw/neptune/level2_2025W25_1B_0085_1D1_spx_l2b-v27-2026-213__c2.10539_-0.51682_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_1B_0085_2",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60842.379465822,
+        "wavelength_um": 0.9012624580877255,
+        "bad_frac": 0.04,
+        "sat_frac": 0.04,
+        "eph_ra_deg": 2.1054,
+        "eph_dec_deg": -0.51682,
+        "measured_ra_deg": 2.1055493431497667,
+        "measured_dec_deg": -0.5168045118992466,
+        "offset_arcsec": 0.5404970878577426,
+        "offset_px": 0.0889007920709297,
+        "peak_snr_variance": 247.1444301474872,
+        "peak_mjysr": 100.79389190673828,
+        "background_mjysr": 0.44341515004634857,
+        "saturated_pixels_within_centroid": 1,
+        "local_path": "data/raw/neptune/level2_2025W25_1B_0085_2D1_spx_l2b-v27-2026-213__c2.10540_-0.51682_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_1B_0085_3",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60842.380958067,
+        "wavelength_um": 0.9227265075966286,
+        "bad_frac": 0.12,
+        "sat_frac": 0.2,
+        "eph_ra_deg": 2.10542,
+        "eph_dec_deg": -0.51681,
+        "measured_ra_deg": 2.1052724137846797,
+        "measured_dec_deg": -0.5170377158868722,
+        "offset_arcsec": 0.976884017433269,
+        "offset_px": 0.15478445526357834,
+        "peak_snr_variance": 239.74162685914655,
+        "peak_mjysr": 227.37632751464844,
+        "background_mjysr": 0.4461768567562103,
+        "saturated_pixels_within_centroid": 5,
+        "local_path": "data/raw/neptune/level2_2025W25_1B_0085_3D1_spx_l2b-v27-2026-213__c2.10542_-0.51681_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_1B_0085_4",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60842.382468079,
+        "wavelength_um": 0.9446464344039873,
+        "bad_frac": 0.0,
+        "sat_frac": 0.16,
+        "eph_ra_deg": 2.10543,
+        "eph_dec_deg": -0.51681,
+        "measured_ra_deg": 2.1051618155699954,
+        "measured_dec_deg": -0.5169402245839956,
+        "offset_arcsec": 1.0732316578712586,
+        "offset_px": 0.17369159896955724,
+        "peak_snr_variance": 231.28420158697395,
+        "peak_mjysr": 325.04730224609375,
+        "background_mjysr": 0.45351770520210266,
+        "saturated_pixels_within_centroid": 4,
+        "local_path": "data/raw/neptune/level2_2025W25_1B_0085_4D1_spx_l2b-v27-2026-213__c2.10543_-0.51681_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_2A_0500_1",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60848.016684144,
+        "wavelength_um": 0.9680481706264614,
+        "bad_frac": 0.0,
+        "sat_frac": 0.04,
+        "eph_ra_deg": 2.15087,
+        "eph_dec_deg": -0.5024,
+        "measured_ra_deg": 2.151061989865566,
+        "measured_dec_deg": -0.5018771784909746,
+        "offset_arcsec": 2.0050403776937693,
+        "offset_px": 0.3176355578414891,
+        "peak_snr_variance": 249.05892853487646,
+        "peak_mjysr": 77.78388214111328,
+        "background_mjysr": 0.41675788164138794,
+        "saturated_pixels_within_centroid": 1,
+        "local_path": "data/raw/neptune/level2_2025W25_2A_0500_1D1_spx_l2b-v27-2026-213__c2.15087_-0.50240_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_2A_0500_2",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60848.018176389,
+        "wavelength_um": 0.9912009587543644,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.15088,
+        "eph_dec_deg": -0.50239,
+        "measured_ra_deg": 2.151112716733273,
+        "measured_dec_deg": -0.5017640272894032,
+        "offset_arcsec": 2.404182191440212,
+        "offset_px": 0.38110799889760216,
+        "peak_snr_variance": 181.59874083562676,
+        "peak_mjysr": 40.67225646972656,
+        "background_mjysr": 0.42607542872428894,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W25_2A_0500_2D1_spx_l2b-v27-2026-213__c2.15088_-0.50239_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_2A_0500_3",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60848.019668646,
+        "wavelength_um": 1.0144972061295088,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.15089,
+        "eph_dec_deg": -0.50239,
+        "measured_ra_deg": 2.151100594591209,
+        "measured_dec_deg": -0.5017901811524849,
+        "offset_arcsec": 2.288562008166087,
+        "offset_px": 0.3631009778445431,
+        "peak_snr_variance": 215.45456759322838,
+        "peak_mjysr": 56.61671447753906,
+        "background_mjysr": 0.42842188477516174,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W25_2A_0500_3D1_spx_l2b-v27-2026-213__c2.15089_-0.50239_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_2A_0500_4",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60848.021178681,
+        "wavelength_um": 1.0388712392133825,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.1509,
+        "eph_dec_deg": -0.50239,
+        "measured_ra_deg": 2.151003206690261,
+        "measured_dec_deg": -0.5020746946645926,
+        "offset_arcsec": 1.194355312000762,
+        "offset_px": 0.18965653795402743,
+        "peak_snr_variance": 250.9897790356602,
+        "peak_mjysr": 75.00363159179688,
+        "background_mjysr": 0.4200502336025238,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W25_2A_0500_4D1_spx_l2b-v27-2026-213__c2.15090_-0.50239_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_2A_0613_1",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60848.560521736,
+        "wavelength_um": 1.0635042510973127,
+        "bad_frac": 0.12,
+        "sat_frac": 0.16,
+        "eph_ra_deg": 2.15443,
+        "eph_dec_deg": -0.50137,
+        "measured_ra_deg": 2.1547592028529703,
+        "measured_dec_deg": -0.5008946965364209,
+        "offset_arcsec": 2.0814090784702937,
+        "offset_px": 0.3311896969991743,
+        "peak_snr_variance": 107.85791068235376,
+        "peak_mjysr": 302.03155517578125,
+        "background_mjysr": 0.4904535710811615,
+        "saturated_pixels_within_centroid": 4,
+        "local_path": "data/raw/neptune/level2_2025W25_2A_0613_1D1_spx_l2b-v27-2026-213__c2.15443_-0.50137_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_2A_0613_2",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60848.562013993,
+        "wavelength_um": 1.0889938291381387,
+        "bad_frac": 0.0,
+        "sat_frac": 0.08,
+        "eph_ra_deg": 2.15444,
+        "eph_dec_deg": -0.50137,
+        "measured_ra_deg": 2.1545112855197197,
+        "measured_dec_deg": -0.5011973249787804,
+        "offset_arcsec": 0.6725152600669823,
+        "offset_px": 0.10687517747065267,
+        "peak_snr_variance": 245.06331268008793,
+        "peak_mjysr": 131.65797424316406,
+        "background_mjysr": 0.7721720337867737,
+        "saturated_pixels_within_centroid": 2,
+        "local_path": "data/raw/neptune/level2_2025W25_2A_0613_2D1_spx_l2b-v27-2026-213__c2.15444_-0.50137_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W25_2A_0613_3",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60848.563506238,
+        "wavelength_um": 1.1124633457531428,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.15445,
+        "eph_dec_deg": -0.50136,
+        "measured_ra_deg": 2.154936573911997,
+        "measured_dec_deg": -0.5006016912584325,
+        "offset_arcsec": 3.2435345104301745,
+        "offset_px": 0.5164037491010974,
+        "peak_snr_variance": 153.25913353590315,
+        "peak_mjysr": 28.46735382080078,
+        "background_mjysr": 0.4313078224658966,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W25_2A_0613_3D1_spx_l2b-v27-2026-213__c2.15445_-0.50136_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0030_1",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60849.103257905,
+        "wavelength_um": 0.7664844010624231,
+        "bad_frac": 0.2,
+        "sat_frac": 0.24,
+        "eph_ra_deg": 2.15783,
+        "eph_dec_deg": -0.50041,
+        "measured_ra_deg": 2.1580615076839527,
+        "measured_dec_deg": -0.5000203464973496,
+        "offset_arcsec": 1.6316444498134062,
+        "offset_px": 0.25679307138326796,
+        "peak_snr_variance": 125.81101377126404,
+        "peak_mjysr": 454.4253845214844,
+        "background_mjysr": 0.3886561542749405,
+        "saturated_pixels_within_centroid": 6,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0030_1D1_spx_l2b-v27-2026-213__c2.15783_-0.50041_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0030_2",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60849.10475015,
+        "wavelength_um": 0.7842466309582989,
+        "bad_frac": 0.0,
+        "sat_frac": 0.08,
+        "eph_ra_deg": 2.15784,
+        "eph_dec_deg": -0.5004,
+        "measured_ra_deg": 2.1578079931617773,
+        "measured_dec_deg": -0.5004225685911824,
+        "offset_arcsec": 0.14098497485506947,
+        "offset_px": 0.022533111613169628,
+        "peak_snr_variance": 243.43403906435785,
+        "peak_mjysr": 175.1434783935547,
+        "background_mjysr": 0.3927067816257477,
+        "saturated_pixels_within_centroid": 2,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0030_2D1_spx_l2b-v27-2026-213__c2.15784_-0.50040_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0030_3",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60849.106242407,
+        "wavelength_um": 0.8030787988517524,
+        "bad_frac": 0.0,
+        "sat_frac": 0.08,
+        "eph_ra_deg": 2.15785,
+        "eph_dec_deg": -0.5004,
+        "measured_ra_deg": 2.1579860599098035,
+        "measured_dec_deg": -0.5002557621423066,
+        "offset_arcsec": 0.7138124359110222,
+        "offset_px": 0.1131618521561119,
+        "peak_snr_variance": 239.35504824069645,
+        "peak_mjysr": 218.86672973632812,
+        "background_mjysr": 0.3928336799144745,
+        "saturated_pixels_within_centroid": 2,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0030_3D1_spx_l2b-v27-2026-213__c2.15785_-0.50040_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0030_4",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60849.107734653,
+        "wavelength_um": 0.821816252857756,
+        "bad_frac": 0.48,
+        "sat_frac": 0.36,
+        "eph_ra_deg": 2.15786,
+        "eph_dec_deg": -0.5004,
+        "measured_ra_deg": 2.157174486070824,
+        "measured_dec_deg": -0.5007037701955652,
+        "offset_arcsec": 2.6992074360922937,
+        "offset_px": 0.4363546575391164,
+        "peak_snr_variance": 156.1154805807203,
+        "peak_mjysr": 653.0861206054688,
+        "background_mjysr": 0.4059773087501526,
+        "saturated_pixels_within_centroid": 9,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0030_4D1_spx_l2b-v27-2026-213__c2.15786_-0.50040_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0089_1",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60849.307430127,
+        "wavelength_um": 0.841465378093151,
+        "bad_frac": 0.2,
+        "sat_frac": 0.2,
+        "eph_ra_deg": 2.15907,
+        "eph_dec_deg": -0.50006,
+        "measured_ra_deg": 2.159435128815796,
+        "measured_dec_deg": -0.49982135174844594,
+        "offset_arcsec": 1.5702847173538617,
+        "offset_px": 0.2518370603112846,
+        "peak_snr_variance": 110.36872041422033,
+        "peak_mjysr": 321.06573486328125,
+        "background_mjysr": 0.3962003290653229,
+        "saturated_pixels_within_centroid": 5,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0089_1D1_spx_l2b-v27-2026-213__c2.15907_-0.50006_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0089_2",
+        "detector": "D1",
+        "window_id": "1",
+        "mjd": 60849.308922384,
+        "wavelength_um": 0.861059407070938,
+        "bad_frac": 0.0,
+        "sat_frac": 0.08,
+        "eph_ra_deg": 2.15908,
+        "eph_dec_deg": -0.50006,
+        "measured_ra_deg": 2.15926317939504,
+        "measured_dec_deg": -0.5000594813303865,
+        "offset_arcsec": 0.6594233500497919,
+        "offset_px": 0.10883705798458004,
+        "peak_snr_variance": 245.45347795536358,
+        "peak_mjysr": 118.68537139892578,
+        "background_mjysr": 0.38891303539276123,
+        "saturated_pixels_within_centroid": 2,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0089_2D1_spx_l2b-v27-2026-213__c2.15908_-0.50006_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0318_1",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60850.463162789,
+        "wavelength_um": 1.96216516977755,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.1657,
+        "eph_dec_deg": -0.49828,
+        "measured_ra_deg": 2.166108311720974,
+        "measured_dec_deg": -0.49995864481355434,
+        "offset_arcsec": 6.219310467727099,
+        "offset_px": 1.0180661946470737,
+        "peak_snr_variance": 85.35890742490004,
+        "peak_mjysr": 8.393241882324219,
+        "background_mjysr": 0.30067941546440125,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0318_1D3_spx_l2b-v27-2026-213__c2.16570_-0.49828_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0318_2",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60850.464655046,
+        "wavelength_um": 2.0080795315689484,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.16571,
+        "eph_dec_deg": -0.49828,
+        "measured_ra_deg": 2.1661455289906377,
+        "measured_dec_deg": -0.5001025695302127,
+        "offset_arcsec": 6.745972362355376,
+        "offset_px": 1.1049178961653299,
+        "peak_snr_variance": 84.65939174931214,
+        "peak_mjysr": 8.334487915039062,
+        "background_mjysr": 0.2974240481853485,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0318_2D3_spx_l2b-v27-2026-213__c2.16571_-0.49828_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0318_3",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60850.466165069,
+        "wavelength_um": 2.053745430969408,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.16572,
+        "eph_dec_deg": -0.49827,
+        "measured_ra_deg": 2.166114901310961,
+        "measured_dec_deg": -0.5003576446102582,
+        "offset_arcsec": 7.6487887971555715,
+        "offset_px": 1.2558830709718216,
+        "peak_snr_variance": 68.42727029172234,
+        "peak_mjysr": 5.888229846954346,
+        "background_mjysr": 0.2908632606267929,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0318_3D3_spx_l2b-v27-2026-213__c2.16572_-0.49827_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0318_4",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60850.467657326,
+        "wavelength_um": 2.101902213794314,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.16573,
+        "eph_dec_deg": -0.49827,
+        "measured_ra_deg": 2.166214549959328,
+        "measured_dec_deg": -0.500654386290584,
+        "offset_arcsec": 8.759228944731856,
+        "offset_px": 1.437879708242098,
+        "peak_snr_variance": 74.28004554855019,
+        "peak_mjysr": 6.388601779937744,
+        "background_mjysr": 0.2811767905950546,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0318_4D3_spx_l2b-v27-2026-213__c2.16573_-0.49827_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0537_1",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60851.753162731,
+        "wavelength_um": 1.3087068082469508,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.17232,
+        "eph_dec_deg": -0.49663,
+        "measured_ra_deg": 2.1720415954210157,
+        "measured_dec_deg": -0.4972133518785932,
+        "offset_arcsec": 2.3269557176060713,
+        "offset_px": 0.38163774941954764,
+        "peak_snr_variance": 250.82900018400352,
+        "peak_mjysr": 76.16712188720703,
+        "background_mjysr": 0.38805830478668213,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0537_1D2_spx_l2b-v27-2026-213__c2.17232_-0.49663_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0537_2",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60851.754655,
+        "wavelength_um": 1.3397740533261107,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.17232,
+        "eph_dec_deg": -0.49663,
+        "measured_ra_deg": 2.1719908542128876,
+        "measured_dec_deg": -0.49731135760046913,
+        "offset_arcsec": 2.724077392527255,
+        "offset_px": 0.4469726747670373,
+        "peak_snr_variance": 138.70197195934878,
+        "peak_mjysr": 22.457683563232422,
+        "background_mjysr": 0.38965047895908356,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0537_2D2_spx_l2b-v27-2026-213__c2.17232_-0.49663_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0537_3",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60851.756147245,
+        "wavelength_um": 1.3714354489269347,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.17233,
+        "eph_dec_deg": -0.49663,
+        "measured_ra_deg": 2.171605782049709,
+        "measured_dec_deg": -0.49789629563425564,
+        "offset_arcsec": 5.251506422710783,
+        "offset_px": 0.8619077464511734,
+        "peak_snr_variance": 110.73961061888893,
+        "peak_mjysr": 14.521897315979004,
+        "background_mjysr": 0.3886009007692337,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0537_3D2_spx_l2b-v27-2026-213__c2.17233_-0.49663_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_1A_0537_4",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60851.757639491,
+        "wavelength_um": 1.4034982542652366,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.17234,
+        "eph_dec_deg": -0.49663,
+        "measured_ra_deg": 2.171997838745214,
+        "measured_dec_deg": -0.4973622484081049,
+        "offset_arcsec": 2.9096670046481172,
+        "offset_px": 0.4777430391477409,
+        "peak_snr_variance": 104.79177821304597,
+        "peak_mjysr": 12.846820831298828,
+        "background_mjysr": 0.38883697986602783,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_1A_0537_4D2_spx_l2b-v27-2026-213__c2.17234_-0.49663_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_2A_0564_2",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60855.353810625,
+        "wavelength_um": 1.6372895457664458,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.18635,
+        "eph_dec_deg": -0.49397,
+        "measured_ra_deg": 2.187186488250431,
+        "measured_dec_deg": -0.4936913974132981,
+        "offset_arcsec": 3.1738854756338815,
+        "offset_px": 0.5110832771589799,
+        "peak_snr_variance": 91.05717224722721,
+        "peak_mjysr": 10.932903289794922,
+        "background_mjysr": 0.34665942192077637,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_2A_0564_2D3_spx_l2b-v27-2026-214__c2.18635_-0.49397_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_2A_0564_3",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60855.35530287,
+        "wavelength_um": 1.6728375239709317,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.18635,
+        "eph_dec_deg": -0.49397,
+        "measured_ra_deg": 2.1873200725528292,
+        "measured_dec_deg": -0.49363155297723643,
+        "offset_arcsec": 3.698581287337605,
+        "offset_px": 0.5963408634515165,
+        "peak_snr_variance": 94.14346494473155,
+        "peak_mjysr": 11.528655052185059,
+        "background_mjysr": 0.34259188175201416,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_2A_0564_3D3_spx_l2b-v27-2026-214__c2.18635_-0.49397_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_2A_0564_4",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60855.356795127,
+        "wavelength_um": 1.7111533119398006,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.18636,
+        "eph_dec_deg": -0.49397,
+        "measured_ra_deg": 2.1874785099077174,
+        "measured_dec_deg": -0.49356274256487664,
+        "offset_arcsec": 4.285104242724033,
+        "offset_px": 0.6917650787419756,
+        "peak_snr_variance": 82.04258581954967,
+        "peak_mjysr": 8.65578842163086,
+        "background_mjysr": 0.3325853794813156,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_2A_0564_4D3_spx_l2b-v27-2026-214__c2.18636_-0.49397_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_2A_0600_1",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60855.556970255,
+        "wavelength_um": 2.1507574757696437,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.18695,
+        "eph_dec_deg": -0.4939,
+        "measured_ra_deg": 2.1883308353838484,
+        "measured_dec_deg": -0.49408846067908335,
+        "offset_arcsec": 5.0169097450102775,
+        "offset_px": 0.7988026259369613,
+        "peak_snr_variance": 52.88351917654561,
+        "peak_mjysr": 3.5884158611297607,
+        "background_mjysr": 0.24975304305553436,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_2A_0600_1D3_spx_l2b-v27-2026-214__c2.18695_-0.49390_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_2A_0600_2",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60855.558462523,
+        "wavelength_um": 2.2005095265021257,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.18695,
+        "eph_dec_deg": -0.4939,
+        "measured_ra_deg": 2.188730873254596,
+        "measured_dec_deg": -0.49397014022416613,
+        "offset_arcsec": 6.415876232369368,
+        "offset_px": 1.0248362164463765,
+        "peak_snr_variance": 51.03796215562523,
+        "peak_mjysr": 3.4709291458129883,
+        "background_mjysr": 0.24478811025619507,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_2A_0600_2D3_spx_l2b-v27-2026-214__c2.18695_-0.49390_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_2A_0600_3",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60855.559954769,
+        "wavelength_um": 2.2508990917238814,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.18696,
+        "eph_dec_deg": -0.4939,
+        "measured_ra_deg": 2.1885680631115694,
+        "measured_dec_deg": -0.49395883752349284,
+        "offset_arcsec": 5.792685998798434,
+        "offset_px": 0.9259478114264527,
+        "peak_snr_variance": 40.47966892438922,
+        "peak_mjysr": 2.2516977787017822,
+        "background_mjysr": 0.2350735068321228,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_2A_0600_3D3_spx_l2b-v27-2026-214__c2.18696_-0.49390_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W26_2A_0600_4",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60855.561464792,
+        "wavelength_um": 2.303414493148066,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.18696,
+        "eph_dec_deg": -0.4939,
+        "measured_ra_deg": 2.1887200535593587,
+        "measured_dec_deg": -0.49425274589644214,
+        "offset_arcsec": 6.461962747957855,
+        "offset_px": 1.0295943239840484,
+        "peak_snr_variance": 41.647823028454155,
+        "peak_mjysr": 2.44473934173584,
+        "background_mjysr": 0.23202621936798096,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W26_2A_0600_4D3_spx_l2b-v27-2026-214__c2.18696_-0.49390_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_1A_0291_1",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60857.459362593,
+        "wavelength_um": 1.7507333214248813,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19154,
+        "eph_dec_deg": -0.49371,
+        "measured_ra_deg": 2.190539568224917,
+        "measured_dec_deg": -0.495392886153704,
+        "offset_arcsec": 7.0480010568782685,
+        "offset_px": 1.1694675602082336,
+        "peak_snr_variance": 84.35602330794117,
+        "peak_mjysr": 9.131507873535156,
+        "background_mjysr": 0.31519466638565063,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_1A_0291_1D3_spx_l2b-v27-2026-214__c2.19154_-0.49371_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_1A_0291_2",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60857.46085485,
+        "wavelength_um": 1.790881639808382,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19155,
+        "eph_dec_deg": -0.49371,
+        "measured_ra_deg": 2.1902556662368458,
+        "measured_dec_deg": -0.4959255387259209,
+        "offset_arcsec": 9.237200700674235,
+        "offset_px": 1.5333594641659416,
+        "peak_snr_variance": 91.1145421037641,
+        "peak_mjysr": 10.039539337158203,
+        "background_mjysr": 0.30448031425476074,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_1A_0291_2D3_spx_l2b-v27-2026-214__c2.19155_-0.49371_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_1A_0291_3",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60857.462347106,
+        "wavelength_um": 1.8330134737931598,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19155,
+        "eph_dec_deg": -0.49371,
+        "measured_ra_deg": 2.190627201591357,
+        "measured_dec_deg": -0.49537412231131367,
+        "offset_arcsec": 6.850220655304407,
+        "offset_px": 1.1377383688719078,
+        "peak_snr_variance": 90.49981206699935,
+        "peak_mjysr": 9.754344940185547,
+        "background_mjysr": 0.293662428855896,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_1A_0291_3D3_spx_l2b-v27-2026-214__c2.19155_-0.49371_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_1A_0291_4",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60857.463839363,
+        "wavelength_um": 1.875577444033569,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19155,
+        "eph_dec_deg": -0.49371,
+        "measured_ra_deg": 2.190214207829067,
+        "measured_dec_deg": -0.49560413107818685,
+        "offset_arcsec": 8.343880747058037,
+        "offset_px": 1.3836629294822078,
+        "peak_snr_variance": 87.53546786062093,
+        "peak_mjysr": 9.283707618713379,
+        "background_mjysr": 0.28904929757118225,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_1A_0291_4D3_spx_l2b-v27-2026-214__c2.19155_-0.49371_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_1A_0384_1",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60858.000446701,
+        "wavelength_um": 2.355703469679253,
+        "bad_frac": 0.08,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19252,
+        "eph_dec_deg": -0.4938,
+        "measured_ra_deg": 2.20002784468961,
+        "measured_dec_deg": -0.49508197015874233,
+        "offset_arcsec": 27.418433278090802,
+        "offset_px": 4.373660665587116,
+        "peak_snr_variance": 5.681795581630509,
+        "peak_mjysr": 320.0376281738281,
+        "background_mjysr": 0.2147832214832306,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_1A_0384_1D3_spx_l2b-v27-2026-214__c2.19252_-0.49380_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_1A_0384_2",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60858.001938947,
+        "wavelength_um": 2.407303577110547,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19252,
+        "eph_dec_deg": -0.4938,
+        "measured_ra_deg": 2.190095113175318,
+        "measured_dec_deg": -0.49545855020106083,
+        "offset_arcsec": 10.575931618902603,
+        "offset_px": 1.7384722977157117,
+        "peak_snr_variance": 45.17893191965519,
+        "peak_mjysr": 4.662552833557129,
+        "background_mjysr": 0.212257519364357,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_1A_0384_2D3_spx_l2b-v27-2026-214__c2.19252_-0.49380_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_1A_0473_1",
+        "detector": "D3",
+        "window_id": "1",
+        "mjd": 60858.47681353,
+        "wavelength_um": 1.9189631358255284,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19326,
+        "eph_dec_deg": -0.49393,
+        "measured_ra_deg": 2.1925411971095476,
+        "measured_dec_deg": -0.4939188083603869,
+        "offset_arcsec": 2.587907900428282,
+        "offset_px": 0.41211409645065833,
+        "peak_snr_variance": 119.80411740109919,
+        "peak_mjysr": 16.343578338623047,
+        "background_mjysr": 0.2774514853954315,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_1A_0473_1D3_spx_l2b-v27-2026-214__c2.19326_-0.49393_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0203_1",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.38036213,
+        "wavelength_um": 1.438093016201237,
+        "bad_frac": 0.28,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19507,
+        "eph_dec_deg": -0.49494,
+        "measured_ra_deg": 2.1958564789318498,
+        "measured_dec_deg": -0.4938927699765892,
+        "offset_arcsec": 4.714754639934742,
+        "offset_px": 0.7739318624384004,
+        "peak_snr_variance": 136.94366511069157,
+        "peak_mjysr": 21.860816955566406,
+        "background_mjysr": 0.35922056436538696,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0203_1D2_spx_l2b-v27-2026-215__c2.19507_-0.49494_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0203_2",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.381854387,
+        "wavelength_um": 1.4725116816732813,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19507,
+        "eph_dec_deg": -0.49494,
+        "measured_ra_deg": 2.195274886867143,
+        "measured_dec_deg": -0.4944343662742439,
+        "offset_arcsec": 1.9640333220620334,
+        "offset_px": 0.32264863760282403,
+        "peak_snr_variance": 144.9230059324375,
+        "peak_mjysr": 24.28870391845703,
+        "background_mjysr": 0.36252361536026,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0203_2D2_spx_l2b-v27-2026-215__c2.19507_-0.49494_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0203_3",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.383346644,
+        "wavelength_um": 1.508210339126926,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19507,
+        "eph_dec_deg": -0.49494,
+        "measured_ra_deg": 2.195537010440528,
+        "measured_dec_deg": -0.49450080036607214,
+        "offset_arcsec": 2.307874645528547,
+        "offset_px": 0.378648788910869,
+        "peak_snr_variance": 187.9703156618727,
+        "peak_mjysr": 39.34282302856445,
+        "background_mjysr": 0.35173091292381287,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0203_3D2_spx_l2b-v27-2026-215__c2.19507_-0.49494_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0203_4",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.384838889,
+        "wavelength_um": 1.5447601337553,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19507,
+        "eph_dec_deg": -0.49495,
+        "measured_ra_deg": 2.1951025517011233,
+        "measured_dec_deg": -0.4947331944854064,
+        "offset_arcsec": 0.7892474790420092,
+        "offset_px": 0.12956514861488067,
+        "peak_snr_variance": 242.8726910766039,
+        "peak_mjysr": 64.53984069824219,
+        "background_mjysr": 0.3509571850299835,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0203_4D2_spx_l2b-v27-2026-215__c2.19507_-0.49495_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0268_3",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.653213762,
+        "wavelength_um": 1.111931705385481,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19518,
+        "eph_dec_deg": -0.49515,
+        "measured_ra_deg": 2.1956639308956807,
+        "measured_dec_deg": -0.4946162426454791,
+        "offset_arcsec": 2.5936708474013157,
+        "offset_px": 0.42359376683419697,
+        "peak_snr_variance": 187.72479562023904,
+        "peak_mjysr": 43.277713775634766,
+        "background_mjysr": 0.34972546994686127,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0268_3D2_spx_l2b-v27-2026-215__c2.19518_-0.49515_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0268_4",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.65470603,
+        "wavelength_um": 1.1377699792110108,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19518,
+        "eph_dec_deg": -0.49515,
+        "measured_ra_deg": 2.195655024923999,
+        "measured_dec_deg": -0.4945708456282983,
+        "offset_arcsec": 2.6965216773262735,
+        "offset_px": 0.44076891388774586,
+        "peak_snr_variance": 95.19017489476771,
+        "peak_mjysr": 11.459919929504395,
+        "background_mjysr": 0.3499085009098053,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0268_4D2_spx_l2b-v27-2026-215__c2.19518_-0.49515_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0326_1",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.922281493,
+        "wavelength_um": 1.1647959625959305,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19526,
+        "eph_dec_deg": -0.49537,
+        "measured_ra_deg": 2.1960535783498623,
+        "measured_dec_deg": -0.4947939896114237,
+        "offset_arcsec": 3.530033681340848,
+        "offset_px": 0.5756896935603272,
+        "peak_snr_variance": 100.83722992340701,
+        "peak_mjysr": 12.621248245239258,
+        "background_mjysr": 0.35086724162101746,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0326_1D2_spx_l2b-v27-2026-215__c2.19526_-0.49537_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0326_2",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.92377375,
+        "wavelength_um": 1.192290260007849,
+        "bad_frac": 0.2,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19526,
+        "eph_dec_deg": -0.49537,
+        "measured_ra_deg": 2.195946590179177,
+        "measured_dec_deg": -0.49476702326007227,
+        "offset_arcsec": 3.289525148574565,
+        "offset_px": 0.5373382138509274,
+        "peak_snr_variance": 155.77486982556417,
+        "peak_mjysr": 30.37542724609375,
+        "background_mjysr": 0.34878702461719513,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0326_2D2_spx_l2b-v27-2026-215__c2.19526_-0.49537_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0326_3",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.925266007,
+        "wavelength_um": 1.220906787940438,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19526,
+        "eph_dec_deg": -0.49537,
+        "measured_ra_deg": 2.195696303616109,
+        "measured_dec_deg": -0.49504601798839787,
+        "offset_arcsec": 1.956330790768278,
+        "offset_px": 0.31940107483714686,
+        "peak_snr_variance": 189.90644903941146,
+        "peak_mjysr": 43.891075134277344,
+        "background_mjysr": 0.35408416390419006,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0326_3D2_spx_l2b-v27-2026-215__c2.19526_-0.49537_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0326_4",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60860.926758264,
+        "wavelength_um": 1.2498088415750788,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19526,
+        "eph_dec_deg": -0.49538,
+        "measured_ra_deg": 2.1956315757557476,
+        "measured_dec_deg": -0.4951284189333073,
+        "offset_arcsec": 1.6153985039476408,
+        "offset_px": 0.26368364779977077,
+        "peak_snr_variance": 267.21787690401806,
+        "peak_mjysr": 87.04731750488281,
+        "background_mjysr": 0.35559970140457153,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0326_4D2_spx_l2b-v27-2026-215__c2.19526_-0.49538_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0357_1",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60861.056406759,
+        "wavelength_um": 1.2794384468434201,
+        "bad_frac": 0.0,
+        "sat_frac": 0.04,
+        "eph_ra_deg": 2.19528,
+        "eph_dec_deg": -0.49549,
+        "measured_ra_deg": 2.1955443867882716,
+        "measured_dec_deg": -0.49544287323000835,
+        "offset_arcsec": 0.9667597360961312,
+        "offset_px": 0.1568709998813786,
+        "peak_snr_variance": 244.67642433345875,
+        "peak_mjysr": 141.28451538085938,
+        "background_mjysr": 0.3589228391647339,
+        "saturated_pixels_within_centroid": 1,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0357_1D2_spx_l2b-v27-2026-215__c2.19528_-0.49549_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0358_1",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60861.058165475,
+        "wavelength_um": 1.5817509101082885,
+        "bad_frac": 0.0,
+        "sat_frac": 0.04,
+        "eph_ra_deg": 2.19528,
+        "eph_dec_deg": -0.49549,
+        "measured_ra_deg": 2.1954431675709287,
+        "measured_dec_deg": -0.4954535971965749,
+        "offset_arcsec": 0.6018229881105742,
+        "offset_px": 0.09813147996133102,
+        "peak_snr_variance": 247.31810866171855,
+        "peak_mjysr": 78.7863540649414,
+        "background_mjysr": 0.3396567404270172,
+        "saturated_pixels_within_centroid": 1,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0358_1D2_spx_l2b-v27-2026-215__c2.19528_-0.49549_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0358_2",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60861.059657731,
+        "wavelength_um": 1.6197211421948816,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19528,
+        "eph_dec_deg": -0.49549,
+        "measured_ra_deg": 2.1957911731650395,
+        "measured_dec_deg": -0.49510720726114377,
+        "offset_arcsec": 2.298956616285219,
+        "offset_px": 0.3771514620667516,
+        "peak_snr_variance": 185.97885897568813,
+        "peak_mjysr": 37.53436279296875,
+        "background_mjysr": 0.3377149999141693,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0358_2D2_spx_l2b-v27-2026-215__c2.19528_-0.49549_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W27_2A_0358_3",
+        "detector": "D2",
+        "window_id": "1",
+        "mjd": 60861.06115,
+        "wavelength_um": 1.6522243543342185,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 2.19528,
+        "eph_dec_deg": -0.49549,
+        "measured_ra_deg": 2.1963099241766955,
+        "measured_dec_deg": -0.49504089742775215,
+        "offset_arcsec": 4.04476890078231,
+        "offset_px": 0.6618668959842596,
+        "peak_snr_variance": 90.35824183523145,
+        "peak_mjysr": 9.505526542663574,
+        "background_mjysr": 0.33118104934692383,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W27_2A_0358_3D2_spx_l2b-v27-2026-215__c2.19528_-0.49549_s0.1667.fits"
+      }
+    ],
+    "2": [
+      {
+        "obs_id": "2025W50_1A_0310_1",
+        "detector": "D3",
+        "window_id": "2",
+        "mjd": 61018.325320602,
+        "wavelength_um": 2.2740217955555586,
+        "bad_frac": 0.48,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 359.62607,
+        "eph_dec_deg": -1.63063,
+        "measured_ra_deg": 359.6263350889951,
+        "measured_dec_deg": -1.6281697995136264,
+        "offset_arcsec": 8.907946520967023,
+        "offset_px": 1.4666465566673361,
+        "peak_snr_variance": 59.10408730669415,
+        "peak_mjysr": 4.268072605133057,
+        "background_mjysr": 0.24199353903532028,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W50_1A_0310_1D3_spx_l2b-v27-2026-209__c359.62607_-1.63063_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W50_1A_0310_3",
+        "detector": "D3",
+        "window_id": "2",
+        "mjd": 61018.328305116,
+        "wavelength_um": 2.3785266730838015,
+        "bad_frac": 0.44,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 359.62607,
+        "eph_dec_deg": -1.63063,
+        "measured_ra_deg": 359.6263462635418,
+        "measured_dec_deg": -1.6276836922137907,
+        "offset_arcsec": 10.653195903711694,
+        "offset_px": 1.754682469041196,
+        "peak_snr_variance": 47.90982339399606,
+        "peak_mjysr": 3.5032992362976074,
+        "background_mjysr": 0.2219468504190445,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W50_1A_0310_3D3_spx_l2b-v27-2026-209__c359.62607_-1.63063_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W50_1A_0310_4",
+        "detector": "D3",
+        "window_id": "2",
+        "mjd": 61018.329797361,
+        "wavelength_um": 2.420326927209101,
+        "bad_frac": 0.0,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 359.62607,
+        "eph_dec_deg": -1.63063,
+        "measured_ra_deg": 359.6263611333381,
+        "measured_dec_deg": -1.6283964631787884,
+        "offset_arcsec": 8.108696781877889,
+        "offset_px": 1.336444717876929,
+        "peak_snr_variance": 30.7270402812476,
+        "peak_mjysr": 4.702047824859619,
+        "background_mjysr": 0.21970805525779724,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W50_1A_0310_4D3_spx_l2b-v27-2026-209__c359.62607_-1.63063_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W50_1A_0810_4",
+        "detector": "D3",
+        "window_id": "2",
+        "mjd": 61020.502733426,
+        "wavelength_um": 1.809102207485112,
+        "bad_frac": 0.48,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 359.62552,
+        "eph_dec_deg": -1.62933,
+        "measured_ra_deg": 359.6260517684039,
+        "measured_dec_deg": -1.6298592657637179,
+        "offset_arcsec": 2.7004108410860814,
+        "offset_px": 0.43467124008730146,
+        "peak_snr_variance": 127.40712665972252,
+        "peak_mjysr": 19.77509117126465,
+        "background_mjysr": 0.32440584897994995,
+        "saturated_pixels_within_centroid": 0,
+        "local_path": "data/raw/neptune/level2_2025W50_1A_0810_4D3_spx_l2b-v27-2026-209__c359.62552_-1.62933_s0.1667.fits"
+      },
+      {
+        "obs_id": "2025W50_2A_0577_3",
+        "detector": "D2",
+        "window_id": "2",
+        "mjd": 61022.673857836,
+        "wavelength_um": 1.0973714132825831,
+        "bad_frac": 0.04,
+        "sat_frac": 0.0,
+        "eph_ra_deg": 359.62747,
+        "eph_dec_deg": -1.62694,
+        "measured_ra_deg": 359.627377472959,
+        "measured_dec_deg": -1.6269518945697825,
+        "offset_arcsec": 0.3357052207856396,
+        "offset_px": 0.05464711273428949,
+        "peak_snr_variance": 243.25936098740118,
+        "peak_mjysr": 142.92799377441406,
+        "background_mjysr": 0.7231064140796661,
+        "saturated_pixels_within_centroid": 1,
+        "local_path": "data/raw/neptune/level2_2025W50_2A_0577_3D2_spx_l2b-v27-2026-210__c359.62747_-1.62694_s0.1667.fits"
+      }
+    ]
+  },
+  "n_combinations": 265,
+  "combinations": [
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.615403850962736
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.615403850962736
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.74543635908977
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.90547636909227
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.615403850962736
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.615403850962736
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.74543635908977
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.89547386846712
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.75543885971493
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.90547636909227
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.6254063515879
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.75543885971493
+    },
+    {
+      "epoch_a_obs_id": "2025W25_1B_0085_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.90547636909227
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.17529382345586
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.32533133283321
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.17529382345586
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.31532883220805
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.17529382345586
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.31532883220805
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.04526131532883
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.17529382345586
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0500_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.32533133283321
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.99524881220305
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.99524881220305
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.99524881220305
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.12528132033008
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 41.26531632908227
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.99524881220305
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.00525131282821
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.99524881220305
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.12528132033008
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.27531882970743
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.985246311577896
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.99524881220305
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.985246311577896
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.115278819704926
+    },
+    {
+      "epoch_a_obs_id": "2025W25_2A_0613_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 41.26531632908227
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.94523630907727
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.94523630907727
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.94523630907727
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.075268817204304
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.225306326581645
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.95523880970242
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.95523880970242
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.94523630907727
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.075268817204304
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.225306326581645
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.94523630907727
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.95523880970242
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.94523630907727
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.075268817204304
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_3",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.225306326581645
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.965241310327585
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.965241310327585
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.965241310327585
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.08527131782945
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0030_4",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.2353088272068
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.925231307826955
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.925231307826955
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.925231307826955
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.05526381595399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_1",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.205301325331334
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.925231307826955
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.93523380845211
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.925231307826955
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.05526381595399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0089_2",
+      "epoch_a_detector": "D1",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.205301325331334
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.965241310327585
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.10527631907977
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.965241310327585
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 41.10527631907977
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.965241310327585
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.115278819704926
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.835208802200555
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.965241310327585
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0318_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.115278819704926
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.725181295323836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.725181295323836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.725181295323836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.855213803450866
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.00525131282821
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.725181295323836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.735183795948984
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.725181295323836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.855213803450866
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.00525131282821
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.735183795948984
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.735183795948984
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.735183795948984
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.865216304076014
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 41.01525381345336
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.725181295323836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.735183795948984
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.725181295323836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.855213803450866
+    },
+    {
+      "epoch_a_obs_id": "2025W26_1A_0537_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 41.00525131282821
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.42510627656914
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.42510627656914
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.41510377594399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.54513628407102
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.69517379344836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.41510377594399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.42510627656914
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.41510377594399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.54513628407102
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.69517379344836
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.41510377594399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.41510377594399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.41510377594399
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.54513628407102
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0564_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.685171292823206
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.40510127531883
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.40510127531883
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.52513128282071
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.67516879219805
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.52513128282071
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.66516629157289
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.52513128282071
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.66516629157289
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.39509877469367
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.52513128282071
+    },
+    {
+      "epoch_a_obs_id": "2025W26_2A_0600_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.66516629157289
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.42510627656914
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.57514378594649
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.31507876969242
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.4351087771943
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.58514628657164
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.29507376844211
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.42510627656914
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_3",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.57514378594649
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.31507876969242
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.4351087771943
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0291_4",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.57514378594649
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.872468117029257,
+      "d_fit_static_au": 40.14503625906477
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.872468117029257,
+      "d_fit_static_au": 40.15503875968992
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.872468117029257,
+      "d_fit_static_au": 40.14503625906477
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.8624656164041,
+      "d_fit_static_au": 40.2750687671918
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.8624656164041,
+      "d_fit_static_au": 40.42510627656914
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.99249812453113,
+      "d_fit_static_au": 40.28507126781695
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.99249812453113,
+      "d_fit_static_au": 40.28507126781695
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.99249812453113,
+      "d_fit_static_au": 40.28507126781695
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.982495623905976,
+      "d_fit_static_au": 40.40510127531883
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0384_2",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.97249312328082,
+      "d_fit_static_au": 40.55513878469617
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0473_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.215053763440864
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0473_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.22505626406601
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0473_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.962490622655665,
+      "d_fit_static_au": 40.215053763440864
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0473_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.345086271567894
+    },
+    {
+      "epoch_a_obs_id": "2025W27_1A_0473_1",
+      "epoch_a_detector": "D3",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.48512128032008
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.065016254063515
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.065016254063515
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.065016254063515
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.19504876219055
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.33508377094273
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.2050512628157
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.345086271567894
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.19504876219055
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.345086271567894
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.085021255313826
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.07501875468867
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.2050512628157
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0203_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.35508877219305
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.05501375343836
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.05501375343836
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.05501375343836
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.18504626156539
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.32508127031758
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.05501375343836
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.05501375343836
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.05501375343836
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.18504626156539
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0268_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.32508127031758
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.15503875968992
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.16504126031508
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.045011252813204
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.16504126031508
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.045011252813204
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.16504126031508
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0326_4",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.31507876969242
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0357_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0357_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0357_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0357_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.16504126031508
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0357_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.16504126031508
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_1",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.30507626906727
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.025006251562885
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.95248812203051,
+      "d_fit_static_au": 40.03500875218805
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.025006251562885
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.15503875968992
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_2",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.29507376844211
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_1",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.025006251562885
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_3",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.025006251562885
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0310_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.942485621405353,
+      "d_fit_static_au": 40.025006251562885
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_1A_0810_4",
+      "epoch_b_detector": "D3",
+      "d_fit_circular_au": 29.932483120780194,
+      "d_fit_static_au": 40.14503625906477
+    },
+    {
+      "epoch_a_obs_id": "2025W27_2A_0358_3",
+      "epoch_a_detector": "D2",
+      "epoch_b_obs_id": "2025W50_2A_0577_3",
+      "epoch_b_detector": "D2",
+      "d_fit_circular_au": 29.92248062015504,
+      "d_fit_static_au": 40.29507376844211
+    }
+  ],
+  "circular": {
+    "n_combinations": 265,
+    "median_d_fit_au": 29.95248812203051,
+    "p16_p84_au": [
+      29.932483120780194,
+      29.962490622655665
+    ],
+    "error_pct": 0.21564491688982754
+  },
+  "static": {
+    "n_combinations": 265,
+    "median_d_fit_au": 40.58514628657164,
+    "p16_p84_au": [
+      40.14503625906477,
+      41.10527631907977
+    ],
+    "error_pct": 35.79060920029403
+  },
+  "by_same_detector": {
+    "D1": {
+      "circular": {
+        "n_combinations": 0,
+        "median_d_fit_au": null,
+        "p16_p84_au": null,
+        "error_pct": null
+      },
+      "static": {
+        "n_combinations": 0,
+        "median_d_fit_au": null,
+        "p16_p84_au": null,
+        "error_pct": null
+      }
+    },
+    "D2": {
+      "circular": {
+        "n_combinations": 18,
+        "median_d_fit_au": 29.932483120780194,
+        "p16_p84_au": [
+          29.92248062015504,
+          29.95248812203051
+        ],
+        "error_pct": 0.14871177618727227
+      },
+      "static": {
+        "n_combinations": 18,
+        "median_d_fit_au": 40.32508127031758,
+        "p16_p84_au": [
+          40.30507626906727,
+          41.00525131282821
+        ],
+        "error_pct": 34.92047837116091
+      }
+    },
+    "D3": {
+      "circular": {
+        "n_combinations": 72,
+        "median_d_fit_au": 29.95248812203051,
+        "p16_p84_au": [
+          29.932483120780194,
+          29.97249312328082
+        ],
+        "error_pct": 0.21564491688982754
+      },
+      "static": {
+        "n_combinations": 72,
+        "median_d_fit_au": 40.41010252563141,
+        "p16_p84_au": [
+          40.30507626906727,
+          40.835208802200555
+        ],
+        "error_pct": 35.20494421914673
+      }
+    }
+  },
+  "elapsed_seconds": 182.9,
+  "by_epoch_detector": {
+    "D1": {
+      "epoch_a_circular": {
+        "n_combinations": 85,
+        "median_d_fit_au": 29.95248812203051,
+        "p16_p84_au": [
+          29.942485621405353,
+          29.962490622655665
+        ],
+        "error_pct": 0.21564491688982754
+      },
+      "epoch_a_static": {
+        "n_combinations": 85,
+        "median_d_fit_au": 41.075268817204304,
+        "p16_p84_au": [
+          40.95523880970242,
+          41.6254063515879
+        ],
+        "error_pct": 37.43047114750646
+      },
+      "epoch_b_circular": {
+        "n_combinations": 0,
+        "median_d_fit_au": null,
+        "p16_p84_au": null,
+        "error_pct": null
+      },
+      "epoch_b_static": {
+        "n_combinations": 0,
+        "median_d_fit_au": null,
+        "p16_p84_au": null,
+        "error_pct": null
+      }
+    },
+    "D2": {
+      "epoch_a_circular": {
+        "n_combinations": 90,
+        "median_d_fit_au": 29.942485621405353,
+        "p16_p84_au": [
+          29.932483120780194,
+          29.95248812203051
+        ],
+        "error_pct": 0.18217834653855586
+      },
+      "epoch_a_static": {
+        "n_combinations": 90,
+        "median_d_fit_au": 40.160040010002504,
+        "p16_p84_au": [
+          40.03500875218805,
+          40.725181295323836
+        ],
+        "error_pct": 34.368279960364895
+      },
+      "epoch_b_circular": {
+        "n_combinations": 53,
+        "median_d_fit_au": 29.942485621405353,
+        "p16_p84_au": [
+          29.92248062015504,
+          29.95248812203051
+        ],
+        "error_pct": 0.18217834653855586
+      },
+      "epoch_b_static": {
+        "n_combinations": 53,
+        "median_d_fit_au": 40.69517379344836,
+        "p16_p84_au": [
+          40.32508127031758,
+          41.27211802950738
+        ],
+        "error_pct": 36.158741474158035
+      }
+    },
+    "D3": {
+      "epoch_a_circular": {
+        "n_combinations": 90,
+        "median_d_fit_au": 29.95248812203051,
+        "p16_p84_au": [
+          29.932483120780194,
+          29.97249312328082
+        ],
+        "error_pct": 0.21564491688982754
+      },
+      "epoch_a_static": {
+        "n_combinations": 90,
+        "median_d_fit_au": 40.42510627656914,
+        "p16_p84_au": [
+          40.30507626906727,
+          40.835208802200555
+        ],
+        "error_pct": 35.25514407467363
+      },
+      "epoch_b_circular": {
+        "n_combinations": 212,
+        "median_d_fit_au": 29.95248812203051,
+        "p16_p84_au": [
+          29.942485621405353,
+          29.962490622655665
+        ],
+        "error_pct": 0.21564491688982754
+      },
+      "epoch_b_static": {
+        "n_combinations": 212,
+        "median_d_fit_au": 40.52513128282071,
+        "p16_p84_au": [
+          40.07501875468867,
+          41.04526131532883
+        ],
+        "error_pct": 35.58980977818639
+      }
+    }
+  }
+}

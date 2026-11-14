@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import argparse
 import json
 import math
 import re
@@ -243,5 +244,167 @@ def run():
     return result
 
 
+def _measure_local_cutout(row, local_root):
+    """Apply the B-lite centroid rule to one Data Eng Neptune cutout."""
+    path = local_root / str(row["local_path"])
+    if not path.is_file():
+        raise FileNotFoundError(f"local cutout does not exist: {path}")
+    with fits.open(path, memmap=False) as hdul:
+        image_hdu, flag_hdu, var_hdu = hdul["IMAGE"], hdul["FLAGS"], hdul["VARIANCE"]
+        image = np.asarray(image_hdu.data, dtype=float)
+        flags = np.asarray(flag_hdu.data)
+        variance = np.asarray(var_hdu.data, dtype=float)
+        wcs = __import__("astropy.wcs", fromlist=["WCS"]).WCS(image_hdu.header, fobj=hdul).celestial
+        flag_header = flag_hdu.header.copy()
+    rae, dece = float(row["eph_ra"]), float(row["eph_dec"])
+    ex, ey = wcs.world_to_pixel(SkyCoord(rae*u.deg, dece*u.deg))
+    yy, xx = np.mgrid[:image.shape[0], :image.shape[1]]
+    rr = np.hypot(xx-float(ex), yy-float(ey))
+    finite = np.isfinite(image)
+    ann = (rr >= 10) & (rr <= 20) & finite
+    search = (rr <= 10) & finite
+    if not np.any(ann) or not np.any(search):
+        raise RuntimeError(f"cutout lacks finite search/background pixels: {path}")
+    background = float(np.median(image[ann]))
+    peak_map = np.where(search, image-background, -np.inf)
+    py, px = np.unravel_index(int(np.argmax(peak_map)), peak_map.shape)
+    centroid = (np.hypot(xx-px, yy-py) <= 3) & finite
+    weight = np.where(centroid, np.maximum(image-background, 0), 0)
+    if float(weight.sum()) <= 0:
+        raise RuntimeError(f"non-positive centroid weights: {path}")
+    cx, cy = float(np.sum(weight*xx)/weight.sum()), float(np.sum(weight*yy)/weight.sum())
+    measured = wcs.pixel_to_world(cx, cy)
+    dx, dy = cx-float(ex), cy-float(ey)
+    sat_mask = _saturation_mask(flag_header, flags)
+    vp = float(variance[py, px])
+    snr = (float(image[py, px])-background)/math.sqrt(vp) if np.isfinite(vp) and vp > 0 else None
+    return {"obs_id": row["obs_id"], "detector": f"D{int(row['detector'])}",
+            "window_id": row["window_id"], "mjd": float(row["mjd"]),
+            "wavelength_um": float(row["wavelength_um"]), "bad_frac": float(row["bad_frac"]),
+            "sat_frac": float(row["sat_frac"]), "eph_ra_deg": rae, "eph_dec_deg": dece,
+            "measured_ra_deg": float(measured.ra.deg), "measured_dec_deg": float(measured.dec.deg),
+            "offset_arcsec": float(ang_sep_deg(rae, dece, measured.ra.deg, measured.dec.deg)*3600),
+            "offset_px": float(np.hypot(dx, dy)), "peak_snr_variance": snr,
+            "peak_mjysr": float(image[py, px]), "background_mjysr": background,
+            "saturated_pixels_within_centroid": int(np.count_nonzero(sat_mask & centroid)),
+            "local_path": str(row["local_path"])}
+
+
+def _fit_local_grid(a_rows, b_rows, d_grid, orbit):
+    """Vectorized evaluation of fit_distance's same predict-and-minimize grid."""
+    by_a = {}
+    t_b = Time([float(b["mjd"]) for b in b_rows], format="mjd", scale="utc")
+    for ia, a in enumerate(a_rows):
+        pred_stack = np.empty((len(d_grid), len(b_rows), 2), dtype=float)
+        ta = Time(float(a["mjd"]), format="mjd", scale="utc")
+        for j, d in enumerate(d_grid):
+            pred_stack[j] = predict_radec(float(a["measured_ra_deg"]), float(a["measured_dec_deg"]),
+                                          ta, float(d), t_b, orbit)
+        for ib, b in enumerate(b_rows):
+            miss = ang_sep_deg(pred_stack[:, ib, 0], pred_stack[:, ib, 1],
+                               float(b["measured_ra_deg"]), float(b["measured_dec_deg"])) * 3600
+            ix = int(np.nanargmin(miss))
+            by_a[(ia, ib)] = float(d_grid[ix])
+    return by_a
+
+
+def _stats(values, truth):
+    vals = np.asarray(values, dtype=float)
+    if vals.size == 0:
+        return {"n_combinations": 0, "median_d_fit_au": None, "p16_p84_au": None, "error_pct": None}
+    median = float(np.median(vals))
+    return {"n_combinations": int(vals.size), "median_d_fit_au": median,
+            "p16_p84_au": [float(x) for x in np.percentile(vals, [16, 84])],
+            "error_pct": float(100*(median-truth)/truth)}
+
+
+def run_neptune_all_local():
+    """All quality-approved local Neptune cutouts; no network access."""
+    local_root = Path.home() / "nasa-spherex"
+    epochs_path = local_root / "data/meta/neptune/epochs.csv"
+    with epochs_path.open(newline="") as f:
+        raw = list(csv.DictReader(f))
+    valid, skipped = [], []
+    for row in raw:
+        if row["status"] != "ok" or float(row["bad_frac"]) > 0.5:
+            skipped.append({"obs_id": row["obs_id"], "status": row["status"],
+                            "bad_frac": float(row["bad_frac"])})
+        else:
+            valid.append(row)
+    exposures = {"1": [], "2": []}
+    errors = []
+    for i, row in enumerate(valid, 1):
+        _check_time()
+        try:
+            exposures[row["window_id"]].append(_measure_local_cutout(row, local_root))
+        except Exception as exc:
+            errors.append({"obs_id": row["obs_id"], "error": f"{type(exc).__name__}: {exc}"})
+        if i % 10 == 0:
+            print(f"Local Neptune exposures {i}/{len(valid)} measured/attempted")
+    if not exposures["1"] or not exposures["2"]:
+        raise RuntimeError(f"No usable epochs after local cutout reads: A={len(exposures['1'])} B={len(exposures['2'])}")
+    exposures["1"].sort(key=lambda x: (x["mjd"], x["detector"]))
+    exposures["2"].sort(key=lambda x: (x["mjd"], x["detector"]))
+    with (POC/"windows_neptune.csv").open(newline="") as f:
+        win={r["window_id"]:r for r in csv.DictReader(f)}
+    truth=float(np.mean([float(win["1"]["r_au"]),float(win["2"]["r_au"])]))
+    grid=np.linspace(20.0,60.0,4000)
+    step=float(grid[1]-grid[0])
+    print(f"Grid: 4000 linear points 20–60 AU; step={step:.12f} AU")
+    circ=_fit_local_grid(exposures["1"],exposures["2"],grid,"circular")
+    static=_fit_local_grid(exposures["1"],exposures["2"],grid,"static")
+    pairs=[]
+    for (ia,ib),d in circ.items():
+        pairs.append({"epoch_a_obs_id":exposures["1"][ia]["obs_id"],
+                      "epoch_a_detector":exposures["1"][ia]["detector"],
+                      "epoch_b_obs_id":exposures["2"][ib]["obs_id"],
+                      "epoch_b_detector":exposures["2"][ib]["detector"],
+                      "d_fit_circular_au":d,"d_fit_static_au":static[(ia,ib)]})
+    by_detector={}
+    for det in ("D1","D2","D3"):
+        subset=[p for p in pairs if p["epoch_a_detector"]==det and p["epoch_b_detector"]==det]
+        by_detector[det]={"circular":_stats([p["d_fit_circular_au"] for p in subset],truth),
+                          "static":_stats([p["d_fit_static_au"] for p in subset],truth)}
+    by_epoch_detector={}
+    for det in ("D1","D2","D3"):
+        a_subset=[p for p in pairs if p["epoch_a_detector"]==det]
+        b_subset=[p for p in pairs if p["epoch_b_detector"]==det]
+        by_epoch_detector[det]={
+            "epoch_a_circular":_stats([p["d_fit_circular_au"] for p in a_subset],truth),
+            "epoch_a_static":_stats([p["d_fit_static_au"] for p in a_subset],truth),
+            "epoch_b_circular":_stats([p["d_fit_circular_au"] for p in b_subset],truth),
+            "epoch_b_static":_stats([p["d_fit_static_au"] for p in b_subset],truth)}
+    offsets=[x["offset_arcsec"] for e in exposures.values() for x in e]
+    result={"body":"neptune","truth_r_au":truth,"truth_source":"mean r_au in windows_neptune.csv, windows 1 and 2",
+            "n_input_rows":len(raw),"n_quality_skipped":len(skipped),"quality_skipped":skipped,
+            "measurement_errors":errors,"fit_grid":{"n":4000,"min_au":20.0,"max_au":60.0,"step_au":step},
+            "per_exposure_offset_arcsec":{"median":float(np.median(offsets)),"max":float(np.max(offsets))},
+            "exposures":exposures,"n_combinations":len(pairs),"combinations":pairs,
+            "circular":_stats([p["d_fit_circular_au"] for p in pairs],truth),
+            "static":_stats([p["d_fit_static_au"] for p in pairs],truth),
+            "by_same_detector":by_detector,"by_epoch_detector":by_epoch_detector,
+            "elapsed_seconds":round(time.monotonic()-START,1)}
+    OUT.mkdir(parents=True,exist_ok=True)
+    (OUT/"astrometric_distance_all.json").write_text(json.dumps(result,indent=2,allow_nan=False)+"\n")
+    fig,ax=plt.subplots(figsize=(10,6),facecolor="white")
+    ax.hist([p["d_fit_circular_au"] for p in pairs],bins=36,alpha=.68,label="Circular orbit",color="#087e8b")
+    ax.hist([p["d_fit_static_au"] for p in pairs],bins=36,alpha=.55,label="Parallax-only",color="#d1495b")
+    ax.axvline(truth,color="#222222",ls="--",lw=2,label=f"Neptune truth {truth:.2f} AU")
+    ax.set_xlabel("Fitted heliocentric distance (AU)",fontsize=14);ax.set_ylabel("Exposure combinations",fontsize=14)
+    ax.set_title("Neptune astrometric distance from all local SPHEREx cutouts",fontsize=16)
+    ax.legend(fontsize=12);ax.grid(axis="y",alpha=.2);fig.tight_layout()
+    fig.savefig(OUT/"astrometric_hist_all.png",dpi=170,facecolor="white");plt.close(fig)
+    print("ALL-LOCAL SUMMARY",json.dumps({"truth_au":truth,"n_combinations":len(pairs),
+          "circular":result["circular"],"static":result["static"],"by_same_detector":by_detector,
+          "offset_median_max_arcsec":result["per_exposure_offset_arcsec"],"elapsed_s":result["elapsed_seconds"]}))
+    return result
+
+
 if __name__ == "__main__":
-    run()
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--all-local",action="store_true",help="fit all local Neptune meta cutouts")
+    args=parser.parse_args()
+    if args.all_local:
+        run_neptune_all_local()
+    else:
+        run()
