@@ -1,4 +1,4 @@
-"""Validate and write version 1.0 static field manifests."""
+"""Validate and write versioned static field manifests."""
 
 from __future__ import annotations
 
@@ -8,15 +8,23 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from jsonschema import Draft202012Validator
+from PIL import Image
 
 from .pairs import trust_of
 
-SCHEMA_PATH = Path(__file__).resolve().parents[1] / "schema/field_v1.schema.json"
+SCHEMA_ROOT = Path(__file__).resolve().parents[1] / "schema"
+SCHEMA_PATHS = {
+    "1.0": SCHEMA_ROOT / "field_v1.schema.json",
+    "1.1": SCHEMA_ROOT / "field_v1_1.schema.json",
+}
 
 
 def validate_field(field: dict, outdir: Path | None = None, *, real_build: bool = False) -> None:
     """Reject schema, reference, asset, and provenance errors with JSON paths."""
-    schema = json.loads(SCHEMA_PATH.read_text())
+    version = field.get("schema_version")
+    if version not in SCHEMA_PATHS:
+        raise ValueError("$.schema_version: unsupported version")
+    schema = json.loads(SCHEMA_PATHS[version].read_text())
     error = next(iter(Draft202012Validator(schema).iter_errors(field)), None)
     if error:
         path = "$" + "".join(f"[{part}]" if isinstance(part, int) else f".{part}" for part in error.path)
@@ -40,6 +48,10 @@ def validate_field(field: dict, outdir: Path | None = None, *, real_build: bool 
             raise ValueError(f"{prefix}.source_url: real frame needs an HTTPS source")
         if outdir is not None and not (outdir / frame["png"]).is_file():
             raise ValueError(f"{prefix}.png: missing asset {frame['png']}")
+        if version == "1.1" and outdir is not None:
+            with Image.open(outdir / frame["png"]) as image:
+                if image.size != (frame["width_px"], frame["height_px"]):
+                    raise ValueError(f"{prefix}.png: dimensions differ from frame metadata")
     for index, pair in enumerate(field["pairs"]):
         prefix = f"$.pairs[{index}]"
         if pair["a"] == pair["b"] or pair["a"] not in ids or pair["b"] not in ids:
@@ -48,6 +60,14 @@ def validate_field(field: dict, outdir: Path | None = None, *, real_build: bool 
             raise ValueError(f"{prefix}: pair metrics must be finite")
         if pair["trust"] != trust_of(pair["dlambda_frac"]):
             raise ValueError(f"{prefix}.trust: inconsistent with dlambda_frac")
+        if "diff_png" in pair and outdir is not None:
+            path = outdir / pair["diff_png"]
+            if not path.is_file():
+                raise ValueError(f"{prefix}.diff_png: missing asset {pair['diff_png']}")
+            with Image.open(path) as image:
+                frame = next(frame for frame in field["frames"] if frame["id"] == pair["a"])
+                if image.size != (frame["width_px"], frame["height_px"]):
+                    raise ValueError(f"{prefix}.diff_png: dimensions differ from frame")
     if field["kind"] == "dial":
         dial = field["dial"]
         if dial["reference_frame"] not in ids or any(step["frame"] not in ids for step in dial["steps"]):

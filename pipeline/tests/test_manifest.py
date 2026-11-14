@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
 from pipeline.spx.manifest import update_index, validate_field, write_field
 
@@ -53,3 +54,74 @@ def test_wrong_trust_and_real_fixture(field: tuple[dict, Path]) -> None:
     sample["pairs"][0]["trust"] = "high"
     with pytest.raises(ValueError, match="synthetic"):
         validate_field(sample, directory, real_build=True)
+
+
+@pytest.mark.parametrize("location", ["description", "doi", "band"])
+def test_nonempty_text(field: tuple[dict, Path], location: str) -> None:
+    sample, directory = field
+    if location == "description":
+        sample["description"] = ""
+    elif location == "doi":
+        sample["provenance"]["doi"] = ""
+    else:
+        sample["frames"][0]["band"] = ""
+    with pytest.raises(ValueError):
+        validate_field(sample, directory)
+
+
+@pytest.mark.parametrize("change", ["duplicate", "same", "trust", "source"])
+def test_semantic_rejections(field: tuple[dict, Path], change: str) -> None:
+    sample, directory = field
+    if change == "duplicate":
+        sample["frames"][1]["id"] = sample["frames"][0]["id"]
+    elif change == "same":
+        sample["pairs"][0]["b"] = sample["pairs"][0]["a"]
+    elif change == "trust":
+        sample["pairs"][0]["dlambda_frac"] = 0.5
+    else:
+        sample["provenance"]["synthetic"] = False
+    with pytest.raises(ValueError):
+        validate_field(sample, directory)
+
+
+def test_v1_1_dimensions_and_diff(field: tuple[dict, Path]) -> None:
+    sample, directory = field
+    sample["schema_version"] = "1.1"
+    for frame in sample["frames"]:
+        Image.new("RGB", (3, 4)).save(directory / frame["png"])
+        frame.update(width_px=3, height_px=4)
+    pair = sample["pairs"][0]
+    pair["diff_png"] = f"diff/{pair['a']}-{pair['b']}.png"
+    (directory / "diff").mkdir()
+    Image.new("RGB", (3, 4)).save(directory / pair["diff_png"])
+    validate_field(sample, directory)
+    sample["frames"][0]["width_px"] = 2
+    with pytest.raises(ValueError, match="dimensions"):
+        validate_field(sample, directory)
+    sample["frames"][0]["width_px"] = 3
+    Image.new("RGB", (4, 4)).save(directory / pair["diff_png"])
+    with pytest.raises(ValueError, match="diff_png"):
+        validate_field(sample, directory)
+
+
+def test_dial_bounds(field: tuple[dict, Path]) -> None:
+    sample, directory = field
+    sample["kind"] = "dial"
+    sample["dial"] = {
+        "reference_frame": sample["frames"][0]["id"], "model": "fixture",
+        "search_radius_px": 1, "steps": [{
+            "distance_au": 1, "frame": sample["frames"][0]["id"],
+            "pred": sample["center"], "snr": 1, "offset_px": 0,
+        }],
+        "peak_distance_au": 1, "truth": {"distance_au": 1, "source": "fixture"},
+        "negative_control_field": "other",
+    }
+    validate_field(sample, directory)
+    for key, value in (("search_radius_px", 0), ("steps", [])):
+        changed = json.loads(json.dumps(sample))
+        changed["dial"][key] = value
+        with pytest.raises(ValueError):
+            validate_field(changed, directory)
+    sample["dial"]["steps"][0]["offset_px"] = -1
+    with pytest.raises(ValueError):
+        validate_field(sample, directory)

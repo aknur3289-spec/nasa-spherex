@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import argparse
+import json
 import subprocess
 import sys
 from collections import Counter
+from datetime import datetime
 from pathlib import Path
 
 import numpy as np
@@ -41,8 +43,9 @@ def _commit() -> str:
 
 def _pairs(honest: pd.DataFrame, naive: pd.DataFrame) -> list[dict]:
     ordered = []
-    for group in (honest.loc[honest["trust"].eq("high")],
-                  honest.loc[honest["trust"].eq("medium")], naive):
+    for trust in ("high", "medium", "low"):
+        group = pd.concat((honest.loc[honest["trust"].eq(trust)],
+                           naive.loc[naive["trust"].eq(trust)]))
         for row in group.to_dict("records"):
             ordered.append({"a": str(row["a"]), "b": str(row["b"]),
                             "dlambda_frac": float(row["dlam_frac"]),
@@ -108,23 +111,27 @@ def build_field(
         render.to_png(image, bad, stretches[row["detector"]], outdir / png)
         frame_records.append({
             "id": frame_id, "png": png, "obs_time_utc": row["obs_time_utc"],
+            "width_px": int(image.shape[1]), "height_px": int(image.shape[0]),
             "mjd": float(row["mjd"]), "survey_pass": int(row["survey_pass"]),
             "detector": int(row["detector"]), "wavelength_um": float(row["wavelength_um"]),
             "center": center, "bad_pixel_fraction": float(row["bad_pixel_fraction"]),
             "stretch": stretches[row["detector"]], "source_url": row["source_url"],
             "obs_id": row["obs_id"], "processing_version": str(row["processing_version"]),
         })
-    for row in honest.to_dict("records"):
-        a, b = str(row["a"]), str(row["b"])
+    for pair in pairs:
+        a, b = pair["a"], pair["b"]
         first, bad_a = projected[a]
         second, bad_b = projected[b]
         noise = np.hypot(float(frames[a]["noise_mad_mjysr"]), float(frames[b]["noise_mad_mjysr"]))
-        render.diff_png(first, second, bad_a | bad_b, outdir / f"diff_{a}_{b}.png", float(noise))
+        diff_png = f"diff/{a}-{b}.png"
+        (outdir / "diff").mkdir(exist_ok=True)
+        render.diff_png(first, second, bad_a | bad_b, outdir / diff_png, float(noise))
+        pair["diff_png"] = diff_png
     best = pairs[0]["a"]
     image, bad = projected[best]
     render.to_png(image, bad, stretches[frames[best]["detector"]], outdir / "thumb.png", scale=2)
     manifest = {
-        "schema_version": "1.0", "field_id": field_id, "kind": "static",
+        "schema_version": "1.1", "field_id": field_id, "kind": "static",
         "title": field["title"], "description": field["description"],
         "center": center, "size_arcmin": size_arcmin, "pixel_scale_arcsec": 6.15,
         "frames": frame_records, "pairs": pairs,
@@ -136,6 +143,17 @@ def build_field(
         },
     }
     write_field(manifest, outdir, real_build=not synthetic)
+    timeline = [
+        {"frame_id": frame["id"], "obs_time_utc": frame["obs_time_utc"], "mjd": frame["mjd"]}
+        for frame in sorted(
+            frame_records,
+            key=lambda item: (datetime.fromisoformat(item["obs_time_utc"].replace("Z", "+00:00")),
+                              item["id"]),
+        )
+    ]
+    temporary = outdir / "timeline.json.tmp"
+    temporary.write_text(json.dumps(timeline, indent=2, allow_nan=False) + "\n")
+    temporary.replace(outdir / "timeline.json")
     update_index(data_root)
     counts = Counter(pair["trust"] for pair in pairs)
     mb = sum(path.stat().st_size for path in outdir.iterdir() if path.is_file()) / 1_000_000
