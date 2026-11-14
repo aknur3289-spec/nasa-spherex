@@ -37,7 +37,9 @@ export function DistanceDial({ field }: { field: Field }) {
     const state = new URLSearchParams(location.hash.split('?')[1]);
     state.set('mode', 'distance');
     state.set('d', String(distance));
-    history.replaceState(null, '', '#/field/' + field.field_id + '?' + state);
+    const route = location.hash.split('?')[0];
+    const base = /^#\/(explore|compare|timelapse)\//.test(route) ? route : '#/field/' + field.field_id;
+    history.replaceState(null, '', base + '?' + state);
   }, [selected, field]);
 
   useEffect(() => {

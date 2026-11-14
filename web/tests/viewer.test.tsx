@@ -32,7 +32,7 @@ test('catalog renders new index entries and hides pending and missing fields', a
   render(<App />);
   expect(await screen.findByText('+2 coming soon')).toBeTruthy();
   const catalog = screen.getByRole('complementary', { name: 'Sky fields' });
-  expect(within(catalog).getAllByRole('link')).toHaveLength(3);
+  expect(within(catalog).getAllByRole('link')).toHaveLength(index.length + 1);
   expect(within(catalog).queryByText('Pending field')).toBeNull();
   expect(within(catalog).queryByText('Missing field')).toBeNull();
   fireEvent.click(within(catalog).getByRole('link', { name: /New field/ }));

@@ -275,10 +275,12 @@ export function Timelapse({
   frames = DEMO_FRAMES,
   title = "PX-0714",
   backdrop,
+  synthetic = true,
   onBack,
 }: {
   frames?: TimelapseFrame[];
   title?: string;
+  synthetic?: boolean;
   backdrop: string; // the site's space image
   onBack?: () => void;
 }) {
@@ -382,7 +384,7 @@ export function Timelapse({
         <div className="title-line">
           <div>
             <span className={`chip ${real ? "success" : "tl-demo-chip"}`}>
-              {real ? "SPHEREx cutouts · IRSA" : "Demo data · illustrative positions"}
+              {synthetic ? "Synthetic demonstration" : "SPHEREx cutouts · IRSA"}
             </span>
             <h1>Timelapse</h1>
             <p>
@@ -518,7 +520,7 @@ export function Timelapse({
             target="_blank"
             rel="noreferrer"
           >
-            Open source file at IRSA ↗
+            {cur.sourceUrl ? "Open source file at IRSA ↗" : "About SPHEREx at IRSA ↗"}
           </a>
         </div>
       </section>

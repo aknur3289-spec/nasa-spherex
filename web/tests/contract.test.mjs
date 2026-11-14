@@ -96,3 +96,22 @@ test('loads a v1.1 field, its difference PNG and timeline, and rejects inconsist
   delete field.frames[0].width_px;
   assert.throws(() => validateField(field, field.field_id), /Invalid frame dimensions/);
 });
+
+test('all three real handoff fields load with their timelines, PNGs and pair differences', async t => {
+  t.mock.method(globalThis, 'fetch', async url => {
+    try { return new Response(readFileSync(new URL('../public' + url, import.meta.url))); }
+    catch { return new Response(null, { status: 404 }); }
+  });
+  for (const [id, count] of [['m101', 32], ['nep', 31], ['ecl', 30]]) {
+    const field = await loadField(id);
+    assert.equal(field.provenance.synthetic, false);
+    assert.equal(field.frames.length, count);
+    assert.equal(field.timeline.length, count);
+    assert.ok(field.pairs.some(pair => pair.trust === 'high' && pair.diff_png));
+    for (const frame of field.frames) {
+      const png = readFileSync(new URL('../public/data/' + id + '/' + frame.png, import.meta.url));
+      assert.equal(png.readUInt32BE(16), frame.width_px);
+      assert.equal(png.readUInt32BE(20), frame.height_px);
+    }
+  }
+});
