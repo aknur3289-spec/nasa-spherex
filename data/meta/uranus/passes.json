@@ -1,0 +1,32 @@
+{
+  "ephemeris_source": "JPL Horizons",
+  "location": "500",
+  "search_start_utc": "2025-05-01",
+  "search_end_utc": "2026-10-01",
+  "passes": [
+    {
+      "window_id": 1,
+      "side": "west",
+      "center_utc": "2026-08-28T22:00:00.000",
+      "start_utc": "2026-08-18T22:00:00.000",
+      "end_utc": "2026-09-07T22:00:00.000",
+      "center_mjd": 61280.916666666664,
+      "start_mjd": 61270.916666666664,
+      "end_mjd": 61290.916666666664,
+      "elong_deg": 89.9875,
+      "delta_au": 19.4211485640427
+    },
+    {
+      "window_id": 2,
+      "side": "east",
+      "center_utc": "2026-02-15T20:00:00.000",
+      "start_utc": "2026-02-05T20:00:00.000",
+      "end_utc": "2026-02-25T20:00:00.000",
+      "center_mjd": 61086.833333333336,
+      "start_mjd": 61076.833333333336,
+      "end_mjd": 61096.833333333336,
+      "elong_deg": 90.0011,
+      "delta_au": 19.4569855320714
+    }
+  ]
+}
