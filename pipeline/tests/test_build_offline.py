@@ -76,6 +76,9 @@ fields:
     outdir = Path("web/public/data/tiny")
     assert manifest["schema_version"] == "1.1"
     assert manifest["provenance"]["downloaded_utc"] == "2026-11-14T08:00:00Z"
+    assert all(frame["collection"] == "spherex_dr1" and
+               frame["downloaded_utc"] == "2026-11-14T08:00:00Z"
+               for frame in manifest["frames"])
     assert all(set(pair) == {"a", "b", "dlambda_frac", "dt_days", "trust", "diff_png"}
                for pair in manifest["pairs"])
     assert [pair["trust"] for pair in manifest["pairs"]] == sorted(

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import math
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -46,6 +47,21 @@ def validate_field(field: dict, outdir: Path | None = None, *, real_build: bool 
         url = urlparse(frame["source_url"])
         if not field["provenance"]["synthetic"] and (url.scheme != "https" or url.netloc == "example.invalid"):
             raise ValueError(f"{prefix}.source_url: real frame needs an HTTPS source")
+        if not field["provenance"]["synthetic"]:
+            for key in ("collection", "downloaded_utc"):
+                if not frame.get(key):
+                    raise ValueError(f"{prefix}.{key}: real frame needs provenance")
+            release = frame["collection"]
+            if release not in {"spherex_dr1", "spherex_qr3"} or f"/spherex/{release.removeprefix('spherex_')}/" not in url.path:
+                raise ValueError(f"{prefix}.collection: must match source_url release")
+            try:
+                downloaded = datetime.fromisoformat(
+                    frame["downloaded_utc"].replace("Z", "+00:00")
+                )
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{prefix}.downloaded_utc: invalid UTC time") from exc
+            if downloaded.utcoffset() is None or downloaded.utcoffset().total_seconds() != 0:
+                raise ValueError(f"{prefix}.downloaded_utc: must be UTC")
         if outdir is not None and not (outdir / frame["png"]).is_file():
             raise ValueError(f"{prefix}.png: missing asset {frame['png']}")
         if version == "1.1" and outdir is not None:

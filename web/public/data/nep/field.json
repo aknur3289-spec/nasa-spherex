@@ -7,12 +7,14 @@
   "field_id": "nep",
   "frames": [
     {
-      "bad_pixel_fraction": 0.039764359351988215,
+      "bad_pixel_fraction": 0.0397643593519882,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:26:15.770276Z",
       "height_px": 99,
       "id": "f004",
       "mjd": 60798.846791944,
@@ -32,12 +34,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04839049021670524,
+      "bad_pixel_fraction": 0.0483904902167052,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:26:29.319945Z",
       "height_px": 99,
       "id": "f005",
       "mjd": 60801.155627569,
@@ -57,12 +61,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.043025457605722704,
+      "bad_pixel_fraction": 0.0430254576057227,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:26:34.470916Z",
       "height_px": 99,
       "id": "f006",
       "mjd": 60804.484737894,
@@ -82,12 +88,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03842149104539775,
+      "bad_pixel_fraction": 0.0384214910453977,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:26:56.210252Z",
       "height_px": 99,
       "id": "f010",
       "mjd": 60814.40593162,
@@ -107,12 +115,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03240058910162003,
+      "bad_pixel_fraction": 0.03240058910162,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:27:03.259758Z",
       "height_px": 99,
       "id": "f011",
       "mjd": 60820.111278356,
@@ -132,12 +142,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.05985693246370713,
+      "bad_pixel_fraction": 0.0598569324637071,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:27:31.169055Z",
       "height_px": 99,
       "id": "f012",
       "mjd": 60822.627395347,
@@ -157,12 +169,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04123281965847563,
+      "bad_pixel_fraction": 0.0412328196584756,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:28:38.047452Z",
       "height_px": 99,
       "id": "f027",
       "mjd": 60867.737942164,
@@ -182,12 +196,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.037380258225739274,
+      "bad_pixel_fraction": 0.0373802582257392,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:28:55.484185Z",
       "height_px": 99,
       "id": "f031",
       "mjd": 60878.601628657,
@@ -207,12 +223,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03881758889122659,
+      "bad_pixel_fraction": 0.0388175888912265,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:29:34.086623Z",
       "height_px": 99,
       "id": "f039",
       "mjd": 60898.577963947,
@@ -232,12 +250,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04154518950437318,
+      "bad_pixel_fraction": 0.0415451895043731,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:47:51.054541Z",
       "height_px": 99,
       "id": "f040",
       "mjd": 60900.88763691,
@@ -257,12 +277,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03292657269093204,
+      "bad_pixel_fraction": 0.032926572690932,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:31:38.133932Z",
       "height_px": 99,
       "id": "f063",
       "mjd": 60964.669661644,
@@ -282,12 +304,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.06716973110851313,
+      "bad_pixel_fraction": 0.0671697311085131,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:31:53.391317Z",
       "height_px": 99,
       "id": "f064",
       "mjd": 60967.247425509,
@@ -307,12 +331,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.047720267828674674,
+      "bad_pixel_fraction": 0.0477202678286746,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:32:27.702357Z",
       "height_px": 99,
       "id": "f069",
       "mjd": 60980.288703715,
@@ -332,12 +358,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.042394277298548284,
+      "bad_pixel_fraction": 0.0423942772985482,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:32:44.036410Z",
       "height_px": 99,
       "id": "f071",
       "mjd": 60985.176709306,
@@ -357,12 +385,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.05396591626341258,
+      "bad_pixel_fraction": 0.0539659162634125,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:48:15.064048Z",
       "height_px": 99,
       "id": "f072",
       "mjd": 60987.893164086,
@@ -382,12 +412,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.039046230737192836,
+      "bad_pixel_fraction": 0.0390462307371928,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:35:03.138542Z",
       "height_px": 99,
       "id": "f089",
       "mjd": 61049.611898356,
@@ -407,12 +439,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04639175257731959,
+      "bad_pixel_fraction": 0.0463917525773195,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:35:40.929272Z",
       "height_px": 99,
       "id": "f090",
       "mjd": 61052.126898623,
@@ -432,12 +466,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.038317367763431906,
+      "bad_pixel_fraction": 0.0383173677634319,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:35:13.746010Z",
       "height_px": 99,
       "id": "f092",
       "mjd": 61058.235407894,
@@ -457,12 +493,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.05196717862402693,
+      "bad_pixel_fraction": 0.0519671786240269,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:36:14.314861Z",
       "height_px": 99,
       "id": "f098",
       "mjd": 61076.639936991,
@@ -482,12 +520,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03529779258642232,
+      "bad_pixel_fraction": 0.0352977925864223,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:36:53.077846Z",
       "height_px": 99,
       "id": "f104",
       "mjd": 61093.268949491,
@@ -503,16 +543,18 @@
         "unit": "MJy/sr"
       },
       "survey_pass": 2,
-      "wavelength_um": 1.1972361848434079,
+      "wavelength_um": 1.197236184843408,
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.027561540079949504,
+      "bad_pixel_fraction": 0.0275615400799495,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:37:09.573890Z",
       "height_px": 99,
       "id": "f109",
       "mjd": 61105.968854282,
@@ -537,7 +579,9 @@
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:37:11.622153Z",
       "height_px": 99,
       "id": "f110",
       "mjd": 61108.744927419,
@@ -557,12 +601,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.049126867241742055,
+      "bad_pixel_fraction": 0.049126867241742,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:38:03.291191Z",
       "height_px": 99,
       "id": "f115",
       "mjd": 61124.904747419,
@@ -582,12 +628,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04102671996633705,
+      "bad_pixel_fraction": 0.041026719966337,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:38:56.359559Z",
       "height_px": 99,
       "id": "f124",
       "mjd": 61149.957887523,
@@ -603,7 +651,7 @@
         "unit": "MJy/sr"
       },
       "survey_pass": 2,
-      "wavelength_um": 2.0673262547793114,
+      "wavelength_um": 2.067326254779311,
       "width_px": 99
     },
     {
@@ -612,7 +660,9 @@
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:39:06.291588Z",
       "height_px": 99,
       "id": "f125",
       "mjd": 61152.876648414,
@@ -632,12 +682,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04166223828249548,
+      "bad_pixel_fraction": 0.0416622382824954,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:39:17.675232Z",
       "height_px": 99,
       "id": "f127",
       "mjd": 61159.79735206,
@@ -657,12 +709,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04586576898800757,
+      "bad_pixel_fraction": 0.0458657689880075,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:39:59.345668Z",
       "height_px": 99,
       "id": "f130",
       "mjd": 61168.014612824,
@@ -682,12 +736,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.05112560488112771,
+      "bad_pixel_fraction": 0.0511256048811277,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_qr3",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:44:52.117865Z",
       "height_px": 99,
       "id": "f144",
       "mjd": 61234.610098565,
@@ -707,12 +763,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.044956956105856094,
+      "bad_pixel_fraction": 0.044956956105856,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_qr3",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:46:51.752979Z",
       "height_px": 99,
       "id": "f152",
       "mjd": 61257.964279942,
@@ -732,12 +790,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03082263833368399,
+      "bad_pixel_fraction": 0.0308226383336839,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_qr3",
       "detector": 1,
+      "downloaded_utc": "2026-11-14T09:50:30.718194Z",
       "height_px": 99,
       "id": "f155",
       "mjd": 61299.227917269,
@@ -757,12 +817,14 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.035285365075991074,
+      "bad_pixel_fraction": 0.035285365075991,
       "center": {
         "dec_deg": 66.56072,
         "ra_deg": 270.0
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:50:46.763827Z",
       "height_px": 99,
       "id": "f159",
       "mjd": 61312.666827188,
@@ -796,7 +858,7 @@
       "a": "f040",
       "b": "f104",
       "diff_png": "diff/f040-f104.png",
-      "dlambda_frac": 6.855173478779228e-06,
+      "dlambda_frac": 6.855173478964693e-06,
       "dt_days": 192.38131258099747,
       "trust": "high"
     },
@@ -876,7 +938,7 @@
       "a": "f072",
       "b": "f124",
       "diff_png": "diff/f072-f124.png",
-      "dlambda_frac": 0.02304569811427458,
+      "dlambda_frac": 0.023045698114274798,
       "dt_days": 162.06472343699716,
       "trust": "medium"
     },
@@ -940,7 +1002,7 @@
     "doi": "[DOI from IRSA release page]",
     "downloaded_utc": "2026-11-14T09:50:46.763827Z",
     "mission": "SPHEREx",
-    "pipeline_commit": "362a7bc",
+    "pipeline_commit": "551a0b2",
     "synthetic": false
   },
   "schema_version": "1.1",

@@ -1,5 +1,9 @@
 # SPHEREx data
 
+## Frame download provenance
+
+For published static fields, each frame records its collection and its own `downloaded_utc`. The value comes from the matching `data/meta/<field>/raw_index.csv` row, carried through `epochs.csv`, and is normalized to UTC. If that row has no recorded download time, the offline epoch builder uses the cached FITS file's modification time in UTC. This is a filesystem fallback, not an archive download timestamp. All 93 currently published `m101`, `nep`, and `ecl` frames had recorded download times; no mtime fallback was used for them.
+
 ## Discovery results
 
 - Live run: 2026-11-14 08:44 UTC; TAP and SIA2 both worked from this machine.

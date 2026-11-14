@@ -32,6 +32,34 @@ def test_missing_source_url(field: tuple[dict, Path]) -> None:
         validate_field(sample, directory)
 
 
+@pytest.mark.parametrize("missing", ["collection", "downloaded_utc"])
+def test_real_frame_requires_own_provenance(field: tuple[dict, Path], missing: str) -> None:
+    sample, _ = field
+    sample["schema_version"] = "1.1"
+    sample["provenance"]["synthetic"] = False
+    for frame in sample["frames"]:
+        frame.update(width_px=3, height_px=4, collection="spherex_dr1",
+                     downloaded_utc="2026-11-14T08:00:00Z",
+                     source_url="https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/test.fits")
+    validate_field(sample)
+    del sample["frames"][0][missing]
+    with pytest.raises(ValueError, match=rf"\$\.frames\[0\]\.{missing}"):
+        validate_field(sample)
+
+
+def test_real_collection_matches_source_url(field: tuple[dict, Path]) -> None:
+    sample, _ = field
+    sample["schema_version"] = "1.1"
+    sample["provenance"]["synthetic"] = False
+    for frame in sample["frames"]:
+        frame.update(width_px=3, height_px=4, collection="spherex_dr1",
+                     downloaded_utc="2026-11-14T08:00:00Z",
+                     source_url="https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/test.fits")
+    sample["frames"][0]["collection"] = "spherex_qr3"
+    with pytest.raises(ValueError, match=r"\$\.frames\[0\]\.collection"):
+        validate_field(sample)
+
+
 def test_missing_pair_endpoint(field: tuple[dict, Path]) -> None:
     sample, directory = field
     sample["pairs"][0]["b"] = "absent"

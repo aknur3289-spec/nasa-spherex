@@ -41,6 +41,14 @@ def _commit() -> str:
     return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
 
 
+def _downloaded_utc(value: str) -> str:
+    """Normalize a recorded, timezone-aware download timestamp to UTC."""
+    stamp = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if stamp.tzinfo is None:
+        raise ValueError("downloaded_utc must include a UTC offset")
+    return stamp.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
 def _pairs(honest: pd.DataFrame, naive: pd.DataFrame) -> list[dict]:
     ordered = []
     for trust in ("high", "medium", "low"):
@@ -117,6 +125,8 @@ def build_field(
             "center": center, "bad_pixel_fraction": float(row["bad_pixel_fraction"]),
             "stretch": stretches[row["detector"]], "source_url": row["source_url"],
             "obs_id": row["obs_id"], "processing_version": str(row["processing_version"]),
+            "collection": str(row["collection"]),
+            "downloaded_utc": _downloaded_utc(str(row["downloaded_utc"])),
         })
     for pair in pairs:
         a, b = pair["a"], pair["b"]
@@ -139,10 +149,7 @@ def build_field(
             "mission": "SPHEREx", "archive": "NASA/IPAC IRSA",
             "collections": sorted({str(row["collection"]) for row in frames.values()}),
             "doi": str(field.get("doi", "")),
-            "downloaded_utc": max(
-                datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(timezone.utc)
-                for value in downloads
-            ).isoformat().replace("+00:00", "Z"),
+            "downloaded_utc": max(_downloaded_utc(value) for value in downloads),
             "pipeline_commit": _commit(), "cached": True, "synthetic": synthetic,
         },
     }

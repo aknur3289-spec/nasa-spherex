@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import logging
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -175,6 +176,10 @@ def build_epochs(field_id: str, ra_deg: float, dec_deg: float) -> Path:
         try:
             frame = read_frame(path, ra_deg, dec_deg)
             row.update(frame.meta)
+            if not row["downloaded_utc"]:
+                row["downloaded_utc"] = datetime.fromtimestamp(
+                    path.stat().st_mtime, timezone.utc
+                ).isoformat().replace("+00:00", "Z")
             if not all(row.get(key) for key in (
                 "source_url", "obs_id", "mjd", "obs_time_utc", "detector",
                 "wavelength_um", "processing_version", "collection", "downloaded_utc",

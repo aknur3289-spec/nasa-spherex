@@ -106,6 +106,29 @@ def test_bad_file_does_not_stop_field(tmp_path: Path, monkeypatch: pytest.Monkey
     assert float(rows[0]["sat_pixel_fraction"]) == pytest.approx(3 / 9)
 
 
+def test_missing_download_time_uses_cached_fits_mtime(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    path = Path("cached.fits")
+    synthetic_mef(path)
+    os.utime(path, (1_700_000_000, 1_700_000_000))
+    directory = Path("data/meta/m101")
+    directory.mkdir(parents=True)
+    with (directory / "raw_index.csv").open("w", newline="") as target:
+        writer = csv.DictWriter(target, fieldnames=(
+            "field_id", "collection", "source_url", "local_path", "downloaded_utc", "status",
+        ))
+        writer.writeheader()
+        writer.writerow({"field_id": "m101", "collection": "spherex_dr1",
+                         "source_url": "https://example.org/cached.fits", "local_path": str(path),
+                         "downloaded_utc": "", "status": "cached"})
+    with build_epochs("m101", 210, 54).open(newline="") as source:
+        rows = list(csv.DictReader(source))
+    assert rows[0]["status"] == "ok"
+    assert rows[0]["downloaded_utc"] == "2023-11-14T22:13:20Z"
+
+
 def _real_cutout() -> Path:
     return Path(os.environ.get(
         "SPHEREX_REAL_CUTOUT",
