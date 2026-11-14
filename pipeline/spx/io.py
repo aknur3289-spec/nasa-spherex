@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import json
 import logging
 import re
 import time
@@ -147,6 +148,94 @@ def search_frames(
     return _deduplicate([row for row in rows if row["collection"] in collections])
 
 
+def _cloud_location(value: object) -> tuple[str, str]:
+    """Extract the public S3 bucket and object key from SIA cloud_access."""
+    if isinstance(value, str):
+        try:
+            value = json.loads(value)
+        except (ValueError, TypeError):
+            if value.startswith("s3://"):
+                bucket, _, key = value[5:].partition("/")
+                return bucket, key
+            return "", ""
+    if isinstance(value, dict):
+        bucket = value.get("bucket") or value.get("bucket_name") or ""
+        key = value.get("key") or value.get("object_key") or value.get("s3_key") or ""
+        if key:
+            return str(bucket or "nasa-irsa-spherex"), str(key).lstrip("/")
+        for child in value.values():
+            found = _cloud_location(child)
+            if all(found):
+                return found
+    if isinstance(value, list):
+        for child in value:
+            found = _cloud_location(child)
+            if all(found):
+                return found
+    return "", ""
+
+
+def search_sia_point(ra_deg: float, dec_deg: float) -> list[dict]:
+    """Return SIA exposures covering one coordinate, including cloud locations."""
+    position = SkyCoord(ra_deg * u.deg, dec_deg * u.deg)
+    table = Irsa.query_sia(pos=(position, 1 * u.arcsec),
+                           collection=["spherex_dr1", "spherex_qr3"])
+    rows = []
+    for item in table:
+        url = _text(item["access_url"])
+        band = _text(item["energy_bandpassname"])
+        if not url or not re.fullmatch(r"SPHEREx-D[1-6]", band):
+            continue
+        bucket, key = _cloud_location(_text(item["cloud_access"]))
+        rows.append({"file_url": url, "access_url": url,
+                     "collection": _text(item["obs_collection"]),
+                     "mjd": float(item["t_min"]), "detector": int(band[-1]),
+                     "obs_id": _text(item["obs_id"]),
+                     "cloud_bucket": bucket, "cloud_key": key})
+    return rows
+
+
+def _cloud_cutout(row: dict, ra_deg: float, dec_deg: float, size_deg: float,
+                  destination: Path) -> None:
+    """Read only spatial sections of a public full-frame FITS from S3."""
+    bucket, key = row.get("cloud_bucket"), row.get("cloud_key")
+    if not bucket or not key:
+        raise ValueError("SIA cloud_access has no bucket/key")
+    if bucket != "nasa-irsa-spherex":
+        raise ValueError(f"unexpected cloud bucket: {bucket}")
+    with fits.open(f"s3://{bucket}/{key}", use_fsspec=True,
+                   fsspec_kwargs={"anon": True}) as source:
+        _section_cutout(source, ra_deg, dec_deg, size_deg, destination)
+
+
+def _section_cutout(source: fits.HDUList, ra_deg: float, dec_deg: float,
+                    size_deg: float, destination: Path) -> None:
+    """Save a small MEF from image sections while preserving spatial and wave WCS."""
+    header = source["IMAGE"].header
+    x_pix, y_pix = WCS(header).world_to_pixel_values(ra_deg, dec_deg)
+    if not np.isfinite(x_pix) or not np.isfinite(y_pix):
+        raise ValueError("cloud cutout centre is outside WCS")
+    width = max(1, round(size_deg * 3600 / 6.15))
+    shape = source["IMAGE"].shape
+    x0, y0 = max(0, round(float(x_pix)) - width // 2), max(0, round(float(y_pix)) - width // 2)
+    x1, y1 = min(shape[1], x0 + width), min(shape[0], y0 + width)
+    if x0 >= x1 or y0 >= y1:
+        raise ValueError("cloud cutout is outside image bounds")
+    output = [fits.PrimaryHDU(header=source[0].header)]
+    for name in ("IMAGE", "FLAGS", "VARIANCE", "ZODI"):
+        hdu = source[name]
+        cropped_header = hdu.header.copy()
+        for axis, offset in ((1, x0), (2, y0)):
+            for suffix in ("", "A", "W"):
+                card = f"CRPIX{axis}{suffix}"
+                if card in cropped_header:
+                    cropped_header[card] -= offset
+        output.append(fits.ImageHDU(data=hdu.section[y0:y1, x0:x1],
+                                    header=cropped_header, name=name))
+    output.append(source["WCS-WAVE"].copy())
+    fits.HDUList(output).writeto(destination, overwrite=True)
+
+
 def cutout_url(file_url: str, ra_deg: float, dec_deg: float, size_deg: float) -> str:
     """Build an IRSA square cutout URL in degrees."""
     return f"{file_url}?center={ra_deg},{dec_deg}d&size={size_deg}"
@@ -201,6 +290,10 @@ def fetch_cutout(
             return path
         except Exception as exc:
             if not _retryable(exc) or attempt == 2:
+                if _retryable(exc) and row.get("cloud_key"):
+                    _cloud_cutout(row, ra_deg, dec_deg, size_deg, slim)
+                    slim.replace(path)
+                    return path
                 raise
             LOG.warning("Cutout retry %s/3 for %s: %s", attempt + 1, source, exc)
             time.sleep(RETRY_DELAYS[attempt])
