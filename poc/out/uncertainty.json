@@ -1,0 +1,95 @@
+{
+  "bootstrap_resamples": 10000,
+  "results": {
+    "neptune_all": {
+      "source_json": "poc/out/astrometric_distance_all.json",
+      "body": "neptune",
+      "n_pairs": 265,
+      "median_d_au": 29.95248812203051,
+      "truth_r_au": 29.88803609144112,
+      "bootstrap": {
+        "resamples": 10000,
+        "seed": 20261114,
+        "ci_level": 0.68,
+        "median_ci_au": [
+          29.95248812203051,
+          29.95248812203051
+        ],
+        "plus_minus_au": 0.0,
+        "method": "percentile interval of bootstrap medians, resampling fitted exposure-pair distances"
+      },
+      "centroid_offset_arcsec": {
+        "min": 0.14098497485506947,
+        "median": 2.6998091385891874,
+        "max": 27.418433278090802,
+        "rms": 5.851953585301655,
+        "rms_px": 0.9515371683417325,
+        "max_px": 4.458281833835903
+      },
+      "local_sensitivity_arcsec_per_au": 2.6419546189671905,
+      "centroid_propagated_sigma_d_au": 2.2150091236575964,
+      "max_offset_distance_bound_au": 10.378086391510157,
+      "propagation_note": "Uses RMS (or maximum) measured-vs-ephemeris centroid offset divided by median absolute finite-difference derivative of target-position angular miss at each pair's fitted distance (central difference, \u00b10.01 AU). This is a scale estimate, not a full covariance model."
+    },
+    "uranus": {
+      "source_json": "poc/out/astrometric_distance_uranus.json",
+      "body": "uranus",
+      "n_pairs": 9,
+      "median_d_au": 19.39162955234294,
+      "truth_r_au": 19.49642843682288,
+      "bootstrap": {
+        "resamples": 10000,
+        "seed": 20261114,
+        "ci_level": 0.68,
+        "median_ci_au": [
+          19.39162955234294,
+          19.39162955234294
+        ],
+        "plus_minus_au": 0.0,
+        "method": "percentile interval of bootstrap medians, resampling fitted exposure-pair distances"
+      },
+      "centroid_offset_arcsec": {
+        "min": 0.14124612774950984,
+        "median": 0.8220550138120146,
+        "max": 62.18448414227549,
+        "rms": 25.429866277402724,
+        "rms_px": 4.134937606081744,
+        "max_px": 10.111298234516338
+      },
+      "local_sensitivity_arcsec_per_au": 46.22112232520692,
+      "centroid_propagated_sigma_d_au": 0.550178468157499,
+      "max_offset_distance_bound_au": 1.3453694115160606,
+      "propagation_note": "Uses RMS (or maximum) measured-vs-ephemeris centroid offset divided by median absolute finite-difference derivative of target-position angular miss at each pair's fitted distance (central difference, \u00b10.01 AU). This is a scale estimate, not a full covariance model."
+    },
+    "neptune_w23": {
+      "source_json": "poc/out/astrometric_distance_neptune_w23.json",
+      "body": "neptune",
+      "n_pairs": 9,
+      "median_d_au": 29.865912894401582,
+      "truth_r_au": 29.883334734120368,
+      "bootstrap": {
+        "resamples": 10000,
+        "seed": 20261114,
+        "ci_level": 0.68,
+        "median_ci_au": [
+          29.865912894401582,
+          29.865912894401582
+        ],
+        "plus_minus_au": 0.0,
+        "method": "percentile interval of bootstrap medians, resampling fitted exposure-pair distances"
+      },
+      "centroid_offset_arcsec": {
+        "min": 0.30267313433252835,
+        "median": 0.8952944312806195,
+        "max": 12.748515091197113,
+        "rms": 5.352348834794264,
+        "rms_px": 0.8703006235437827,
+        "max_px": 2.0729292831214816
+      },
+      "local_sensitivity_arcsec_per_au": 18.89808071704948,
+      "centroid_propagated_sigma_d_au": 0.283221821037386,
+      "max_offset_distance_bound_au": 0.6745931125003425,
+      "propagation_note": "Uses RMS (or maximum) measured-vs-ephemeris centroid offset divided by median absolute finite-difference derivative of target-position angular miss at each pair's fitted distance (central difference, \u00b10.01 AU). This is a scale estimate, not a full covariance model."
+    }
+  }
+}
