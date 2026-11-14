@@ -1,0 +1,10 @@
+astropy
+astroquery
+fsspec
+matplotlib
+numpy
+Pillow
+pyvo
+scipy
+s3fs
+pytest

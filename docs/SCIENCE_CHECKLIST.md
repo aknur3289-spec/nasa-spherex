@@ -32,7 +32,7 @@ Audit date: 2026-11-14. Scope: read-only audit; no code, data, or existing docum
 
    Sources: poc/out/astrometric_distance_all.json, astrometric_distance_uranus.json, astrometric_distance_neptune_w23.json; exposures, n_combinations, median_d_fit_au, p16_p84_au, std_au fields.
 
-8. **Status: PASS.** poc/uncertainty.py and poc/out/uncertainty.json provide 10,000-resample bootstrap 68% median intervals and centroid-offset propagation for all-pairs Neptune, Uranus, and Neptune W2→W3. Headline bootstrap CI is [29.952488, 29.952488] AU (±0.00 AU to two decimals; degenerate due repeated grid-valued fits). Centroid RMS is 5.851954″; central finite-difference sensitivity is 2.641955″/AU; propagated sigma is 2.215009 AU (±2.22). docs/EXPERIMENTS.md and docs/NUMBERS.md report pair scatter separately (std 0.0182 AU; p16–p84 29.9325–29.9625 AU).
+8. **Status: PASS.** poc/uncertainty.py refines each stored measured-position pair continuously, then bootstraps 10,000 resamples with seed 42. poc/out/uncertainty.json reports all per-pair refined distances/residuals and run summaries. Neptune all: median 29.949243 AU, p16–p84 29.935590–29.964959, bootstrap CI [29.948053,29.950459], S=278.220245″/AU, RMS/max offsets 5.851954/27.418433″, sigma=0.021034 AU, max bound=0.098549 AU, geomspace step=0.069966 AU. Uranus: median 19.404963, p16–p84 19.342533–19.409582, bootstrap [19.401683,19.407377], S=542.493914″/AU, RMS/max 25.429866/62.184484″, sigma=0.046876 AU, bound=0.114627 AU, step=0.045322 AU. Neptune W2→W3: median 29.864368, p16–p84 29.861452–29.869616, bootstrap [29.863551,29.864388], S=669.826220″/AU, RMS/max 5.352349/12.748515″, sigma=0.007991 AU, bound=0.019033 AU, step=0.069640 AU. Headline U=0.03 AU (larger of bootstrap half-width and centroid sigma, rounded upward); pair scatter is not reported as the uncertainty.
 
 ## Controls
 
@@ -60,7 +60,7 @@ Audit date: 2026-11-14. Scope: read-only audit; no code, data, or existing docum
 
 18. **Status: PASS.** docs/SCIENCE_SUMMARY.md:11 states the circular ecliptic-plane assumption and gives a 20° inclined circular-orbit example over 178.253 days: mismatch 1,340.38″; fitting the inclined synthetic position with the ecliptic model returns 29.1523 AU for a 30 AU input, bias −0.8477 AU (−2.83%). This orientation-specific illustration is not presented as universal.
 
-19. **Status: PASS (empirical bound; chromatic-only component not isolated).** docs/SCIENCE_SUMMARY.md:12 records dial-pair wavelengths 0.968 µm June and 1.259 µm December, and all-pairs measured-vs-Horizons offsets: min/median/max 0.141/2.700/27.418″ = 0.023/0.439/4.458 px. At 2.642″/AU local sensitivity, maximum-offset distance scale is 10.38 AU. This bounds total empirical positional residual, not a wavelength-only contribution.
+19. **Status: PASS (empirical bound; chromatic-only component not isolated).** docs/SCIENCE_SUMMARY.md:11 gives dial-pair wavelengths 0.968 and 1.259 µm and the requested measured-vs-Horizons comparison: maximum offset 27.418433″ (4.458281 px); refined positional sensitivity produces bound_max=0.098549 AU, or 0.3298% of 29.89 AU. This treats the full measured residual as potentially chromatic and therefore bounds rather than isolates the chromatic contribution.
 
 20. **Status: PASS.** docs/EXPERIMENTS.md:123-127 says the real full-range grid was infeasible because most steps lacked matched templates/stars/window-2 coverage and predicted positions span degrees; full-range dial remains synthetic, real validation astrometric.
 

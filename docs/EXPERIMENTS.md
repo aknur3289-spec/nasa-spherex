@@ -144,7 +144,7 @@ Full-range dial: synthetic demo (labelled). Limitation stated: needs same-wavele
 
 Headline: E4f Neptune June→December, all 265 exposure pairs. The following exact commands and commits produced each JSON:
 
-Uncertainty for the headline median: 29.95 ± 0.00 AU (bootstrap), centroid-propagated ± 2.22 AU. Pair scatter is distinct: std 0.0182 AU, p16–p84 29.9325–29.9625 AU; see poc/out/uncertainty.json for all runs and method details.
+Refined headline distance and uncertainty: 29.949243 AU; U=0.03 AU. Bootstrap 68% CI [29.948053, 29.950459] AU; centroid sigma=0.021034 AU; positional sensitivity S=278.220245 arcsec/AU; fit_distance geomspace step=0.069966 AU. Pair scatter remains separately reported in poc/out/astrometric_distance_all.json.
 
 | Run | Pairs | Truth (JPL) | Ours (circular) | Error | Parallax-only | Error |
 |---|---|---|---|---|---|---|
