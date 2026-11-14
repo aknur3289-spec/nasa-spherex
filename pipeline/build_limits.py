@@ -77,10 +77,9 @@ def make_figure(data: dict) -> None:
                 bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.85, "pad": 2})
     lo, hi = data["planet_nine_literature"]["V_range"]
     ax.add_patch(Rectangle((290, lo), 510, hi - lo, facecolor="#F0E442",
-                           edgecolor="none", alpha=0.32, zorder=0))
-    ax.text(545, (lo + hi) / 2, "Planet Nine (predicted)", ha="center", va="center",
-            fontsize=14, color="#514800",
-            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.78, "pad": 2}, zorder=4)
+                           edgecolor="#8A7D00", linewidth=1.0, alpha=0.35, zorder=1.8))
+    ax.text(480, 23.6, "Planet Nine (predicted)", ha="center", va="center",
+            fontsize=14, color="#514800", zorder=4)
     ax.scatter([30], [7.8], s=95, marker="*", color="#000000", edgecolor="white",
                linewidth=0.8, zorder=5, label="Neptune today")
     ax.annotate("Neptune today", (30, 7.8), xytext=(12, 12), textcoords="offset points",
