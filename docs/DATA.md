@@ -56,3 +56,11 @@ Full precision fractions and descriptions are in `data/meta/discovery/flag_bits.
 Installed versions: numpy 2.3.5, astropy 8.0.2, astroquery 0.4.11, pyvo 1.10.0, requests 2.32.4, reproject 0.21.0, Pillow 12.3.0, pyyaml 6.0.2, jsonschema 4.25.0, pandas 3.0.5, pytest 9.1.1, matplotlib 3.10.5.
 
 Run again from the repository root: `python3 -u poc/discover.py`.
+
+## Neptune Distance Dial offline packaging check — 2026-11-14
+
+`python3 pipeline/build_dial.py --id neptune-2025 --target neptune --pass-a 2 --pass-b 3 --steps 48 --dmin 15 --dmax 1000` used only local FITS files. Pass A is December 2025. The selected reference is `2025W50_1A_0310_4`, detector 3, MJD 61018.329797361, with the lowest recorded central bad fraction. The Horizons truth matched at that exposure is heliocentric `r_au = 29.88539078335`; geocentric `delta_au = 29.6671831880975` is recorded separately.
+
+The local pass B science inventory is empty. Twenty-five detector-3 June 2026 template cutouts are available, but all are centered near the December sky position. None contains the circular-orbit prediction at any of the 48 requested distances with the 20-pixel search margin. The detailed skip ledger is `data/meta/neptune/dial_summary.json` (local data, outside Git). There is no measured peak or percentage error. No `field.json` or PNGs were published because contract v1.1 requires at least one covered step, and the 20% peak gate cannot be evaluated. There are no local `data/raw/neptune-blank` cutouts, so no negative-control field was attempted.
+
+The offline script loads Science's unchanged `_variance_snr` function from `poc/poc_b_dial_v2.py` if a covered cutout becomes available. Its current single-frame score would be diagnostic only; a matched-sky subtraction and Science signoff are still needed before publishing a dial field. This check cannot reproduce the earlier PoC B peak because its pass B sections along the distance track are not present in the specified local inventory.
