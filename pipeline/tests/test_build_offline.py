@@ -50,7 +50,7 @@ fields:
         for path in paths:
             writer.writerow({"field_id": "tiny", "collection": "spherex_dr1",
                              "source_url": f"https://example.invalid/{path.name}",
-                             "local_path": str(path), "downloaded_utc": "2026-11-14T08:00:00Z",
+                             "local_path": str(path), "downloaded_utc": "2026-11-14T08:00:00+00:00",
                              "status": "cached"})
 
     def write_png(image, bad, stretch, out, scale=1):
@@ -73,6 +73,20 @@ fields:
     assert len(manifest["frames"]) >= 2
     assert len(manifest["pairs"]) >= 2
     assert manifest["pairs"][0]["trust"] == "high"
-    assert any(path.name.startswith("diff_") for path in Path("web/public/data/tiny").glob("*.png"))
+    outdir = Path("web/public/data/tiny")
+    assert manifest["schema_version"] == "1.1"
+    assert manifest["provenance"]["downloaded_utc"] == "2026-11-14T08:00:00Z"
+    assert all(set(pair) == {"a", "b", "dlambda_frac", "dt_days", "trust", "diff_png"}
+               for pair in manifest["pairs"])
+    assert [pair["trust"] for pair in manifest["pairs"]] == sorted(
+        (pair["trust"] for pair in manifest["pairs"]),
+        key={"high": 0, "medium": 1, "low": 2}.__getitem__)
+    assert all((outdir / pair["diff_png"]).is_file() for pair in manifest["pairs"])
+    assert all((frame["width_px"], frame["height_px"]) == (3, 3)
+               for frame in manifest["frames"])
+    assert json.loads((outdir / "timeline.json").read_text()) == [
+        {"frame_id": frame["id"], "obs_time_utc": frame["obs_time_utc"], "mjd": frame["mjd"]}
+        for frame in sorted(manifest["frames"], key=lambda item: (item["obs_time_utc"], item["id"]))
+    ]
     assert (Path("web/public/data/tiny") / "thumb.png").is_file()
     assert json.loads(Path("web/public/data/tiny/field.json").read_text()) == manifest
