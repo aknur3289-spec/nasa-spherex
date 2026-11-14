@@ -125,3 +125,17 @@ VARIANCE-based noise and wavelength-matched templates (|Δλ|/λ ≤ 2 %) implem
 Most grid steps skipped: no_lambda_match / no_matched_stars / no_window2_coverage. Reason: across
 15–1000 AU the predicted position spans degrees of sky, and a same-wavelength template is needed at every
 position. Decision: full-range dial shown on synthetic data (labelled); real data validated by astrometry (E4e).
+
+## E4e. PoC B-lite — astrometric distance of Neptune from REAL SPHEREx images (PASS)
+Neptune centroided in SPHEREx Level 2 exposures, June 2025 (window 1) and December 2025 (window 2), detectors D1–D3;
+9 exposure combinations. Measured positions agree with JPL Horizons to 0.7–2.0″ (< 1/3 SPHEREx pixel).
+| Model | Distance | Error vs JPL 29.89 AU |
+|---|---|---|
+| Parallax + circular orbit (ours) | 29.94 AU | +0.16 % (spread over 9 pairs below the 0.3 % grid step) |
+| Parallax only | 41.60 AU [41.44–41.94] | +39 % |
+Residual at the minimum ≈ 80″ (~13 px), the known circular-orbit approximation residual (cf. E1).
+Figure: poc/out/astrometric_residual.png. Script: poc/poc_b_astrometry.py (commit dbbf7ef).
+
+## Go/No-Go #2 (17:00) — PARTIAL GO
+Real data: distance recovered from SPHEREx images to 0.2 %; Neptune confirmed as a mover (E4b).
+Full-range dial: synthetic demo (labelled). Limitation stated: needs same-wavelength templates per sky position.
