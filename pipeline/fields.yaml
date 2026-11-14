@@ -1,0 +1,51 @@
+# pipeline/fields.yaml — starter. Coordinates: ICRS degrees.
+# Science lead approves final list. Titles/descriptions are user-facing: English, no discovery claims.
+defaults:
+  size_arcmin: 10
+  detectors: [2]                # START WITH ONE DETECTOR: each cutout carries an ~8 MB ePSF table.
+                                # Add 1 and 3 only if PoC A finds too few pairs and download speed allows.
+  limit: 150                    # max exposures per field, spread evenly in time (all passes represented)
+  collections: [spherex_dr1, spherex_qr3]
+  doi: "[DOI from IRSA release page]"
+
+fields:
+  - id: m101
+    enabled: true
+    title: "Pinwheel Galaxy (M101)"
+    description: "A bright nearby galaxy used in the official IRSA tutorial; a stable field to show honest vs naive comparison."
+    ra: 210.80227               # from IRSA spherex_cutouts tutorial
+    dec: 54.34895
+
+  - id: nep
+    enabled: true
+    title: "North Ecliptic Pole"
+    description: "SPHEREx revisits the ecliptic poles on every orbit, so this field has the most epochs."
+    ra: 270.0                   # ecliptic pole computed with astropy (BarycentricMeanEcliptic lat=+90)
+    dec: 66.56072
+    collections: [spherex_dr1, spherex_qr3]   # try *_deep only if wide gives too few pairs (PoC A fallback)
+
+  - id: ecl
+    enabled: true
+    title: "Ecliptic test field"
+    description: "A patch on the ecliptic, where Solar System bodies move and SPHEREx visits least often."
+    ra: 27.91055                # ecliptic lon 30°, lat 0° (astropy)
+    dec: 11.47197
+
+  # Optional gallery fields — enable after the first three work (prompt P09-B / P09-C):
+  # - id: hpm-star   # a high-proper-motion star: real motion across ~1.3 yr; resolve coordinates via P09-C, check saturation
+  # - id: sep        # South Ecliptic Pole: ra 90.0, dec -66.56072
+
+moving:
+  - id: neptune
+    body: Neptune
+    detectors: [1, 2, 3]
+    size_arcmin: 10
+  - id: uranus
+    body: Uranus
+    detectors: [1, 2, 3]
+    size_arcmin: 10
+  - id: neptune-blank
+    body: Neptune
+    lat_offset_deg: 1.0         # negative control: same times, +1° ecliptic latitude
+    detectors: [1, 2, 3]
+    size_arcmin: 10
