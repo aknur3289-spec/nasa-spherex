@@ -75,6 +75,7 @@ export default function App() {
       <input type="search" aria-label={copy.search} placeholder={copy.search} title={copy.search} value={query} onChange={event => {
         setQuery(event.target.value); setPage(0);
       }} />
+      <a href="./survey.html" className="help" style={{ width: "auto" }}>Timelapse</a>
       <a href="#/limits" className="help" title={copy.planet} aria-label={copy.planet}>?</a>
     </header>
     <div className="workspace" id="workspace" tabIndex={-1}>
