@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root { font-family: Inter, system-ui, sans-serif; color: #eef2fa; background: #0b1020; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 1160px; margin: auto; padding: 26px clamp(16px, 4vw, 48px) 56px; }
+header, .timeline-head, figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+header { border-bottom: 1px solid #2b3650; padding-bottom: 18px; }
+.brand { font-size: 18px; font-weight: 700; letter-spacing: .04em; }
+.badge { background: #3d2a15; color: #ffd38e; border: 1px solid #a87332; padding: 7px 11px; border-radius: 6px; font-size: .78rem; font-weight: 700; }
+h1 { font-size: clamp(1.75rem, 5vw, 3rem); margin: 26px 0 14px; letter-spacing: -.045em; }
+h2 { font-size: 1.05rem; }
+label, .description, figcaption span, li span { color: #bcc8dd; }
+select, button { background: #141e34; color: inherit; border: 1px solid #3b4d70; border-radius: 8px; padding: 9px 12px; font: inherit; }
+select { margin-left: 8px; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .5; }
+button[aria-pressed=true] { border-color: #83bcff; background: #223e62; }
+:focus-visible { outline: 2px solid #a1d4ff; outline-offset: 3px; }
+.controls { display: flex; gap: 8px; flex-wrap: wrap; }
+.images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
+.images.blink { grid-template-columns: minmax(0, 560px); justify-content: center; }
+figure { margin: 0; border: 1px solid #344362; background: #10182b; border-radius: 12px; overflow: hidden; }
+img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #080c17; }
+figcaption { padding: 12px; flex-wrap: wrap; font-size: .88rem; }
+.timeline { margin-top: 24px; border-top: 1px solid #2b3650; padding-top: 10px; }
+ol { list-style: none; display: flex; gap: 8px; flex-wrap: wrap; padding: 0; }
+li button { text-align: left; }
+li span { display: block; margin-top: 4px; font-size: .78rem; }
+@media (max-width: 560px) { .images { grid-template-columns: 1fr; } }
