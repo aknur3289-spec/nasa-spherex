@@ -8,6 +8,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 type Row = {
   distance: number;
+  ra: number;
+  dec: number;
   modelPx: number;
   modelArcsec: number;
   naivePx: number;
@@ -30,6 +32,8 @@ export function parseDialCsv(text: string): Table {
   };
   const c = {
     d: col("distance_au"),
+    ra: col("model_pred_ra_deg"),
+    dec: col("model_pred_dec_deg"),
     mpx: col("model_miss_px"),
     mas: col("model_miss_arcsec"),
     npx: col("parallax_only_miss_px"),
@@ -40,6 +44,8 @@ export function parseDialCsv(text: string): Table {
     .map((l) => l.split(","))
     .map((v) => ({
       distance: Number(v[c.d]),
+      ra: Number(v[c.ra]),
+      dec: Number(v[c.dec]),
       modelPx: Number(v[c.mpx]),
       modelArcsec: Number(v[c.mas]),
       naivePx: Number(v[c.npx]),
@@ -164,6 +170,118 @@ function MissChart({
   );
 }
 
+
+/* ---------- the "game": crosshair on a real SPHEREx stamp ---------- */
+
+type Target = { ra_deg: number; dec_deg: number; pixel_scale_arcsec: number };
+const STAMP = 64; // stamp size in pixels, Neptune near the centre
+const STAMP_SCALE = 5; // on-screen pixels per image pixel
+
+function offsetPx(row: Row, t: Target) {
+  const wrap = (d: number) => ((d + 540) % 360) - 180;
+  const c = Math.cos((t.dec_deg * Math.PI) / 180);
+  const dxArc = wrap(row.ra - t.ra_deg) * c * 3600;
+  const dyArc = (row.dec - t.dec_deg) * 3600;
+  // north up, east left
+  return { x: -dxArc / t.pixel_scale_arcsec, y: -dyArc / t.pixel_scale_arcsec };
+}
+
+function DialGame({
+  row,
+  best,
+  target,
+  index,
+  max,
+  onChange,
+}: {
+  row: Row;
+  best: Row;
+  target: Target | null;
+  index: number;
+  max: number;
+  onChange: (i: number) => void;
+}) {
+  const size = STAMP * STAMP_SCALE;
+  const half = size / 2;
+  const off = target ? offsetPx(row, target) : { x: row.modelPx, y: 0 };
+  const px = half + off.x * STAMP_SCALE;
+  const py = half + off.y * STAMP_SCALE;
+  const inside = px > 12 && px < size - 12 && py > 12 && py < size - 12;
+  const angle = Math.atan2(py - half, px - half);
+  const ex = half + Math.cos(angle) * (half - 26);
+  const ey = half + Math.sin(angle) * (half - 26);
+  const isBest = row.distance === best.distance;
+  const state = isBest ? "best" : row.modelPx < 25 ? "close" : row.modelPx < STAMP / 2 ? "near" : "far";
+  const label = {
+    best: "Closest match",
+    close: "Very close",
+    near: "Getting closer",
+    far: row.distance > best.distance ? "Too far — turn the dial down" : "Too close — turn the dial up",
+  }[state];
+
+  return (
+    <div className="glass dial-game">
+      <div className="card-heading">
+        <div>
+          <small>YOUR MISSION</small>
+          <h3>Land the crosshair on Neptune</h3>
+        </div>
+        <span className={`chip dial-state ${state}`}>{label}</span>
+      </div>
+      <div className="dial-game-body">
+        <div className="dial-stamp" style={{ width: size, height: size }}>
+          <img src="data/dial/neptune_stamp.png" alt="Neptune in a real SPHEREx image" width={size} height={size} />
+          <span className="dial-neptune" style={{ left: half, top: half }}>
+            <i />
+            <b>Neptune</b>
+          </span>
+          {inside ? (
+            <span className={`dial-cross ${state}`} style={{ left: px, top: py }} aria-hidden="true" />
+          ) : (
+            <span className="dial-away" style={{ left: ex, top: ey, transform: `translate(-50%,-50%) rotate(${angle}rad)` }} aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+            </span>
+          )}
+          {!inside && <span className="dial-away-label">Prediction is {Math.round(row.modelPx)} px off the picture</span>}
+        </div>
+        <div className="dial-game-copy">
+          <div className="dial-big">
+            <span>Your distance — drag the dial</span>
+            <b>{row.distance.toFixed(1)} AU</b>
+          </div>
+          <input
+            className="dial-game-knob"
+            type="range"
+            min={0}
+            max={max}
+            step={1}
+            value={index}
+            onChange={(e) => onChange(Number(e.target.value))}
+            aria-label="Trial distance"
+            aria-valuetext={`${row.distance.toFixed(1)} AU`}
+          />
+          <div className="dial-big">
+            <span>Crosshair misses by</span>
+            <b>
+              {row.modelPx.toFixed(1)} px <em>({row.modelArcsec.toFixed(0)}″)</em>
+            </b>
+          </div>
+          <ol className="dial-howto">
+            <li>We know where Neptune was in June 2025.</li>
+            <li>Pick a distance. Our model predicts where Neptune should be in December 2025.</li>
+            <li>The distance whose crosshair lands closest to Neptune is the measurement.</li>
+          </ol>
+          <p className="dial-caption">
+            Background: Neptune in a real SPHEREx cutout (June 2025). Crosshair: the December 2025 prediction for
+            your distance, drawn relative to Neptune's measured position. Even the closest match misses by about
+            13 px — see why below.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- screen ---------- */
 
 const FIGURES = [
@@ -200,6 +318,13 @@ export function DistanceDial() {
   const [index, setIndex] = useState(0);
   const [showNaive, setShowNaive] = useState(true);
   const [sweeping, setSweeping] = useState(false);
+  const [target, setTarget] = useState<Target | null>(null);
+  useEffect(() => {
+    fetch("data/dial/neptune_target.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setTarget)
+      .catch(() => setTarget(null));
+  }, []);
   const timer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
@@ -280,6 +405,8 @@ export function DistanceDial() {
           </div>
         </div>
       </section>
+
+      <DialGame row={cur} best={best} target={target} index={index} max={rows.length - 1} onChange={(i) => { stop(); setIndex(i); }} />
 
       <section className="data-grid">
         <div className="glass chart-card wide dial-card">
