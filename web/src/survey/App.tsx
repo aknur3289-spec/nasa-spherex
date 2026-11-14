@@ -3,7 +3,9 @@ import { Timelapse } from "./Timelapse";
 import { DistanceDial } from "./DistanceDial";
 import { imageUrl, loadField, loadIndex } from "../data/loader";
 import type { FieldSummary } from "../contract";
-import { SimpleViewer } from "../viewer/SimpleViewer";
+import { SkyExplorer } from "./SkyExplorer";
+import { ComparePairs } from "./ComparePairs";
+import { friendly } from "./fields";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
 
 type Screen = "home" | "explore" | "timelapse" | "dial" | "compare" | "about";
@@ -459,23 +461,6 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
   );
 }
 
-const FRIENDLY: Record<string, { name: string; text: string }> = {
-  ecl: {
-    name: "Along the planets' path",
-    text: "A patch of the ecliptic, the band of sky where the Sun, Moon and planets travel. The best place to look for things that move.",
-  },
-  nep: {
-    name: "North Ecliptic Pole",
-    text: "SPHEREx passes over this spot more often than anywhere else, so it has the most repeat images.",
-  },
-  m101: {
-    name: "Pinwheel Galaxy (M101)",
-    text: "A large spiral galaxy. Nothing here should move, so it is a good check that the images line up.",
-  },
-};
-const friendly = (item?: FieldSummary) =>
-  item ? FRIENDLY[item.field_id] ?? { name: item.title, text: "" } : { name: "Sky Explorer", text: "" };
-
 const screens: Screen[] = ["home", "explore", "timelapse", "dial", "compare", "about"];
 
 export default function App() {
@@ -486,7 +471,7 @@ export default function App() {
   const [path, search] = route.slice(2).split("?");
   const [screenName, fieldId] = path.split("/");
   const screen = screens.find(value => value === screenName) ?? "home";
-  const active = screen === "explore" || screen === "compare" || screen === "timelapse";
+  const active = screen === "compare" || screen === "timelapse";
   const catalog = index?.filter(item => item.status !== "pending" && item.synthetic === false);
   const [enhanced, setEnhanced] = useState(true);
   const selected = catalog?.find(item => item.field_id === fieldId)
@@ -545,10 +530,13 @@ export default function App() {
       {screen === "home" && <Home setScreen={navigate} />}
       {screen === "about" && <About />}
       {screen === "dial" && <ErrorBoundary><DistanceDial /></ErrorBoundary>}
+      {screen === "explore" && (catalog
+        ? <ErrorBoundary><SkyExplorer catalog={catalog} go={(s, nextId) => navigate(s, nextId)} /></ErrorBoundary>
+        : <main className="content-screen"><p role="status">{error || "Loading sky fields…"}</p></main>)}
       {active && <main className={`content-screen survey-observations ${enhanced ? "enhanced" : "raw"}`}>
         {screen !== "timelapse" && <div className="obs-head">
           <div>
-            <small>{screen === "compare" ? "COMPARE IMAGES" : "SKY EXPLORER"} · REAL SPHEREx DATA</small>
+            <small>COMPARE TWO IMAGES · REAL SPHEREx DATA</small>
             <h1>{friendly(selected).name}</h1>
             <p>{friendly(selected).text}</p>
           </div>
@@ -571,7 +559,7 @@ export default function App() {
         {field && <ErrorBoundary key={screen + "/" + field.field_id}>
           {screen === "timelapse" && timeline.length > 0
             ? <Timelapse frames={timeline} synthetic={field.provenance.synthetic} title={friendly(selected).name} backdrop={spaceImage} onBack={() => navigate("explore")} />
-            : <SimpleViewer field={field} survey search={search ?? (screen === "compare" ? "mode=compare" : undefined)} />}
+            : <ComparePairs field={field} />}
         </ErrorBoundary>}
       </main>}
       <MobileNav screen={screen} setScreen={navigate} />
