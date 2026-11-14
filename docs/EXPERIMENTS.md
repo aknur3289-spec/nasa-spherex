@@ -144,6 +144,8 @@ Full-range dial: synthetic demo (labelled). Limitation stated: needs same-wavele
 
 Headline: E4f Neptune June→December, all 265 exposure pairs. The following exact commands and commits produced each JSON:
 
+Uncertainty for the headline median: 29.95 ± 0.00 AU (bootstrap), centroid-propagated ± 2.22 AU. Pair scatter is distinct: std 0.0182 AU, p16–p84 29.9325–29.9625 AU; see poc/out/uncertainty.json for all runs and method details.
+
 | Run | Pairs | Truth (JPL) | Ours (circular) | Error | Parallax-only | Error |
 |---|---|---|---|---|---|---|
 | E4f Neptune Jun->Dec, all exposures | 265 | 29.89 AU | 29.95 AU (p16-p84 29.93-29.96) | +0.22% | 40.59 AU | +35.8% |

@@ -5,6 +5,7 @@
 - Neptune: 29.95 AU vs JPL 29.89 AU (heliocentric distance; truth is the mean of the window-1 and window-2 ephemeris r_au values), +0.2%, 265 exposure pairs. Unrounded error: +0.21564491688982756%; documentation rounding: +0.22%.
 - Uranus: 19.39 AU vs JPL 19.50 AU, −0.5%. Unrounded error: −0.5375286289975401%; documentation rounding: −0.54%.
 - Parallax-only distance errors across the validated seasonal pairs: −23% to +50%.
+- Neptune headline uncertainty: 29.95 ± 0.00 AU (bootstrap), centroid-propagated ± 2.22 AU; pair scatter is std 0.0182 AU (p16–p84 29.9325–29.9625 AU), not the bootstrap uncertainty.
 
 The former 29.94 AU Neptune value is historical/superseded: it is the 9-pair June–December result, 29.935715308957782 AU vs 29.88803609144112 AU (+0.1595260972343264%, +0.16% to two decimals). It is not the headline.
 
