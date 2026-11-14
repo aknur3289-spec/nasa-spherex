@@ -40,12 +40,13 @@ def _detector(row):
     return int(m.group(1)) if m else None
 
 
-def _exposures_for_epoch(window_id):
-    with (POC / "windows_neptune.csv").open(newline="") as f:
+def _exposures_for_epoch(window_id, body="neptune"):
+    with (POC / f"windows_{body}.csv").open(newline="") as f:
         window = next(r for r in csv.DictReader(f) if r["window_id"] == str(window_id))
-    with (POC / "coverage_neptune.csv").open(newline="") as f:
+    collection = "spherex_qr3" if str(window_id) == "3" else "spherex_dr1"
+    with (POC / f"coverage_{body}.csv").open(newline="") as f:
         rows = [r for r in csv.DictReader(f) if r.get("window_id") == str(window_id)
-                and r.get("obs_collection") == "spherex_dr1"
+                and r.get("obs_collection") == collection
                 and r.get("algorithm_name") == "exposure"
                 and str(r.get("dataproduct_subtype", "")).lower() == "science"
                 and _detector(r) is not None]
@@ -54,7 +55,7 @@ def _exposures_for_epoch(window_id):
         by_mjd.setdefault(float(row["t_min"]), []).append(row)
     mjds = sorted(by_mjd)
     times = [Time(mjd, format="mjd", scale="utc").isot for mjd in mjds]
-    eph_rows = ephem("neptune", times)
+    eph_rows = ephem(body, times)
     eph_by_mjd = {round(float(e["jd_utc"] - 2400000.5), 7): e for e in eph_rows}
     accepted = []
     for mjd, time_rows in by_mjd.items():
@@ -76,7 +77,7 @@ def _exposures_for_epoch(window_id):
     elif len(ordered) > 0:
         indexes = sorted(set([0, (len(ordered)-1)//2, len(ordered)-1]))
         chosen = [ordered[i] for i in indexes]
-    print(f"Epoch {window_id}: {len(rows)} D1-D3 frames, {len(accepted)} contain Neptune, {len(chosen)} selected")
+    print(f"Epoch {window_id}: {len(rows)} D1-D3 frames, {len(accepted)} contain {body.title()}, {len(chosen)} selected")
     return window, chosen
 
 
@@ -244,6 +245,68 @@ def run():
     return result
 
 
+def run_body(body, epoch_a="1", epoch_b="2", output_suffix=None):
+    """Run the same image-centroid astrometry workflow for a selected planet/pair."""
+    global START,TIME_LIMIT
+    START=time.monotonic()
+    TIME_LIMIT=20*60 if body=="uranus" else 30*60
+    awin, achoices = _exposures_for_epoch(epoch_a, body)
+    bwin, bchoices = _exposures_for_epoch(epoch_b, body)
+    epoch_rows={str(epoch_a):[],str(epoch_b):[]}
+    for epoch, choices in ((str(epoch_a),achoices),(str(epoch_b),bchoices)):
+        for row,ephrow,mjd in choices:
+            try:
+                m=_measure(row,ephrow,mjd);m["window_id"]=epoch
+                epoch_rows[epoch].append(m)
+                print(f"Measured {body} window {epoch} {m['obs_id']} {m['detector']}: RA={m['measured_ra_deg']:.7f} Dec={m['measured_dec_deg']:.7f} offset={m['offset_arcsec']:.2f}\"")
+            except Exception as exc:
+                print(f"Exposure measurement failed ({row.get('obs_id')} D{_detector(row)}): {type(exc).__name__}: {exc}")
+    if not epoch_rows[str(epoch_a)] or not epoch_rows[str(epoch_b)]:
+        raise RuntimeError(f"Need measured exposures in both epochs; got A={len(epoch_rows[str(epoch_a)])}, B={len(epoch_rows[str(epoch_b)])}")
+    truth=float(np.mean([float(awin["r_au"]),float(bwin["r_au"])]))
+    tA=[Time(m["mjd"],format="mjd",scale="utc") for m in epoch_rows[str(epoch_a)]]
+    tB=[Time(m["mjd"],format="mjd",scale="utc") for m in epoch_rows[str(epoch_b)]]
+    dgrid=np.geomspace(15,1000,1800)
+    combos=[];residuals_circ=[];residuals_static=[]
+    for ia,a in enumerate(epoch_rows[str(epoch_a)]):
+        for ib,b in enumerate(epoch_rows[str(epoch_b)]):
+            _check_time()
+            dc,oc,grid=fit_distance(a["measured_ra_deg"],a["measured_dec_deg"],tA[ia],
+                                    b["measured_ra_deg"],b["measured_dec_deg"],tB[ib],d_grid=dgrid,orbit="circular")
+            ds,os,_=fit_distance(a["measured_ra_deg"],a["measured_dec_deg"],tA[ia],
+                                 b["measured_ra_deg"],b["measured_dec_deg"],tB[ib],d_grid=dgrid,orbit="static")
+            combos.append({"epoch_a_obs_id":a["obs_id"],"epoch_a_detector":a["detector"],
+                           "epoch_b_obs_id":b["obs_id"],"epoch_b_detector":b["detector"],
+                           "d_fit_circular_au":dc,"d_fit_static_au":ds})
+            residuals_circ.append(np.asarray(oc,float));residuals_static.append(np.asarray(os,float))
+    circ_d=np.asarray([c["d_fit_circular_au"] for c in combos]);static_d=np.asarray([c["d_fit_static_au"] for c in combos])
+    circ_med=float(np.median(circ_d));static_med=float(np.median(static_d))
+    suffix=output_suffix if output_suffix is not None else ("_uranus" if body=="uranus" else f"_{body}_w{epoch_a}{epoch_b}" if (epoch_a,epoch_b)!=("1","2") else "")
+    result={"body":body,"epoch_a":str(epoch_a),"epoch_b":str(epoch_b),"truth_r_au":truth,
+            "truth_source":f"mean r_au from windows_{body}.csv, windows {epoch_a} and {epoch_b}",
+            "ephemeris_sources":sorted({m["ephemeris_source"] for xs in epoch_rows.values() for m in xs}),
+            "pixel_scale_arcsec":PIXEL_ARCSEC,"exposures":epoch_rows,"combinations":combos,
+            "n_combinations":len(combos),
+            "circular":{"median_d_fit_au":circ_med,"p16_p84_au":[float(x) for x in np.percentile(circ_d,[16,84])],"error_pct":100*(circ_med-truth)/truth},
+            "static":{"median_d_fit_au":static_med,"p16_p84_au":[float(x) for x in np.percentile(static_d,[16,84])],"error_pct":100*(static_med-truth)/truth},
+            "elapsed_seconds":round(time.monotonic()-START,1)}
+    OUT.mkdir(parents=True,exist_ok=True)
+    (OUT/f"astrometric_distance{suffix}.json").write_text(json.dumps(result,indent=2,allow_nan=False)+"\n")
+    curves=[("Our model (circular)",np.nanmedian(residuals_circ,axis=0),"#087e8b"),
+            ("Parallax-only (static)",np.nanmedian(residuals_static,axis=0),"#d1495b")]
+    fig,ax=plt.subplots(figsize=(11,7),facecolor="white");ax.set_facecolor("white")
+    for label,resid,color in curves:ax.plot(grid,resid,lw=3,color=color,label=label)
+    ax.axvline(truth,color="#333",ls="--",lw=2.2,label=f"{body.title()}, JPL {truth:.1f} AU")
+    ax.axhline(PIXEL_ARCSEC,color="#666",ls=":",lw=2,label="1 SPHEREx pixel (6.15\")")
+    ticks=[15,20,30,50,100,300,1000];ax.set_xscale("log");ax.set_yscale("log");ax.set_xticks(ticks);ax.set_xticklabels([str(x) for x in ticks])
+    ax.set_xlabel("Assumed heliocentric distance (AU)",fontsize=16);ax.set_ylabel("Angular miss at epoch B (arcsec)",fontsize=16)
+    ax.set_title("Real SPHEREx data — positions measured from images",fontsize=18,pad=16)
+    ax.tick_params(axis="both",labelsize=13);ax.grid(True,which="both",alpha=.22);ax.legend(fontsize=12);fig.tight_layout()
+    fig.savefig(OUT/f"astrometric_residual{suffix}.png",dpi=180,facecolor="white");plt.close(fig)
+    print(f"{body.upper()} ASTROMETRY SUMMARY",json.dumps({"truth_au":truth,"n_combinations":len(combos),"circular":result["circular"],"static":result["static"],"elapsed_seconds":result["elapsed_seconds"]}))
+    return result
+
+
 def _measure_local_cutout(row, local_root):
     """Apply the B-lite centroid rule to one Data Eng Neptune cutout."""
     path = local_root / str(row["local_path"])
@@ -403,8 +466,13 @@ def run_neptune_all_local():
 if __name__ == "__main__":
     parser=argparse.ArgumentParser()
     parser.add_argument("--all-local",action="store_true",help="fit all local Neptune meta cutouts")
+    parser.add_argument("--body",choices=("neptune","uranus"),default="neptune")
+    parser.add_argument("--epoch-a",default="1")
+    parser.add_argument("--epoch-b",default="2")
     args=parser.parse_args()
     if args.all_local:
         run_neptune_all_local()
-    else:
+    elif args.body=="neptune" and args.epoch_a=="1" and args.epoch_b=="2":
         run()
+    else:
+        run_body(args.body,args.epoch_a,args.epoch_b)
