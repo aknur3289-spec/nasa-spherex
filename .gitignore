@@ -5,3 +5,6 @@ __pycache__/
 .venv/
 data/raw/
 out/
+data/meta/neptune/templates/
+*.part
+.DS_Store

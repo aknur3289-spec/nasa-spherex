@@ -1,0 +1,35 @@
+{
+  "passes": [
+    {
+      "window_id": 1,
+      "catalog_exposures": 54,
+      "cutouts_ready": 54,
+      "detectors_ready": {
+        "1": 18,
+        "2": 18,
+        "3": 18
+      },
+      "mjd_min": 60842.377973553,
+      "mjd_max": 60861.06115
+    },
+    {
+      "window_id": 2,
+      "catalog_exposures": 21,
+      "cutouts_ready": 21,
+      "detectors_ready": {
+        "2": 9,
+        "3": 12
+      },
+      "mjd_min": 61017.782282014,
+      "mjd_max": 61022.675350093
+    },
+    {
+      "window_id": 3,
+      "catalog_exposures": 0,
+      "cutouts_ready": 0,
+      "detectors_ready": {},
+      "mjd_min": null,
+      "mjd_max": null
+    }
+  ]
+}
