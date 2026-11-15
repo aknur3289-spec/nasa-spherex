@@ -46,30 +46,38 @@ function loadAladin(): Promise<AladinAny> {
   return aladinScript;
 }
 
-function surveyLayer(A: AladinAny, id: string, url: string, onError: () => void): AladinAny {
-  return A.createImageSurvey(
-    `CDS/P/SPHEREx/QR2/${id}`,
-    `SPHEREx QR2 ${id}`,
-    url,
-    "equatorial",
-    undefined,
-    { errorCallback: onError },
-  );
+type Layer = { id: string; name: string; url: string; label?: string };
+
+/** SPHEREx first; if CDS does not serve it on this network, fall back to other real all-sky maps. */
+function layerChain(id: string): Layer[] {
+  const spherex = hipsUrls(id, location.origin).map((url) => ({ id: `CDS/P/SPHEREx/QR2/${id}`, name: `SPHEREx QR2 ${id}`, url }));
+  const backups: Layer[] = [
+    { id: "CDS/P/2MASS/color", name: "2MASS colour", url: "https://irsa.ipac.caltech.edu/data/hips/CDS/2MASS/Color", label: "2MASS near-infrared (NASA/IPAC)" },
+    { id: "CDS/P/2MASS/color", name: "2MASS colour", url: "https://alasky.cds.unistra.fr/2MASS/Color", label: "2MASS near-infrared (NASA/IPAC)" },
+    { id: "CDS/P/DSS2/color", name: "DSS2 colour", url: "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color", label: "DSS2 optical" },
+    { id: "CDS/P/DSS2/color", name: "DSS2 colour", url: "https://alasky.cds.unistra.fr/DSS/DSSColor", label: "DSS2 optical" },
+  ];
+  return [...spherex, ...backups];
+}
+
+function surveyLayer(A: AladinAny, layer: Layer, onError: () => void): AladinAny {
+  return A.createImageSurvey(layer.id, layer.name, layer.url, "equatorial", undefined, { errorCallback: onError });
 }
 
 function surveyWithFallback(
   A: AladinAny, id: string, getAladin: () => AladinAny,
-  isCurrent: () => boolean, onUnavailable: () => void,
+  isCurrent: () => boolean, onUnavailable: () => void, onBackup?: (label: string) => void,
 ): AladinAny {
-  const urls = hipsUrls(id, location.origin);
+  const chain = layerChain(id);
   let attempt = 0;
-  const make = (index: number): AladinAny => surveyLayer(A, id, urls[index], () => {
+  const make = (index: number): AladinAny => surveyLayer(A, chain[index], () => {
     if (!isCurrent() || attempt !== index) return;
     attempt += 1;
-    if (attempt === urls.length) {
+    if (attempt === chain.length) {
       onUnavailable();
       return;
     }
+    if (chain[attempt].label) onBackup?.(chain[attempt].label!);
     const next = make(attempt);
     const a = getAladin();
     if (a?.setBaseImageLayer) a.setBaseImageLayer(next);
@@ -105,6 +113,7 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
   const surveyGeneration = useRef(0);
   const searchNumber = useRef(0);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+  const [backup, setBackup] = useState<string>();
   const [survey, setSurvey] = useState("color");
   const [query, setQuery] = useState("");
   const [hit, setHit] = useState<Hit>();
@@ -139,6 +148,7 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
           A, "color", () => aladin.current,
           () => generation === surveyGeneration.current,
           () => setStatus("error"),
+          (label) => setBackup(label),
         );
         const a = A.aladin(host.current, {
           survey: layer,
@@ -223,6 +233,7 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
       aladinApi, id, () => aladin.current,
       () => generation === surveyGeneration.current,
       () => setStatus("error"),
+      (label) => setBackup(label),
     );
     setStatus("ready");
     if (a.setBaseImageLayer) a.setBaseImageLayer(layer);
@@ -300,6 +311,9 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
             />
             <button className="button primary" type="submit">Find</button>
           </form>
+          {status === "ready" && backup && (
+            <div className="ss-map-backup" role="note">SPHEREx map not reachable from this network — showing {backup} instead. Search and live images still use real SPHEREx data.</div>
+          )}
           {status !== "ready" && (
             <div className="ss-map-status" role="status">
               {status === "loading" ? "Loading the SPHEREx sky map…" : MAP_UNAVAILABLE}
