@@ -4190,3 +4190,15 @@ input[type="range"]::-webkit-slider-thumb {
   .ss-form .button { padding: 0 15px; }
   .ss-layers { bottom: 64px; }
 }
+
+/* ---------- live mode (any point on the sky) ---------- */
+.live-progress { padding: 20px 24px; margin: 16px 0; display: grid; gap: 12px; }
+.live-bar { height: 8px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
+.live-bar i { display: block; height: 100%; background: linear-gradient(90deg, #6fd3ff, #8b7bff); transition: width .3s; }
+.live-summary { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; padding: 14px 20px; margin: 16px 0; }
+.live-summary b { color: #fff; }
+.live-tabs { margin-left: auto; display: flex; gap: 6px; }
+.live-tabs button { border: 1px solid rgba(255,255,255,.15); background: transparent; color: inherit; padding: 8px 14px; border-radius: 99px; cursor: pointer; }
+.live-tabs button.active { background: #fff; color: #0b0f1e; }
+.live-note { opacity: .7; font-size: 14px; margin-top: 12px; }
+.ss-live { margin-top: 10px; }

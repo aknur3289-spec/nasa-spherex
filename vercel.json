@@ -4,10 +4,30 @@
   "buildCommand": "npm --prefix web run build",
   "outputDirectory": "web/dist",
   "rewrites": [
-    { "source": "/hips/:path*", "destination": "https://alasky.cds.unistra.fr/:path*" },
-    { "source": "/sesame/:path*", "destination": "https://cds.unistra.fr/cgi-bin/nph-sesame/:path*" }
+    {
+      "source": "/hips/:path*",
+      "destination": "https://alasky.cds.unistra.fr/:path*"
+    },
+    {
+      "source": "/sesame/:path*",
+      "destination": "https://cds.unistra.fr/cgi-bin/nph-sesame/:path*"
+    }
   ],
   "headers": [
-    { "source": "/hips/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, s-maxage=604800" }] }
-  ]
+    {
+      "source": "/hips/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=604800"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  }
 }

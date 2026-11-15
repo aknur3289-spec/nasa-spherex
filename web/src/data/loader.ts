@@ -4,6 +4,8 @@ import { FieldError, safeId, safeAsset, validateDifferencePng, validateField, va
 export { FieldError };
 const root = () => (import.meta.env?.BASE_URL ?? '/') + 'data/';
 export function imageUrl(id: string, path: string) {
+  // Live mode renders frames in the browser; those arrive as data: URLs.
+  if (path.startsWith('data:image/png;base64,')) return path;
   if (!safeId(id) || !safeAsset(path)) throw new FieldError('Invalid image path.');
   return root() + id + '/' + path;
 }

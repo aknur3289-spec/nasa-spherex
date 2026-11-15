@@ -87,6 +87,11 @@ function focusMap(a: AladinAny, at: RaDec, fov: number): void {
   }
 }
 
+function openLive(at: RaDec, label: string) {
+  const q = new URLSearchParams({ ra: at.ra.toFixed(5), dec: at.dec.toFixed(5), name: label });
+  location.hash = "/live?" + q.toString();
+}
+
 type Hit =
   | { kind: "field"; at: RaDec; field: Field; label: string }
   | { kind: "neptune"; at: RaDec; label: string }
@@ -119,6 +124,9 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
       },
     [fields],
   );
+
+  const classifyRef = useRef(classify);
+  classifyRef.current = classify;
 
   // Boot Aladin once.
   useEffect(() => {
@@ -163,6 +171,13 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
             const f = fieldsRef.current.find((x) => x.field_id === d.id);
             if (f) setHit({ kind: "field", at: { ra: f.center.ra_deg, dec: f.center.dec_deg }, field: f, label: d.name });
           }
+        });
+        // Click anywhere on the sky: offer live SPHEREx images of that exact point.
+        a.on?.("click", (e: AladinAny) => {
+          if (e?.isDragging) return;
+          const ra = Number(e?.ra), dec = Number(e?.dec);
+          if (!Number.isFinite(ra) || !Number.isFinite(dec)) return;
+          setHit(classifyRef.current({ ra, dec }, "Point you clicked"));
         });
         setStatus("ready");
       })
@@ -321,6 +336,10 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
                 <button className="button primary" onClick={() => go("timelapse", hit.field.field_id)}>Watch timelapse</button>
                 <button className="button secondary" onClick={() => go("compare", hit.field.field_id)}>Compare two dates</button>
               </div>
+              <button className="ss-nearest ss-live" onClick={() => openLive(hit.at, hit.label)}>
+                <span>Or fetch fresh images live from IRSA</span>
+                <b>Load real SPHEREx images here →</b>
+              </button>
             </div>
           )}
           {hit?.kind === "neptune" && (
@@ -340,8 +359,11 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
               <h3>{hit.label}</h3>
               <p className="mono">{fmtRa(hit.at.ra)} · {fmtDec(hit.at.dec)}</p>
               <p>
-                This spot is outside our time-lapse data, so there is nothing to compare over time here.
+                SPHEREx scans the whole sky every six months. Load its real images of this exact point straight from NASA's archive and compare them over time.
               </p>
+              <div className="ss-actions">
+                <button className="button primary" onClick={() => openLive(hit.at, hit.label)}>Load real SPHEREx images here</button>
+              </div>
               {hit.nearest && (
                 <button className="ss-nearest" onClick={() => go("timelapse", hit.nearest!.field.field_id)}>
                   <span>Nearest of our fields</span>
