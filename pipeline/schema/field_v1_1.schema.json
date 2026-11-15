@@ -160,6 +160,12 @@
         "png": {
           "$ref": "#/$defs/asset"
         },
+        "mask_png": {
+          "$ref": "#/$defs/asset"
+        },
+        "target_radec": {
+          "$ref": "#/$defs/coordinate"
+        },
         "fits": {
           "type": "string",
           "pattern": "^[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*\\.fits$"

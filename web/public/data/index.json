@@ -22,5 +22,11 @@
     "kind": "dial",
     "thumbnail": "neptune-dial/ref.png",
     "title": "Neptune Distance Dial"
+  },
+  {
+    "field_id": "neptune-track",
+    "kind": "static",
+    "thumbnail": "neptune-track/thumb.png",
+    "title": "Neptune against fixed stars"
   }
 ]

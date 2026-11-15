@@ -9,6 +9,7 @@ from astropy.io import fits
 from PIL import Image
 
 from pipeline import build_field as builder
+from pipeline import spx
 from pipeline.tests.test_frame import synthetic_mef
 
 
@@ -53,18 +54,25 @@ fields:
                              "local_path": str(path), "downloaded_utc": "2026-11-14T08:00:00+00:00",
                              "status": "cached"})
 
-    def write_png(image, bad, stretch, out, scale=1):
+    def write_png(image, bad, stretch, out, scale=1, footprint=None):
         Image.fromarray(np.full((3 * scale, 3 * scale, 4), 255, dtype=np.uint8), "RGBA").save(out)
         return stretch
 
+    def write_mask(bad, footprint, out):
+        out.parent.mkdir(parents=True, exist_ok=True)
+        write_png(bad, bad, {}, out)
+
     fake_render = types.ModuleType("pipeline.spx.render")
     fake_render.field_grid = lambda ra, dec, size: (None, (3, 3))
-    fake_render.to_grid = lambda frame, grid, shape: (frame.image, frame.bad)
+    fake_render.to_grid_with_footprint = lambda frame, grid, shape: (
+        frame.image, frame.bad, np.ones_like(frame.bad, dtype=bool))
     fake_render.stretch_params = lambda images: {"kind": "asinh", "lo": -1.0,
                                                  "hi": 5.0, "unit": "MJy/sr"}
     fake_render.to_png = write_png
+    fake_render.mask_png = write_mask
     fake_render.diff_png = lambda a, b, bad, out, noise: write_png(a, bad, {}, out)
     monkeypatch.setitem(sys.modules, "pipeline.spx.render", fake_render)
+    monkeypatch.setattr(spx, "render", fake_render, raising=False)
     monkeypatch.setattr(builder, "fetch_field", lambda *args, **kwargs: (_ for _ in ()).throw(
         AssertionError("offline build called network")))
     monkeypatch.setattr(builder, "_commit", lambda: "synthetic-test")
@@ -87,6 +95,7 @@ fields:
     assert all((outdir / pair["diff_png"]).is_file() for pair in manifest["pairs"])
     assert all((frame["width_px"], frame["height_px"]) == (3, 3)
                for frame in manifest["frames"])
+    assert all((outdir / frame["mask_png"]).is_file() for frame in manifest["frames"])
     assert json.loads((outdir / "timeline.json").read_text()) == [
         {"frame_id": frame["id"], "obs_time_utc": frame["obs_time_utc"], "mjd": frame["mjd"]}
         for frame in sorted(manifest["frames"], key=lambda item: (item["obs_time_utc"], item["id"]))

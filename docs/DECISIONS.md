@@ -4,6 +4,7 @@
 - Contract 1.0 uses a field index plus one self-contained directory per field. Band and FITS are optional for compatibility with early pipeline outputs.
 - The Dev3 viewer compares two selected frames. Dial metadata is validated for integration.
 - The bundled star fields, metadata, and motion marker are synthetic and are labeled DEMO DATA.
+- Display PNGs inpaint masked pixels for readability; analysis uses masked data; mask shown via mask_png toggle.
 
 ## 2026-11-14 14:50 — Contract answers from Frontend
 - pairs[].kind: REJECTED in field.json (stays in pairs.csv only).

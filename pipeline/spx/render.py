@@ -38,8 +38,10 @@ def field_grid(
     return grid_wcs, (pixels, pixels)
 
 
-def to_grid(frame: Frame, grid_wcs: WCS, shape: tuple[int, int]) -> tuple[np.ndarray, np.ndarray]:
-    """Reproject the image and its bad-pixel mask onto a common grid."""
+def to_grid_with_footprint(
+    frame: Frame, grid_wcs: WCS, shape: tuple[int, int]
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Reproject analysis values, bad pixels, and the detector footprint."""
     image = np.asarray(frame.image, dtype=np.float32)
     bad = np.asarray(frame.bad, dtype=bool)
     if image.ndim != 2 or image.shape != bad.shape:
@@ -53,6 +55,7 @@ def to_grid(frame: Frame, grid_wcs: WCS, shape: tuple[int, int]) -> tuple[np.nda
         (bad.astype(np.float32), frame.wcs), grid_wcs,
         shape_out=shape, order="bilinear"
     )
+    inside = bad_footprint > 0
     projected_bad = (
         (bad_fraction > 0.1)
         | ~np.isfinite(bad_fraction)
@@ -62,7 +65,13 @@ def to_grid(frame: Frame, grid_wcs: WCS, shape: tuple[int, int]) -> tuple[np.nda
     )
     projected = np.asarray(projected, dtype=np.float32)
     projected[projected_bad] = np.nan
-    return projected, projected_bad
+    return projected, projected_bad, inside
+
+
+def to_grid(frame: Frame, grid_wcs: WCS, shape: tuple[int, int]) -> tuple[np.ndarray, np.ndarray]:
+    """Return the unchanged analysis image and bad-pixel mask on a common grid."""
+    image, bad, _ = to_grid_with_footprint(frame, grid_wcs, shape)
+    return image, bad
 
 
 def stretch_params(
@@ -100,15 +109,55 @@ def _write_png(gray: np.ndarray, bad: np.ndarray, out: Path, scale: int) -> None
     png.save(out, format="PNG")
 
 
+def _fill_display_only(values: np.ndarray, fillable: np.ndarray) -> np.ndarray:
+    """Interpolate masked display pixels from adjacent valid pixels without changing inputs."""
+    filled = values.copy()
+    pending = fillable.copy()
+    for _ in range(sum(values.shape)):
+        if not pending.any():
+            return filled
+        padded = np.pad(filled, 1, constant_values=np.nan)
+        neighbours = [padded[1 + dy:1 + dy + values.shape[0],
+                             1 + dx:1 + dx + values.shape[1]]
+                      for dy in (-1, 0, 1) for dx in (-1, 0, 1) if dy or dx]
+        counts = sum(np.isfinite(item) for item in neighbours)
+        sums = sum(np.nan_to_num(item, nan=0.0) for item in neighbours)
+        ready = pending & (counts > 0)
+        if not ready.any():
+            break
+        filled[ready] = sums[ready] / counts[ready]
+        pending[ready] = False
+    if pending.any():
+        raise ValueError("masked display pixels have no valid neighbours")
+    return filled
+
+
+def mask_png(bad: np.ndarray, footprint: np.ndarray, out: Path) -> None:
+    """Write a white overlay for masked detector pixels; everything else is transparent."""
+    masked = np.asarray(bad, dtype=bool)
+    inside = np.asarray(footprint, dtype=bool)
+    if masked.ndim != 2 or masked.shape != inside.shape:
+        raise ValueError("bad and footprint must be matching 2-D arrays")
+    rgba = np.zeros((*masked.shape, 4), dtype=np.uint8)
+    rgba[..., :3] = 255
+    rgba[..., 3] = np.where(masked & inside, 255, 0).astype(np.uint8)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    Image.fromarray(rgba, mode="RGBA").save(out, format="PNG")
+
+
 def to_png(
-    img: np.ndarray, bad: np.ndarray, stretch: dict, out: Path, scale: int = 1
+    img: np.ndarray, bad: np.ndarray, stretch: dict, out: Path, scale: int = 1,
+    footprint: np.ndarray | None = None,
 ) -> dict:
-    """Write an asinh grayscale PNG and return its stretch metadata."""
+    """Write an inpainted display PNG without changing analysis arrays."""
     values = np.asarray(img, dtype=np.float64)
     masked = np.asarray(bad, dtype=bool)
     if values.ndim != 2 or values.shape != masked.shape:
         raise ValueError("img and bad must be matching 2-D arrays")
-    valid = ~masked & np.isfinite(values)
+    inside = np.isfinite(values) if footprint is None else np.asarray(footprint, dtype=bool)
+    if inside.shape != values.shape:
+        raise ValueError("footprint must match img")
+    valid = ~masked & np.isfinite(values) & inside
     if not valid.any():
         raise ValueError("image has no finite unmasked pixels")
     if stretch.get("kind") != "asinh" or stretch.get("unit") != "MJy/sr":
@@ -117,11 +166,12 @@ def to_png(
     if not (np.isfinite(lo) and np.isfinite(hi) and lo < hi):
         raise ValueError("stretch bounds must be finite and increasing")
     median = float(np.median(values[valid]))
-    centered = values - median
+    display = _fill_display_only(np.where(valid, values, np.nan), inside & ~valid)
+    centered = display - median
     clipped = np.clip((centered - lo) / (hi - lo), 0, 1)
     mapped = np.arcsinh(10 * clipped) / np.arcsinh(10)
     gray = np.rint(np.nan_to_num(mapped, nan=0) * 255).astype(np.uint8)
-    _write_png(gray, ~valid, out, scale)
+    _write_png(gray, ~inside, out, scale)
     return {"kind": "asinh", "lo": lo, "hi": hi, "unit": "MJy/sr",
             "median_subtracted_mjysr": median}
 

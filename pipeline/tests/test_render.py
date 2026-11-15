@@ -6,7 +6,7 @@ import pytest
 from astropy.wcs import WCS
 from PIL import Image
 
-from spx.render import diff_png, field_grid, stretch_params, to_grid, to_png
+from spx.render import diff_png, field_grid, mask_png, stretch_params, to_grid, to_png
 
 
 @dataclass
@@ -59,23 +59,31 @@ def test_stretch_shared_across_backgrounds(tmp_path: Path) -> None:
     assert (tmp_path / "a.png").read_bytes() == (tmp_path / "b.png").read_bytes()
 
 
-def test_bad_pixels_are_transparent_and_png_is_deterministic(tmp_path: Path) -> None:
+def test_display_inpaints_mask_but_keeps_outside_transparent(tmp_path: Path) -> None:
     image = np.arange(25, dtype=np.float32).reshape(5, 5)
     bad = np.zeros_like(image, dtype=bool)
     bad[2, 2] = True
     image[0, 0] = np.nan
+    footprint = np.ones_like(bad)
+    footprint[0, 0] = False
     stretch = stretch_params([image])
     out = tmp_path / "sky.png"
-    to_png(image, bad, stretch, out, scale=2)
+    to_png(image, bad, stretch, out, scale=2, footprint=footprint)
     first_bytes = out.read_bytes()
-    to_png(image, bad, stretch, out, scale=2)
+    to_png(image, bad, stretch, out, scale=2, footprint=footprint)
     assert out.read_bytes() == first_bytes
     with Image.open(out) as png:
         assert png.size == (10, 10)
         pixels = np.asarray(png)
-    assert pixels[4:6, 4:6, 3].max() == 0
+    assert pixels[4:6, 4:6, 3].min() == 255
     assert pixels[0:2, 0:2, 3].max() == 0
     assert pixels[6, 6, 3] == 255
+    mask_png(bad, footprint, tmp_path / "mask.png")
+    with Image.open(tmp_path / "mask.png") as png:
+        overlay = np.asarray(png)
+    assert (overlay[2, 2] == [255, 255, 255, 255]).all()
+    assert overlay[0, 0, 3] == 0
+    assert overlay[3, 3, 3] == 0
 
 
 def test_identical_images_have_neutral_difference(tmp_path: Path) -> None:

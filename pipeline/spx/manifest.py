@@ -68,6 +68,13 @@ def validate_field(field: dict, outdir: Path | None = None, *, real_build: bool 
             with Image.open(outdir / frame["png"]) as image:
                 if image.size != (frame["width_px"], frame["height_px"]):
                     raise ValueError(f"{prefix}.png: dimensions differ from frame metadata")
+            if "mask_png" in frame:
+                path = outdir / frame["mask_png"]
+                if not path.is_file():
+                    raise ValueError(f"{prefix}.mask_png: missing asset {frame['mask_png']}")
+                with Image.open(path) as image:
+                    if image.size != (frame["width_px"], frame["height_px"]):
+                        raise ValueError(f"{prefix}.mask_png: dimensions differ from frame metadata")
     for index, pair in enumerate(field["pairs"]):
         prefix = f"$.pairs[{index}]"
         if pair["a"] == pair["b"] or pair["a"] not in ids or pair["b"] not in ids:

@@ -104,7 +104,7 @@ def build_field(
         frame_id = str(row["frame_id"])
         frames[frame_id] = row
         frame = read_frame(Path(row["local_path"]), ra_deg, dec_deg)
-        projected[frame_id] = render.to_grid(frame, grid_wcs, shape)
+        projected[frame_id] = render.to_grid_with_footprint(frame, grid_wcs, shape)
     stretches = {}
     for detector in sorted(published["detector"].unique()):
         detector_ids = [frame_id for frame_id, row in frames.items() if row["detector"] == detector]
@@ -114,11 +114,15 @@ def build_field(
     center = {"ra_deg": ra_deg, "dec_deg": dec_deg}
     frame_records = []
     for frame_id, row in frames.items():
-        image, bad = projected[frame_id]
+        image, bad, footprint = projected[frame_id]
         png = f"{frame_id}.png"
-        render.to_png(image, bad, stretches[row["detector"]], outdir / png)
+        mask = f"mask/{frame_id}.png"
+        render.to_png(image, bad, stretches[row["detector"]], outdir / png,
+                      footprint=footprint)
+        render.mask_png(bad, footprint, outdir / mask)
         frame_records.append({
-            "id": frame_id, "png": png, "obs_time_utc": row["obs_time_utc"],
+            "id": frame_id, "png": png, "mask_png": mask,
+            "obs_time_utc": row["obs_time_utc"],
             "width_px": int(image.shape[1]), "height_px": int(image.shape[0]),
             "mjd": float(row["mjd"]), "survey_pass": int(row["survey_pass"]),
             "detector": int(row["detector"]), "wavelength_um": float(row["wavelength_um"]),
@@ -130,16 +134,17 @@ def build_field(
         })
     for pair in pairs:
         a, b = pair["a"], pair["b"]
-        first, bad_a = projected[a]
-        second, bad_b = projected[b]
+        first, bad_a, _ = projected[a]
+        second, bad_b, _ = projected[b]
         noise = np.hypot(float(frames[a]["noise_mad_mjysr"]), float(frames[b]["noise_mad_mjysr"]))
         diff_png = f"diff/{a}-{b}.png"
         (outdir / "diff").mkdir(exist_ok=True)
         render.diff_png(first, second, bad_a | bad_b, outdir / diff_png, float(noise))
         pair["diff_png"] = diff_png
     best = pairs[0]["a"]
-    image, bad = projected[best]
-    render.to_png(image, bad, stretches[frames[best]["detector"]], outdir / "thumb.png", scale=2)
+    image, bad, footprint = projected[best]
+    render.to_png(image, bad, stretches[frames[best]["detector"]], outdir / "thumb.png",
+                  scale=2, footprint=footprint)
     manifest = {
         "schema_version": "1.1", "field_id": field_id, "kind": "static",
         "title": field["title"], "description": field["description"],
