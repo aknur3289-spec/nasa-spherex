@@ -45,27 +45,15 @@ const version = url => {
 };
 const newer = (a, b) => { for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] > b[i]; return false; };
 
-async function searchExposures(ra, dec) {
-  const query =
-    "SELECT 'https://irsa.ipac.caltech.edu/' || a.uri AS file_url, a.uri, p.time_bounds_lower, " +
-    'p.energy_bandpassname, p.obsid ' +
-    'FROM spherex.artifact a JOIN spherex.plane p ON a.planeid = p.planeid ' +
-    `WHERE 1 = CONTAINS(POINT('ICRS', ${ra}, ${dec}), p.poly) ` +
-    "AND (a.uri LIKE '%/spherex/dr1/%' OR a.uri LIKE '%/spherex/qr3/%') " +
-    'ORDER BY p.time_bounds_lower';
-  const url = `${TAP}?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=${encodeURIComponent(query)}`;
-  const text = await (await fetchRetry(url, { timeout: 40000 }, 2)).text();
-  if (/^\s*</.test(text)) throw new Error('IRSA TAP returned an error document');
+function keep(rows) {
   const kept = new Map();
-  for (const r of parseCsv(text)) {
+  for (const r of rows) {
     const file = r.file_url;
-    if (!FILE_RE.test(file)) continue;
-    const band = r.energy_bandpassname || '';
-    const detector = Number(band.split('D').pop());
+    if (!FILE_RE.test(file) || !/\/spherex\/(dr1|qr3)\//.test(file)) continue;
+    const detector = Number(String(r.band || '').split('D').pop());
     const key = `${r.obsid}:${detector}`;
     const item = {
-      file_url: file, obs_id: r.obsid, detector,
-      mjd: Number(r.time_bounds_lower),
+      file_url: file, obs_id: r.obsid, detector, mjd: Number(r.mjd),
       collection: /\/spherex\/qr3\//.test(file) ? 'spherex_qr3' : 'spherex_dr1',
     };
     const old = kept.get(key);
@@ -75,6 +63,58 @@ async function searchExposures(ra, dec) {
     .sort((a, b) => a.mjd - b.mjd);
 }
 
+// Short-wave detectors only (sharper images); no ORDER BY / LIKE so IRSA can answer fast.
+async function searchTap(ra, dec, timeout) {
+  const query =
+    "SELECT 'https://irsa.ipac.caltech.edu/' || a.uri AS file_url, p.time_bounds_lower, " +
+    'p.energy_bandpassname, p.obsid ' +
+    'FROM spherex.artifact a JOIN spherex.plane p ON a.planeid = p.planeid ' +
+    `WHERE 1 = CONTAINS(POINT('ICRS', ${ra}, ${dec}), p.poly) ` +
+    "AND p.energy_bandpassname IN ('SPHEREx-D1','SPHEREx-D2','SPHEREx-D3')";
+  const url = `${TAP}?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&MAXREC=5000&QUERY=${encodeURIComponent(query)}`;
+  const text = await (await fetchRetry(url, { timeout }, 1)).text();
+  if (/^\s*</.test(text)) throw new Error('IRSA TAP returned an error document');
+  return keep(parseCsv(text).map(r => ({
+    file_url: r.file_url, obsid: r.obsid, band: r.energy_bandpassname, mjd: r.time_bounds_lower,
+  })));
+}
+
+// SIA2 fallback (IRSA's image search service), VOTable TABLEDATA.
+function parseVotable(xml) {
+  const names = [...xml.matchAll(/<FIELD\b[^>]*\bname="([^"]+)"/g)].map(m => m[1].toLowerCase());
+  const rows = [];
+  for (const tr of xml.matchAll(/<TR>([\s\S]*?)<\/TR>/g)) {
+    const cells = [...tr[1].matchAll(/<TD>([\s\S]*?)<\/TD>|<TD\/>/g)].map(m => (m[1] ?? '').trim()
+      .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'));
+    rows.push(Object.fromEntries(names.map((n, i) => [n, cells[i] ?? ''])));
+  }
+  return rows;
+}
+async function searchSia(ra, dec, timeout) {
+  const url = `https://irsa.ipac.caltech.edu/SIA?COLLECTION=spherex_dr1&COLLECTION=spherex_qr3` +
+    `&POS=${encodeURIComponent(`CIRCLE ${ra} ${dec} 0.0003`)}&RESPONSEFORMAT=votable&MAXREC=5000`;
+  const xml = await (await fetchRetry(url, { timeout }, 1)).text();
+  return keep(parseVotable(xml).filter(r => /SPHEREx-D[123]/.test(r.energy_bandpassname || '')).map(r => ({
+    file_url: r.access_url, obsid: r.obs_id, band: r.energy_bandpassname, mjd: r.t_min,
+  })));
+}
+
+async function searchExposures(ra, dec) {
+  const t0 = Date.now();
+  // TAP and SIA in parallel; the first non-empty answer wins (IRSA speed varies a lot).
+  const attempts = [searchTap(ra, dec, 45000), searchSia(ra, dec, 45000)];
+  const errors = [];
+  const winner = await new Promise((resolve) => {
+    let pending = attempts.length;
+    for (const a of attempts) {
+      a.then(r => { if (r.length) resolve(r); else if (--pending === 0) resolve([]); })
+        .catch(e => { errors.push(String(e.message || e)); if (--pending === 0) resolve(null); });
+    }
+  });
+  if (winner === null) throw new Error(errors.join('; ') + ` (after ${Math.round((Date.now() - t0) / 1000)} s)`);
+  return winner;
+}
+
 async function fetchCutout(fileUrl, ra, dec, sizeDeg) {
   if (!FILE_RE.test(fileUrl)) throw new Error('Not a SPHEREx L2 file URL');
   const url = `${fileUrl}?center=${ra},${dec}d&size=${sizeDeg}`;
@@ -82,4 +122,4 @@ async function fetchCutout(fileUrl, ra, dec, sizeDeg) {
   return { buf: Buffer.from(await r.arrayBuffer()), url };
 }
 
-module.exports = { searchExposures, fetchCutout, parseCsv, FILE_RE };
+module.exports = { searchExposures, fetchCutout, parseCsv, parseVotable, FILE_RE };
