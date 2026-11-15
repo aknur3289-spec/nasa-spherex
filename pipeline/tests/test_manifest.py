@@ -132,6 +132,27 @@ def test_v1_1_dimensions_and_diff(field: tuple[dict, Path]) -> None:
         validate_field(sample, directory)
 
 
+def test_color_asset_and_bands_are_strict(field: tuple[dict, Path]) -> None:
+    sample, directory = field
+    sample["schema_version"] = "1.1"
+    for frame in sample["frames"]:
+        Image.new("RGB", (3, 4)).save(directory / frame["png"])
+        frame.update(width_px=3, height_px=4)
+    sample["color_png"] = "color.png"
+    sample["color_bands_um"] = [[0.75, 1.1], [1.1, 1.7], [1.7, 2.42]]
+    with pytest.raises(ValueError, match="missing asset"):
+        validate_field(sample, directory)
+    Image.new("RGBA", (3, 4)).save(directory / "color.png")
+    validate_field(sample, directory)
+    sample["color_bands_um"][1] = [1.0, 1.7]
+    with pytest.raises(ValueError, match="color_bands_um"):
+        validate_field(sample, directory)
+    sample["color_bands_um"][1] = [1.1, 1.7]
+    Image.new("RGBA", (4, 4)).save(directory / "color.png")
+    with pytest.raises(ValueError, match="dimensions"):
+        validate_field(sample, directory)
+
+
 def test_dial_bounds(field: tuple[dict, Path]) -> None:
     sample, directory = field
     sample["kind"] = "dial"

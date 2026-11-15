@@ -32,6 +32,21 @@ def validate_field(field: dict, outdir: Path | None = None, *, real_build: bool 
         raise ValueError(f"{path}: {error.message}")
     if real_build and field["provenance"]["synthetic"]:
         raise ValueError("$.provenance.synthetic: real build cannot be synthetic")
+    if ("color_png" in field) != ("color_bands_um" in field):
+        raise ValueError("$.color_png: color_png and color_bands_um must occur together")
+    if "color_png" in field:
+        bands = field["color_bands_um"]
+        if any(not all(math.isfinite(value) for value in band) or band[0] >= band[1]
+               for band in bands) or any(bands[i][1] > bands[i + 1][0] for i in (0, 1)):
+            raise ValueError("$.color_bands_um: bands must be finite, increasing, and ordered")
+        if outdir is not None:
+            path = outdir / field["color_png"]
+            if not path.is_file():
+                raise ValueError(f"$.color_png: missing asset {field['color_png']}")
+            with Image.open(path) as image:
+                expected = {(frame["width_px"], frame["height_px"]) for frame in field["frames"]}
+                if image.size not in expected or len(expected) != 1:
+                    raise ValueError("$.color_png: dimensions differ from field frames")
     ids: set[str] = set()
     for index, frame in enumerate(field["frames"]):
         prefix = f"$.frames[{index}]"
@@ -129,7 +144,7 @@ def update_index(data_root: Path) -> None:
             continue
         if field["field_id"] != path.parent.name:
             raise ValueError(f"{path}: field_id does not match directory")
-        thumbnail = "thumb.png" if (path.parent / "thumb.png").is_file() else field["frames"][0]["png"]
+        thumbnail = field.get("color_png") or ("thumb.png" if (path.parent / "thumb.png").is_file() else field["frames"][0]["png"])
         entries.append({"field_id": field["field_id"], "kind": field["kind"],
                         "title": field["title"], "thumbnail": f"{path.parent.name}/{thumbnail}"})
     data_root.mkdir(parents=True, exist_ok=True)

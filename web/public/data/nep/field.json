@@ -3,6 +3,21 @@
     "dec_deg": 66.56072,
     "ra_deg": 270.0
   },
+  "color_bands_um": [
+    [
+      0.75,
+      1.1
+    ],
+    [
+      1.1,
+      1.7
+    ],
+    [
+      1.7,
+      2.42
+    ]
+  ],
+  "color_png": "color.png",
   "description": "SPHEREx revisits the ecliptic poles on every orbit, so this field has the most epochs.",
   "field_id": "nep",
   "frames": [

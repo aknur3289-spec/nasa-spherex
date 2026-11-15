@@ -2,19 +2,19 @@
   {
     "field_id": "ecl",
     "kind": "static",
-    "thumbnail": "ecl/thumb.png",
+    "thumbnail": "ecl/color.png",
     "title": "Ecliptic test field"
   },
   {
     "field_id": "m101",
     "kind": "static",
-    "thumbnail": "m101/thumb.png",
+    "thumbnail": "m101/color.png",
     "title": "Pinwheel Galaxy (M101)"
   },
   {
     "field_id": "nep",
     "kind": "static",
-    "thumbnail": "nep/thumb.png",
+    "thumbnail": "nep/color.png",
     "title": "North Ecliptic Pole"
   },
   {
@@ -26,7 +26,7 @@
   {
     "field_id": "neptune-track",
     "kind": "static",
-    "thumbnail": "neptune-track/thumb.png",
+    "thumbnail": "neptune-track/color.png",
     "title": "Neptune against fixed stars"
   }
 ]

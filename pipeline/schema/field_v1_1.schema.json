@@ -48,6 +48,18 @@
       "type": "number",
       "exclusiveMinimum": 0
     },
+    "color_png": { "$ref": "#/$defs/asset" },
+    "color_bands_um": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "array", "minItems": 2, "maxItems": 2,
+        "prefixItems": [
+          { "type": "number", "exclusiveMinimum": 0 },
+          { "type": "number", "exclusiveMinimum": 0 }
+        ],
+        "items": false
+      }
+    },
     "frames": {
       "type": "array",
       "items": {

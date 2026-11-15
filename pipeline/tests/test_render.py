@@ -7,6 +7,7 @@ from astropy.wcs import WCS
 from PIL import Image
 
 from spx.render import diff_png, field_grid, mask_png, stretch_params, to_grid, to_png
+from pipeline.build_color import compose
 
 
 @dataclass
@@ -84,6 +85,17 @@ def test_display_inpaints_mask_but_keeps_outside_transparent(tmp_path: Path) -> 
     assert (overlay[2, 2] == [255, 255, 255, 255]).all()
     assert overlay[0, 0, 3] == 0
     assert overlay[3, 3, 3] == 0
+
+
+def test_color_composite_uses_ordered_medians_and_common_stretch() -> None:
+    blue = [np.array([[1.0, np.nan], [2.0, 3.0]]), np.array([[3.0, np.nan], [4.0, 5.0]])]
+    green = [np.array([[5.0, np.nan], [6.0, 7.0]])]
+    red = [np.array([[9.0, np.nan], [10.0, 11.0]])]
+    rgba = compose([blue, green, red])
+    assert rgba.shape == (2, 2, 4)
+    assert (rgba[0, 0, :3] == sorted(rgba[0, 0, :3], reverse=True)).all()
+    assert rgba[0, 1, 3] == 0
+    assert rgba[1, 0, 3] == 255
 
 
 def test_identical_images_have_neutral_difference(tmp_path: Path) -> None:

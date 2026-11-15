@@ -3,6 +3,21 @@
     "dec_deg": 54.34895,
     "ra_deg": 210.80227
   },
+  "color_bands_um": [
+    [
+      1.1,
+      1.55
+    ],
+    [
+      1.55,
+      1.85
+    ],
+    [
+      1.85,
+      2.42
+    ]
+  ],
+  "color_png": "color.png",
   "description": "A bright nearby galaxy used in the official IRSA tutorial; a stable field to show honest vs naive comparison.",
   "field_id": "m101",
   "frames": [
