@@ -1,0 +1,33 @@
+.observation-viewer { position: relative; min-width: 0; }
+.observation-viewer .viewer-synthetic { display: inline-block; }
+.observation-stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.observation-stage.observation-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.observation-stage figure { position: relative; margin: 0; background: #08090b; border: 1px solid #ffffff26; border-radius: 22px; overflow: hidden; }
+.observation-stage figure[hidden] { display: none; }
+.observation-stage img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; filter: grayscale(1); background: #08090b; }
+.observation-composite { isolation: isolate; }
+.observation-overlay { position: absolute; inset: 0; }
+.observation-composite.difference .observation-overlay { mix-blend-mode: difference; }
+.observation-divider { position: absolute; inset-block: 0; width: 2px; background: white; }
+.observation-sheet { display: grid; gap: 12px; margin-top: 12px; padding: clamp(12px, 2vw, 24px); border: 1px solid #ffffff26; border-radius: 24px; background: #ffffff12; backdrop-filter: blur(30px); box-shadow: inset 0 1px #ffffff17; }
+.observation-toolbar, .viewer-segmented { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.viewer-segmented { width: fit-content; border-radius: 16px; padding: 4px; background: #05070d60; }
+.viewer-segmented button { padding: 7px 10px; border: 1px solid transparent; border-radius: 12px; background: transparent; white-space: nowrap; }
+.viewer-segmented button:hover { background: #ffffff13; }
+.viewer-segmented button[aria-pressed=true] { background: #ffffff24; border-color: #ffffff24; }
+.observation-scrub input, .comparison-position input { width: 100%; accent-color: #e8eefb; }
+.observation-dates { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font: .72rem 'IBM Plex Mono', monospace; }
+.observation-details { display: grid; gap: 10px; min-width: 0; }
+.observation-details .trust { margin: 0; width: fit-content; }
+.observation-meta { margin: 0; border: none; background: transparent; }
+.observation-meta figcaption { padding: 0; }
+.observation-details .frame-info { font-family: 'IBM Plex Mono', monospace; }
+.sheet-handle { display: none; }
+@media (max-width: 600px) {
+  .observation-stage.observation-pair { grid-template-columns: minmax(0, 1fr); }
+  .sheet-handle { display: grid; place-items: center; min-height: 32px; padding: 0; width: 100%; border: 0; background: transparent; touch-action: none; }
+  .sheet-handle::after { content: ''; display: block; width: 40px; height: 4px; background: #ffffff55; border-radius: 8px; }
+  .sheet-collapsed .observation-details { display: none; }
+  .observation-toolbar { align-items: flex-start; }
+  .viewer-segmented button { font-size: .8rem; padding-inline: 8px; }
+}

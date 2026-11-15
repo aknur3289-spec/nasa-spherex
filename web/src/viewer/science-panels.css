@@ -1,0 +1,34 @@
+.science-section { margin-block: 32px; min-width: 0; }
+.science-section h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 12px; }
+.science-section h3 { margin: 0; font-size: 1rem; }
+.science-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-block: 16px; }
+.science-frame { min-width: 0; margin: 0; border: 1px solid #ffffff26; border-radius: 20px; overflow: hidden; background: #07090e; }
+.science-frame figcaption { padding: 12px 16px; font-family: "IBM Plex Mono", monospace; }
+.science-image { position: relative; aspect-ratio: 1; background: #07090e; }
+.science-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.crosshair { position: absolute; inset: 50% auto auto 50%; translate: -50% -50%; width: 30px; height: 30px; border: 1px solid #f2b441; border-radius: 50%; }
+.crosshair::before, .crosshair::after { content: ""; position: absolute; top: 50%; left: 50%; translate: -50% -50%; background: #f2b441; }
+.crosshair::before { width: 42px; height: 1px; }
+.crosshair::after { width: 1px; height: 42px; }
+.science-glass { padding: clamp(16px, 3vw, 26px); border-radius: 24px; background: #ffffff12; border: 1px solid #ffffff26; backdrop-filter: blur(32px); box-shadow: inset 0 1px 0 #ffffff14; }
+.science-control label, .science-frame-count { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.science-control output, .science-peak { color: #f2b441; }
+.science-section output, .science-axis-labels { font-family: "IBM Plex Mono", monospace; }
+.science-range-row { display: flex; align-items: center; gap: 14px; margin-block: 8px; }
+.science-section input[type=range] { width: 100%; min-width: 0; min-height: 32px; margin: 0; }
+.science-control input { accent-color: #f2b441; }
+.science-control input::-webkit-slider-thumb { scale: 1.22; }
+.science-axis-labels { display: flex; justify-content: space-between; font-size: .72rem; color: #aebbd0; }
+.science-chart { margin-top: 16px; }
+.science-chart svg { display: block; width: 100%; max-height: 320px; color: #c3ccdb; }
+.science-chart svg text { fill: currentColor; font: 10px "IBM Plex Mono", monospace; }
+.science-note { color: #bbc5d6; font-size: .86rem; line-height: 1.5; }
+.science-legend { display: flex; flex-wrap: wrap; gap: 10px 16px; padding: 0; list-style: none; font-size: .8rem; }
+.science-legend li::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 6px; border: 1px solid #ffffff40; border-radius: 3px; background: #ffffff4a; }
+.science-legend li:nth-child(2)::before { background: #ffffff24; }
+.science-legend li:nth-child(3)::before { background: #ffffff08; }
+@media (max-width: 520px) { .science-images { grid-template-columns: 1fr; } }
+.image-placeholder.outside-frame { display: grid; place-content: center; gap: 6px; text-align: center; padding: 16px;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 8px, transparent 8px 16px); }
+.image-placeholder.outside-frame b { font-size: 15px; }
+.image-placeholder.outside-frame span { font-size: 12.5px; opacity: .7; max-width: 26ch; }

@@ -1,0 +1,7 @@
+{
+ "note": "Neptune position in the target frame, derived by least squares from the predicted positions and miss distances in dial_table_neptune.csv (both models). Used only to place the crosshair on screen.",
+ "ra_deg": 359.636378,
+ "dec_deg": -1.620821,
+ "fit_rms_arcsec": 0.65,
+ "pixel_scale_arcsec": 6.15
+}
