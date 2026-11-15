@@ -4209,3 +4209,12 @@ input[type="range"]::-webkit-slider-thumb {
 .dial-target b { position: absolute; left: 50%; top: 34px; transform: translateX(-50%); font: 11px "DM Mono", monospace; font-weight: 400;
   color: #34d399; background: rgba(5,6,15,.75); padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
 .dial-target-away { position: absolute; color: #34d399; font-size: 26px; filter: drop-shadow(0 0 8px #34d399); pointer-events: none; }
+
+/* Compare fixes: pointer-driven swipe (range kept for keyboard), neutral grey for masked pixels in the difference view */
+.cq-swipe.sr-only-range { pointer-events: none; }
+.cq-diff .pixel-stage img, .cq-diff img { background: rgb(128, 128, 128); }
+.cq-nofair { padding: 14px 18px; margin-bottom: 14px; border-color: rgba(251, 191, 36, .45) !important; color: var(--text-2); line-height: 1.5; }
+.cq-nofair b { color: #fbbf24; }
+/* Images inside the compare stage must not start a native image drag (it cancelled the swipe). */
+.cq-stage img, .cq-stage canvas { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+.cq-stage { user-select: none; }

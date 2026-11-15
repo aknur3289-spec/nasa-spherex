@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type React from "react";
 import type { Field, Frame } from "../contract";
 import { imageUrl } from "../data/loader";
 import { DifferenceImage } from "../viewer/DifferenceImage";
+import { NormImg } from "./NormImg";
 import { daysApart, niceDate, pairTrust, type Trust } from "./fields";
 import { MappedImage, type ColourMap } from "./MappedImage";
 
@@ -58,6 +60,11 @@ export function ComparePairs({ field }: { field: Field }) {
   const [showB, setShowB] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [split, setSplit] = useState(50);
+  const dragRef = useRef(false);
+  const swipeTo = (e: React.PointerEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    setSplit(Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)));
+  };
   const [showRisky, setShowRisky] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [showMasks, setShowMasks] = useState(false);
@@ -117,6 +124,13 @@ export function ComparePairs({ field }: { field: Field }) {
 
   return (
     <div className="compare-quest">
+      {good.length === 0 && (
+        <div className="glass cq-nofair" role="note">
+          <b>No fair pairs in this field.</b> All its images were taken too close in time or in different infrared colours,
+          so differences here mostly come from colour, not motion. Use Timelapse for this field, or pick M101, NEP or the
+          Ecliptic field to compare fair pairs.
+        </div>
+      )}
       <div className="glass cq-intro">
         <div>
           <small>COMPARE TWO DATES</small>
@@ -170,7 +184,12 @@ export function ComparePairs({ field }: { field: Field }) {
             <span className={`cq-date b ${current === "b" ? "on" : ""}`}><i>B</i>{niceDate(b.obs_time_utc)}</span>
           </div>
 
-          <div className="cq-stage">
+          <div className="cq-stage"
+            onPointerDown={(e) => { if (view !== "swipe") return; e.preventDefault(); dragRef.current = true; e.currentTarget.setPointerCapture?.(e.pointerId); swipeTo(e); }}
+            onPointerMove={(e) => { if (view === "swipe" && dragRef.current) swipeTo(e); }}
+            onPointerUp={() => { dragRef.current = false; }}
+            onPointerCancel={() => { dragRef.current = false; }}
+            style={view === "swipe" ? { cursor: "ew-resize", touchAction: "none" } : undefined}>
             {view === "flip" && (
               <>
                 <MappedImage src={imageUrl(field.field_id, a.png)} alt={`Sky on ${niceDate(a.obs_time_utc)}`} map={colourMap} style={{ opacity: showB ? 0 : 1 }} />
@@ -188,7 +207,7 @@ export function ComparePairs({ field }: { field: Field }) {
                 <span className="cq-split" style={{ left: `${split}%` }}><i>⟷</i></span>
                 <span className="cq-badge a corner-l">A</span>
                 <span className="cq-badge b corner-r">B</span>
-                <input className="cq-swipe" type="range" min={0} max={100} value={split} onChange={(e) => setSplit(Number(e.target.value))} aria-label="Swipe between date A and date B" />
+                <input className="cq-swipe sr-only-range" type="range" min={0} max={100} value={split} onChange={(e) => setSplit(Number(e.target.value))} aria-label="Swipe between date A and date B" />
               </>
             )}
             {view === "diff" && (
