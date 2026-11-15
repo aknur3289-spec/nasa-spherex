@@ -1,25 +1,33 @@
 import type { FieldSummary, Frame, Pair } from "../contract";
 
-export const FRIENDLY: Record<string, { name: string; short: string; text: string }> = {
+export const FRIENDLY: Record<string, { name: string; short: string; text: string; look?: string; role?: "mover" | "control" | "planets" }> = {
+  "neptune-track": {
+    name: "Neptune moving against fixed stars",
+    short: "Neptune",
+    text: "41 real SPHEREx images of one patch of sky, 16 June – 5 July 2025. Every star stays put. One dot crawls: that is Neptune.",
+    look: "Follow the green ring (Neptune's position from NASA JPL) and its fading trail. It moves about 5 arcminutes, then slows to a stop around 5 July: Earth is overtaking it, so it seems to pause before moving backwards. That apparent shift is parallax — the effect we use to measure distance.",
+    role: "mover",
+  },
   ecl: {
     name: "Along the planets' path",
     short: "Ecliptic field",
-    text: "A patch of the ecliptic, the band of sky where the Sun, Moon and planets travel. The best place to look for things that move.",
+    text: "A patch of the ecliptic, the band of sky where the Sun, Moon, planets and most asteroids travel. The best place to catch something moving.",
+    look: "Use a green (fair) pair and flip. A dot that jumps between the dates is a Solar System object; dots that stay still are stars.",
+    role: "planets",
   },
   nep: {
     name: "North Ecliptic Pole",
     short: "NEP",
-    text: "SPHEREx passes over this spot more often than anywhere else, so it has the most repeat images.",
+    text: "Far from the planets' path. SPHEREx passes over this spot more often than anywhere else, so it has the most repeat images.",
+    look: "Mostly distant stars and galaxies — expect almost nothing to move. Unfair (red) pairs still look different: that is the colour trick, not motion.",
+    role: "control",
   },
   m101: {
-    name: "Pinwheel Galaxy (M101)",
+    name: "Pinwheel Galaxy (M101) — control",
     short: "M101",
-    text: "A large spiral galaxy. Nothing here should move, so it is a good check that the images line up.",
-  },
-  "neptune-track": {
-    name: "Neptune moving against fixed stars",
-    short: "Neptune track",
-    text: "Watch known Neptune move across a fixed patch of sky in real SPHEREx images.",
+    text: "A galaxy 21 million light-years away. Nothing here can visibly move in a year, so it is our honesty test.",
+    look: "With a fair (green) pair, Changes only should show almost nothing — and it does. With an unfair (red) pair the galaxy seems to change: that is only the different infrared colour.",
+    role: "control",
   },
 };
 

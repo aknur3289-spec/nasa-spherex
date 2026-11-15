@@ -104,6 +104,12 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
             <button role="tab" aria-selected={tab === "compare"} className={tab === "compare" ? "active" : ""} onClick={() => setTab("compare")}>Compare two dates</button>
           </div>
         </div>
+        <div className="glass look-box control">
+          <small>WHAT TO EXPECT HERE</small>
+          <p>Stars, nebulae and galaxies do not move in a year, so in a fair (green) pair nothing should jump — that is what an honest comparison looks like.
+            If an unfair (red) pair looks different, that is SPHEREx's changing infrared colour, not motion. Moving objects (planets, asteroids, comets) are only found
+            near the ecliptic; Neptune is the example we measured.</p>
+        </div>
         {tab === "timelapse"
           ? <Timelapse key={"t" + field.frames.length} frames={timeline} synthetic={false} title={label} backdrop={backdrop} onBack={onBack} />
           : <ComparePairs key={"c" + field.frames.length} field={field} />}

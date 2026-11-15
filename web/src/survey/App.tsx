@@ -6,7 +6,7 @@ import type { FieldSummary } from "../contract";
 import { SkyExplorer } from "./SkyExplorer";
 import { ComparePairs } from "./ComparePairs";
 import { LiveField } from "../live/LiveField";
-import { friendly } from "./fields";
+import { friendly , FRIENDLY } from "./fields";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
 
 type Screen = "home" | "explore" | "timelapse" | "dial" | "compare" | "about";
@@ -201,20 +201,21 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
           <Icon name="spark" size={15} /> NASA SPACE APPS 2026 · PLANET X & SPHEREx
         </div>
         <h1>
-          Hunt for a distant planet
+          How do you find a hidden planet?
           <br />
-          <em>with real NASA data.</em>
+          <em>Look for a dot that moves.</em>
         </h1>
         <p>
-          Turn a dial, watch a crosshair land on Neptune in a real SPHEREx image, and see how astronomers
-          measure distances across the Solar System. No astronomy degree needed.
+          A distant planet like the hypothetical Planet Nine would be a faint dot that shifts slightly between images taken
+          months apart — and the size of that shift tells you how far away it is. Try the whole method on real NASA SPHEREx
+          images. We tested it on Neptune: our distance is within 0.2% of NASA JPL.
         </p>
         <div className="hero-actions">
-          <Button onClick={() => setScreen("dial")} icon="arrow">
-            Play the Distance Dial
+          <Button onClick={() => setScreen("timelapse", "neptune-track")} icon="arrow">
+            Start: watch Neptune move
           </Button>
-          <Button variant="secondary" onClick={() => setScreen("timelapse")}>
-            Watch the sky change
+          <Button variant="secondary" onClick={() => setScreen("explore")}>
+            Explore the real sky map
           </Button>
         </div>
         <div className="hero-result glass">
@@ -238,19 +239,20 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
 
       <section className="how-steps">
         <div className="how-head">
-          <small>HOW IT WORKS</small>
-          <h2>Three steps. One real measurement.</h2>
+          <small>THE METHOD IN THREE STEPS</small>
+          <h2>Find it. Check it. Measure it.</h2>
         </div>
-        {[
-          ["Pick a distance", "Guess how far away the object is with a slider."],
-          ["See the prediction", "Our model shows where it should appear six months later."],
-          ["Find the closest match", "The guess that lands nearest the real image is the distance."],
-        ].map(([h, p], i) => (
-          <div className="glass how-card" key={h}>
+        {([
+          ["Find what moves", "Flip between images of the same patch taken months apart. Stars stay put; a planet or asteroid shifts.", "Watch Neptune move", () => setScreen("timelapse", "neptune-track")],
+          ["Check it is not a colour trick", "SPHEREx takes every image in a slightly different infrared colour, so stars can seem to change. We only trust pairs taken in the same colour (green badge).", "Try a fair comparison", () => setScreen("compare", "m101")],
+          ["Measure the distance", "Nearer objects shift more. Turn the dial until our prediction lands on the planet: that distance is the measurement.", "Measure Neptune", () => setScreen("dial")],
+        ] as [string, string, string, () => void][]).map(([h, p, cta, go], i) => (
+          <button className="glass how-card how-card-link" key={h} onClick={go}>
             <span>{i + 1}</span>
             <h3>{h}</h3>
             <p>{p}</p>
-          </div>
+            <em>{cta} →</em>
+          </button>
         ))}
       </section>
 
@@ -573,6 +575,11 @@ export default function App() {
             </span>
           </button>)}
         </div>
+        {selected && FRIENDLY[selected.field_id]?.look && <div className={`glass look-box ${FRIENDLY[selected.field_id].role ?? ""}`}>
+          <small>{FRIENDLY[selected.field_id].role === "control" ? "CONTROL FIELD · WHAT TO EXPECT" : "WHAT TO LOOK AT"}</small>
+          <p><b>{friendly(selected).name}.</b> {friendly(selected).text}</p>
+          <p>{FRIENDLY[selected.field_id].look}</p>
+        </div>}
         {(error || fieldError) && <p role="alert">{error || fieldError}</p>}
         {!field && !error && !fieldError && <p role="status">{catalog?.length === 0 ? "No fields available." : "Loading observations…"}</p>}
         {field && <ErrorBoundary key={screen + "/" + field.field_id}>
