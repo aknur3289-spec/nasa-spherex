@@ -1,5 +1,5 @@
 import type { Field, TimelineEntry } from '../contract.ts';
-import { FieldError, safeId, safeAsset, validateDifferencePng, validateField, validateIndex, validateTimeline } from './validation.ts';
+import { FieldError, safeId, safeAsset, validateDifferencePng, validateField, validateIndex, validateMaskPng, validateTimeline } from './validation.ts';
 
 export { FieldError };
 const root = () => (import.meta.env?.BASE_URL ?? '/') + 'data/';
@@ -31,6 +31,17 @@ export async function loadIndex(signal?: AbortSignal) {
 export async function loadField(id: string, signal?: AbortSignal): Promise<Field & { timeline?: TimelineEntry[] }> {
   if (!safeId(id)) throw new FieldError('Invalid field ID.');
   const field = validateField(await json((await request(root() + id + '/field.json', signal))!), id);
+  const masks = field.frames.filter(frame => frame.mask_png);
+  await Promise.all(masks.map(async frame => {
+    const path = frame.mask_png!;
+    const response = (await request(imageUrl(id, path), signal))!;
+    validateMaskPng(await response.arrayBuffer(), frame.width_px, frame.height_px, path);
+  }));
+  if (field.color_png) {
+    const response = (await request(imageUrl(id, field.color_png), signal))!;
+    const first = field.frames[0];
+    validateMaskPng(await response.arrayBuffer(), first?.width_px, first?.height_px, field.color_png);
+  }
   if (field.schema_version === '1.0') return field;
   const differences = new Set(field.pairs.flatMap(pair => pair.diff_png ? [pair.diff_png] : []));
   const [timeline] = await Promise.all([

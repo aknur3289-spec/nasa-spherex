@@ -16,6 +16,11 @@ export const FRIENDLY: Record<string, { name: string; short: string; text: strin
     short: "M101",
     text: "A large spiral galaxy. Nothing here should move, so it is a good check that the images line up.",
   },
+  "neptune-track": {
+    name: "Neptune moving against fixed stars",
+    short: "Neptune track",
+    text: "Watch known Neptune move across a fixed patch of sky in real SPHEREx images.",
+  },
 };
 
 export const friendly = (item?: { field_id: string; title: string } | FieldSummary) =>

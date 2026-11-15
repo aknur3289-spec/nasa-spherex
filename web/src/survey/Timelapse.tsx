@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import type { Coordinates } from "../contract";
+import { MappedImage, type ColourMap } from "./MappedImage";
 
 /**
  * Timelapse player: plays the observations of one sky position in time order,
@@ -15,6 +17,11 @@ export type TimelapseFrame = {
   wavelengthUm: number;
   detector: number;
   src?: string; // real PNG cutout (all frames the same size)
+  maskSrc?: string;
+  targetRadec?: Coordinates;
+  center?: Coordinates;
+  widthPx?: number;
+  heightPx?: number;
   sourceUrl?: string; // original file at IRSA
   object?: [number, number]; // tracked object position in % of the image (x, y)
   exposure?: number; // small brightness difference between exposures (demo look)
@@ -41,6 +48,14 @@ const usePrefersReducedMotion = () =>
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     [],
   );
+
+export function targetPosition(frame: TimelapseFrame): [number, number] | undefined {
+  if (!frame.targetRadec || !frame.center || !frame.widthPx || !frame.heightPx) return undefined;
+  const dra = ((frame.targetRadec.ra_deg - frame.center.ra_deg + 540) % 360) - 180;
+  const dx = dra * Math.cos(frame.center.dec_deg * Math.PI / 180) * 3600 / 6.15;
+  const dy = (frame.targetRadec.dec_deg - frame.center.dec_deg) * 3600 / 6.15;
+  return [50 - dx / frame.widthPx * 100, 50 - dy / frame.heightPx * 100];
+}
 
 /* ---------- icons ---------- */
 
@@ -69,6 +84,8 @@ function SkyView({
   path,
   reduced,
   compact = false,
+  showMasks = false,
+  colourMap = "grey",
 }: {
   frames: TimelapseFrame[];
   index: number;
@@ -77,19 +94,23 @@ function SkyView({
   path: boolean;
   reduced: boolean;
   compact?: boolean;
+  showMasks?: boolean;
+  colourMap?: ColourMap;
 }) {
   const cur = frames[index];
   const real = !!cur.src;
-  const pts = frames.slice(0, index + 1).map((f) => f.object).filter(Boolean) as [number, number][];
+  const position = (f: TimelapseFrame) => f.object ?? targetPosition(f);
+  const pts = frames.slice(0, index + 1).map(position).filter(Boolean) as [number, number][];
+  const currentPosition = position(cur);
 
   return (
     <div className={`tl-sky ${compact ? "compact" : ""} ${reduced ? "still" : ""}`}>
       {real ? (
         compact ? (
-          <img src={cur.src} alt="" className="tl-frame on" loading="lazy" decoding="async" />
+          <MappedImage src={cur.src!} alt="" map={colourMap} className="tl-frame on" />
         ) : (
           frames.map((f, i) => (
-            <img key={f.src} src={f.src} alt="" decoding="async" className={`tl-frame ${i === index ? "on" : ""}`} />
+            <MappedImage key={f.src} src={f.src!} alt="" map={colourMap} className={`tl-frame ${i === index ? "on" : ""}`} />
           ))
         )
       ) : (
@@ -101,6 +122,7 @@ function SkyView({
           }}
         />
       )}
+      {real && showMasks && cur.maskSrc && <img src={cur.maskSrc} alt="" className="tl-mask" />}
       {!compact && <div className="tl-vignette" />}
       {!compact && <div className="map-grid tl-grid-lines" />}
 
@@ -125,13 +147,13 @@ function SkyView({
       )}
       {trails &&
         frames.slice(0, index).map((f, i) =>
-          f.object ? (
+          position(f) ? (
             <span
               key={f.date}
               className="tl-ghost"
               style={{
-                left: `${f.object[0]}%`,
-                top: `${f.object[1]}%`,
+                left: `${position(f)![0]}%`,
+                top: `${position(f)![1]}%`,
                 opacity: 0.35 + 0.55 * ((i + 1) / Math.max(1, index)),
               }}
             >
@@ -140,8 +162,8 @@ function SkyView({
           ) : null,
         )}
 
-      {cur.object && (
-        <span className="tl-target" style={{ left: `${cur.object[0]}%`, top: `${cur.object[1]}%` }}>
+      {currentPosition && (
+        <span className={`tl-target ${cur.targetRadec ? "tl-target-real" : ""}`} style={{ left: `${currentPosition[0]}%`, top: `${currentPosition[1]}%` }}>
           {!compact && (
             <>
               <i className="tl-ticks" aria-hidden="true">
@@ -281,12 +303,16 @@ export function Timelapse({
   backdrop,
   synthetic = true,
   onBack,
+  heroSrc,
+  heroCaption,
 }: {
   frames?: TimelapseFrame[];
   title?: string;
   synthetic?: boolean;
   backdrop: string; // the site's space image
   onBack?: () => void;
+  heroSrc?: string;
+  heroCaption?: string;
 }) {
   const real = frames.every((f) => f.src);
   const reduced = usePrefersReducedMotion();
@@ -300,6 +326,8 @@ export function Timelapse({
   const [recording, setRecording] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [rawPixels, setRawPixels] = useState(false);
+  const [showMasks, setShowMasks] = useState(false);
+  const [colourMap, setColourMap] = useState<ColourMap>("grey");
   const [showAllLog, setShowAllLog] = useState(false);
   const stageRef = useRef<HTMLElement>(null);
 
@@ -368,13 +396,15 @@ export function Timelapse({
   const last = frames[frames.length - 1];
   const gapNext = index < frames.length - 1 ? daysBetween(cur.date, frames[index + 1].date) : null;
   const progress = frames.length > 1 ? (index / (frames.length - 1)) * 100 : 0;
-  const hasObject = frames.some((f) => f.object);
-  const prev = index > 0 ? frames[index - 1].object : undefined;
+  const point = (f: TimelapseFrame) => f.object ?? targetPosition(f);
+  const hasObject = frames.some((f) => point(f));
+  const prev = index > 0 ? point(frames[index - 1]) : undefined;
+  const curPoint = point(cur);
   const stepShift =
-    prev && cur.object ? Math.hypot(cur.object[0] - prev[0], cur.object[1] - prev[1]).toFixed(1) : null;
+    prev && curPoint ? Math.hypot(curPoint[0] - prev[0], curPoint[1] - prev[1]).toFixed(1) : null;
   const shift =
-    first.object && last.object
-      ? Math.hypot(last.object[0] - first.object[0], last.object[1] - first.object[1]).toFixed(1)
+    point(first) && point(last)
+      ? Math.hypot(point(last)![0] - point(first)![0], point(last)![1] - point(first)![1]).toFixed(1)
       : null;
 
   const scrubLabels = (() => {
@@ -397,7 +427,7 @@ export function Timelapse({
   const bands = new Set(frames.map((f) => f.wavelengthUm.toFixed(2)));
 
   return (
-    <main className="content-screen timelapse-screen">
+    <main className={`content-screen timelapse-screen ${rawPixels ? "raw" : "enhanced"}`}>
       <section className="detail-head">
         {onBack && (
           <button className="back" onClick={onBack}>
@@ -409,11 +439,12 @@ export function Timelapse({
             <span className={`chip ${real ? "success" : "tl-demo-chip"}`}>
               {synthetic ? "Synthetic demonstration" : "SPHEREx cutouts · IRSA"}
             </span>
-            <h1>Timelapse</h1>
+            <h1>{title === "Neptune moving against fixed stars" ? title : "Timelapse"}</h1>
             <p>
               {title} · {frames.length} observations · {shortDate(first.date).day} {shortDate(first.date).year} –{" "}
               {shortDate(last.date).day} {shortDate(last.date).year}
             </p>
+            {heroSrc && <div className="tl-hero"><img src={heroSrc} alt="Three-band SPHEREx composite" /><span>{heroCaption}</span></div>}
           </div>
           <div className="detail-actions">
             {!real && (
@@ -431,6 +462,12 @@ export function Timelapse({
                 Raw pixels
               </button>
             )}
+            {real && frames.some(f => f.maskSrc) && (
+              <button className={`button secondary ${showMasks ? "tl-on" : ""}`} onClick={() => setShowMasks(!showMasks)} aria-pressed={showMasks}>
+                Show masked pixels
+              </button>
+            )}
+            {real && <button className="button secondary" onClick={() => setColourMap(m => m === "grey" ? "inferno" : "grey")}>Colour map: {colourMap === "grey" ? "Grey" : "Inferno"}</button>}
             <button className={`button secondary ${loop ? "tl-on" : ""}`} onClick={() => setLoop(!loop)} aria-pressed={loop}>
               Loop
             </button>
@@ -464,8 +501,9 @@ export function Timelapse({
             aria-label="Timelapse image. Space plays or pauses, arrow keys step between observations."
           >
             {!loaded && <div className="tl-skeleton">Loading {frames.length} observations…</div>}
-            <SkyView frames={frames} index={index} backdrop={backdrop} trails={trails} path={path} reduced={reduced} />
+            <SkyView frames={frames} index={index} backdrop={backdrop} trails={trails} path={path} reduced={reduced} showMasks={showMasks} colourMap={colourMap} />
           </div>
+          {real && frames.some(f => f.maskSrc) && <p className="mask-caption">Masked pixels are filled for display; analysis uses the masked data.</p>}
 
           <div className="tl-bar">
             <button className="tl-step" onClick={() => go(index - 1)} aria-label="Previous observation">
@@ -625,7 +663,7 @@ export function Timelapse({
             aria-pressed={i === index}
           >
             <div className="tl-log-thumb">
-              <SkyView frames={frames} index={i} backdrop={backdrop} trails={false} path={false} reduced compact />
+              <SkyView frames={frames} index={i} backdrop={backdrop} trails={false} path={false} reduced compact colourMap={colourMap} />
             </div>
             <b>
               {shortDate(f.date).day} {shortDate(f.date).year}
