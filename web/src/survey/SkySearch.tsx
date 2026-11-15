@@ -27,7 +27,7 @@ const NEPTUNE_PATH: { ra: number; dec: number; label: string }[] = [
   { ra: 359.636378, dec: -1.620821, label: "Neptune · Dec 2025" },
 ];
 
-const EXAMPLES = ["M101", "210.80 54.35", "14h03m13s +54°20′", "Neptune"];
+const EXAMPLES = ["Orion Nebula", "Pleiades", "M31", "M101", "Neptune", "210.80 54.35"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AladinAny = any;
@@ -270,8 +270,8 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
       <div className="ss-head">
         <div>
           <small>WHOLE SKY · SPHEREx QR2</small>
-          <h2>Find any star, galaxy or coordinate</h2>
-          <p>Type a name or coordinates. If the point is inside one of our three fields you can watch it change over time.</p>
+          <h2>The real sky, as SPHEREx sees it</h2>
+          <p>Click anywhere or type a name. SPHEREx photographs the whole sky every six months, so for any point you can load its real images from NASA's archive and compare dates. Remember: stars and galaxies do not move — only Solar System objects do, and they travel along the ecliptic.</p>
         </div>
         <div className="ss-examples">
           <span>Try:</span>
@@ -322,8 +322,8 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
           {message && <p className="ss-msg">{message}</p>}
           {!hit && !message && (
             <div className="ss-empty">
-              <b>Search or click a blue square</b>
-              <span>Blue squares are the three patches where we have many SPHEREx images over time. The purple marks are Neptune.</span>
+              <b>Click any point on the map, or try a name above</b>
+              <span>Blue squares: our prepared time-lapse fields. Purple marks: Neptune in our June and December 2025 images. Anywhere else: “Load real SPHEREx images here” fetches them live from NASA/IPAC IRSA.</span>
             </div>
           )}
           {hit?.kind === "field" && (

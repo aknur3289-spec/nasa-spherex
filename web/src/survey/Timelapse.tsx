@@ -54,7 +54,9 @@ export function targetPosition(frame: TimelapseFrame): [number, number] | undefi
   const dra = ((frame.targetRadec.ra_deg - frame.center.ra_deg + 540) % 360) - 180;
   const dx = dra * Math.cos(frame.center.dec_deg * Math.PI / 180) * 3600 / 6.15;
   const dy = (frame.targetRadec.dec_deg - frame.center.dec_deg) * 3600 / 6.15;
-  return [50 - dx / frame.widthPx * 100, 50 - dy / frame.heightPx * 100];
+  // The pipeline writes PNG row 0 = first FITS row (south), so north is DOWN in our field images.
+  // Positions are in percent of the image box (see .tl-imgbox), east to the left.
+  return [50 - dx / frame.widthPx * 100, 50 + dy / frame.heightPx * 100];
 }
 
 /* ---------- icons ---------- */
@@ -126,6 +128,7 @@ function SkyView({
       {!compact && <div className="tl-vignette" />}
       {!compact && <div className="map-grid tl-grid-lines" />}
 
+      <div className={real && !cur.object ? "tl-imgbox" : "tl-fullbox"}>
       {/* motion path + earlier positions */}
       {pts.length > 1 && (
         <svg className="tl-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -177,6 +180,7 @@ function SkyView({
           )}
         </span>
       )}
+      </div>
     </div>
   );
 }

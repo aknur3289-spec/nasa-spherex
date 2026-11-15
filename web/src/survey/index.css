@@ -4218,3 +4218,19 @@ input[type="range"]::-webkit-slider-thumb {
 /* Images inside the compare stage must not start a native image drag (it cancelled the swipe). */
 .cq-stage img, .cq-stage canvas { -webkit-user-drag: none; user-select: none; pointer-events: none; }
 .cq-stage { user-select: none; }
+
+/* Story: clickable method steps and a "what to look at" box on every field screen */
+.how-card-link { text-align: left; cursor: pointer; font: inherit; color: inherit; }
+.how-card-link em { display: block; margin-top: 12px; font-style: normal; color: var(--cyan); font-weight: 600; }
+.look-box { padding: 16px 20px; margin: 14px 0; border-left: 3px solid var(--cyan) !important; }
+.look-box.control { border-left-color: #34d399 !important; }
+.look-box small { letter-spacing: .14em; color: var(--cyan); font-size: 11px; }
+.look-box.control small { color: #34d399; }
+.look-box p { margin: 8px 0 0; color: var(--text-2); line-height: 1.55; }
+.look-box p b { color: #fff; }
+
+/* Overlay boxes: real targets are positioned relative to the contained (square) image, not the whole stage */
+.tl-sky { container-type: size; }
+.tl-fullbox { position: absolute; inset: 0; pointer-events: none; }
+.tl-imgbox { position: absolute; left: 50%; top: 50%; width: min(100cqw, 100cqh); height: min(100cqw, 100cqh); transform: translate(-50%, -50%); pointer-events: none; }
+.tl-imgbox .tl-target-real { border: 2px solid #34d399; box-shadow: 0 0 10px #34d399; width: 18px; height: 18px; }
