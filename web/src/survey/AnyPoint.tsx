@@ -8,6 +8,11 @@ export function openLivePoint(ra: number, dec: number, name: string) {
 }
 
 const PRESETS = ["Orion Nebula", "Pleiades", "M31", "M101", "Crab Nebula"];
+const MOVERS = ["Ceres", "Vesta", "Uranus", "Neptune", "Pallas"];
+
+export function openTrack(name: string) {
+  location.hash = "/track?" + new URLSearchParams({ name }).toString();
+}
 
 /** The main way in: any coordinates or object name → real SPHEREx images of that point, live from IRSA. */
 export function AnyPoint({ compact = false }: { compact?: boolean }) {
@@ -47,6 +52,14 @@ export function AnyPoint({ compact = false }: { compact?: boolean }) {
         {PRESETS.map((p) => <button key={p} type="button" onClick={() => go(p)}>{p}</button>)}
       </div>
       {msg && <p className="any-point-msg" role="alert">{msg}</p>}
+      <div className="any-point-presets any-point-movers">
+        <span>Or follow something that moves:</span>
+        {MOVERS.map((p) => <button key={p} type="button" onClick={() => openTrack(p)}>{p}</button>)}
+        <form className="any-point-track" onSubmit={(e) => { e.preventDefault(); const v = new FormData(e.currentTarget).get("obj"); if (v) openTrack(String(v)); }}>
+          <input name="obj" placeholder="planet or asteroid name/number" aria-label="Planet or asteroid to follow" />
+          <button type="submit">Follow</button>
+        </form>
+      </div>
       {!compact && <p className="any-point-note">Takes about a minute: every image is downloaded and processed on demand. Stars and galaxies do not move — only Solar System objects do.</p>}
     </div>
   );
