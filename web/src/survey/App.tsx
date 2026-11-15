@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Timelapse } from "./Timelapse";
 import { DistanceDial } from "./DistanceDial";
+import { ParallaxLab } from "./ParallaxLab";
 import { imageUrl, loadField, loadIndex } from "../data/loader";
 import type { FieldSummary } from "../contract";
 import { SkyExplorer } from "./SkyExplorer";
@@ -11,7 +12,7 @@ import { AnyPoint } from "./AnyPoint";
 import { friendly , FRIENDLY } from "./fields";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
 
-type Screen = "home" | "explore" | "timelapse" | "dial" | "compare" | "about";
+type Screen = "home" | "explore" | "timelapse" | "lab" | "dial" | "compare" | "about";
 type IconName =
   | "orbit"
   | "arrow"
@@ -158,7 +159,7 @@ function Header({ screen, setScreen }: { screen: Screen; setScreen: (s: Screen) 
   const links: [Screen, string][] = [
     ["explore", "Sky Explorer"],
     ["timelapse", "Timelapse"],
-    ["dial", "Distance Dial"],
+    ["lab", "Parallax Lab"],
     ["compare", "Compare"],
     ["about", "Methodology"],
   ];
@@ -176,8 +177,8 @@ function Header({ screen, setScreen }: { screen: Screen; setScreen: (s: Screen) 
           </button>
         ))}
       </nav>
-      <Button variant="secondary" onClick={() => setScreen("dial")}>
-        Play the dial <Icon name="arrow" />
+      <Button variant="secondary" onClick={() => setScreen("lab")}>
+        Try the simulator <Icon name="arrow" />
       </Button>
     </header>
   );
@@ -208,26 +209,28 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
           <em>Look for a dot that moves.</em>
         </h1>
         <p>
-          A distant planet like the hypothetical Planet Nine would be a faint dot that shifts slightly between images taken
-          months apart — and the size of that shift tells you how far away it is. Try the whole method on real NASA SPHEREx
-          images. We tested it on Neptune: our distance is within 0.2% of NASA JPL.
+          NASA's SPHEREx telescope photographs the whole sky again and again. A hidden planet would be one faint dot that
+          shifts between those images, lost among millions of stars, detector artefacts and colour changes. PARALLAX is an
+          open pipeline and a hands-on tool that finds dots that really move, rejects the fakes, and measures how far away
+          they are. We tested it blind on real SPHEREx data: <b>it found Neptune on its own and measured its distance
+          within 0.13% of NASA JPL.</b>
         </p>
         <div className="hero-actions">
-          <Button onClick={() => setScreen("timelapse", "neptune-track")} icon="arrow">
-            Start: watch Neptune move
+          <Button onClick={() => setScreen("lab")} icon="arrow">
+            Try the parallax simulator
           </Button>
-          <Button variant="secondary" onClick={() => setScreen("explore")}>
-            Explore the real sky map
+          <Button variant="secondary" onClick={() => setScreen("timelapse", "neptune-track")}>
+            Watch Neptune move
           </Button>
         </div>
         <AnyPoint />
         <div className="hero-result glass">
           <div>
-            <small>OUR MEASUREMENT</small>
+            <small>BLIND TEST · NO JPL USED</small>
             <b>
-              29.95 <span>± 0.03 AU</span>
+              29.93 <span>± 0.02 AU</span>
             </b>
-            <em>Neptune, from 1,007 pairs of real SPHEREx images</em>
+            <em>Neptune found by our detector in 64 of 74 real image differences</em>
           </div>
           <i />
           <div>
@@ -235,9 +238,51 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
             <b>
               29.89 <span>AU</span>
             </b>
-            <em>Difference +0.2%</em>
+            <em>Used only to grade · difference 0.13%</em>
           </div>
         </div>
+      </section>
+
+      <section className="why">
+        <div className="how-head">
+          <small>WHY IT MATTERS</small>
+          <h2>The problem, what we built, what we proved.</h2>
+        </div>
+        <div className="why-grid">
+          <div className="glass why-card">
+            <small>THE PROBLEM</small>
+            <h3>A moving dot hides among fakes</h3>
+            <p>
+              Astronomers suspect an unseen planet beyond Neptune. SPHEREx revisits every point of the sky every six months,
+              so it could catch such a dot moving. But most "changes" between two SPHEREx images are fake: each image is taken
+              in a slightly different infrared colour, bright objects leave ghosts, and stars do not subtract cleanly.
+            </p>
+          </div>
+          <div className="glass why-card">
+            <small>WHAT WE BUILT</small>
+            <h3>From raw NASA images to a distance</h3>
+            <ul>
+              <li>Fair image pairs only (same colour, trust badge)</li>
+              <li>Automatic detection of new, moving sources</li>
+              <li>Rejection of static stars, optical ghosts and glare</li>
+              <li>Distance from two seasons with a parallax + orbit model</li>
+              <li>A simulator anyone can use to learn and test it</li>
+            </ul>
+          </div>
+          <div className="glass why-card">
+            <small>WHAT WE PROVED</small>
+            <h3>It works blind on real data</h3>
+            <p>
+              Without being told where Neptune is, the pipeline found it in 64 of 74 image differences, kept it as the only
+              real moving track, and measured 29.93 AU (JPL: 29.89 AU). We also found that SPHEREx's own OUTLIER/TRANSIENT
+              flags mark moving objects — masking them, as usual, throws away real detections.
+            </p>
+          </div>
+        </div>
+        <p className="why-not">
+          Not yet: a Planet-Nine-like object is far fainter than one SPHEREx image can show. The next step is Shift &amp;
+          Stack — adding many images along each trial path — which this pipeline is built to feed.
+        </p>
       </section>
 
       <section className="how-steps">
@@ -248,7 +293,7 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
         {([
           ["Find what moves", "Flip between images of the same patch taken months apart. Stars stay put; a planet or asteroid shifts.", "Watch Neptune move", () => setScreen("timelapse", "neptune-track")],
           ["Check it is not a colour trick", "SPHEREx takes every image in a slightly different infrared colour, so stars can seem to change. We only trust pairs taken in the same colour (green badge).", "Try a fair comparison", () => setScreen("compare", "m101")],
-          ["Measure the distance", "Nearer objects shift more. Turn the dial until our prediction lands on the planet: that distance is the measurement.", "Measure Neptune", () => setScreen("dial")],
+          ["Measure the distance", "Nearer objects shift more. In the Parallax Lab you turn the distance until the prediction lands on the detections: that distance is the measurement.", "Open the simulator", () => setScreen("lab")],
         ] as [string, string, string, () => void][]).map(([h, p, cta, go], i) => (
           <button className="glass how-card how-card-link" key={h} onClick={go}>
             <span>{i + 1}</span>
@@ -266,15 +311,15 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
             <span className="fd-neptune" />
             <span className="fd-cross" />
             <span className="fd-label">Neptune · SPHEREx</span>
-            <span className="fd-miss">closest match · 29.9 AU</span>
+            <span className="fd-miss">blind fit · 29.93 AU</span>
           </div>
           <div className="feature-copy">
             <span className="num">01</span>
             <div>
-              <h3>Distance Dial</h3>
-              <p>Measure Neptune yourself on real data, the way you would hunt for Planet Nine.</p>
+              <h3>Parallax Lab</h3>
+              <p>A live simulator, a hide-the-planet game, and Neptune's blind test on real SPHEREx data.</p>
             </div>
-            <button aria-label="Open the Distance Dial" onClick={() => setScreen("dial")}>
+            <button aria-label="Open the Parallax Lab" onClick={() => setScreen("lab")}>
               <Icon name="arrow" />
             </button>
           </div>
@@ -322,9 +367,9 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
           <h2>Anyone can try hunting a distant planet.</h2>
         </div>
         {[
-          ["Curious people & students", "Move a slider, watch the crosshair hit or miss a real NASA image, and learn how distance is measured in space.", "dial", "Start playing"],
+          ["Curious people & students", "Move Earth around the Sun, hide a planet and find it again, then measure Neptune on real NASA data.", "lab", "Start playing"],
           ["Volunteers & citizen scientists", "If you search for faint movers in projects like Backyard Worlds, see which image pairs you can compare and which you cannot.", "compare", "Check image pairs"],
-          ["Researchers", "Method validated on Neptune and Uranus, a trust badge for every pair, and how many frames a faint object would need.", "about", "Read the method"],
+          ["Researchers", "Blind detection and distance on real SPHEREx data, a mover-aware flag policy, injection-recovery depth, and open code.", "about", "Read the method"],
         ].map(([h, p, to, cta]) => (
           <div className="glass audience-card" key={h}>
             <h3>{h}</h3>
@@ -347,7 +392,9 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
 
 function About() {
   const limits = [
+    "The image cutouts were downloaded around Neptune's position, so the search area was chosen with prior knowledge, even though the detector, linking and distance fit never use the ephemeris.",
     "Neptune proves the geometry, not the sensitivity: Neptune is bright and probably saturated.",
+    "Science team's earlier single-pair work: Neptune 29.95 ± 0.03 AU from 1,007 pairs; Uranus 19.42 AU is preliminary.",
     "The model assumes a circular orbit near the ecliptic. An inclined orbit can bias the result — one 20° test case gave −2.8%.",
     "The two images are at 0.968 µm and 1.259 µm. Measured positions agree with JPL Horizons within 27″ (4.5 px); this limits any colour effect to 0.10 AU.",
     "A faint Planet Nine (V ≈ 21.9–22.7) is far below the single-frame limit (AB 18.4); many frames would have to be stacked.",
@@ -362,16 +409,16 @@ function About() {
           from two pictures.
         </h1>
         <p>
-          From two real SPHEREx exposures six months apart we measured Neptune at 29.95 ± 0.03 AU — using only one
-          measured position, its time and a trial distance. No ephemeris of the target.
+          Our detector found Neptune by itself in real SPHEREx images from June and December 2025 and measured
+          29.93 ± 0.02 AU from those detections alone. JPL Horizons (29.89 AU) was used only to grade the answer.
         </p>
       </div>
       <section className="stat-grid about-stats">
         {[
-          ["NEPTUNE", "29.95 AU", "± 0.03 · 1,007 pairs"],
-          ["JPL HORIZONS", "29.89 AU", "+0.2%"],
-          ["URANUS", "19.42 AU", "± 0.02 · vs 19.50 (−0.4%)"],
-          ["PARALLAX ONLY", "up to 49%", "error, season-dependent"],
+          ["BLIND TEST", "29.93 AU", "± 0.02 · no JPL used"],
+          ["JPL HORIZONS", "29.89 AU", "0.13% difference"],
+          ["FOUND", "64 / 74", "image differences"],
+          ["ONE-IMAGE DEPTH", "≈ 1/500", "of Neptune's brightness (50% recovered)"],
         ].map((x) => (
           <div className="glass stat" key={x[0]}>
             <small>{x[0]}</small>
@@ -418,6 +465,21 @@ function About() {
         <section>
           <span className="article-num">03</span>
           <div>
+            <small>THE BLIND TEST</small>
+            <h2>Find it first, then measure it.</h2>
+            <p>
+              1) Subtract a reference image of the same sky taken at another time (Neptune absent). 2) Keep new sources
+              above 5σ whose flux is not in the reference. 3) Link detections from different exposures into tracks and
+              reject static sources, optical ghosts (fixed detector offset from a bright mover) and glare companions.
+              4) Fit one distance with a circular-orbit model from the June track to the December track. Only then compare
+              with JPL Horizons.
+            </p>
+            <img className="about-figure" src="figures/blind_test.png" alt="Blind test: linked tracks, distance curve with one sharp minimum at 29.93 AU, and injection recovery curve" loading="lazy" />
+          </div>
+        </section>
+        <section>
+          <span className="article-num">04</span>
+          <div>
             <small>LIMITATIONS</small>
             <h2>What this does and does not show.</h2>
             <ul className="about-limits">
@@ -428,7 +490,7 @@ function About() {
           </div>
         </section>
         <section>
-          <span className="article-num">04</span>
+          <span className="article-num">05</span>
           <div>
             <small>DATA SOURCES</small>
             <h2>Built on open science.</h2>
@@ -453,7 +515,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
     ["home", "spark", "Home"],
     ["explore", "grid", "Explore"],
     ["timelapse", "play", "Timelapse"],
-    ["dial", "orbit", "Dial"],
+    ["lab", "orbit", "Lab"],
     ["about", "book", "About"],
   ];
   return (
@@ -468,7 +530,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
   );
 }
 
-const screens: Screen[] = ["home", "explore", "timelapse", "dial", "compare", "about"];
+const screens: Screen[] = ["home", "explore", "timelapse", "lab", "dial", "compare", "about"];
 
 export default function App() {
   const [route, setRoute] = useState(location.hash);
@@ -526,7 +588,7 @@ export default function App() {
   }, [id]);
 
   const navigate = (next: Screen, nextId = selected?.field_id) => {
-    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" && next !== "dial" ? "/" + nextId : "");
+    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" && next !== "dial" && next !== "lab" ? "/" + nextId : "");
   };
 
   const timeline = useMemo(() => {
@@ -557,6 +619,7 @@ export default function App() {
       <Header screen={screen} setScreen={navigate} />
       {screen === "home" && <Home setScreen={navigate} />}
       {screen === "about" && <About />}
+      {screen === "lab" && <ErrorBoundary><ParallaxLab onOpenDial={() => navigate("dial")} /></ErrorBoundary>}
       {screen === "dial" && <ErrorBoundary><DistanceDial /></ErrorBoundary>}
       {live && <ErrorBoundary key={route}><LiveField ra={live.ra} dec={live.dec} label={live.label} backdrop={spaceImage} onBack={() => navigate("explore")} /></ErrorBoundary>}
       {track && <ErrorBoundary key={route}><TrackField name={track} backdrop={spaceImage} onBack={() => history.back()} /></ErrorBoundary>}
