@@ -19,7 +19,7 @@ const SURVEYS = [
   ...[1, 2, 3, 4, 5, 6].map((n) => ({ id: `D${n}`, label: `D${n}` })),
 ];
 const IRSA_EXPLORER = "https://irsa.ipac.caltech.edu/applications/spherex/";
-const MAP_UNAVAILABLE = "The whole-sky map is served by CDS and is not reachable from this network right now. Search still works.";
+const MAP_UNAVAILABLE = "The whole-sky picture comes from CDS (Strasbourg) and is not reachable from this network right now. Search above still works, and you can pick any point on the chart below.";
 
 // Neptune in our two dial images: June 2025 reference crop and December 2025 measured centroid.
 const NEPTUNE_PATH: { ra: number; dec: number; label: string }[] = [

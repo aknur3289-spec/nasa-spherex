@@ -4251,3 +4251,9 @@ input[type="range"]::-webkit-slider-thumb {
 .any-point-note { margin: 0; color: var(--text-3); font-size: 13px; }
 .examples-label { margin: 6px 0 10px; color: var(--text-3); font-size: 13px; }
 @media (max-width: 600px) { .any-point-form { flex-direction: column; } }
+
+/* Click-anywhere chart */
+.sx-picked circle { fill: none; stroke: #fbbf24; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.sx-picked line { stroke: #fbbf24; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.sx-picked-card { border-color: rgba(251,191,36,.45) !important; }
+.sx-hint { margin: 10px 4px 0; color: var(--text-3); font-size: 13px; }

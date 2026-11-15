@@ -1,3 +1,4 @@
+import { openLivePoint } from "./AnyPoint";
 import { useEffect, useMemo, useState } from "react";
 import type { Field, FieldSummary } from "../contract";
 import { imageUrl, loadField } from "../data/loader";
@@ -63,6 +64,7 @@ export function SkyExplorer({ catalog, go }: { catalog: FieldSummary[]; go: Go }
   const [selected, setSelected] = useState<string>();
   const [zoom, setZoom] = useState(1);
   const [layers, setLayers] = useState({ ecliptic: true, grid: true });
+  const [picked, setPicked] = useState<{ ra: number; dec: number }>();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -162,7 +164,18 @@ export function SkyExplorer({ catalog, go }: { catalog: FieldSummary[]; go: Go }
       </aside>
 
       <section className="sx-map glass" aria-label="Sky map">
-        <svg viewBox={`${vx} ${vy} ${vw} ${vh}`} preserveAspectRatio="xMidYMid meet" role="img" aria-label="All-sky map with SPHEREx fields">
+        <svg viewBox={`${vx} ${vy} ${vw} ${vh}`} preserveAspectRatio="xMidYMid meet" role="img" aria-label="All-sky map with SPHEREx fields"
+          style={{ cursor: "crosshair" }}
+          onClick={(e) => {
+            if ((e.target as Element).closest(".sx-marker")) return;
+            const svg = e.currentTarget;
+            const m = svg.getScreenCTM();
+            if (!m) return;
+            const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+            const ra = ((((CENTER_RA + 180 - (pt.x / W) * 360) % 360) + 360) % 360);
+            const dec = Math.max(-90, Math.min(90, 90 - (pt.y / H) * 180));
+            setPicked({ ra, dec });
+          }}>
           {layers.grid && (
             <g className="sx-grid">
               {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((ra) => {
@@ -219,6 +232,12 @@ export function SkyExplorer({ catalog, go }: { catalog: FieldSummary[]; go: Go }
               </g>
             );
           })}
+          {picked && (() => { const p = px(picked.ra, picked.dec); return (
+            <g className="sx-picked" pointerEvents="none">
+              <circle cx={p.x} cy={p.y} r={10 / zoom} />
+              <line x1={p.x - 16 / zoom} y1={p.y} x2={p.x + 16 / zoom} y2={p.y} />
+              <line x1={p.x} y1={p.y - 16 / zoom} x2={p.x} y2={p.y + 16 / zoom} />
+            </g>); })()}
         </svg>
 
         <div className="glass sx-tools">
@@ -228,6 +247,21 @@ export function SkyExplorer({ catalog, go }: { catalog: FieldSummary[]; go: Go }
           <button className={layers.ecliptic ? "on" : ""} aria-pressed={layers.ecliptic} onClick={() => setLayers((l) => ({ ...l, ecliptic: !l.ecliptic }))}>Ecliptic</button>
           <button className={layers.grid ? "on" : ""} aria-pressed={layers.grid} onClick={() => setLayers((l) => ({ ...l, grid: !l.grid }))}>Grid</button>
         </div>
+
+        {picked && (
+          <div className="glass sx-preview sx-picked-card">
+            <div>
+              <small>POINT YOU PICKED</small>
+              <b>RA {fmtRa(picked.ra)} · Dec {fmtDec(picked.dec)}</b>
+              <span>SPHEREx imaged this spot too. Load its real images from NASA's archive (about a minute) and compare the dates.</span>
+              <div className="sx-actions">
+                <button className="button primary" onClick={() => openLivePoint(picked.ra, picked.dec, `RA ${picked.ra.toFixed(2)}°, Dec ${picked.dec.toFixed(2)}°`)}>Load real SPHEREx images here</button>
+                <button className="button secondary" onClick={() => setPicked(undefined)}>Clear</button>
+              </div>
+            </div>
+          </div>
+        )}
+        {!picked && <p className="sx-hint">Click anywhere on this chart to pick a point in the sky. The yellow line is the ecliptic, where planets and asteroids move.</p>}
 
         {sel?.f && (
           <div className="glass sx-preview">
