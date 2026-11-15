@@ -12,6 +12,8 @@ export type Pair = { a: string; b: string; dlambda_frac: number; dt_days: number
 export type DialStepInFrame = {
   distance_au: number; pred: Coordinates; outside_frame?: false;
   frame: string; snr: number; offset_px: number;
+  /** Optional: Neptune's measured position in this crop, in crop pixels (x right, y down, 0-based). */
+  target_px?: [number, number];
 };
 /** v1.1: the predicted position lands outside every detector, so there is no image or measurement. */
 export type DialStepOutside = {

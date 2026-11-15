@@ -199,6 +199,18 @@ function DialGame({
   const half = size / 2;
   const frame = step.frame ? field.frames.find(f => f.id === step.frame) : undefined;
   const isBest = row.distance === best.distance;
+  // Neptune's measured position in this crop (from the data pipeline), scaled to the on-screen stamp.
+  const target = (() => {
+    if (!frame || !("target_px" in step) || !step.target_px) return undefined;
+    const w = frame.width_px ?? 97, h = frame.height_px ?? 98;
+    const [tx, ty] = step.target_px;
+    const left = ((tx + 0.5) / w) * size, top = ((ty + 0.5) / h) * size;
+    const inside = left >= 0 && top >= 0 && left <= size && top <= size;
+    if (inside) return { inside, left, top, angle: 0 };
+    const angle = (Math.atan2(top - half, left - half) * 180) / Math.PI;
+    const r = half - 22;
+    return { inside, left: half + r * Math.cos((angle * Math.PI) / 180), top: half + r * Math.sin((angle * Math.PI) / 180), angle };
+  })();
   const state = isBest ? "best" : row.modelPx < 25 ? "close" : row.modelPx < STAMP / 2 ? "near" : "far";
   const label = {
     best: "Closest match",
@@ -221,6 +233,9 @@ function DialGame({
           {frame ? <>
             <img src={imageUrl(field.field_id, frame.png)} alt={`December SPHEREx crop for ${step.distance_au.toFixed(1)} AU`} width={size} height={size} />
             <span className={`dial-cross ${state}`} style={{ left: half, top: half }} aria-hidden="true" />
+            {target && (target.inside
+              ? <span className="dial-target" style={{ left: target.left, top: target.top }}><b>Neptune</b></span>
+              : <span className="dial-target-away" style={{ left: target.left, top: target.top, transform: `translate(-50%, -50%) rotate(${target.angle}deg)` }} title="Neptune is this way">➜</span>)}
           </> : <span className="dial-outside">Outside the frame</span>}
         </div>
         <div className="dial-game-copy">
@@ -248,10 +263,10 @@ function DialGame({
           <ol className="dial-howto">
             <li>We know where Neptune was in June 2025.</li>
             <li>Pick a distance. Our model predicts where Neptune should be in December 2025.</li>
-            <li>The crop centered closest to Neptune gives the best trial distance.</li>
+            <li>The green ring is where Neptune really is. Turn the dial until the crosshair sits on it: that distance is the measurement.</li>
           </ol>
           <p className="dial-caption">
-            December 2025 SPHEREx crop for the nearest published dial step. The crosshair marks the predicted position at its center.
+            December 2025 SPHEREx crop for the nearest published dial step. Crosshair: predicted position for your distance (centre of the crop). Green ring: Neptune's measured position in this image; an arrow points to it when it is outside the crop.
             The Science curve and miss values come from the separate distance table.
           </p>
         </div>
