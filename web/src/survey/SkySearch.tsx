@@ -3,6 +3,7 @@ import type { Field } from "../contract";
 import { fmtDec, fmtRa, friendly } from "./fields";
 import { formatSep, insideSquare, parseCoords, separationDeg, squareCorners, type RaDec } from "./skyCoords";
 import { resolveSesameName } from "./sesame";
+import { hipsUrls } from "./hips";
 
 /**
  * Whole-sky search on the SPHEREx QR2 HiPS maps from CDS, shown with Aladin Lite.
@@ -18,6 +19,7 @@ const SURVEYS = [
   ...[1, 2, 3, 4, 5, 6].map((n) => ({ id: `D${n}`, label: `D${n}` })),
 ];
 const IRSA_EXPLORER = "https://irsa.ipac.caltech.edu/applications/spherex/";
+const MAP_UNAVAILABLE = "The whole-sky map is served by CDS and is not reachable from this network right now. Search still works.";
 
 // Neptune in our two dial images: June 2025 reference crop and December 2025 measured centroid.
 const NEPTUNE_PATH: { ra: number; dec: number; label: string }[] = [
@@ -44,15 +46,45 @@ function loadAladin(): Promise<AladinAny> {
   return aladinScript;
 }
 
-function surveyLayer(A: AladinAny, id: string, onError: () => void): AladinAny {
+function surveyLayer(A: AladinAny, id: string, url: string, onError: () => void): AladinAny {
   return A.createImageSurvey(
     `CDS/P/SPHEREx/QR2/${id}`,
     `SPHEREx QR2 ${id}`,
-    `${location.origin}/hips/SPHEREx/${id}`,
+    url,
     "equatorial",
     undefined,
     { errorCallback: onError },
   );
+}
+
+function surveyWithFallback(
+  A: AladinAny, id: string, getAladin: () => AladinAny,
+  isCurrent: () => boolean, onUnavailable: () => void,
+): AladinAny {
+  const urls = hipsUrls(id, location.origin);
+  let attempt = 0;
+  const make = (index: number): AladinAny => surveyLayer(A, id, urls[index], () => {
+    if (!isCurrent() || attempt !== index) return;
+    attempt += 1;
+    if (attempt === urls.length) {
+      onUnavailable();
+      return;
+    }
+    const next = make(attempt);
+    const a = getAladin();
+    if (a?.setBaseImageLayer) a.setBaseImageLayer(next);
+    else a?.setImageSurvey?.(next);
+  });
+  return make(0);
+}
+
+function focusMap(a: AladinAny, at: RaDec, fov: number): void {
+  try {
+    a?.gotoRaDec(at.ra, at.dec);
+    a?.setFoV?.(fov);
+  } catch {
+    // The result card works even when Aladin is unavailable.
+  }
 }
 
 type Hit =
@@ -63,6 +95,7 @@ type Hit =
 export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
   const host = useRef<HTMLDivElement>(null);
   const aladin = useRef<AladinAny>(null);
+  const surveyGeneration = useRef(0);
   const searchNumber = useRef(0);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
   const [survey, setSurvey] = useState("color");
@@ -91,9 +124,14 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
     loadAladin()
       .then((A) => {
         if (!alive || !host.current) return;
-        const fallback = () => aladin.current?.setBaseImageLayer(`https://alasky.cds.unistra.fr/SPHEREx/color`);
+        const generation = ++surveyGeneration.current;
+        const layer = surveyWithFallback(
+          A, "color", () => aladin.current,
+          () => generation === surveyGeneration.current,
+          () => setStatus("error"),
+        );
         const a = A.aladin(host.current, {
-          survey: surveyLayer(A, "color", fallback),
+          survey: layer,
           fov: 1,
           target: "210.80227 +54.34895",
           log: false,
@@ -154,12 +192,18 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
 
   useEffect(() => {
     const a = aladin.current;
-    if (status !== "ready" || !a) return;
+    if (!a || !aladinApi) return;
     const id = SURVEYS.find((s) => s.id === survey)!.id;
-    const layer = surveyLayer(aladinApi, id, () => a.setBaseImageLayer(`https://alasky.cds.unistra.fr/SPHEREx/${id}`));
+    const generation = ++surveyGeneration.current;
+    const layer = surveyWithFallback(
+      aladinApi, id, () => aladin.current,
+      () => generation === surveyGeneration.current,
+      () => setStatus("error"),
+    );
+    setStatus("ready");
     if (a.setBaseImageLayer) a.setBaseImageLayer(layer);
     else a.setImageSurvey?.(layer);
-  }, [survey, status]);
+  }, [survey]);
 
   const search = async (text = query) => {
     const requestNumber = ++searchNumber.current;
@@ -170,27 +214,20 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
     const a = aladin.current;
     if (/^neptune$/i.test(q)) {
       const p = NEPTUNE_PATH[1];
-      a?.gotoRaDec(p.ra, p.dec);
-      a?.setFoV?.(1.5);
+      focusMap(a, p, 1.5);
       setHit({ kind: "neptune", at: { ra: p.ra, dec: p.dec }, label: "Neptune · Dec 2025" });
       return;
     }
     const c = parseCoords(q);
     if (c) {
-      a?.gotoRaDec(c.ra, c.dec);
-      a?.setFoV?.(0.5);
+      focusMap(a, c, 0.5);
       setHit(classify(c, q));
-      return;
-    }
-    if (!a) {
-      setMessage("Name search needs the sky map, which has not loaded. Try coordinates like 210.80 54.35.");
       return;
     }
     try {
       const { ra, dec } = await resolveSesameName(q);
       if (requestNumber !== searchNumber.current) return;
-      a.gotoRaDec(ra, dec);
-      a.setFoV?.(0.5);
+      focusMap(a, { ra, dec }, 0.5);
       setHit(classify({ ra, dec }, q));
     } catch {
       if (requestNumber === searchNumber.current) setMessage("Name not found, try coordinates");
@@ -233,7 +270,7 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
           <div ref={host} className="ss-aladin" />
           {status !== "ready" && (
             <div className="ss-map-status" role="status">
-              {status === "loading" ? "Loading the SPHEREx sky map…" : "The sky map could not load (no connection to CDS). Coordinate search still works."}
+              {status === "loading" ? "Loading the SPHEREx sky map…" : MAP_UNAVAILABLE}
             </div>
           )}
           <div className="ss-layers" role="group" aria-label="Map layer">
@@ -286,8 +323,7 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
               <h3>{hit.label}</h3>
               <p className="mono">{fmtRa(hit.at.ra)} · {fmtDec(hit.at.dec)}</p>
               <p>
-                You can see this spot on the SPHEREx map, but our time-lapse data does not cover it, so there is nothing to
-                compare over time here.
+                This spot is outside our time-lapse data, so there is nothing to compare over time here.
               </p>
               {hit.nearest && (
                 <button className="ss-nearest" onClick={() => go("timelapse", hit.nearest!.field.field_id)}>
