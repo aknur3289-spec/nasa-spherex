@@ -37,9 +37,24 @@ Grouped K-fold: all detections from one exposure / image pair stay in the same f
 average precision, recall at 90 % purity, the same AUC for a `z`-only ranking (baseline), and the share
 of each artefact kind pushed below 0.5.
 
-**Status.** Only tested on synthetic scenes so far (`python3 -m ml.train --synthetic`: AUC 0.997, z-only
-baseline 0.49). Synthetic scenes are easier than real data; this is a code check, not a science result.
-The real-data run needs the cached FITS (`data/raw/`), which are not in Git.
+**Real-data result (2026-11-15).** 405 candidates from the blind-test differences (67 Neptune, 90 recovered
+injections, 201 other Neptune-frame candidates, 47 control-field candidates), 127 groups, grouped 5-fold CV:
+
+| Metric | Value |
+| --- | ---: |
+| ROC AUC | 0.963 |
+| ROC AUC, ranking by `z` only (baseline) | 0.562 |
+| Average precision | 0.948 |
+| Recall at 90 % purity | 0.834 |
+| Neptune artefacts (`neptune_other`) scored below 0.5 | 91.0 % |
+| Control-field candidates scored below 0.5 | 93.6 % |
+| Neptune detections kept (≥ 0.5) | 95.5 % |
+| Recovered injections kept (≥ 0.5) | 82.2 % |
+
+Caveats: a small set; one feature (`new_flux_frac`) carries most of the model's importance; the real class
+is bright Neptune plus synthetic injections, so faint real movers are represented only by injections.
+
+Synthetic check (`python3 -m ml.train --synthetic`): AUC 0.997, z-only baseline 0.49.
 
 ## Run
 
@@ -71,7 +86,7 @@ Queue format `review-1.0`: `web/public/data/review/index.json` lists sets; each 
 
 ## Next steps
 
-1. Run `ml.dataset` + `ml.train` on the real cache; report real metrics here.
+1. Done: real-data metrics above.
 2. Score the five unverified `ecl` mover tracks and cross-match them with SkyBoT.
 3. Add volunteer label import to `ml.dataset` (majority vote, weight by practice score).
 4. A small CNN on the 21×21 stamps once there are a few thousand labels.
