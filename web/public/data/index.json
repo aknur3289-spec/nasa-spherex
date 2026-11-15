@@ -12,39 +12,62 @@
     "thumbnail": "epoch-1.png"
   },
   {
-    "field_id": "ecl",
+    "field_id": "neptune-track",
     "kind": "static",
-    "thumbnail": "thumb.png",
-    "title": "Ecliptic test field",
-    "n_frames": 30,
-    "synthetic": false,
+    "thumbnail": "color.png",
+    "title": "Neptune against fixed stars",
+    "n_frames": 41,
     "date_range": {
-      "start_utc": "2025-07-22T04:19:53.064Z",
-      "end_utc": "2026-07-27T02:23:11.941Z"
-    }
+      "start_utc": "2025-06-16T09:06:25.847Z",
+      "end_utc": "2025-07-05T01:25:54.428Z"
+    },
+    "synthetic": false
   },
   {
     "field_id": "m101",
     "kind": "static",
-    "thumbnail": "thumb.png",
+    "thumbnail": "color.png",
     "title": "Pinwheel Galaxy (M101)",
     "n_frames": 32,
-    "synthetic": false,
     "date_range": {
       "start_utc": "2025-05-10T17:11:04.533Z",
       "end_utc": "2026-06-18T03:54:38.021Z"
-    }
+    },
+    "synthetic": false
   },
   {
     "field_id": "nep",
     "kind": "static",
-    "thumbnail": "thumb.png",
+    "thumbnail": "color.png",
     "title": "North Ecliptic Pole",
     "n_frames": 31,
-    "synthetic": false,
     "date_range": {
       "start_utc": "2025-05-03T20:19:22.824Z",
       "end_utc": "2026-09-29T16:00:13.869Z"
+    },
+    "synthetic": false
+  },
+  {
+    "field_id": "ecl",
+    "kind": "static",
+    "thumbnail": "color.png",
+    "title": "Ecliptic test field",
+    "n_frames": 30,
+    "date_range": {
+      "start_utc": "2025-07-22T04:19:53.064Z",
+      "end_utc": "2026-07-27T02:23:11.941Z"
+    },
+    "synthetic": false
+  },
+  {
+    "field_id": "neptune-dial",
+    "kind": "dial",
+    "thumbnail": "ref.png",
+    "title": "Neptune Distance Dial",
+    "n_frames": 105,
+    "date_range": {
+      "start_utc": "2025-06-22T00:24:01.510Z",
+      "end_utc": "2025-12-17T06:28:53.819Z"
     }
   }
 ]

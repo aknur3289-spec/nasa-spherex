@@ -3,18 +3,36 @@
     "dec_deg": 54.34895,
     "ra_deg": 210.80227
   },
+  "color_bands_um": [
+    [
+      1.1,
+      1.55
+    ],
+    [
+      1.55,
+      1.85
+    ],
+    [
+      1.85,
+      2.42
+    ]
+  ],
+  "color_png": "color.png",
   "description": "A bright nearby galaxy used in the official IRSA tutorial; a stable field to show honest vs naive comparison.",
   "field_id": "m101",
   "frames": [
     {
-      "bad_pixel_fraction": 0.01665972511453561,
+      "bad_pixel_fraction": 0.0166597251145356,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:08:23.038872Z",
       "height_px": 99,
       "id": "f004",
+      "mask_png": "mask/f004.png",
       "mjd": 60805.716024688,
       "obs_id": "2025W19_2B_0346_4",
       "obs_time_utc": "2025-05-10T17:11:04.533Z",
@@ -32,14 +50,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.019054560599750105,
+      "bad_pixel_fraction": 0.0190545605997501,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:08:19.868146Z",
       "height_px": 99,
       "id": "f005",
+      "mask_png": "mask/f005.png",
       "mjd": 60806.052190301,
       "obs_id": "2025W19_2B_0399_1",
       "obs_time_utc": "2025-05-11T01:15:09.242Z",
@@ -57,14 +78,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.011836578846888126,
+      "bad_pixel_fraction": 0.0118365788468881,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:08:27.645505Z",
       "height_px": 99,
       "id": "f006",
+      "mask_png": "mask/f006.png",
       "mjd": 60806.526851285,
       "obs_id": "2025W19_2B_0474_1",
       "obs_time_utc": "2025-05-11T12:38:39.951Z",
@@ -82,14 +106,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.025406080799666806,
+      "bad_pixel_fraction": 0.0254060807996668,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:09:13.242402Z",
       "height_px": 99,
       "id": "f019",
+      "mask_png": "mask/f019.png",
       "mjd": 60811.555390035,
       "obs_id": "2025W20_2D_0176_2",
       "obs_time_utc": "2025-05-16T13:19:45.699Z",
@@ -103,18 +130,21 @@
         "unit": "MJy/sr"
       },
       "survey_pass": 1,
-      "wavelength_um": 1.4671655168881281,
+      "wavelength_um": 1.467165516888128,
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.030195751770095793,
+      "bad_pixel_fraction": 0.0301957517700957,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:09:26.843357Z",
       "height_px": 99,
       "id": "f021",
+      "mask_png": "mask/f021.png",
       "mjd": 60811.558374537,
       "obs_id": "2025W20_2D_0176_4",
       "obs_time_utc": "2025-05-16T13:24:03.560Z",
@@ -132,14 +162,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.013015410245730946,
+      "bad_pixel_fraction": 0.0130154102457309,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:10:40.309437Z",
       "height_px": 99,
       "id": "f040",
+      "mask_png": "mask/f040.png",
       "mjd": 60819.915970822,
       "obs_id": "2025W21_2C_0401_4",
       "obs_time_utc": "2025-05-24T21:58:59.879Z",
@@ -157,14 +190,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.07142857142857142,
+      "bad_pixel_fraction": 0.0714285714285714,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:11:09.743189Z",
       "height_px": 99,
       "id": "f047",
+      "mask_png": "mask/f047.png",
       "mjd": 60824.396372975,
       "obs_id": "2025W22_1B_0584_1",
       "obs_time_utc": "2025-05-29T09:30:46.625Z",
@@ -182,14 +218,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.021032902957101206,
+      "bad_pixel_fraction": 0.0210329029571012,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:11:17.289464Z",
       "height_px": 99,
       "id": "f048",
+      "mask_png": "mask/f048.png",
       "mjd": 60824.397865231,
       "obs_id": "2025W22_1B_0584_2",
       "obs_time_utc": "2025-05-29T09:32:55.556Z",
@@ -207,14 +246,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.017388588088296544,
+      "bad_pixel_fraction": 0.0173885880882965,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:13:42.091948Z",
       "height_px": 99,
       "id": "f077",
+      "mask_png": "mask/f077.png",
       "mjd": 61016.473308206,
       "obs_id": "2025W49_2A_0650_1",
       "obs_time_utc": "2025-12-07T11:21:33.829Z",
@@ -232,14 +274,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.01665972511453561,
+      "bad_pixel_fraction": 0.0166597251145356,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:13:51.249767Z",
       "height_px": 99,
       "id": "f079",
+      "mask_png": "mask/f079.png",
       "mjd": 61016.47629272,
       "obs_id": "2025W49_2A_0650_3",
       "obs_time_utc": "2025-12-07T11:25:51.691Z",
@@ -257,14 +302,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.019054560599750105,
+      "bad_pixel_fraction": 0.0190545605997501,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:13:51.076802Z",
       "height_px": 99,
       "id": "f080",
+      "mask_png": "mask/f080.png",
       "mjd": 61016.477784965,
       "obs_id": "2025W49_2A_0650_4",
       "obs_time_utc": "2025-12-07T11:28:00.621Z",
@@ -282,14 +330,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.013536026655560184,
+      "bad_pixel_fraction": 0.0135360266555601,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:14:58.911380Z",
       "height_px": 99,
       "id": "f091",
+      "mask_png": "mask/f091.png",
       "mjd": 61020.209345463,
       "obs_id": "2025W50_1A_0736_3",
       "obs_time_utc": "2025-12-11T05:01:27.448Z",
@@ -303,18 +354,21 @@
         "unit": "MJy/sr"
       },
       "survey_pass": 2,
-      "wavelength_um": 1.1066482868584357,
+      "wavelength_um": 1.1066482868584355,
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03766042499474016,
+      "bad_pixel_fraction": 0.0376604249947401,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:15:25.422263Z",
       "height_px": 99,
       "id": "f097",
+      "mask_png": "mask/f097.png",
       "mjd": 61022.514239861,
       "obs_id": "2025W50_2A_0543_1",
       "obs_time_utc": "2025-12-13T12:20:30.324Z",
@@ -332,14 +386,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.016095097832947613,
+      "bad_pixel_fraction": 0.0160950978329476,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:15:45.987600Z",
       "height_px": 99,
       "id": "f100",
+      "mask_png": "mask/f100.png",
       "mjd": 61022.51871662,
       "obs_id": "2025W50_2A_0543_4",
       "obs_time_utc": "2025-12-13T12:26:57.116Z",
@@ -357,14 +414,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.01756785188302125,
+      "bad_pixel_fraction": 0.0175678518830212,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:16:05.909343Z",
       "height_px": 99,
       "id": "f106",
+      "mask_png": "mask/f106.png",
       "mjd": 61024.282508403,
       "obs_id": "2025W51_1A_0061_2",
       "obs_time_utc": "2025-12-15T06:46:48.726Z",
@@ -378,18 +438,21 @@
         "unit": "MJy/sr"
       },
       "survey_pass": 2,
-      "wavelength_um": 1.9319763137380985,
+      "wavelength_um": 1.9319763137380983,
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.01830422890805807,
+      "bad_pixel_fraction": 0.018304228908058,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:16:22.334526Z",
       "height_px": 99,
       "id": "f107",
+      "mask_png": "mask/f107.png",
       "mjd": 61025.643249271,
       "obs_id": "2025W51_1A_0359_4",
       "obs_time_utc": "2025-12-16T15:26:16.737Z",
@@ -407,14 +470,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.01891805717929642,
+      "bad_pixel_fraction": 0.0189180571792964,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:19:11.864624Z",
       "height_px": 99,
       "id": "f108",
+      "mask_png": "mask/f108.png",
       "mjd": 61026.249513299,
       "obs_id": "2025W51_1A_0482_1",
       "obs_time_utc": "2025-12-17T05:59:17.949Z",
@@ -432,14 +498,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.02423211818471676,
+      "bad_pixel_fraction": 0.0242321181847167,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:16:25.689364Z",
       "height_px": 99,
       "id": "f109",
+      "mask_png": "mask/f109.png",
       "mjd": 61026.251005567,
       "obs_id": "2025W51_1A_0482_2",
       "obs_time_utc": "2025-12-17T06:01:26.881Z",
@@ -457,14 +526,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.013780770039974752,
+      "bad_pixel_fraction": 0.0137807700399747,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:16:50.044012Z",
       "height_px": 99,
       "id": "f110",
+      "mask_png": "mask/f110.png",
       "mjd": 61026.252497812,
       "obs_id": "2025W51_1A_0482_3",
       "obs_time_utc": "2025-12-17T06:03:35.811Z",
@@ -482,14 +554,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.02423211818471676,
+      "bad_pixel_fraction": 0.0242321181847167,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_dr1",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:16:54.529218Z",
       "height_px": 99,
       "id": "f112",
+      "mask_png": "mask/f112.png",
       "mjd": 61027.403985521,
       "obs_id": "2025W51_1A_0726_1",
       "obs_time_utc": "2025-12-18T09:41:44.349Z",
@@ -507,14 +582,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.021670523879654954,
+      "bad_pixel_fraction": 0.0216705238796549,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:17:19.119896Z",
       "height_px": 99,
       "id": "f119",
+      "mask_png": "mask/f119.png",
       "mjd": 61179.831549062,
       "obs_id": "2026W21_1A_0277_1",
       "obs_time_utc": "2026-05-19T19:57:25.839Z",
@@ -532,14 +610,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.022907122032486463,
+      "bad_pixel_fraction": 0.0229071220324864,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:17:48.072712Z",
       "height_px": 99,
       "id": "f120",
+      "mask_png": "mask/f120.png",
       "mjd": 61182.003668345,
       "obs_id": "2026W21_2A_0081_1",
       "obs_time_utc": "2026-05-22T00:05:16.945Z",
@@ -557,14 +638,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.01749271137026239,
+      "bad_pixel_fraction": 0.0174927113702623,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:19:05.220119Z",
       "height_px": 99,
       "id": "f130",
+      "mask_png": "mask/f130.png",
       "mjd": 61183.158353981,
       "obs_id": "2026W21_2A_0268_2",
       "obs_time_utc": "2026-05-23T03:48:01.784Z",
@@ -582,14 +666,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.017388588088296544,
+      "bad_pixel_fraction": 0.0173885880882965,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 2,
+      "downloaded_utc": "2026-11-14T09:19:32.402117Z",
       "height_px": 99,
       "id": "f132",
+      "mask_png": "mask/f132.png",
       "mjd": 61183.704323912,
       "obs_id": "2026W21_2A_0361_4",
       "obs_time_utc": "2026-05-23T16:54:13.586Z",
@@ -607,14 +694,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.01020408163265306,
+      "bad_pixel_fraction": 0.010204081632653,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:21:28.592523Z",
       "height_px": 99,
       "id": "f148",
+      "mask_png": "mask/f148.png",
       "mjd": 61191.848482778,
       "obs_id": "2026W22_2A_0591_2",
       "obs_time_utc": "2026-05-31T20:21:48.912Z",
@@ -632,14 +722,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.020299713040705707,
+      "bad_pixel_fraction": 0.0202997130407057,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:21:58.552574Z",
       "height_px": 99,
       "id": "f149",
+      "mask_png": "mask/f149.png",
       "mjd": 61191.849975023,
       "obs_id": "2026W22_2A_0591_3",
       "obs_time_utc": "2026-05-31T20:23:57.842Z",
@@ -657,14 +750,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.02083111914124774,
+      "bad_pixel_fraction": 0.0208311191412477,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:21:55.922927Z",
       "height_px": 99,
       "id": "f150",
+      "mask_png": "mask/f150.png",
       "mjd": 61191.851467292,
       "obs_id": "2026W22_2A_0591_4",
       "obs_time_utc": "2026-05-31T20:26:06.774Z",
@@ -682,14 +778,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.026299179465600675,
+      "bad_pixel_fraction": 0.0262991794656006,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:22:23.644845Z",
       "height_px": 99,
       "id": "f153",
+      "mask_png": "mask/f153.png",
       "mjd": 61198.026098715,
       "obs_id": "2026W23_2A_0470_1",
       "obs_time_utc": "2026-06-07T00:37:34.929Z",
@@ -707,14 +806,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.03734483484115295,
+      "bad_pixel_fraction": 0.0373448348411529,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:22:51.545252Z",
       "height_px": 99,
       "id": "f155",
+      "mask_png": "mask/f155.png",
       "mjd": 61198.029083229,
       "obs_id": "2026W23_2A_0470_3",
       "obs_time_utc": "2026-06-07T00:41:52.791Z",
@@ -732,14 +834,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.04397222806648433,
+      "bad_pixel_fraction": 0.0439722280664843,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:23:06.766049Z",
       "height_px": 99,
       "id": "f158",
+      "mask_png": "mask/f158.png",
       "mjd": 61204.951014699,
       "obs_id": "2026W24_2B_0446_1",
       "obs_time_utc": "2026-06-13T22:49:27.670Z",
@@ -753,18 +858,21 @@
         "unit": "MJy/sr"
       },
       "survey_pass": 3,
-      "wavelength_um": 1.9334351930629095,
+      "wavelength_um": 1.9334351930629097,
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.022406900904691773,
+      "bad_pixel_fraction": 0.0224069009046917,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:22:57.724600Z",
       "height_px": 99,
       "id": "f159",
+      "mask_png": "mask/f159.png",
       "mjd": 61204.952506956,
       "obs_id": "2026W24_2B_0446_2",
       "obs_time_utc": "2026-06-13T22:51:36.601Z",
@@ -782,14 +890,17 @@
       "width_px": 99
     },
     {
-      "bad_pixel_fraction": 0.01672627814012203,
+      "bad_pixel_fraction": 0.016726278140122,
       "center": {
         "dec_deg": 54.34895,
         "ra_deg": 210.80227
       },
+      "collection": "spherex_qr3",
       "detector": 3,
+      "downloaded_utc": "2026-11-14T09:24:07.928071Z",
       "height_px": 99,
       "id": "f163",
+      "mask_png": "mask/f163.png",
       "mjd": 61209.162940058,
       "obs_id": "2026W25_1A_0641_1",
       "obs_time_utc": "2026-06-18T03:54:38.021Z",
@@ -869,7 +980,7 @@
       "a": "f019",
       "b": "f077",
       "diff_png": "diff/f019-f077.png",
-      "dlambda_frac": 0.0006804854355393121,
+      "dlambda_frac": 0.0006804854355391608,
       "dt_days": 204.91791817099875,
       "trust": "high"
     },
@@ -885,7 +996,7 @@
       "a": "f106",
       "b": "f158",
       "diff_png": "diff/f106-f158.png",
-      "dlambda_frac": 0.0007548377823391354,
+      "dlambda_frac": 0.0007548377823393652,
       "dt_days": 180.6685062960023,
       "trust": "high"
     },
@@ -933,7 +1044,7 @@
       "a": "f004",
       "b": "f091",
       "diff_png": "diff/f004-f091.png",
-      "dlambda_frac": 0.3753898172635656,
+      "dlambda_frac": 0.37538981726356574,
       "dt_days": 214.49332077500003,
       "trust": "low"
     },
@@ -949,7 +1060,7 @@
       "a": "f048",
       "b": "f091",
       "diff_png": "diff/f048-f091.png",
-      "dlambda_frac": 0.37332280813538016,
+      "dlambda_frac": 0.3733228081353804,
       "dt_days": 195.81148023199785,
       "trust": "low"
     }
@@ -963,9 +1074,9 @@
       "spherex_qr3"
     ],
     "doi": "[DOI from IRSA release page]",
-    "downloaded_utc": "2026-11-14T09:24:07.928Z",
+    "downloaded_utc": "2026-11-14T09:24:07.928071Z",
     "mission": "SPHEREx",
-    "pipeline_commit": "362a7bc",
+    "pipeline_commit": "48a5a05",
     "synthetic": false
   },
   "schema_version": "1.1",

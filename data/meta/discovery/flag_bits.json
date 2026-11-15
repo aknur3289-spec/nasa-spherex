@@ -1,0 +1,156 @@
+[
+  {
+    "bit": 0,
+    "mask": 1,
+    "name": "TRANSIENT",
+    "description": "Transient detected during SUR",
+    "fraction": 0.001874219075385256
+  },
+  {
+    "bit": 1,
+    "mask": 2,
+    "name": "OVERFLOW",
+    "description": "Overflow detected during SUR",
+    "fraction": 0.0
+  },
+  {
+    "bit": 2,
+    "mask": 4,
+    "name": "SUR_ERROR",
+    "description": "Error in onboard processing",
+    "fraction": 0.0014577259475218659
+  },
+  {
+    "bit": 6,
+    "mask": 64,
+    "name": "NONFUNC",
+    "description": "Permanently unusable",
+    "fraction": 0.0020824656393169513
+  },
+  {
+    "bit": 7,
+    "mask": 128,
+    "name": "DICHROIC",
+    "description": "Low efficiency due to dichroic",
+    "fraction": 0.0
+  },
+  {
+    "bit": 9,
+    "mask": 512,
+    "name": "MISSING_DATA",
+    "description": "Onboard data lost",
+    "fraction": 0.0
+  },
+  {
+    "bit": 10,
+    "mask": 1024,
+    "name": "HOT",
+    "description": "Hot pixel",
+    "fraction": 0.0
+  },
+  {
+    "bit": 11,
+    "mask": 2048,
+    "name": "COLD",
+    "description": "Anomalously low signal",
+    "fraction": 0.0
+  },
+  {
+    "bit": 12,
+    "mask": 4096,
+    "name": "FULLSAMPLE",
+    "description": "Pixel full sample history is available",
+    "fraction": 0.0
+  },
+  {
+    "bit": 14,
+    "mask": 16384,
+    "name": "PHANMISS",
+    "description": "Phantom correction was not applied",
+    "fraction": 0.0
+  },
+  {
+    "bit": 15,
+    "mask": 32768,
+    "name": "NONLINEAR",
+    "description": "Nonlinearity correction cannot be applied reliably",
+    "fraction": 0.0
+  },
+  {
+    "bit": 17,
+    "mask": 131072,
+    "name": "PERSIST",
+    "description": "Persistent charge above threshold",
+    "fraction": 0.0032278217409412746
+  },
+  {
+    "bit": 19,
+    "mask": 524288,
+    "name": "OUTLIER",
+    "description": "Pixel flagged by Detect Outliers",
+    "fraction": 0.001874219075385256
+  },
+  {
+    "bit": 20,
+    "mask": 1048576,
+    "name": "CROSSTALK",
+    "description": "Pixel affected by crosstalk.",
+    "fraction": 0.0
+  },
+  {
+    "bit": 21,
+    "mask": 2097152,
+    "name": "SOURCE",
+    "description": "Pixel mapped to a known source",
+    "fraction": 0.9220116618075802
+  },
+  {
+    "bit": 22,
+    "mask": 4194304,
+    "name": "GHOST",
+    "description": "Affected by a bright source inside the exposure",
+    "fraction": 0.0
+  },
+  {
+    "bit": 23,
+    "mask": 8388608,
+    "name": "GHOST_FPA",
+    "description": "Affected by a bright source on another detector",
+    "fraction": 0.0
+  },
+  {
+    "bit": 24,
+    "mask": 16777216,
+    "name": "GHOST_EXT",
+    "description": "Pixel affected by a bright source outside FOV",
+    "fraction": 0.0
+  },
+  {
+    "bit": 25,
+    "mask": 33554432,
+    "name": "STREAK",
+    "description": "Pixel affected by a streak",
+    "fraction": 0.0
+  },
+  {
+    "bit": 26,
+    "mask": 67108864,
+    "name": "BLOOM",
+    "description": "Pixel part of a bloom artifact",
+    "fraction": 0.0
+  },
+  {
+    "bit": 27,
+    "mask": 134217728,
+    "name": "SNOWBALL",
+    "description": "Pixel part of a snowball artifact",
+    "fraction": 0.0
+  },
+  {
+    "bit": 28,
+    "mask": 268435456,
+    "name": "HALO",
+    "description": "Pixel part of a transient halo",
+    "fraction": 0.003123698458975427
+  }
+]

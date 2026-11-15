@@ -1,0 +1,270 @@
+{
+  "run_utc": "2026-11-14T08:49:39.034236+00:00",
+  "tap": {
+    "rows": 376,
+    "bands": {
+      "SPHEREx-D3": 53,
+      "SPHEREx-D6": 51,
+      "SPHEREx-D2": 84,
+      "SPHEREx-D5": 83,
+      "SPHEREx-D4": 53,
+      "SPHEREx-D1": 52
+    },
+    "mjd_min": 60804.148555,
+    "mjd_max": 61215.138195,
+    "uri_prefixes": {
+      "/spherex/dr1/": 246,
+      "/spherex/qr3/": 130
+    }
+  },
+  "sia": {
+    "rows": 376,
+    "columns": [
+      "s_ra",
+      "s_dec",
+      "facility_name",
+      "instrument_name",
+      "dataproduct_subtype",
+      "calib_level",
+      "dataproduct_type",
+      "energy_bandpassname",
+      "energy_emband",
+      "obs_id",
+      "s_resolution",
+      "em_min",
+      "em_max",
+      "em_res_power",
+      "proposal_title",
+      "access_url",
+      "access_format",
+      "access_estsize",
+      "t_exptime",
+      "s_region",
+      "obs_collection",
+      "obs_intent",
+      "algorithm_name",
+      "facility_keywords",
+      "instrument_keywords",
+      "environment_photometric",
+      "proposal_id",
+      "proposal_pi",
+      "proposal_project",
+      "target_name",
+      "target_type",
+      "target_standard",
+      "target_moving",
+      "target_keywords",
+      "obs_release_date",
+      "s_xel1",
+      "s_xel2",
+      "s_pixel_scale",
+      "position_timedependent",
+      "t_min",
+      "t_max",
+      "t_resolution",
+      "t_xel",
+      "obs_publisher_did",
+      "s_fov",
+      "em_xel",
+      "pol_states",
+      "pol_xel",
+      "cloud_access",
+      "o_ucd",
+      "upload_row_id"
+    ]
+  },
+  "cutout": {
+    "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W19_2B/l2b-v27-2026-198/2/level2_2025W19_2B_0346_1D2_spx_l2b-v27-2026-198.fits",
+    "cutout_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W19_2B/l2b-v27-2026-198/2/level2_2025W19_2B_0346_1D2_spx_l2b-v27-2026-198.fits?center=210.80227,54.34895d&size=0.1667",
+    "path": "data/raw/m101_earliest_d2_cutout.fits",
+    "download_seconds": 0.0,
+    "size_bytes": 4104000,
+    "size_mb": 4.104,
+    "cached": true,
+    "initial_download_seconds": 26.919343832996674,
+    "shape": [
+      98,
+      98
+    ],
+    "target_pixel": [
+      48.921068568063255,
+      48.498343663134584
+    ],
+    "wavelength_um": 1.5064212841578184,
+    "time_keywords": {
+      "DATE": "2026-07-17T20:24:35.536",
+      "TIMESYS": "UTC",
+      "MJDREF": "0.0",
+      "DATE-OBS": "2025-05-10T17:04:37.741",
+      "MJD-OBS": "60805.711547928",
+      "DATE-BEG": "2025-05-10T17:04:37.741",
+      "MJD-BEG": "60805.711547928",
+      "DATE-AVG": "2025-05-10T17:05:35.300",
+      "MJD-AVG": "60805.712214117",
+      "DATE-END": "2025-05-10T17:06:32.859",
+      "MJD-END": "60805.712880307"
+    },
+    "tap_mjd": 60805.711548,
+    "expected_pixels_per_side": 98,
+    "shape_near_expected": true,
+    "mjd_obs_difference_seconds": -0.006221048533916473,
+    "bits": [
+      {
+        "bit": 0,
+        "mask": 1,
+        "name": "TRANSIENT",
+        "description": "Transient detected during SUR",
+        "fraction": 0.001874219075385256
+      },
+      {
+        "bit": 1,
+        "mask": 2,
+        "name": "OVERFLOW",
+        "description": "Overflow detected during SUR",
+        "fraction": 0.0
+      },
+      {
+        "bit": 2,
+        "mask": 4,
+        "name": "SUR_ERROR",
+        "description": "Error in onboard processing",
+        "fraction": 0.0014577259475218659
+      },
+      {
+        "bit": 6,
+        "mask": 64,
+        "name": "NONFUNC",
+        "description": "Permanently unusable",
+        "fraction": 0.0020824656393169513
+      },
+      {
+        "bit": 7,
+        "mask": 128,
+        "name": "DICHROIC",
+        "description": "Low efficiency due to dichroic",
+        "fraction": 0.0
+      },
+      {
+        "bit": 9,
+        "mask": 512,
+        "name": "MISSING_DATA",
+        "description": "Onboard data lost",
+        "fraction": 0.0
+      },
+      {
+        "bit": 10,
+        "mask": 1024,
+        "name": "HOT",
+        "description": "Hot pixel",
+        "fraction": 0.0
+      },
+      {
+        "bit": 11,
+        "mask": 2048,
+        "name": "COLD",
+        "description": "Anomalously low signal",
+        "fraction": 0.0
+      },
+      {
+        "bit": 12,
+        "mask": 4096,
+        "name": "FULLSAMPLE",
+        "description": "Pixel full sample history is available",
+        "fraction": 0.0
+      },
+      {
+        "bit": 14,
+        "mask": 16384,
+        "name": "PHANMISS",
+        "description": "Phantom correction was not applied",
+        "fraction": 0.0
+      },
+      {
+        "bit": 15,
+        "mask": 32768,
+        "name": "NONLINEAR",
+        "description": "Nonlinearity correction cannot be applied reliably",
+        "fraction": 0.0
+      },
+      {
+        "bit": 17,
+        "mask": 131072,
+        "name": "PERSIST",
+        "description": "Persistent charge above threshold",
+        "fraction": 0.0032278217409412746
+      },
+      {
+        "bit": 19,
+        "mask": 524288,
+        "name": "OUTLIER",
+        "description": "Pixel flagged by Detect Outliers",
+        "fraction": 0.001874219075385256
+      },
+      {
+        "bit": 20,
+        "mask": 1048576,
+        "name": "CROSSTALK",
+        "description": "Pixel affected by crosstalk.",
+        "fraction": 0.0
+      },
+      {
+        "bit": 21,
+        "mask": 2097152,
+        "name": "SOURCE",
+        "description": "Pixel mapped to a known source",
+        "fraction": 0.9220116618075802
+      },
+      {
+        "bit": 22,
+        "mask": 4194304,
+        "name": "GHOST",
+        "description": "Affected by a bright source inside the exposure",
+        "fraction": 0.0
+      },
+      {
+        "bit": 23,
+        "mask": 8388608,
+        "name": "GHOST_FPA",
+        "description": "Affected by a bright source on another detector",
+        "fraction": 0.0
+      },
+      {
+        "bit": 24,
+        "mask": 16777216,
+        "name": "GHOST_EXT",
+        "description": "Pixel affected by a bright source outside FOV",
+        "fraction": 0.0
+      },
+      {
+        "bit": 25,
+        "mask": 33554432,
+        "name": "STREAK",
+        "description": "Pixel affected by a streak",
+        "fraction": 0.0
+      },
+      {
+        "bit": 26,
+        "mask": 67108864,
+        "name": "BLOOM",
+        "description": "Pixel part of a bloom artifact",
+        "fraction": 0.0
+      },
+      {
+        "bit": 27,
+        "mask": 134217728,
+        "name": "SNOWBALL",
+        "description": "Pixel part of a snowball artifact",
+        "fraction": 0.0
+      },
+      {
+        "bit": 28,
+        "mask": 268435456,
+        "name": "HALO",
+        "description": "Pixel part of a transient halo",
+        "fraction": 0.003123698458975427
+      }
+    ],
+    "hdu_info": "Filename: data/raw/m101_earliest_d2_cutout.fits\nNo.    Name      Ver    Type      Cards   Dimensions   Format\n  0  PRIMARY       1 PrimaryHDU       5   ()      \n  1  IMAGE         1 ImageHDU       292   (98, 98)   float32   \n  2  FLAGS         1 ImageHDU       185   (98, 98)   int32   \n  3  VARIANCE      1 ImageHDU       119   (98, 98)   float32   \n  4  ZODI          1 ImageHDU       122   (98, 98)   float32   \n  5  EPSF          1 BinTableHDU     56   441R x 11C   [J, J, E, E, E, E, J, E, E, E, 1089D]   \n  6  WCS-WAVE      1 BinTableHDU     22   1R x 3C   [11J, 11J, 242E]   \n",
+    "primary_version": "7.0.5"
+  }
+}

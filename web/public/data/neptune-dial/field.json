@@ -1,0 +1,4369 @@
+{
+  "center": {
+    "dec_deg": -0.5024,
+    "ra_deg": 2.15087
+  },
+  "description": "Known Neptune in SPHEREx June and December 2025 exposures.",
+  "dial": {
+    "measured_au": 29.95,
+    "measured_uncertainty_au": 0.03,
+    "model": "circular orbit + parallax (geometry.py, feat/science)",
+    "negative_control_field": "neptune-dial-blank",
+    "note": "distance from astrometry; full real-data focus curve not done (star residuals); offset_px = distance from predicted position to Neptune's measured centroid in the target frame; brightest-peak criterion on raw frames is confused by field stars",
+    "peak_distance_au": 29.958734525447007,
+    "ref_detector": "D1",
+    "ref_obs_id": "2025W25_2A_0500_1",
+    "reference_frame": "ref",
+    "search_radius_px": 20,
+    "steps": [
+      {
+        "distance_au": 20.03679852805884,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -2.002091391879319,
+          "ra_deg": 358.7018269914631
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.12009237875285,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9974843013977617,
+          "ra_deg": 358.7124495298475
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.204081632653022,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9928672007904054,
+          "ra_deg": 358.7230948766519
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.288775034932428,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.988240069024004,
+          "ra_deg": 358.7337630796662
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.374181478016798,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9836028849388077,
+          "ra_deg": 358.74445418697474
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.460310004697003,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.978955627247218,
+          "ra_deg": 358.7551682469592
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.547169811320714,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9742982745324125,
+          "ra_deg": 358.7659053083022
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.63477025106581,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9696308052469622,
+          "ra_deg": 358.77666541998997
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.72312083729777,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9649531977114205,
+          "ra_deg": 358.7874486313161
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.81223124701382,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9602654301128875,
+          "ra_deg": 358.79825499188485
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.90211132437616,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9555674805035648,
+          "ra_deg": 358.8090845516142
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 20.992771084337313,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9508593267992758,
+          "ra_deg": 358.8199373607395
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.084220716360075,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9461409467779658,
+          "ra_deg": 358.83081346981703
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.176470588235258,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.941412318078188,
+          "ra_deg": 358.8417129297275
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.26953124999996,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9366734181975513,
+          "ra_deg": 358.8526357916796
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.363413437959746,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9319242244911614,
+          "ra_deg": 358.8635821072134
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.458128078817694,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9271647141700199,
+          "ra_deg": 358.87455192820465
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.553686293913866,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9223948642994104,
+          "ra_deg": 358.88554530686815
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.650099403578487,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.917614651797255,
+          "ra_deg": 358.8965622957615
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.747378931602558,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9128240534324457,
+          "ra_deg": 358.9076029477892
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.84553660982945,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.9080230458231482,
+          "ra_deg": 358.91866731620655
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 21.9445843828715,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.903211605435081,
+          "ra_deg": 358.9297554546236
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.044534412955425,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.8983897085797625,
+          "ra_deg": 358.94086741700926
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.145399084900827,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.8935573314127352,
+          "ra_deg": 358.9520032576955
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.247191011235916,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.888714449931759,
+          "ra_deg": 358.9631630313814
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.349923037455067,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.8838610399749698,
+          "ra_deg": 358.9743467931375
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.45360824742264,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.8789970772190234,
+          "ra_deg": 358.98555459841026
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.55825996892798,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.87412253717719,
+          "ra_deg": 358.9967865030264
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.663891779396423,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.8692373951974266,
+          "ra_deg": 359.0080425631971
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.770517511761593,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.8643416264604233,
+          "ra_deg": 359.01932283552316
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.87815126050416,
+        "frame": null,
+        "offset_px": null,
+        "outside_frame": true,
+        "pred": {
+          "dec_deg": -1.8594352059776065,
+          "ra_deg": 359.03062737699906
+        },
+        "snr": null
+      },
+      {
+        "distance_au": 22.98680738786276,
+        "frame": "step-031",
+        "offset_px": 373.65276826480147,
+        "pred": {
+          "dec_deg": -1.8545181085891116,
+          "ra_deg": 359.041956245018
+        },
+        "raw_peak_offset_px": 13.200378782444085,
+        "snr": 89.34788641054816
+      },
+      {
+        "distance_au": 23.096500530222652,
+        "frame": "step-032",
+        "offset_px": 366.4157490519085,
+        "pred": {
+          "dec_deg": -1.8495903089617296,
+          "ra_deg": 359.05330949737663
+        },
+        "raw_peak_offset_px": 7.433034373659253,
+        "snr": 88.64331246937154
+      },
+      {
+        "distance_au": 23.207245604688296,
+        "frame": "step-033",
+        "offset_px": 359.1632917393956,
+        "pred": {
+          "dec_deg": -1.8446517815868064,
+          "ra_deg": 359.0646871922798
+        },
+        "raw_peak_offset_px": 5.852349955359813,
+        "snr": 89.11507954382563
+      },
+      {
+        "distance_au": 23.319057815845785,
+        "frame": "step-034",
+        "offset_px": 351.8953716708733,
+        "pred": {
+          "dec_deg": -1.8397025007781185,
+          "ra_deg": 359.07608938834557
+        },
+        "raw_peak_offset_px": 10.547511554864494,
+        "snr": 88.74199498168983
+      },
+      {
+        "distance_au": 23.43195266272186,
+        "frame": "step-035",
+        "offset_px": 344.61196506597577,
+        "pred": {
+          "dec_deg": -1.8347424406697004,
+          "ra_deg": 359.0875161446105
+        },
+        "raw_peak_offset_px": 17.867568385205637,
+        "snr": 89.0921351799235
+      },
+      {
+        "distance_au": 23.545945945945906,
+        "frame": "step-036",
+        "offset_px": 337.3130491470929,
+        "pred": {
+          "dec_deg": -1.8297715752136514,
+          "ra_deg": 359.09896752053436
+        },
+        "raw_peak_offset_px": 17.92344832893492,
+        "snr": 2697.357546776322
+      },
+      {
+        "distance_au": 23.66105377512218,
+        "frame": "step-037",
+        "offset_px": 329.99860228375275,
+        "pred": {
+          "dec_deg": -1.8247898781778873,
+          "ra_deg": 359.1104435760056
+        },
+        "raw_peak_offset_px": 16.5,
+        "snr": 2690.1578774480527
+      },
+      {
+        "distance_au": 23.777292576419175,
+        "frame": "step-038",
+        "offset_px": 322.6686041582833,
+        "pred": {
+          "dec_deg": -1.8197973231438624,
+          "ra_deg": 359.12194437134656
+        },
+        "raw_peak_offset_px": 18.33712082089225,
+        "snr": 2670.5794095982737
+      },
+      {
+        "distance_au": 23.894679100383946,
+        "frame": "step-039",
+        "offset_px": 315.3230359560193,
+        "pred": {
+          "dec_deg": -1.8147938835042539,
+          "ra_deg": 359.13346996731894
+        },
+        "raw_peak_offset_px": 17.67059704707229,
+        "snr": 50.240876838821016
+      },
+      {
+        "distance_au": 24.013230429988933,
+        "frame": "step-040",
+        "offset_px": 307.96188058457716,
+        "pred": {
+          "dec_deg": -1.8097795324605987,
+          "ra_deg": 359.14502042512913
+        },
+        "raw_peak_offset_px": 11.715374513859981,
+        "snr": 50.52101548327924
+      },
+      {
+        "distance_au": 24.13296398891963,
+        "frame": "step-041",
+        "offset_px": 300.5851229270364,
+        "pred": {
+          "dec_deg": -1.804754243020898,
+          "ra_deg": 359.1565958064341
+        },
+        "raw_peak_offset_px": 15.041608956491324,
+        "snr": 94.98295455517902
+      },
+      {
+        "distance_au": 24.25389755011132,
+        "frame": "step-042",
+        "offset_px": 293.1927501359941,
+        "pred": {
+          "dec_deg": -1.799717987997169,
+          "ra_deg": 359.16819617334664
+        },
+        "raw_peak_offset_px": 8.902246907382429,
+        "snr": 94.71163130249397
+      },
+      {
+        "distance_au": 24.376049244543893,
+        "frame": "step-043",
+        "offset_px": 285.7847519752503,
+        "pred": {
+          "dec_deg": -1.7946707400029636,
+          "ra_deg": 359.1798215884416
+        },
+        "raw_peak_offset_px": 5.5901699437494745,
+        "snr": 94.4192264635041
+      },
+      {
+        "distance_au": 24.499437570303673,
+        "frame": "step-044",
+        "offset_px": 278.3611212194009,
+        "pred": {
+          "dec_deg": -1.7896124714508381,
+          "ra_deg": 359.19147211476127
+        },
+        "raw_peak_offset_px": 9.7082439194738,
+        "snr": 94.62404110881461
+      },
+      {
+        "distance_au": 24.624081401921952,
+        "frame": "step-045",
+        "offset_px": 270.9218541218488,
+        "pred": {
+          "dec_deg": -1.7845431545497745,
+          "ra_deg": 359.2031478158219
+        },
+        "raw_peak_offset_px": 16.91892431568863,
+        "snr": 95.13690545330078
+      },
+      {
+        "distance_au": 24.74999999999996,
+        "frame": "step-046",
+        "offset_px": 263.466950966407,
+        "pred": {
+          "dec_deg": -1.779462761302564,
+          "ra_deg": 359.21484875561947
+        },
+        "raw_peak_offset_px": 5.408326913195984,
+        "snr": 78.6655214781121
+      },
+      {
+        "distance_au": 24.877213021130746,
+        "frame": "step-047",
+        "offset_px": 255.99641671924397,
+        "pred": {
+          "dec_deg": -1.7743712635031352,
+          "ra_deg": 359.2265749986359
+        },
+        "raw_peak_offset_px": 6.020797289396148,
+        "snr": 79.31253318911214
+      },
+      {
+        "distance_au": 25.00574052812855,
+        "frame": "step-048",
+        "offset_px": 248.5102618037181,
+        "pred": {
+          "dec_deg": -1.7692686327338405,
+          "ra_deg": 359.2383266098454
+        },
+        "raw_peak_offset_px": 19.474342094150447,
+        "snr": 658.1403550014819
+      },
+      {
+        "distance_au": 25.135603000577,
+        "frame": "step-049",
+        "offset_px": 241.0085030253285,
+        "pred": {
+          "dec_deg": -1.7641548403626863,
+          "ra_deg": 359.25010365472093
+        },
+        "raw_peak_offset_px": 16.62077013859466,
+        "snr": 2280.799789622231
+      },
+      {
+        "distance_au": 25.266821345707616,
+        "frame": "step-050",
+        "offset_px": 233.49116468201007,
+        "pred": {
+          "dec_deg": -1.75902985754052,
+          "ra_deg": 359.2619061992409
+        },
+        "raw_peak_offset_px": 15.628499608087784,
+        "snr": 2268.138443256276
+      },
+      {
+        "distance_au": 25.399416909620957,
+        "frame": "step-051",
+        "offset_px": 225.95827990448285,
+        "pred": {
+          "dec_deg": -1.7538936551981574,
+          "ra_deg": 359.2737343098955
+        },
+        "raw_peak_offset_px": 18.445866745696716,
+        "snr": 2271.155850230273
+      },
+      {
+        "distance_au": 25.533411488862797,
+        "frame": "step-052",
+        "offset_px": 218.40989228342616,
+        "pred": {
+          "dec_deg": -1.7487462040434643,
+          "ra_deg": 359.2855880536936
+        },
+        "raw_peak_offset_px": 18.82153022471871,
+        "snr": 480.7532391850179
+      },
+      {
+        "distance_au": 25.66882734236885,
+        "frame": "step-053",
+        "offset_px": 210.84605785803828,
+        "pred": {
+          "dec_deg": -1.743587474558378,
+          "ra_deg": 359.29746749816996
+        },
+        "raw_peak_offset_px": 15.041608956491324,
+        "snr": 476.16896539569063
+      },
+      {
+        "distance_au": 25.80568720379143,
+        "frame": "step-054",
+        "offset_px": 203.26684756299025,
+        "pred": {
+          "dec_deg": -1.7384174369958802,
+          "ra_deg": 359.30937271139186
+        },
+        "raw_peak_offset_px": 13.82931668593933,
+        "snr": 463.7209227480774
+      },
+      {
+        "distance_au": 25.944014294222715,
+        "frame": "step-055",
+        "offset_px": 195.67235026068798,
+        "pred": {
+          "dec_deg": -1.7332360613769007,
+          "ra_deg": 359.3213037619666
+        },
+        "raw_peak_offset_px": 17.414074767267998,
+        "snr": 466.34538696373784
+      },
+      {
+        "distance_au": 26.0838323353293,
+        "frame": "step-056",
+        "offset_px": 188.06267652982908,
+        "pred": {
+          "dec_deg": -1.7280433174871788,
+          "ra_deg": 359.33326071904844
+        },
+        "raw_peak_offset_px": 19.5,
+        "snr": 22.97902756373489
+      },
+      {
+        "distance_au": 26.225165562913872,
+        "frame": "step-057",
+        "offset_px": 180.43796343786997,
+        "pred": {
+          "dec_deg": -1.7228391748740517,
+          "ra_deg": 359.3452436523465
+        },
+        "raw_peak_offset_px": 13.313526955694348,
+        "snr": 23.136389453575358
+      },
+      {
+        "distance_au": 26.368038740920056,
+        "frame": "step-058",
+        "offset_px": 172.7983806093772,
+        "pred": {
+          "dec_deg": -1.7176236028431886,
+          "ra_deg": 359.357252632132
+        },
+        "raw_peak_offset_px": 19.448650338776723,
+        "snr": 928.6834209185942
+      },
+      {
+        "distance_au": 26.512477175897715,
+        "frame": "step-059",
+        "offset_px": 165.14413801847493,
+        "pred": {
+          "dec_deg": -1.712396570455259,
+          "ra_deg": 359.36928772924614
+        },
+        "raw_peak_offset_px": 15.20690632574555,
+        "snr": 1178.8053521066424
+      },
+      {
+        "distance_au": 26.658506731946105,
+        "frame": "step-060",
+        "offset_px": 157.4754961040719,
+        "pred": {
+          "dec_deg": -1.707158046522542,
+          "ra_deg": 359.38134901510807
+        },
+        "raw_peak_offset_px": 13.5,
+        "snr": 1165.9730952102952
+      },
+      {
+        "distance_au": 26.806153846153812,
+        "frame": "step-061",
+        "offset_px": 149.7927790557998,
+        "pred": {
+          "dec_deg": -1.7019079996054587,
+          "ra_deg": 359.39343656172264
+        },
+        "raw_peak_offset_px": 15.692354826475215,
+        "snr": 1167.2746124089736
+      },
+      {
+        "distance_au": 26.955445544554415,
+        "frame": "step-062",
+        "offset_px": 142.09639249057054,
+        "pred": {
+          "dec_deg": -1.6966463980090514,
+          "ra_deg": 359.40555044168894
+        },
+        "raw_peak_offset_px": 14.430869689661812,
+        "snr": 635.7948275348631
+      },
+      {
+        "distance_au": 27.106409458618508,
+        "frame": "step-063",
+        "offset_px": 134.38684730706507,
+        "pred": {
+          "dec_deg": -1.6913732097793823,
+          "ra_deg": 359.41769072820836
+        },
+        "raw_peak_offset_px": 10.111874208078342,
+        "snr": 344.8457315757328
+      },
+      {
+        "distance_au": 27.25907384230284,
+        "frame": "step-064",
+        "offset_px": 126.66479238398303,
+        "pred": {
+          "dec_deg": -1.6860884026998664,
+          "ra_deg": 359.42985749509336
+        },
+        "raw_peak_offset_px": 3.3541019662496847,
+        "snr": 344.00602550168304
+      },
+      {
+        "distance_au": 27.41346758967901,
+        "frame": "step-065",
+        "offset_px": 118.93106018684023,
+        "pred": {
+          "dec_deg": -1.6807919442875332,
+          "ra_deg": 359.442050816776
+        },
+        "raw_peak_offset_px": 5.220153254455275,
+        "snr": 345.2011030864852
+      },
+      {
+        "distance_au": 27.56962025316452,
+        "frame": "step-066",
+        "offset_px": 111.18673162292184,
+        "pred": {
+          "dec_deg": -1.6754838017892069,
+          "ra_deg": 359.45427076831663
+        },
+        "raw_peak_offset_px": 13.0862523283024,
+        "snr": 346.9764112042967
+      },
+      {
+        "distance_au": 27.727562062380617,
+        "frame": "step-067",
+        "offset_px": 103.43323029602135,
+        "pred": {
+          "dec_deg": -1.6701639421776162,
+          "ra_deg": 359.4665174254135
+        },
+        "raw_peak_offset_px": 14.150971698084906,
+        "snr": 64.42589048093062
+      },
+      {
+        "distance_au": 27.887323943661933,
+        "frame": "step-068",
+        "offset_px": 95.67246289800934,
+        "pred": {
+          "dec_deg": -1.6648323321474296,
+          "ra_deg": 359.4787908644113
+        },
+        "raw_peak_offset_px": 12.093386622447824,
+        "snr": 39.07001595273098
+      },
+      {
+        "distance_au": 28.048937540244655,
+        "frame": "step-069",
+        "offset_px": 87.90703425606712,
+        "pred": {
+          "dec_deg": -1.6594889381111928,
+          "ra_deg": 359.4910911623109
+        },
+        "raw_peak_offset_px": 16.194134740701646,
+        "snr": 1614.6765165143356
+      },
+      {
+        "distance_au": 28.212435233160583,
+        "frame": "step-070",
+        "offset_px": 80.14058749681152,
+        "pred": {
+          "dec_deg": -1.6541337261952094,
+          "ra_deg": 359.5034183967791
+        },
+        "raw_peak_offset_px": 8.381527307120106,
+        "snr": 1594.3752003989994
+      },
+      {
+        "distance_au": 28.377850162866416,
+        "frame": "step-071",
+        "offset_px": 72.37836255081511,
+        "pred": {
+          "dec_deg": -1.648766662235311,
+          "ra_deg": 359.5157726461581
+        },
+        "raw_peak_offset_px": 2.5,
+        "snr": 1585.2908636026716
+      },
+      {
+        "distance_au": 28.54521625163823,
+        "frame": "step-072",
+        "offset_px": 64.62815405244397,
+        "pred": {
+          "dec_deg": -1.6433877117725595,
+          "ra_deg": 359.5281539894756
+        },
+        "raw_peak_offset_px": 8.381527307120106,
+        "snr": 1571.6348356236279
+      },
+      {
+        "distance_au": 28.714568226763316,
+        "frame": "step-073",
+        "offset_px": 56.902041428826266,
+        "pred": {
+          "dec_deg": -1.6379968400488483,
+          "ra_deg": 359.54056250645505
+        },
+        "raw_peak_offset_px": 16.194134740701646,
+        "snr": 1570.2296535455725
+      },
+      {
+        "distance_au": 28.885941644562294,
+        "frame": "step-074",
+        "offset_px": 49.21971341887776,
+        "pred": {
+          "dec_deg": -1.6325940120024203,
+          "ra_deg": 359.552998277526
+        },
+        "raw_peak_offset_px": 16.91892431568863,
+        "snr": 41.980009561169766
+      },
+      {
+        "distance_au": 29.059372915276818,
+        "frame": "step-075",
+        "offset_px": 41.615354250121676,
+        "pred": {
+          "dec_deg": -1.6271791922632826,
+          "ra_deg": 359.56546138383493
+        },
+        "raw_peak_offset_px": 11.236102527122116,
+        "snr": 42.02754598799434
+      },
+      {
+        "distance_au": 29.234899328859022,
+        "frame": "step-076",
+        "offset_px": 34.15326898630489,
+        "pred": {
+          "dec_deg": -1.6217523451485345,
+          "ra_deg": 359.57795190725574
+        },
+        "raw_peak_offset_px": 19.60229578391266,
+        "snr": 159.33954851390865
+      },
+      {
+        "distance_au": 29.41255908170152,
+        "frame": "step-077",
+        "offset_px": 26.96739635558196,
+        "pred": {
+          "dec_deg": -1.6163134346575876,
+          "ra_deg": 359.5904699304011
+        },
+        "raw_peak_offset_px": 19.448650338776723,
+        "snr": 159.68101164045032
+      },
+      {
+        "distance_au": 29.59239130434779,
+        "frame": "step-078",
+        "offset_px": 20.37309572758013,
+        "pred": {
+          "dec_deg": -1.6108624244672884,
+          "ra_deg": 359.60301553663373
+        },
+        "raw_peak_offset_px": 19.525624189766635,
+        "snr": 543.2022176398518
+      },
+      {
+        "distance_au": 29.77443609022553,
+        "frame": "step-079",
+        "offset_px": 15.190786983170328,
+        "pred": {
+          "dec_deg": -1.6053992779269364,
+          "ra_deg": 359.61558881007795
+        },
+        "raw_peak_offset_px": 15.692354826475215,
+        "snr": 4781.683694841504
+      },
+      {
+        "distance_au": 29.958734525447007,
+        "frame": "step-080",
+        "offset_px": 13.235681604256886,
+        "pred": {
+          "dec_deg": -1.5999239580531912,
+          "ra_deg": 359.62818983563136
+        },
+        "raw_peak_offset_px": 13.5,
+        "snr": 4756.647178830582
+      },
+      {
+        "distance_au": 30.145328719723153,
+        "frame": "step-081",
+        "offset_px": 15.785754702979576,
+        "pred": {
+          "dec_deg": -1.5944364275248692,
+          "ra_deg": 359.6408186989771
+        },
+        "raw_peak_offset_px": 15.692354826475215,
+        "snr": 4773.285612201388
+      },
+      {
+        "distance_au": 30.334261838440074,
+        "frame": "step-082",
+        "offset_px": 21.29889792050986,
+        "pred": {
+          "dec_deg": -1.588936648677634,
+          "ra_deg": 359.65347548659616
+        },
+        "raw_peak_offset_px": 8.0156097709407,
+        "snr": 78.43435896461368
+      },
+      {
+        "distance_au": 30.525578135949512,
+        "frame": "step-083",
+        "offset_px": 28.096449379624953,
+        "pred": {
+          "dec_deg": -1.5834245834985545,
+          "ra_deg": 359.6661602857798
+        },
+        "raw_peak_offset_px": 19.059118552545918,
+        "snr": 80.97501480095315
+      },
+      {
+        "distance_au": 30.7193229901269,
+        "frame": "step-084",
+        "offset_px": 35.45935788406422,
+        "pred": {
+          "dec_deg": -1.5779001936205614,
+          "ra_deg": 359.67887318464267
+        },
+        "raw_peak_offset_px": 11.10180165558726,
+        "snr": 81.91392748705091
+      },
+      {
+        "distance_au": 30.91554293825405,
+        "frame": "step-085",
+        "offset_px": 43.109038840676064,
+        "pred": {
+          "dec_deg": -1.5723634403167608,
+          "ra_deg": 359.6916142721358
+        },
+        "raw_peak_offset_px": 2.5,
+        "snr": 82.79433336717094
+      },
+      {
+        "distance_au": 31.11428571428568,
+        "frame": "step-086",
+        "offset_px": 50.92509267214018,
+        "pred": {
+          "dec_deg": -1.566814284494635,
+          "ra_deg": 359.70438363806005
+        },
+        "raw_peak_offset_px": 6.18465843842649,
+        "snr": 84.1337176189313
+      },
+      {
+        "distance_au": 31.315600287562873,
+        "frame": "step-087",
+        "offset_px": 58.84882680074545,
+        "pred": {
+          "dec_deg": -1.561252686690106,
+          "ra_deg": 359.71718137308017
+        },
+        "raw_peak_offset_px": 14.080127840328723,
+        "snr": 84.96925830696095
+      },
+      {
+        "distance_au": 31.519536903039036,
+        "frame": "step-088",
+        "offset_px": 66.84866466201574,
+        "pred": {
+          "dec_deg": -1.5556786070614632,
+          "ra_deg": 359.7300075687385
+        },
+        "raw_peak_offset_px": 13.46291201783626,
+        "snr": 11.560194722419533
+      },
+      {
+        "distance_au": 31.7261471230881,
+        "frame": "step-089",
+        "offset_px": 74.90625003878988,
+        "pred": {
+          "dec_deg": -1.5500920053831553,
+          "ra_deg": 359.7428623174695
+        },
+        "raw_peak_offset_px": 15.20690632574555,
+        "snr": 14.198291917509257
+      },
+      {
+        "distance_au": 31.935483870967705,
+        "frame": "step-090",
+        "offset_px": 83.01023998689163,
+        "pred": {
+          "dec_deg": -1.5444928410394372,
+          "ra_deg": 359.7557457126146
+        },
+        "raw_peak_offset_px": 10.920164833920778,
+        "snr": 14.284525217911801
+      },
+      {
+        "distance_au": 32.14760147601473,
+        "frame": "step-091",
+        "offset_px": 91.15327471398902,
+        "pred": {
+          "dec_deg": -1.538881073017868,
+          "ra_deg": 359.7686578484373
+        },
+        "raw_peak_offset_px": 12.093386622447824,
+        "snr": 14.236164516798262
+      },
+      {
+        "distance_au": 32.36255572065376,
+        "frame": "step-092",
+        "offset_px": 99.3303862370003,
+        "pred": {
+          "dec_deg": -1.5332566599026625,
+          "ra_deg": 359.7815988201381
+        },
+        "raw_peak_offset_px": 17.5,
+        "snr": 14.275109231691767
+      },
+      {
+        "distance_au": 32.58040388930438,
+        "frame": "step-093",
+        "offset_px": 107.53811060467957,
+        "pred": {
+          "dec_deg": -1.527619559867882,
+          "ra_deg": 359.794568723871
+        },
+        "raw_peak_offset_px": 14.115594213493104,
+        "snr": 3.7644012847932613
+      },
+      {
+        "distance_au": 32.801204819277075,
+        "frame": "step-094",
+        "offset_px": 115.77396697735554,
+        "pred": {
+          "dec_deg": -1.5219697306704647,
+          "ra_deg": 359.80756765675926
+        },
+        "raw_peak_offset_px": 19.60229578391266,
+        "snr": 6.421966971567586
+      },
+      {
+        "distance_au": 33.02501895375281,
+        "frame": "step-095",
+        "offset_px": 124.0361386371512,
+        "pred": {
+          "dec_deg": -1.5163071296430919,
+          "ra_deg": 359.8205957169119
+        },
+        "raw_peak_offset_px": 14.534441853748634,
+        "snr": 7.858189521262194
+      },
+      {
+        "distance_au": 33.25190839694653,
+        "frame": "step-096",
+        "offset_px": 132.3232703908389,
+        "pred": {
+          "dec_deg": -1.5106317136868825,
+          "ra_deg": 359.8336530034407
+        },
+        "raw_peak_offset_px": 13.901438774457844,
+        "snr": 8.243068237818374
+      },
+      {
+        "distance_au": 33.48193697156031,
+        "frame": "step-097",
+        "offset_px": 140.6343357752269,
+        "pred": {
+          "dec_deg": -1.5049434392639107,
+          "ra_deg": 359.8467396164777
+        },
+        "raw_peak_offset_px": 18.172781845386247,
+        "snr": 35.379929273270626
+      },
+      {
+        "distance_au": 33.71517027863774,
+        "frame": "step-098",
+        "offset_px": 148.96854758998035,
+        "pred": {
+          "dec_deg": -1.499242262389541,
+          "ra_deg": 359.8598556571928
+        },
+        "raw_peak_offset_px": 10.307764064044152,
+        "snr": 35.20194511748434
+      },
+      {
+        "distance_au": 33.951675759937615,
+        "frame": "step-099",
+        "offset_px": 157.32529614761287,
+        "pred": {
+          "dec_deg": -1.4935281386245787,
+          "ra_deg": 359.8730012278119
+        },
+        "raw_peak_offset_px": 3.2015621187164243,
+        "snr": 35.312513451518825
+      },
+      {
+        "distance_au": 34.19152276295131,
+        "frame": "step-100",
+        "offset_px": 165.70410573248986,
+        "pred": {
+          "dec_deg": -1.4878010230672256,
+          "ra_deg": 359.88617643163576
+        },
+        "raw_peak_offset_px": 18.200274723201296,
+        "snr": 3487.0825306078955
+      },
+      {
+        "distance_au": 34.43478260869562,
+        "frame": "step-101",
+        "offset_px": 174.1046033086075,
+        "pred": {
+          "dec_deg": -1.4820608703448348,
+          "ra_deg": 359.89938137305893
+        },
+        "raw_peak_offset_px": 11.10180165558726,
+        "snr": 3458.1061645770624
+      },
+      {
+        "distance_au": 34.681528662420355,
+        "frame": "step-102",
+        "offset_px": 182.5264956424462,
+        "pred": {
+          "dec_deg": -1.4763076346054613,
+          "ra_deg": 359.9126161575893
+        },
+        "raw_peak_offset_px": 6.5,
+        "snr": 3455.3245681502835
+      },
+      {
+        "distance_au": 34.93183640737768,
+        "frame": "step-103",
+        "offset_px": 190.96955231893315,
+        "pred": {
+          "dec_deg": -1.470541269509198,
+          "ra_deg": 359.92588089186836
+        },
+        "raw_peak_offset_px": 10.307764064044152,
+        "snr": 3487.6759375247348
+      },
+      {
+        "distance_au": 35.18578352180934,
+        "frame": "step-104",
+        "offset_px": 199.4335929550556,
+        "pred": {
+          "dec_deg": -1.464761728219297,
+          "ra_deg": 359.9391756836917
+        },
+        "raw_peak_offset_px": 18.200274723201296,
+        "snr": 3473.6555982934647
+      },
+      {
+        "distance_au": 35.44344995931649,
+        "frame": "step-105",
+        "offset_px": 207.91847745105056,
+        "pred": {
+          "dec_deg": -1.4589689633930583,
+          "ra_deg": 359.95250064203
+        },
+        "raw_peak_offset_px": 12.379418403139947,
+        "snr": 1147.6138269269711
+      },
+      {
+        "distance_au": 35.70491803278686,
+        "frame": "step-106",
+        "offset_px": 216.42409847131486,
+        "pred": {
+          "dec_deg": -1.4531629271724869,
+          "ra_deg": 359.9658558770507
+        },
+        "raw_peak_offset_px": 7.5,
+        "snr": 1145.9015746704526
+      },
+      {
+        "distance_au": 35.97027250206438,
+        "frame": "step-107",
+        "offset_px": 224.95037558322448,
+        "pred": {
+          "dec_deg": -1.44734357117471,
+          "ra_deg": 359.97924150014063
+        },
+        "raw_peak_offset_px": 10.965856099730654,
+        "snr": 1141.058111197706
+      },
+      {
+        "distance_au": 36.23960066555738,
+        "frame": "step-108",
+        "offset_px": 233.49725064366365,
+        "pred": {
+          "dec_deg": -1.4415108464821418,
+          "ra_deg": 359.992657623928
+        },
+        "raw_peak_offset_px": 18.580904176062045,
+        "snr": 1150.743860608802
+      },
+      {
+        "distance_au": 36.51299245599327,
+        "frame": "step-109",
+        "offset_px": 242.06468413553227,
+        "pred": {
+          "dec_deg": -1.4356647036323895,
+          "ra_deg": 0.00610436230642207
+        },
+        "raw_peak_offset_px": 9.013878188659973,
+        "snr": 188.14388264764045
+      },
+      {
+        "distance_au": 36.79054054054052,
+        "frame": "step-110",
+        "offset_px": 250.6526522340875,
+        "pred": {
+          "dec_deg": -1.4298050926078945,
+          "ra_deg": 0.019581830458727488
+        },
+        "raw_peak_offset_px": 0.5,
+        "snr": 188.94487310542337
+      },
+      {
+        "distance_au": 37.07234042553189,
+        "frame": "step-111",
+        "offset_px": 259.26114444041104,
+        "pred": {
+          "dec_deg": -1.423931962825294,
+          "ra_deg": 0.033090144881526846
+        },
+        "raw_peak_offset_px": 9.013878188659973,
+        "snr": 188.62401543333996
+      },
+      {
+        "distance_au": 37.358490566037716,
+        "frame": "step-112",
+        "offset_px": 267.8901616584075,
+        "pred": {
+          "dec_deg": -1.418045263124503,
+          "ra_deg": 0.04662942341057811
+        },
+        "raw_peak_offset_px": 17.00735135169495,
+        "snr": 191.05261126941903
+      },
+      {
+        "distance_au": 37.64909248055313,
+        "frame": "step-113",
+        "offset_px": 276.53971462280094,
+        "pred": {
+          "dec_deg": -1.412144941757492,
+          "ra_deg": 0.06019978524675311
+        },
+        "raw_peak_offset_px": 12.971121771072847,
+        "snr": 35.17441363461233
+      },
+      {
+        "distance_au": 37.944250871080115,
+        "frame": "step-114",
+        "offset_px": 285.2098226058076,
+        "pred": {
+          "dec_deg": -1.4062309463767624,
+          "ra_deg": 0.07380135098272972
+        },
+        "raw_peak_offset_px": 11.884864324004713,
+        "snr": 34.71035509381111
+      },
+      {
+        "distance_au": 38.24407374890252,
+        "frame": "step-115",
+        "offset_px": 293.9005123476574,
+        "pred": {
+          "dec_deg": -1.400303224023512,
+          "ra_deg": 0.08743424263041155
+        },
+        "raw_peak_offset_px": 17.240939649566666,
+        "snr": 46.614953597488025
+      },
+      {
+        "distance_au": 38.548672566371664,
+        "frame": "step-116",
+        "offset_px": 302.61181716762803,
+        "pred": {
+          "dec_deg": -1.3943617211154573,
+          "ra_deg": 0.10109858364911087
+        },
+        "raw_peak_offset_px": 13.647344063956181,
+        "snr": 170.2857902750173
+      },
+      {
+        "distance_au": 38.85816235504012,
+        "frame": "step-117",
+        "offset_px": 311.34377622194427,
+        "pred": {
+          "dec_deg": -1.3884063834343312,
+          "ra_deg": 0.11479449897451598
+        },
+        "raw_peak_offset_px": 13.82931668593933,
+        "snr": 258.6093167776698
+      },
+      {
+        "distance_au": 39.17266187050358,
+        "frame": "step-118",
+        "offset_px": 320.09643388155126,
+        "pred": {
+          "dec_deg": -1.3824371561130189,
+          "ra_deg": 0.12852211504847139
+        },
+        "raw_peak_offset_px": 10.5,
+        "snr": 260.60694556773984
+      },
+      {
+        "distance_au": 39.492293744333615,
+        "frame": "step-119",
+        "offset_px": 328.8698392085789,
+        "pred": {
+          "dec_deg": -1.3764539836223315,
+          "ra_deg": 0.14228155984960206
+        },
+        "raw_peak_offset_px": 13.82931668593933,
+        "snr": 258.4839222657182
+      },
+      {
+        "distance_au": 39.81718464351004,
+        "frame": "step-120",
+        "offset_px": 337.6640455145239,
+        "pred": {
+          "dec_deg": -1.3704568097574006,
+          "ra_deg": 0.1560729629248175
+        },
+        "raw_peak_offset_px": 19.981241202688086,
+        "snr": 258.07425678189566
+      },
+      {
+        "distance_au": 40.147465437788,
+        "frame": "step-121",
+        "offset_px": 346.4791099860637,
+        "pred": {
+          "dec_deg": -1.3644455776236848,
+          "ra_deg": 0.16989645542171142
+        },
+        "raw_peak_offset_px": 6.800735254367722,
+        "snr": 68.86375746083246
+      },
+      {
+        "distance_au": 40.48327137546467,
+        "frame": "step-122",
+        "offset_px": 355.31509336788594,
+        "pred": {
+          "dec_deg": -1.3584202296225614,
+          "ra_deg": 0.18375217012191739
+        },
+        "raw_peak_offset_px": 15.20690632574555,
+        "snr": 89.94732291924569
+      },
+      {
+        "distance_au": 40.82474226804122,
+        "frame": "step-123",
+        "offset_px": 364.17205969311516,
+        "pred": {
+          "dec_deg": -1.352380707436503,
+          "ra_deg": 0.19764024147542658
+        },
+        "raw_peak_offset_px": 6.5,
+        "snr": 88.66256326081268
+      },
+      {
+        "distance_au": 41.17202268431001,
+        "frame": "step-124",
+        "offset_px": 373.05007605368456,
+        "pred": {
+          "dec_deg": -1.3463269520138104,
+          "ra_deg": 0.2115608056359295
+        },
+        "raw_peak_offset_px": 3.905124837953327,
+        "snr": 89.03687547639537
+      },
+      {
+        "distance_au": 41.52526215443278,
+        "frame": "step-125",
+        "offset_px": 381.9492124052157,
+        "pred": {
+          "dec_deg": -1.340258903552894,
+          "ra_deg": 0.225514000497202
+        },
+        "raw_peak_offset_px": 12.257650672131263,
+        "snr": 89.48084978956797
+      },
+      {
+        "distance_au": 41.88461538461537,
+        "frame": "step-126",
+        "offset_px": 390.86954140089375,
+        "pred": {
+          "dec_deg": -1.3341765014860796,
+          "ra_deg": 0.23949996573059062
+        },
+        "raw_peak_offset_px": 5.5,
+        "snr": 26.565085681278017
+      },
+      {
+        "distance_au": 42.25024248302618,
+        "frame": "step-127",
+        "offset_px": 399.81113824993406,
+        "pred": {
+          "dec_deg": -1.3280796844629275,
+          "ra_deg": 0.253518842823628
+        },
+        "raw_peak_offset_px": 19.72941965694886,
+        "snr": 105.68258365888855
+      },
+      {
+        "distance_au": 42.62230919765165,
+        "frame": "step-128",
+        "offset_px": 408.77408059797636,
+        "pred": {
+          "dec_deg": -1.3219683903330326,
+          "ra_deg": 0.26757077511983
+        },
+        "raw_peak_offset_px": 18.553975315279473,
+        "snr": 26.651160338413728
+      },
+      {
+        "distance_au": 43.00098716683119,
+        "frame": "step-129",
+        "offset_px": 417.75844842543955,
+        "pred": {
+          "dec_deg": -1.3158425561283078,
+          "ra_deg": 0.28165590785971817
+        },
+        "raw_peak_offset_px": 11.236102527122116,
+        "snr": 11.595296487376313
+      },
+      {
+        "distance_au": 43.38645418326693,
+        "frame": "step-130",
+        "offset_px": 426.76432396248276,
+        "pred": {
+          "dec_deg": -1.3097021180446977,
+          "ra_deg": 0.2957743882231209
+        },
+        "raw_peak_offset_px": 17.755280904564703,
+        "snr": 11.664292572937628
+      },
+      {
+        "distance_au": 43.778894472361806,
+        "frame": "step-131",
+        "offset_px": 435.7917916176481,
+        "pred": {
+          "dec_deg": -1.3035470114233354,
+          "ra_deg": 0.3099263653727947
+        },
+        "raw_peak_offset_px": 3.2015621187164243,
+        "snr": 11.682233282864436
+      },
+      {
+        "distance_au": 44.17849898580121,
+        "frame": "step-132",
+        "offset_px": 444.84093791856856,
+        "pred": {
+          "dec_deg": -1.2973771707310906,
+          "ra_deg": 0.32411199049943357
+        },
+        "raw_peak_offset_px": 19.448650338776723,
+        "snr": 891.7025217181641
+      },
+      {
+        "distance_au": 44.58546571136131,
+        "frame": "step-133",
+        "offset_px": 453.91185146420924,
+        "pred": {
+          "dec_deg": -1.2911925295405013,
+          "ra_deg": 0.3383314168681102
+        },
+        "raw_peak_offset_px": 14.396180048887969,
+        "snr": 890.0536274093274
+      },
+      {
+        "distance_au": 45.0,
+        "frame": "step-134",
+        "offset_px": 463.00462288591893,
+        "pred": {
+          "dec_deg": -1.284993020509054,
+          "ra_deg": 0.3525847998662148
+        },
+        "raw_peak_offset_px": 14.080127840328723,
+        "snr": 896.874549731608
+      }
+    ],
+    "target_detector": "D2",
+    "target_obs_id": "2025W51_1A_0485_1",
+    "truth": {
+      "distance_au": 29.8948893368664,
+      "source": "JPL Horizons"
+    },
+    "truth_au": 29.89
+  },
+  "field_id": "neptune-dial",
+  "frames": [
+    {
+      "bad_pixel_fraction": 0.026299179465600675,
+      "center": {
+        "dec_deg": -0.5024,
+        "ra_deg": 2.15087
+      },
+      "collection": "spherex_dr1",
+      "detector": 1,
+      "downloaded_utc": "2026-11-14T16:20:03.261306Z",
+      "height_px": 97,
+      "id": "ref",
+      "mjd": 60848.016684144,
+      "obs_id": "2025W25_2A_0500_1",
+      "obs_time_utc": "2025-06-22T00:24:01.510Z",
+      "png": "ref.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W25_2A/l2b-v27-2026-213/1/level2_2025W25_2A_0500_1D1_spx_l2b-v27-2026-213.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 1,
+      "wavelength_um": 0.9680158231710038,
+      "width_px": 98
+    },
+    {
+      "bad_pixel_fraction": 0.030296654744371977,
+      "center": {
+        "dec_deg": -1.8545181085891116,
+        "ra_deg": 359.041956245018
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:26:05.629052Z",
+      "height_px": 98,
+      "id": "step-031",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-031.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.271188335866098,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.029875867872922363,
+      "center": {
+        "dec_deg": -1.8495903089617296,
+        "ra_deg": 359.05330949737663
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:26:26.907870Z",
+      "height_px": 98,
+      "id": "step-032",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-032.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2709913840074947,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02966547443719756,
+      "center": {
+        "dec_deg": -1.8446517815868064,
+        "ra_deg": 359.0646871922798
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:26:26.948667Z",
+      "height_px": 98,
+      "id": "step-033",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-033.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2707941850427842,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04113191668419945,
+      "center": {
+        "dec_deg": -1.8397025007781185,
+        "ra_deg": 359.07608938834557
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:23.363637Z",
+      "height_px": 98,
+      "id": "step-034",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-034.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2705967391752213,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.040711129812749845,
+      "center": {
+        "dec_deg": -1.8347424406697004,
+        "ra_deg": 359.0875161446105
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:04.499401Z",
+      "height_px": 98,
+      "id": "step-035",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-035.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2703990466079236,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04313065432358511,
+      "center": {
+        "dec_deg": -1.8297715752136514,
+        "ra_deg": 359.09896752053436
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:27:58.663309Z",
+      "height_px": 98,
+      "id": "step-036",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-036.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2702011075438684,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.045444982116557966,
+      "center": {
+        "dec_deg": -1.8247898781778873,
+        "ra_deg": 359.1104435760056
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:21.582538Z",
+      "height_px": 98,
+      "id": "step-037",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-037.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2700029221858602,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04586576898800757,
+      "center": {
+        "dec_deg": -1.8197973231438624,
+        "ra_deg": 359.12194437134656
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:20.708689Z",
+      "height_px": 98,
+      "id": "step-038",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-038.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2698044907365007,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04670734273090679,
+      "center": {
+        "dec_deg": -1.8147938835042539,
+        "ra_deg": 359.13346996731894
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:07.680764Z",
+      "height_px": 98,
+      "id": "step-039",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-039.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2696058133981418,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04639175257731959,
+      "center": {
+        "dec_deg": -1.8097795324605987,
+        "ra_deg": 359.14502042512913
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:27:58.918612Z",
+      "height_px": 98,
+      "id": "step-040",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-040.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2694068903728877,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.045970965705869976,
+      "center": {
+        "dec_deg": -1.804754243020898,
+        "ra_deg": 359.1565958064341
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:20.033817Z",
+      "height_px": 98,
+      "id": "step-041",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-041.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2692077218625188,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04470860509152114,
+      "center": {
+        "dec_deg": -1.799717987997169,
+        "ra_deg": 359.16819617334664
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:57.557881Z",
+      "height_px": 98,
+      "id": "step-042",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-042.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2690083080685133,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.045655375552282766,
+      "center": {
+        "dec_deg": -1.7946707400029636,
+        "ra_deg": 359.1798215884416
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:53.931145Z",
+      "height_px": 98,
+      "id": "step-043",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-043.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2688086491919517,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.045970965705869976,
+      "center": {
+        "dec_deg": -1.7896124714508381,
+        "ra_deg": 359.19147211476127
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:16.989316Z",
+      "height_px": 98,
+      "id": "step-044",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-044.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2686087454335497,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.048285293498842835,
+      "center": {
+        "dec_deg": -1.7845431545497745,
+        "ra_deg": 359.2031478158219
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:08.626332Z",
+      "height_px": 98,
+      "id": "step-045",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-045.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2684085969935637,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.046812539448769196,
+      "center": {
+        "dec_deg": -1.779462761302564,
+        "ra_deg": 359.21484875561947
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:53.975965Z",
+      "height_px": 98,
+      "id": "step-046",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-046.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2682082040717835,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.046812539448769196,
+      "center": {
+        "dec_deg": -1.7743712635031352,
+        "ra_deg": 359.2265749986359
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:50.341532Z",
+      "height_px": 98,
+      "id": "step-047",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-047.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2680075668674993,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04512939196297076,
+      "center": {
+        "dec_deg": -1.7692686327338405,
+        "ra_deg": 359.2383266098454
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:35.219725Z",
+      "height_px": 98,
+      "id": "step-048",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-048.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2678066855794556,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04365663791289712,
+      "center": {
+        "dec_deg": -1.7641548403626863,
+        "ra_deg": 359.25010365472093
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:10.736533Z",
+      "height_px": 98,
+      "id": "step-049",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-049.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2676055604058072,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04134231011992426,
+      "center": {
+        "dec_deg": -1.75902985754052,
+        "ra_deg": 359.2619061992409
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:57.601954Z",
+      "height_px": 98,
+      "id": "step-050",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-050.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2674041915440746,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04197349042709867,
+      "center": {
+        "dec_deg": -1.7538936551981574,
+        "ra_deg": 359.2737343098955
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:54.013657Z",
+      "height_px": 98,
+      "id": "step-051",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-051.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2672025791911423,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04029034294130023,
+      "center": {
+        "dec_deg": -1.7487462040434643,
+        "ra_deg": 359.2855880536936
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:17.030779Z",
+      "height_px": 98,
+      "id": "step-052",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-052.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.267024639303982,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04029034294130023,
+      "center": {
+        "dec_deg": -1.743587474558378,
+        "ra_deg": 359.29746749816996
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:08.669209Z",
+      "height_px": 98,
+      "id": "step-053",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-053.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2668662199089242,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02966547443719756,
+      "center": {
+        "dec_deg": -1.7384174369958802,
+        "ra_deg": 359.30937271139186
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:54.057206Z",
+      "height_px": 98,
+      "id": "step-054",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-054.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2667076490733007,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.028297917104986324,
+      "center": {
+        "dec_deg": -1.7332360613769007,
+        "ra_deg": 359.3213037619666
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:50.385588Z",
+      "height_px": 98,
+      "id": "step-055",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-055.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2665489270829045,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02850831054071113,
+      "center": {
+        "dec_deg": -1.7280433174871788,
+        "ra_deg": 359.33326071904844
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:35.263761Z",
+      "height_px": 98,
+      "id": "step-056",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-056.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2663900542226905,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02924468756574795,
+      "center": {
+        "dec_deg": -1.7228391748740517,
+        "ra_deg": 359.3452436523465
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:10.784558Z",
+      "height_px": 98,
+      "id": "step-057",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-057.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2662310307767681,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.027982326951399118,
+      "center": {
+        "dec_deg": -1.7176236028431886,
+        "ra_deg": 359.357252632132
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:57.648517Z",
+      "height_px": 98,
+      "id": "step-058",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-058.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2660718570283058,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.027666736797811908,
+      "center": {
+        "dec_deg": -1.712396570455259,
+        "ra_deg": 359.36928772924614
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:54.093975Z",
+      "height_px": 98,
+      "id": "step-059",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-059.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2659125332525778,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.027245949926362298,
+      "center": {
+        "dec_deg": -1.707158046522542,
+        "ra_deg": 359.38134901510807
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:17.072607Z",
+      "height_px": 98,
+      "id": "step-060",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-060.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2657530597441997,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02934988428361035,
+      "center": {
+        "dec_deg": -1.7019079996054587,
+        "ra_deg": 359.39343656172264
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:08.824047Z",
+      "height_px": 98,
+      "id": "step-061",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-061.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2655934367770552,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02850831054071113,
+      "center": {
+        "dec_deg": -1.6966463980090514,
+        "ra_deg": 359.40555044168894
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:54.131671Z",
+      "height_px": 98,
+      "id": "step-062",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-062.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2654336646302295,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02924468756574795,
+      "center": {
+        "dec_deg": -1.6913732097793823,
+        "ra_deg": 359.41769072820836
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:50.434983Z",
+      "height_px": 98,
+      "id": "step-063",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-063.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2652737435817207,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02924468756574795,
+      "center": {
+        "dec_deg": -1.6860884026998664,
+        "ra_deg": 359.42985749509336
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:35.305572Z",
+      "height_px": 98,
+      "id": "step-064",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-064.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2651136739083222,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.029770671155059963,
+      "center": {
+        "dec_deg": -1.6807919442875332,
+        "ra_deg": 359.442050816776
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:10.833227Z",
+      "height_px": 98,
+      "id": "step-065",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-065.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.26495345588561,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.030612244897959183,
+      "center": {
+        "dec_deg": -1.6754838017892069,
+        "ra_deg": 359.45427076831663
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:57.693926Z",
+      "height_px": 98,
+      "id": "step-066",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-066.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2647930897879134,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04165790027351147,
+      "center": {
+        "dec_deg": -1.6701639421776162,
+        "ra_deg": 359.4665174254135
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:10.105145Z",
+      "height_px": 98,
+      "id": "step-067",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-067.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2646325758882004,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04481380180938355,
+      "center": {
+        "dec_deg": -1.6648323321474296,
+        "ra_deg": 359.4787908644113
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:54.174207Z",
+      "height_px": 98,
+      "id": "step-068",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-068.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2644719144580894,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04407742478434673,
+      "center": {
+        "dec_deg": -1.6594889381111928,
+        "ra_deg": 359.4910911623109
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:05.054332Z",
+      "height_px": 98,
+      "id": "step-069",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-069.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2643111057677774,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.0429202608878603,
+      "center": {
+        "dec_deg": -1.6541337261952094,
+        "ra_deg": 359.5034183967791
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:36.817050Z",
+      "height_px": 98,
+      "id": "step-070",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-070.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2641501500859482,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04134231011992426,
+      "center": {
+        "dec_deg": -1.648766662235311,
+        "ra_deg": 359.5157726461581
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:16.626642Z",
+      "height_px": 98,
+      "id": "step-071",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-071.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.26398904767979,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.042394277298548284,
+      "center": {
+        "dec_deg": -1.6433877117725595,
+        "ra_deg": 359.5281539894756
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:30.510073Z",
+      "height_px": 98,
+      "id": "step-072",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-072.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2638277988148698,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04113191668419945,
+      "center": {
+        "dec_deg": -1.6379968400488483,
+        "ra_deg": 359.54056250645505
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:02.892001Z",
+      "height_px": 98,
+      "id": "step-073",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-073.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2636664037551102,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.040921523248474645,
+      "center": {
+        "dec_deg": -1.6325940120024203,
+        "ra_deg": 359.552998277526
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:39.306113Z",
+      "height_px": 98,
+      "id": "step-074",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-074.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2635048627627312,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04197349042709867,
+      "center": {
+        "dec_deg": -1.6271791922632826,
+        "ra_deg": 359.56546138383493
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:10.148170Z",
+      "height_px": 98,
+      "id": "step-075",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-075.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2633431760981673,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.040711129812749845,
+      "center": {
+        "dec_deg": -1.6217523451485345,
+        "ra_deg": 359.57795190725574
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:54.214330Z",
+      "height_px": 98,
+      "id": "step-076",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-076.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2631813440200275,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.03040185146223438,
+      "center": {
+        "dec_deg": -1.6163134346575876,
+        "ra_deg": 359.5904699304011
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:05.102228Z",
+      "height_px": 98,
+      "id": "step-077",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-077.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2630193667850294,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.030612244897959183,
+      "center": {
+        "dec_deg": -1.6108624244672884,
+        "ra_deg": 359.60301553663373
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:36.858426Z",
+      "height_px": 98,
+      "id": "step-078",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-078.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2628772626250344,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.030717441615821586,
+      "center": {
+        "dec_deg": -1.6053992779269364,
+        "ra_deg": 359.61558881007795
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:16.668802Z",
+      "height_px": 98,
+      "id": "step-079",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-079.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2627701488505008,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02777193351567431,
+      "center": {
+        "dec_deg": -1.5999239580531912,
+        "ra_deg": 359.62818983563136
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:30.551944Z",
+      "height_px": 98,
+      "id": "step-080",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-080.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2626630117651843,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.026825163054912688,
+      "center": {
+        "dec_deg": -1.5944364275248692,
+        "ra_deg": 359.6408186989771
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:02.938192Z",
+      "height_px": 98,
+      "id": "step-081",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-081.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2625558519523536,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.027666736797811908,
+      "center": {
+        "dec_deg": -1.588936648677634,
+        "ra_deg": 359.65347548659616
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:39.348964Z",
+      "height_px": 98,
+      "id": "step-082",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-082.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2624486699960324,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.029034294130023144,
+      "center": {
+        "dec_deg": -1.5834245834985545,
+        "ra_deg": 359.6661602857798
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:10.190390Z",
+      "height_px": 98,
+      "id": "step-083",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-083.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2623414664809305,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.029139490847885547,
+      "center": {
+        "dec_deg": -1.5779001936205614,
+        "ra_deg": 359.67887318464267
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:28:54.256276Z",
+      "height_px": 98,
+      "id": "step-084",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-084.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.262234241992463,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.031559015358720806,
+      "center": {
+        "dec_deg": -1.5723634403167608,
+        "ra_deg": 359.6916142721358
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:05.147834Z",
+      "height_px": 98,
+      "id": "step-085",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-085.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.26212699711668,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.042709867452135494,
+      "center": {
+        "dec_deg": -1.566814284494635,
+        "ra_deg": 359.70438363806005
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:37.651203Z",
+      "height_px": 98,
+      "id": "step-086",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-086.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2620197324402702,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.0428150641699979,
+      "center": {
+        "dec_deg": -1.561252686690106,
+        "ra_deg": 359.71718137308017
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:31.318310Z",
+      "height_px": 98,
+      "id": "step-087",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-087.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2619124485505118,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04334104775930991,
+      "center": {
+        "dec_deg": -1.5556786070614632,
+        "ra_deg": 359.7300075687385
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:27.405700Z",
+      "height_px": 98,
+      "id": "step-088",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-088.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2618051460352653,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.046602146013044396,
+      "center": {
+        "dec_deg": -1.5500920053831553,
+        "ra_deg": 359.7428623174695
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:48.347198Z",
+      "height_px": 98,
+      "id": "step-089",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-089.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2616978254829154,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04723332632021881,
+      "center": {
+        "dec_deg": -1.5444928410394372,
+        "ra_deg": 359.7557457126146
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:31.045053Z",
+      "height_px": 98,
+      "id": "step-090",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-090.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2615904874823607,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.048916473806017255,
+      "center": {
+        "dec_deg": -1.538881073017868,
+        "ra_deg": 359.7686578484373
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:02.993308Z",
+      "height_px": 98,
+      "id": "step-091",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-091.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2614831326229696,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.049126867241742055,
+      "center": {
+        "dec_deg": -1.5332566599026625,
+        "ra_deg": 359.7815988201381
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:29:33.649506Z",
+      "height_px": 98,
+      "id": "step-092",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-092.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.261375761494556,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.039238375762676206,
+      "center": {
+        "dec_deg": -1.527619559867882,
+        "ra_deg": 359.794568723871
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:06.268129Z",
+      "height_px": 98,
+      "id": "step-093",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-093.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.261268374687331,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.040921523248474645,
+      "center": {
+        "dec_deg": -1.5219697306704647,
+        "ra_deg": 359.80756765675926
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:37.693459Z",
+      "height_px": 98,
+      "id": "step-094",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-094.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2611609727918827,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04029034294130023,
+      "center": {
+        "dec_deg": -1.5163071296430919,
+        "ra_deg": 359.8205957169119
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:31.376430Z",
+      "height_px": 98,
+      "id": "step-095",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-095.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.261053556399122,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04029034294130023,
+      "center": {
+        "dec_deg": -1.5106317136868825,
+        "ra_deg": 359.8336530034407
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:27.448184Z",
+      "height_px": 98,
+      "id": "step-096",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-096.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2609461261002683,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.03755522827687776,
+      "center": {
+        "dec_deg": -1.5049434392639107,
+        "ra_deg": 359.8467396164777
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:48.390322Z",
+      "height_px": 98,
+      "id": "step-097",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-097.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2608386824867786,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.035661687355354514,
+      "center": {
+        "dec_deg": -1.499242262389541,
+        "ra_deg": 359.8598556571928
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:31.088340Z",
+      "height_px": 98,
+      "id": "step-098",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-098.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.260731226150337,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.035030507048180094,
+      "center": {
+        "dec_deg": -1.4935281386245787,
+        "ra_deg": 359.8730012278119
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:03.035203Z",
+      "height_px": 98,
+      "id": "step-099",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-099.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.260623757682781,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04218388386282348,
+      "center": {
+        "dec_deg": -1.4878010230672256,
+        "ra_deg": 359.88617643163576
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:30.059143Z",
+      "height_px": 98,
+      "id": "step-100",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-100.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2605162776760945,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04050073637702504,
+      "center": {
+        "dec_deg": -1.4820608703448348,
+        "ra_deg": 359.89938137305893
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:32:07.200507Z",
+      "height_px": 98,
+      "id": "step-101",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-101.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2604087867223284,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.03997475278771302,
+      "center": {
+        "dec_deg": -1.4763076346054613,
+        "ra_deg": 359.9126161575893
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:37.622504Z",
+      "height_px": 98,
+      "id": "step-102",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-102.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.260301285413579,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04018514622343783,
+      "center": {
+        "dec_deg": -1.470541269509198,
+        "ra_deg": 359.92588089186836
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:08.783760Z",
+      "height_px": 98,
+      "id": "step-103",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-103.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.260223686637604,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.03997475278771302,
+      "center": {
+        "dec_deg": -1.464761728219297,
+        "ra_deg": 359.9391756836917
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:17.201071Z",
+      "height_px": 98,
+      "id": "step-104",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-104.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.260164877677847,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.03881758889122659,
+      "center": {
+        "dec_deg": -1.4589689633930583,
+        "ra_deg": 359.95250064203
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:32:13.268469Z",
+      "height_px": 98,
+      "id": "step-105",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-105.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2601061868287275,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02850831054071113,
+      "center": {
+        "dec_deg": -1.4531629271724869,
+        "ra_deg": 359.9658558770507
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:34.728919Z",
+      "height_px": 98,
+      "id": "step-106",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-106.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2600476154604108,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.028297917104986324,
+      "center": {
+        "dec_deg": -1.44734357117471,
+        "ra_deg": 359.97924150014063
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:58.981756Z",
+      "height_px": 98,
+      "id": "step-107",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-107.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2599891649517514,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.028613507258573534,
+      "center": {
+        "dec_deg": -1.4415108464821418,
+        "ra_deg": 359.992657623928
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:30:30.102664Z",
+      "height_px": 98,
+      "id": "step-108",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-108.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.259930836690358,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.028613507258573534,
+      "center": {
+        "dec_deg": -1.4356647036323895,
+        "ra_deg": 0.00610436230642207
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:32:07.258170Z",
+      "height_px": 98,
+      "id": "step-109",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-109.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2598726320727012,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.02966547443719756,
+      "center": {
+        "dec_deg": -1.4298050926078945,
+        "ra_deg": 0.019581830458727488
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:37.671485Z",
+      "height_px": 98,
+      "id": "step-110",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-110.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.259814552504185,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.031348621922996,
+      "center": {
+        "dec_deg": -1.423931962825294,
+        "ra_deg": 0.033090144881526846
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:08.824640Z",
+      "height_px": 98,
+      "id": "step-111",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-111.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2597565993992264,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04197349042709867,
+      "center": {
+        "dec_deg": -1.418045263124503,
+        "ra_deg": 0.04662942341057811
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:32:47.393604Z",
+      "height_px": 98,
+      "id": "step-112",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-112.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2596987741813401,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04081632653061224,
+      "center": {
+        "dec_deg": -1.412144941757492,
+        "ra_deg": 0.06019978524675311
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:26.559104Z",
+      "height_px": 98,
+      "id": "step-113",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-113.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2596410782832348,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.040921523248474645,
+      "center": {
+        "dec_deg": -1.4062309463767624,
+        "ra_deg": 0.07380135098272972
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:25.605925Z",
+      "height_px": 98,
+      "id": "step-114",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-114.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2595835131468918,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04144750683778666,
+      "center": {
+        "dec_deg": -1.400303224023512,
+        "ra_deg": 0.08743424263041155
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:41.930461Z",
+      "height_px": 98,
+      "id": "step-115",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-115.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.259526080223656,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.0428150641699979,
+      "center": {
+        "dec_deg": -1.3943617211154573,
+        "ra_deg": 0.10109858364911087
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:31:49.865232Z",
+      "height_px": 98,
+      "id": "step-116",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-116.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.259468780974332,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.035661687355354514,
+      "center": {
+        "dec_deg": -1.3884063834343312,
+        "ra_deg": 0.11479449897451598
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:17.753358Z",
+      "height_px": 98,
+      "id": "step-117",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-117.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2594116168692666,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.03818640858405218,
+      "center": {
+        "dec_deg": -1.3824371561130189,
+        "ra_deg": 0.12852211504847139
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:32:36.703463Z",
+      "height_px": 98,
+      "id": "step-118",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-118.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2593545893884472,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04376183463075952,
+      "center": {
+        "dec_deg": -1.3764539836223315,
+        "ra_deg": 0.14228155984960206
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:34:08.587914Z",
+      "height_px": 98,
+      "id": "step-119",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-119.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2592977000215977,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.046602146013044396,
+      "center": {
+        "dec_deg": -1.3704568097574006,
+        "ra_deg": 0.1560729629248175
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:32:47.435031Z",
+      "height_px": 98,
+      "id": "step-120",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-120.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2592409502682749,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04839049021670524,
+      "center": {
+        "dec_deg": -1.3644455776236848,
+        "ra_deg": 0.16989645542171142
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:26.601512Z",
+      "height_px": 98,
+      "id": "step-121",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-121.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2591843416379582,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.05817378497790869,
+      "center": {
+        "dec_deg": -1.3584202296225614,
+        "ra_deg": 0.18375217012191739
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:34:43.893873Z",
+      "height_px": 98,
+      "id": "step-122",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-122.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2591278756501616,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.06017252261729434,
+      "center": {
+        "dec_deg": -1.352380707436503,
+        "ra_deg": 0.19764024147542658
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:35:54.460711Z",
+      "height_px": 98,
+      "id": "step-123",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-123.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2590715538345176,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.0624868504102672,
+      "center": {
+        "dec_deg": -1.3463269520138104,
+        "ra_deg": 0.2115608056359295
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:01.374242Z",
+      "height_px": 98,
+      "id": "step-124",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-124.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2590153777309059,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.0625920471281296,
+      "center": {
+        "dec_deg": -1.340258903552894,
+        "ra_deg": 0.225514000497202
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:34:26.479384Z",
+      "height_px": 98,
+      "id": "step-125",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-125.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589593488895203,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.062066063538817585,
+      "center": {
+        "dec_deg": -1.3341765014860796,
+        "ra_deg": 0.23949996573059062
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:25.008182Z",
+      "height_px": 98,
+      "id": "step-126",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-126.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589157700119238,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.049758047548916474,
+      "center": {
+        "dec_deg": -1.3280796844629275,
+        "ra_deg": 0.253518842823628
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:37:03.142349Z",
+      "height_px": 98,
+      "id": "step-127",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-127.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589262197909616,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04923206395960446,
+      "center": {
+        "dec_deg": -1.3219683903330326,
+        "ra_deg": 0.26757077511983
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:33:43.875598Z",
+      "height_px": 98,
+      "id": "step-128",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-128.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589369711651754,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04639175257731959,
+      "center": {
+        "dec_deg": -1.3158425561283078,
+        "ra_deg": 0.28165590785971817
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:34:53.004906Z",
+      "height_px": 98,
+      "id": "step-129",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-129.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589480262578652,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.040711129812749845,
+      "center": {
+        "dec_deg": -1.3097021180446977,
+        "ra_deg": 0.2957743882231209
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:34:43.935552Z",
+      "height_px": 98,
+      "id": "step-130",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-130.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589593872104285,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04765411319166842,
+      "center": {
+        "dec_deg": -1.3035470114233354,
+        "ra_deg": 0.3099263653727947
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:38:16.344607Z",
+      "height_px": 98,
+      "id": "step-131",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-131.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589710561826397,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04639175257731959,
+      "center": {
+        "dec_deg": -1.2973771707310906,
+        "ra_deg": 0.32411199049943357
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:35:18.978691Z",
+      "height_px": 98,
+      "id": "step-132",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-132.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589830353529576,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.048916473806017255,
+      "center": {
+        "dec_deg": -1.2911925295405013,
+        "ra_deg": 0.3383314168681102
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:38:45.722945Z",
+      "height_px": 98,
+      "id": "step-133",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-133.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2589953269188485,
+      "width_px": 97
+    },
+    {
+      "bad_pixel_fraction": 0.04849568693456764,
+      "center": {
+        "dec_deg": -1.284993020509054,
+        "ra_deg": 0.3525847998662148
+      },
+      "collection": "spherex_dr1",
+      "detector": 2,
+      "downloaded_utc": "2026-11-14T16:34:04.825879Z",
+      "height_px": 98,
+      "id": "step-134",
+      "mjd": 61026.27006735,
+      "obs_id": "2025W51_1A_0485_1",
+      "obs_time_utc": "2025-12-17T06:28:53.819Z",
+      "png": "step-134.png",
+      "processing_version": "7.0.5",
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W51_1A/l2b-v27-2026-210/2/level2_2025W51_1A_0485_1D2_spx_l2b-v27-2026-210.fits",
+      "stretch": {
+        "hi": 0.9816247353553766,
+        "kind": "asinh",
+        "lo": -0.03987959623336792,
+        "unit": "MJy/sr"
+      },
+      "survey_pass": 2,
+      "wavelength_um": 1.2590079330970765,
+      "width_px": 97
+    }
+  ],
+  "kind": "dial",
+  "pairs": [],
+  "pixel_scale_arcsec": 6.15,
+  "provenance": {
+    "archive": "NASA/IPAC IRSA",
+    "cached": true,
+    "collections": [
+      "spherex_dr1"
+    ],
+    "doi": "[DOI from IRSA release page]",
+    "downloaded_utc": "2026-11-14T16:38:45.722945Z",
+    "mission": "SPHEREx",
+    "pipeline_commit": "49d4dd4058dfef11000659f3795f6ebe14cbdc86",
+    "synthetic": false
+  },
+  "schema_version": "1.1",
+  "size_arcmin": 10,
+  "title": "Neptune Distance Dial"
+}
