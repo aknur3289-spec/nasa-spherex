@@ -30,6 +30,22 @@ export function TrackField({ name, backdrop, onBack }: { name: string; backdrop:
     setFrames([]); setFailed(0); setField(undefined); setError(""); setPhase("search");
     (async () => {
       try {
+        // Saved snapshot for preset objects (real frames saved from IRSA; works when IRSA is down).
+        try {
+          const sr = await fetch(`/data/live/track-${encodeURIComponent(name.toLowerCase())}.json`, { signal: ctl.signal });
+          if (sr.ok && (sr.headers.get("content-type") ?? "").includes("json")) {
+            const snap = await sr.json();
+            if (Array.isArray(snap.frames) && snap.frames.length >= 2) {
+              setTarget(snap.target || name);
+              setTotal(snap.total);
+              ref.current = snap.frames.map((f: LiveFrame & { delta_au: number }) => ({ ...f, ...renderPng(f) }));
+              setFrames(ref.current);
+              setField(buildField(snap.frames[0].obj_ra ?? 0, snap.frames[0].obj_dec ?? 0, snap.target || name, ref.current));
+              setPhase("done");
+              return;
+            }
+          }
+        } catch { /* fall through to the live path */ }
         const r = await fetch(`/api/track?name=${encodeURIComponent(name)}`, { signal: ctl.signal });
         const body = await r.json().catch(() => ({}));
         if (!r.ok) throw new Error(body.error || `HTTP ${r.status}`);

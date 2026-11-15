@@ -14,6 +14,7 @@ const PRESETS = [
   { slug: 'crab-nebula', name: 'Crab Nebula', ra: 83.633, dec: 22.015 },
 ];
 const MAX = 48;
+const TRACKS = ['Ceres', 'Vesta', 'Uranus', 'Neptune', 'Pallas'];
 const only = process.argv[2];
 mkdirSync('web/public/data/live', { recursive: true });
 
@@ -52,4 +53,29 @@ for (const p of PRESETS.filter((x) => !only || x.slug === only)) {
   }));
   console.log(`\n  ${frames.length} frames of ${list.n_exposures} exposures`);
   writeFileSync(out, JSON.stringify({ ...p, total: list.n_exposures, saved_utc: new Date().toISOString(), source: 'NASA/IPAC IRSA via /api (real SPHEREx L2 cutouts)', frames }));
+}
+
+// Follow-a-moving-object presets: web/public/data/live/track-<name>.json
+for (const name of TRACKS.filter((x) => !only || x.toLowerCase() === only.toLowerCase())) {
+  const out = `web/public/data/live/track-${name.toLowerCase()}.json`;
+  if (existsSync(out) && !process.env.FORCE) { console.log('skip (exists)', out); continue; }
+  console.log('== track', name);
+  let body;
+  try { body = await getJson(`${API}/api/track?name=${encodeURIComponent(name)}`); } catch (e) { console.log('  failed', e.message); continue; }
+  const all = body.exposures ?? [];
+  const pick = all.length <= 40 ? all : Array.from({ length: 40 }, (_, i) => all[Math.floor((i * all.length) / 40)]);
+  const frames = [];
+  let next = 0;
+  await Promise.all(Array.from({ length: 6 }, async () => {
+    while (next < pick.length) {
+      const e = pick[next++];
+      try {
+        const f = await getJson(`${API}/api/sky-frame?ra=${e.ra}&dec=${e.dec}&url=${encodeURIComponent(e.file_url)}`, 2);
+        if (f.center_inside && f.bad_pixel_fraction <= 0.6) frames.push({ ...f, delta_au: e.delta_au, obj_ra: e.ra, obj_dec: e.dec });
+        process.stdout.write('.');
+      } catch { process.stdout.write('x'); }
+    }
+  }));
+  console.log(`\n  ${frames.length} frames of ${all.length} exposures`);
+  if (frames.length >= 2) writeFileSync(out, JSON.stringify({ name, target: body.target, total: all.length, saved_utc: new Date().toISOString(), source: body.source, frames }));
 }
