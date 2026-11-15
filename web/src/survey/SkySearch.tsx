@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { Field } from "../contract";
 import { fmtDec, fmtRa, friendly } from "./fields";
 import { formatSep, insideSquare, parseCoords, separationDeg, squareCorners, type RaDec } from "./skyCoords";
+import { resolveSesameName } from "./sesame";
 
 /**
  * Whole-sky search on the SPHEREx QR2 HiPS maps from CDS, shown with Aladin Lite.
@@ -12,10 +13,9 @@ import { formatSep, insideSquare, parseCoords, separationDeg, squareCorners, typ
 
 type Go = (screen: "timelapse" | "compare" | "dial", id?: string) => void;
 
-const ALADIN_JS = "https://aladin.cds.unistra.fr/AladinLite/api/v3/latest/aladin.js";
 const SURVEYS = [
-  { id: "color", label: "Colour", url: "https://alasky.cds.unistra.fr/SPHEREx/color" },
-  ...[1, 2, 3, 4, 5, 6].map((n) => ({ id: `D${n}`, label: `D${n}`, url: `https://alasky.cds.unistra.fr/SPHEREx/D${n}` })),
+  { id: "color", label: "Colour" },
+  ...[1, 2, 3, 4, 5, 6].map((n) => ({ id: `D${n}`, label: `D${n}` })),
 ];
 const IRSA_EXPLORER = "https://irsa.ipac.caltech.edu/applications/spherex/";
 
@@ -29,24 +29,30 @@ const EXAMPLES = ["M101", "210.80 54.35", "14h03m13s +54°20′", "Neptune"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AladinAny = any;
-declare global {
-  interface Window {
-    A?: AladinAny;
-  }
-}
-
+let aladinApi: AladinAny;
 let aladinScript: Promise<AladinAny> | undefined;
 function loadAladin(): Promise<AladinAny> {
-  if (window.A) return window.A.init.then(() => window.A);
-  aladinScript ??= new Promise((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = ALADIN_JS;
-    s.async = true;
-    s.onload = () => (window.A ? window.A.init.then(() => resolve(window.A)) : reject(new Error("Aladin missing")));
-    s.onerror = () => reject(new Error("Could not load Aladin Lite"));
-    document.head.appendChild(s);
+  aladinScript ??= (async () => {
+    const { default: A } = await import("aladin-lite");
+    await A.init;
+    aladinApi = A;
+    return A;
+  })().catch((error) => {
+    aladinScript = undefined;
+    throw error;
   });
   return aladinScript;
+}
+
+function surveyLayer(A: AladinAny, id: string, onError: () => void): AladinAny {
+  return A.createImageSurvey(
+    `CDS/P/SPHEREx/QR2/${id}`,
+    `SPHEREx QR2 ${id}`,
+    `${location.origin}/hips/SPHEREx/${id}`,
+    "equatorial",
+    undefined,
+    { errorCallback: onError },
+  );
 }
 
 type Hit =
@@ -57,6 +63,7 @@ type Hit =
 export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
   const host = useRef<HTMLDivElement>(null);
   const aladin = useRef<AladinAny>(null);
+  const searchNumber = useRef(0);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
   const [survey, setSurvey] = useState("color");
   const [query, setQuery] = useState("");
@@ -84,10 +91,12 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
     loadAladin()
       .then((A) => {
         if (!alive || !host.current) return;
+        const fallback = () => aladin.current?.setBaseImageLayer(`https://alasky.cds.unistra.fr/SPHEREx/color`);
         const a = A.aladin(host.current, {
-          survey: SURVEYS[0].url,
+          survey: surveyLayer(A, "color", fallback),
           fov: 1,
-          target: "M101",
+          target: "210.80227 +54.34895",
+          log: false,
           showReticle: true,
           showCooGrid: false,
           showLayersControl: false,
@@ -120,7 +129,7 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
   const drawnKey = useRef("");
   useEffect(() => {
     const a = aladin.current;
-    const A = window.A;
+    const A = aladinApi;
     if (status !== "ready" || !a || !A || !fields.length) return;
     const key = fields.map((f) => f.field_id).join(",");
     if (drawnKey.current === key) return;
@@ -146,12 +155,14 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
   useEffect(() => {
     const a = aladin.current;
     if (status !== "ready" || !a) return;
-    const url = SURVEYS.find((s) => s.id === survey)!.url;
-    if (a.setBaseImageLayer) a.setBaseImageLayer(url);
-    else a.setImageSurvey?.(url);
+    const id = SURVEYS.find((s) => s.id === survey)!.id;
+    const layer = surveyLayer(aladinApi, id, () => a.setBaseImageLayer(`https://alasky.cds.unistra.fr/SPHEREx/${id}`));
+    if (a.setBaseImageLayer) a.setBaseImageLayer(layer);
+    else a.setImageSurvey?.(layer);
   }, [survey, status]);
 
-  const search = (text = query) => {
+  const search = async (text = query) => {
+    const requestNumber = ++searchNumber.current;
     const q = text.trim();
     setQuery(q);
     setMessage(undefined);
@@ -175,14 +186,15 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
       setMessage("Name search needs the sky map, which has not loaded. Try coordinates like 210.80 54.35.");
       return;
     }
-    a.gotoObject(q, {
-      success: (raDec: [number, number]) => {
-        const [ra, dec] = raDec ?? a.getRaDec();
-        a.setFoV?.(0.5);
-        setHit(classify({ ra, dec }, q));
-      },
-      error: () => setMessage(`Couldn't find “${q}”. Try another name or coordinates like 210.80 54.35.`),
-    });
+    try {
+      const { ra, dec } = await resolveSesameName(q);
+      if (requestNumber !== searchNumber.current) return;
+      a.gotoRaDec(ra, dec);
+      a.setFoV?.(0.5);
+      setHit(classify({ ra, dec }, q));
+    } catch {
+      if (requestNumber === searchNumber.current) setMessage("Name not found, try coordinates");
+    }
   };
 
   return (

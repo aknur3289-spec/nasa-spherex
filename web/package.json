@@ -10,6 +10,7 @@
     "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.mjs && vitest run tests/viewer.test.tsx"
   },
   "dependencies": {
+    "aladin-lite": "3.8.2",
     "react": "19.1.1",
     "react-dom": "19.1.1"
   },
