@@ -6,6 +6,7 @@ import type { FieldSummary } from "../contract";
 import { SkyExplorer } from "./SkyExplorer";
 import { ComparePairs } from "./ComparePairs";
 import { LiveField } from "../live/LiveField";
+import { AnyPoint } from "./AnyPoint";
 import { friendly , FRIENDLY } from "./fields";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
 
@@ -218,6 +219,7 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
             Explore the real sky map
           </Button>
         </div>
+        <AnyPoint />
         <div className="hero-result glass">
           <div>
             <small>OUR MEASUREMENT</small>
@@ -565,6 +567,8 @@ export default function App() {
             {enhanced ? "Show raw pixels" : "Smooth view"}
           </button>
         </div>}
+        <AnyPoint compact />
+        <p className="examples-label">Or open a ready example (loads instantly, prepared and checked in advance):</p>
         <div className="field-cards" role="group" aria-label="Choose a sky field">
           {catalog?.map(item => <button key={item.field_id} className={`glass field-card ${item.field_id === selected?.field_id ? "active" : ""}`}
             aria-pressed={item.field_id === selected?.field_id} onClick={() => navigate(screen, item.field_id)}>
