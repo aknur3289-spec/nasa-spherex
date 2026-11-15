@@ -11,8 +11,9 @@ import { TrackField } from "../live/TrackField";
 import { AnyPoint } from "./AnyPoint";
 import { friendly , FRIENDLY } from "./fields";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
+import { Review } from "./Review";
 
-type Screen = "home" | "explore" | "timelapse" | "lab" | "dial" | "compare" | "about";
+type Screen = "home" | "explore" | "timelapse" | "lab" | "dial" | "compare" | "review" | "about";
 type IconName =
   | "orbit"
   | "arrow"
@@ -161,6 +162,7 @@ function Header({ screen, setScreen }: { screen: Screen; setScreen: (s: Screen) 
     ["timelapse", "Timelapse"],
     ["lab", "Parallax Lab"],
     ["compare", "Compare"],
+    ["review", "Help review"],
     ["about", "Methodology"],
   ];
   return (
@@ -368,7 +370,7 @@ function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
         </div>
         {[
           ["Curious people & students", "Move Earth around the Sun, hide a planet and find it again, then measure Neptune on real NASA data.", "lab", "Start playing"],
-          ["Volunteers & citizen scientists", "If you search for faint movers in projects like Backyard Worlds, see which image pairs you can compare and which you cannot.", "compare", "Check image pairs"],
+          ["Volunteers & citizen scientists", "Sort real moving dots from fakes in a few seconds each. A short practice round teaches you what to look for, and your answers train the next model.", "review", "Start reviewing"],
           ["Researchers", "Blind detection and distance on real SPHEREx data, a mover-aware flag policy, injection-recovery depth, and open code.", "about", "Read the method"],
         ].map(([h, p, to, cta]) => (
           <div className="glass audience-card" key={h}>
@@ -516,6 +518,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
     ["explore", "grid", "Explore"],
     ["timelapse", "play", "Timelapse"],
     ["lab", "orbit", "Lab"],
+    ["review", "check", "Review"],
     ["about", "book", "About"],
   ];
   return (
@@ -530,7 +533,7 @@ function MobileNav({ screen, setScreen }: { screen: Screen; setScreen: (s: Scree
   );
 }
 
-const screens: Screen[] = ["home", "explore", "timelapse", "lab", "dial", "compare", "about"];
+const screens: Screen[] = ["home", "explore", "timelapse", "lab", "dial", "compare", "review", "about"];
 
 export default function App() {
   const [route, setRoute] = useState(location.hash);
@@ -588,7 +591,7 @@ export default function App() {
   }, [id]);
 
   const navigate = (next: Screen, nextId = selected?.field_id) => {
-    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" && next !== "dial" && next !== "lab" ? "/" + nextId : "");
+    location.hash = "/" + next + (nextId && next !== "home" && next !== "about" && next !== "dial" && next !== "lab" && next !== "review" ? "/" + nextId : "");
   };
 
   const timeline = useMemo(() => {
@@ -621,6 +624,7 @@ export default function App() {
       {screen === "about" && <About />}
       {screen === "lab" && <ErrorBoundary><ParallaxLab onOpenDial={() => navigate("dial")} /></ErrorBoundary>}
       {screen === "dial" && <ErrorBoundary><DistanceDial /></ErrorBoundary>}
+      {screen === "review" && <ErrorBoundary><Review /></ErrorBoundary>}
       {live && <ErrorBoundary key={route}><LiveField ra={live.ra} dec={live.dec} label={live.label} backdrop={spaceImage} onBack={() => navigate("explore")} /></ErrorBoundary>}
       {track && <ErrorBoundary key={route}><TrackField name={track} backdrop={spaceImage} onBack={() => history.back()} /></ErrorBoundary>}
       {screen === "explore" && !live && !track && (catalog

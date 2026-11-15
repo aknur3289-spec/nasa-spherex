@@ -18,6 +18,8 @@ alone. JPL Horizons (29.89 AU) was used only to grade the answer: error 0.13 %. 
 - **Compare** — Honest Blink: only image pairs taken at (almost) the same wavelength, each with a trust badge.
 - **Timelapse / Sky Explorer / any point** — real SPHEREx images of any sky position, loaded from NASA IRSA.
 - **Methodology** — method, blind test, limitations, data sources.
+- **Help review** — volunteers sort detector candidates into real movers and artefacts, ranked by a
+  real/bogus ML model; practice round, one-key answers, exportable labels. See [docs/ML.md](docs/ML.md).
 
 ## How it works
 
@@ -43,6 +45,8 @@ npm --prefix web run dev      # local site
 npm --prefix web test
 npm --prefix web run build
 ```
+
+Python tests (pipeline + ML, offline): `python3 -m pytest`
 
 Blind test (Python, offline, needs the cached FITS in `data/raw/`):
 

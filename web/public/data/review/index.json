@@ -1,0 +1,12 @@
+{
+ "schema_version": "review-1.0",
+ "sets": [
+  {
+   "set_id": "demo-synthetic",
+   "title": "Practice set (synthetic)",
+   "synthetic": true,
+   "n": 120,
+   "queue": "demo-synthetic/queue.json"
+  }
+ ]
+}

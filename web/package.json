@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.mjs && vitest run tests/viewer.test.tsx"
+    "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.mjs && vitest run tests/viewer.test.tsx tests/review.test.tsx"
   },
   "dependencies": {
     "aladin-lite": "3.8.2",
