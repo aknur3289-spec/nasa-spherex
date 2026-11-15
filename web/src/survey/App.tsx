@@ -5,6 +5,7 @@ import { imageUrl, loadField, loadIndex } from "../data/loader";
 import type { FieldSummary } from "../contract";
 import { SkyExplorer } from "./SkyExplorer";
 import { ComparePairs } from "./ComparePairs";
+import { LiveField } from "../live/LiveField";
 import { friendly } from "./fields";
 import { ErrorBoundary } from "../viewer/ErrorBoundary";
 
@@ -470,7 +471,14 @@ export default function App() {
   const [result, setResult] = useState<{ id: string; field?: Awaited<ReturnType<typeof loadField>>; error?: string }>();
   const [path, search] = route.slice(2).split("?");
   const [screenName, fieldId] = path.split("/");
-  const screen = screens.find(value => value === screenName) ?? "home";
+  const live = useMemo(() => {
+    if (screenName !== "live") return undefined;
+    const q = new URLSearchParams(search ?? "");
+    const ra = Number(q.get("ra")), dec = Number(q.get("dec"));
+    if (!Number.isFinite(ra) || !Number.isFinite(dec) || Math.abs(dec) > 90) return undefined;
+    return { ra, dec, label: q.get("name") || `RA ${ra.toFixed(3)}°, Dec ${dec.toFixed(3)}°` };
+  }, [screenName, search]);
+  const screen = live ? "explore" : screens.find(value => value === screenName) ?? "home";
   const active = screen === "compare" || screen === "timelapse";
   const catalog = index?.filter(item => item.status !== "pending" && item.synthetic === false);
   const [enhanced, setEnhanced] = useState(true);
@@ -530,7 +538,8 @@ export default function App() {
       {screen === "home" && <Home setScreen={navigate} />}
       {screen === "about" && <About />}
       {screen === "dial" && <ErrorBoundary><DistanceDial /></ErrorBoundary>}
-      {screen === "explore" && (catalog
+      {live && <ErrorBoundary key={route}><LiveField ra={live.ra} dec={live.dec} label={live.label} backdrop={spaceImage} onBack={() => navigate("explore")} /></ErrorBoundary>}
+      {screen === "explore" && !live && (catalog
         ? <ErrorBoundary><SkyExplorer catalog={catalog} go={(s, nextId) => navigate(s, nextId)} /></ErrorBoundary>
         : <main className="content-screen"><p role="status">{error || "Loading sky fields…"}</p></main>)}
       {active && <main className={`content-screen survey-observations ${enhanced ? "enhanced" : "raw"}`}>
