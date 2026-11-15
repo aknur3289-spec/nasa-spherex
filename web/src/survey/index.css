@@ -4234,3 +4234,20 @@ input[type="range"]::-webkit-slider-thumb {
 .tl-fullbox { position: absolute; inset: 0; pointer-events: none; }
 .tl-imgbox { position: absolute; left: 50%; top: 50%; width: min(100cqw, 100cqh); height: min(100cqw, 100cqh); transform: translate(-50%, -50%); pointer-events: none; }
 .tl-imgbox .tl-target-real { border: 2px solid #34d399; box-shadow: 0 0 10px #34d399; width: 18px; height: 18px; }
+
+/* Any point in the sky: the main entry */
+.any-point { padding: 18px 20px; margin: 26px auto 0; max-width: 760px; text-align: left; display: grid; gap: 12px; }
+.any-point.compact { max-width: none; margin: 0 0 12px; }
+.any-point-head small { letter-spacing: .14em; color: var(--cyan); font-size: 11px; display: block; margin-bottom: 6px; }
+.any-point-head b { font-weight: 500; color: var(--text-1, #fff); line-height: 1.45; }
+.any-point-form { display: flex; gap: 10px; }
+.any-point-form input { flex: 1; min-width: 0; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18);
+  background: rgba(5,6,15,.6); color: #fff; font: inherit; }
+.any-point-form input:focus { outline: 2px solid var(--cyan); outline-offset: 1px; }
+.any-point-presets { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--text-3); font-size: 13px; }
+.any-point-presets button { border: 1px solid rgba(255,255,255,.16); background: transparent; color: var(--text-2); padding: 6px 12px; border-radius: 999px; cursor: pointer; font: inherit; font-size: 13px; }
+.any-point-presets button:hover { border-color: var(--cyan); color: #fff; }
+.any-point-msg { margin: 0; color: #fca5a5; font-size: 14px; }
+.any-point-note { margin: 0; color: var(--text-3); font-size: 13px; }
+.examples-label { margin: 6px 0 10px; color: var(--text-3); font-size: 13px; }
+@media (max-width: 600px) { .any-point-form { flex-direction: column; } }
