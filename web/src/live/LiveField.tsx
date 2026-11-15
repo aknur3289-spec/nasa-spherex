@@ -3,7 +3,7 @@ import type { Field } from "../contract";
 import { Timelapse } from "../survey/Timelapse";
 import { ComparePairs } from "../survey/ComparePairs";
 import { fmtDec, fmtRa } from "../survey/fields";
-import { buildField, fetchFrame, listExposures, pairChange, pickExposures, renderPng, sameColourGroup, type Exposure, type LiveFrame } from "./liveData";
+import { loadSnapshot, buildField, fetchFrame, listExposures, pairChange, pickExposures, renderPng, sameColourGroup, type Exposure, type LiveFrame } from "./liveData";
 
 type Rendered = LiveFrame & { src: string; lo: number; hi: number };
 type Phase = "search" | "frames" | "done" | "error";
@@ -25,6 +25,8 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
   const [field, setField] = useState<Field>();
   const [tab, setTab] = useState<"timelapse" | "compare">("timelapse");
   const framesRef = useRef<Rendered[]>([]);
+  const [saved, setSaved] = useState<string>();
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     const ctl = new AbortController();
@@ -32,6 +34,17 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
     setFrames([]); setFailed(0); setField(undefined); setError(""); setPhase("search");
     (async () => {
       try {
+        // Preset points have a saved snapshot of real frames (works even when IRSA is down).
+        const snap = await loadSnapshot(ra, dec, ctl.signal);
+        if (snap) {
+          setTotal(snap.total);
+          setSaved(snap.saved_utc);
+          framesRef.current = snap.frames.map((f) => ({ ...f, ...renderPng(f) }));
+          setFrames(framesRef.current);
+          setField(buildField(ra, dec, label, framesRef.current));
+          setPhase("done");
+          return;
+        }
         const all = await listExposures(ra, dec, ctl.signal);
         setTotal(all.length);
         if (!all.length) { setPhase("error"); setError("IRSA has no SPHEREx images covering this point yet."); return; }
@@ -63,7 +76,7 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
       }
     })();
     return () => ctl.abort();
-  }, [ra, dec, label]);
+  }, [ra, dec, label, attempt]);
 
   const showNow = () => setField(buildField(ra, dec, label, framesRef.current));
   const [allColours, setAllColours] = useState(false);
@@ -111,7 +124,10 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
           <div className="live-bar"><i style={{ width: `${(100 * done) / Math.max(1, chosen.length)}%` }} /></div>
           {frames.length >= 8 && <button className="button secondary" onClick={showNow}>Show the {frames.length} images loaded so far</button>}
         </>}
-        {phase === "error" && <p role="alert">{error}</p>}
+        {phase === "error" && <>
+          <p role="alert">{error}</p>
+          <p>NASA's archive is sometimes busy. <button className="button secondary" onClick={() => setAttempt((n) => n + 1)}>Try again</button></p>
+        </>}
       </div>}
 
       {field && <>
@@ -119,6 +135,7 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
           <span><b>{field.frames.length}</b> real images</span>
           <span><b>{honest}</b> honest pairs (same colour within 2%, ≥ 150 days apart)</span>
           <span>{niceSpan(field)}</span>
+          {saved && <span title="Real SPHEREx frames fetched from IRSA and saved, so this example opens instantly">saved from IRSA {saved.slice(0, 10)}</span>}
           <div className="live-tabs" role="tablist">
             <button role="tab" aria-selected={tab === "timelapse"} className={tab === "timelapse" ? "active" : ""} onClick={() => setTab("timelapse")}>Timelapse</button>
             <button role="tab" aria-selected={tab === "compare"} className={tab === "compare" ? "active" : ""} onClick={() => setTab("compare")}>Compare two dates</button>
