@@ -9,8 +9,8 @@ from pipeline.spx.manifest import update_index, validate_field, write_field
 
 @pytest.fixture
 def field(tmp_path: Path) -> tuple[dict, Path]:
-    sample = json.loads((Path(__file__).resolve().parents[2] / "web/public/data/demo/field.json").read_text())
-    directory = tmp_path / "demo"
+    sample = json.loads((Path(__file__).resolve().parents[2] / "web/public/data/fixture-static/field.json").read_text())
+    directory = tmp_path / sample["field_id"]
     directory.mkdir()
     for frame in sample["frames"]:
         (directory / frame["png"]).write_bytes(b"png")
