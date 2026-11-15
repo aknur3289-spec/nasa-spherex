@@ -1,4 +1,5 @@
 import type { RaDec } from "./skyCoords";
+import { resolveKnownObject } from "./knownObjects.ts";
 
 export function parseSesamePosition(text: string): RaDec | null {
   const line = text.split(/\r?\n/).find((part) => /^%J\s/.test(part));
@@ -13,9 +14,27 @@ export function parseSesamePosition(text: string): RaDec | null {
 }
 
 export async function resolveSesameName(name: string): Promise<RaDec> {
-  const response = await fetch(`/sesame/-oI/A?${encodeURIComponent(name)}`);
-  if (!response.ok) throw new Error("Sesame request failed");
-  const position = parseSesamePosition(await response.text());
-  if (!position) throw new Error("Sesame position missing");
-  return position;
+  const known = resolveKnownObject(name);
+  if (known) return known;
+  const query = encodeURIComponent(name.trim());
+  const sources = [
+    `https://cds.unistra.fr/cgi-bin/nph-sesame/-oI/A?${query}`,
+    `https://vizier.cfa.harvard.edu/viz-bin/nph-sesame/-oI/A?${query}`,
+    `/sesame/-oI/A?${query}`,
+  ];
+  for (const url of sources) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6000);
+    try {
+      const response = await fetch(url, { signal: controller.signal });
+      if (!response.ok) continue;
+      const position = parseSesamePosition(await response.text());
+      if (position) return position;
+    } catch {
+      // Try the next independent resolver.
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  throw new Error("Name not found by any Sesame resolver");
 }
