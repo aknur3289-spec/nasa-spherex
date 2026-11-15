@@ -11,6 +11,8 @@ image differences, kept it as the only real moving track, and measured **29.93 A
 alone. JPL Horizons (29.89 AU) was used only to grade the answer: error 0.13 %. Details and limits:
 [docs/BLIND_TEST.md](docs/BLIND_TEST.md).
 
+**Live site:** https://nasa-spherex-seven.vercel.app/ · **7-slide demo:** [docs/demo/PARALLAX_demo.pdf](docs/demo/PARALLAX_demo.pdf)
+
 ## What is in the site
 
 - **Parallax Lab** — a live parallax simulator, a hide-the-planet game, and the Neptune blind test on real
