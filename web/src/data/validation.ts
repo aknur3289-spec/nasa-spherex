@@ -63,6 +63,15 @@ export function validateField(value: unknown, id: string): Field {
   requireValue(safeId(id) && f.field_id === id && nonempty(f.title) && nonempty(f.description) &&
     (f.kind === 'static' || f.kind === 'dial') && center(f.center) && positive(f.size_arcmin) &&
     positive(f.pixel_scale_arcsec), 'Invalid field metadata.');
+  requireValue((f.color_png === undefined) === (f.color_bands_um === undefined), 'Colour asset and bands must occur together.');
+  if (f.color_png !== undefined) {
+    const bands = f.color_bands_um;
+    requireValue(safeAsset(f.color_png) && /\.png$/i.test(f.color_png) &&
+      Array.isArray(bands) && bands.length === 3 &&
+      bands.every((band: unknown, i: number) => Array.isArray(band) && band.length === 2 &&
+        positive(band[0]) && positive(band[1]) && band[0] < band[1] &&
+        (i === 0 || bands[i - 1][1] <= band[0])), 'Invalid colour asset or bands.');
+  }
   const p = object(f.provenance);
   requireValue(typeof p.synthetic === 'boolean' && typeof p.cached === 'boolean' &&
     [p.mission, p.archive, p.doi, p.pipeline_commit].every(nonempty) && utc(p.downloaded_utc) &&
@@ -74,9 +83,11 @@ export function validateField(value: unknown, id: string): Field {
     const frame = object(item);
     const stretch = object(frame.stretch);
     requireValue(safeId(frame.id) && !ids.has(frame.id) && safeAsset(frame.png) && /\.png$/i.test(frame.png) &&
+      (frame.mask_png === undefined || (safeAsset(frame.mask_png) && /\.png$/i.test(frame.mask_png))) &&
       (frame.fits === undefined || (safeAsset(frame.fits) && /\.fits$/i.test(frame.fits))) &&
       utc(frame.obs_time_utc) && finite(frame.mjd) && natural(frame.survey_pass) && natural(frame.detector) &&
       (frame.band === undefined || nonempty(frame.band)) && positive(frame.wavelength_um) && center(frame.center) &&
+      (frame.target_radec === undefined || center(frame.target_radec)) &&
       finite(frame.bad_pixel_fraction) && frame.bad_pixel_fraction >= 0 && frame.bad_pixel_fraction <= 1 &&
       stretch.kind === 'asinh' && finite(stretch.lo) && finite(stretch.hi) && stretch.lo < stretch.hi &&
       nonempty(stretch.unit) && source(frame.source_url, p.synthetic) && nonempty(frame.obs_id) &&
@@ -159,4 +170,14 @@ export function validateDifferencePng(bytes: ArrayBuffer, field: Extract<Field, 
   const frame = field.frames[0];
   requireValue(frame && view.getUint32(16) === frame.width_px &&
     view.getUint32(20) === frame.height_px, 'Inconsistent difference PNG dimensions: ' + path);
+}
+
+export function validateMaskPng(bytes: ArrayBuffer, width: number | undefined, height: number | undefined, path: string) {
+  const view = new DataView(bytes);
+  requireValue(view.byteLength >= 33 && view.getUint32(0) === 0x89504e47 &&
+    view.getUint32(4) === 0x0d0a1a0a && view.getUint32(8) === 13 &&
+    view.getUint32(12) === 0x49484452, 'Invalid mask PNG header: ' + path);
+  requireValue((width === undefined || view.getUint32(16) === width) &&
+    (height === undefined || view.getUint32(20) === height),
+    'Inconsistent mask PNG dimensions: ' + path);
 }

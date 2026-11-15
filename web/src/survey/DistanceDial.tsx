@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { Field, DialStep } from "../contract";
+import { imageUrl, loadField } from "../data/loader";
 
 /**
  * F5 — Distance Dial on real SPHEREx data (Neptune, one exposure pair).
@@ -173,43 +175,29 @@ function MissChart({
 
 /* ---------- the "game": crosshair on a real SPHEREx stamp ---------- */
 
-type Target = { ra_deg: number; dec_deg: number; pixel_scale_arcsec: number };
 const STAMP = 64; // stamp size in pixels, Neptune near the centre
 const STAMP_SCALE = 5; // on-screen pixels per image pixel
-
-function offsetPx(row: Row, t: Target) {
-  const wrap = (d: number) => ((d + 540) % 360) - 180;
-  const c = Math.cos((t.dec_deg * Math.PI) / 180);
-  const dxArc = wrap(row.ra - t.ra_deg) * c * 3600;
-  const dyArc = (row.dec - t.dec_deg) * 3600;
-  // north up, east left
-  return { x: -dxArc / t.pixel_scale_arcsec, y: -dyArc / t.pixel_scale_arcsec };
-}
 
 function DialGame({
   row,
   best,
-  target,
+  field,
+  step,
   index,
   max,
   onChange,
 }: {
   row: Row;
   best: Row;
-  target: Target | null;
+  field: Field;
+  step: DialStep;
   index: number;
   max: number;
   onChange: (i: number) => void;
 }) {
   const size = STAMP * STAMP_SCALE;
   const half = size / 2;
-  const off = target ? offsetPx(row, target) : { x: row.modelPx, y: 0 };
-  const px = half + off.x * STAMP_SCALE;
-  const py = half + off.y * STAMP_SCALE;
-  const inside = px > 12 && px < size - 12 && py > 12 && py < size - 12;
-  const angle = Math.atan2(py - half, px - half);
-  const ex = half + Math.cos(angle) * (half - 26);
-  const ey = half + Math.sin(angle) * (half - 26);
+  const frame = step.frame ? field.frames.find(f => f.id === step.frame) : undefined;
   const isBest = row.distance === best.distance;
   const state = isBest ? "best" : row.modelPx < 25 ? "close" : row.modelPx < STAMP / 2 ? "near" : "far";
   const label = {
@@ -224,25 +212,16 @@ function DialGame({
       <div className="card-heading">
         <div>
           <small>YOUR MISSION</small>
-          <h3>Land the crosshair on Neptune</h3>
+          <h3>Find Neptune in the December crop</h3>
         </div>
         <span className={`chip dial-state ${state}`}>{label}</span>
       </div>
       <div className="dial-game-body">
         <div className="dial-stamp" style={{ width: size, height: size }}>
-          <img src="data/dial/neptune_stamp.png" alt="Neptune in a real SPHEREx image" width={size} height={size} />
-          <span className="dial-neptune" style={{ left: half, top: half }}>
-            <i />
-            <b>Neptune</b>
-          </span>
-          {inside ? (
-            <span className={`dial-cross ${state}`} style={{ left: px, top: py }} aria-hidden="true" />
-          ) : (
-            <span className="dial-away" style={{ left: ex, top: ey, transform: `translate(-50%,-50%) rotate(${angle}rad)` }} aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
-            </span>
-          )}
-          {!inside && <span className="dial-away-label">Prediction is {Math.round(row.modelPx)} px off the picture</span>}
+          {frame ? <>
+            <img src={imageUrl(field.field_id, frame.png)} alt={`December SPHEREx crop for ${step.distance_au.toFixed(1)} AU`} width={size} height={size} />
+            <span className={`dial-cross ${state}`} style={{ left: half, top: half }} aria-hidden="true" />
+          </> : <span className="dial-outside">Outside the frame</span>}
         </div>
         <div className="dial-game-copy">
           <div className="dial-big">
@@ -269,12 +248,11 @@ function DialGame({
           <ol className="dial-howto">
             <li>We know where Neptune was in June 2025.</li>
             <li>Pick a distance. Our model predicts where Neptune should be in December 2025.</li>
-            <li>The distance whose crosshair lands closest to Neptune is the measurement.</li>
+            <li>The crop centered closest to Neptune gives the best trial distance.</li>
           </ol>
           <p className="dial-caption">
-            Background: Neptune in a real SPHEREx cutout (June 2025). Crosshair: the December 2025 prediction for
-            your distance, drawn relative to Neptune's measured position. Even the closest match misses by about
-            13 px — see why below.
+            December 2025 SPHEREx crop for the nearest published dial step. The crosshair marks the predicted position at its center.
+            The Science curve and miss values come from the separate distance table.
           </p>
         </div>
       </div>
@@ -318,12 +296,13 @@ export function DistanceDial() {
   const [index, setIndex] = useState(0);
   const [showNaive, setShowNaive] = useState(true);
   const [sweeping, setSweeping] = useState(false);
-  const [target, setTarget] = useState<Target | null>(null);
+  const [dialField, setDialField] = useState<Field | null>(null);
   useEffect(() => {
-    fetch("data/dial/neptune_target.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .then(setTarget)
-      .catch(() => setTarget(null));
+    const controller = new AbortController();
+    loadField("neptune-dial", controller.signal).then(setDialField).catch(e => {
+      if (!controller.signal.aborted) setError(e.message);
+    });
+    return () => controller.abort();
   }, []);
   const timer = useRef<number | undefined>(undefined);
 
@@ -349,9 +328,11 @@ export function DistanceDial() {
   useEffect(() => () => window.clearInterval(timer.current), []);
 
   if (error) return <p role="alert">{error}</p>;
-  if (!table || !rows.length) return <p role="status">Loading dial table…</p>;
+  if (!table || !rows.length || !dialField?.dial) return <p role="status">Loading dial data…</p>;
 
   const cur = rows[index];
+  const nearestStep = dialField.dial.steps.reduce((best, candidate) =>
+    Math.abs(candidate.distance_au - cur.distance) < Math.abs(best.distance_au - cur.distance) ? candidate : best);
   const best = rows[modelMin];
   const step = rows.length > 1 ? rows[1].distance - rows[0].distance : 0.1;
   const atBest = index === modelMin;
@@ -406,7 +387,7 @@ export function DistanceDial() {
         </div>
       </section>
 
-      <DialGame row={cur} best={best} target={target} index={index} max={rows.length - 1} onChange={(i) => { stop(); setIndex(i); }} />
+      <DialGame row={cur} best={best} field={dialField} step={nearestStep} index={index} max={rows.length - 1} onChange={(i) => { stop(); setIndex(i); }} />
 
       <section className="data-grid">
         <div className="glass chart-card wide dial-card">

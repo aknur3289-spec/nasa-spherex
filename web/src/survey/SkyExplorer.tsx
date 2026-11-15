@@ -98,7 +98,8 @@ export function SkyExplorer({ catalog, go }: { catalog: FieldSummary[]; go: Go }
 
   const totalImages = results.reduce((n, r) => n + r.frames.length, 0);
   const totalTrusted = results.reduce((n, r) => n + r.trusted.length, 0);
-  const sel = results.find((r) => r.item.field_id === selected) ?? results[0];
+  const sel = results.find((r) => r.item.field_id === selected)
+    ?? results.find((r) => r.item.field_id === "neptune-track") ?? results[0];
 
   const focus = sel?.f ? px(sel.f.center.ra_deg, sel.f.center.dec_deg) : { x: W / 2, y: H / 2 };
   const vw = W / zoom;
@@ -230,13 +231,14 @@ export function SkyExplorer({ catalog, go }: { catalog: FieldSummary[]; go: Go }
 
         {sel?.f && (
           <div className="glass sx-preview">
-            <img src={imageUrl(sel.item.field_id, sel.item.thumbnail ?? "thumb.png")} alt="" />
+            <img src={imageUrl(sel.item.field_id, sel.f.color_png ?? sel.item.thumbnail ?? "thumb.png")} alt="" />
             <div>
               <small>SELECTED FIELD</small>
               <b>{friendly(sel.item).name}</b>
               <span>
                 RA {fmtRa(sel.f.center.ra_deg)} · Dec {fmtDec(sel.f.center.dec_deg)}
               </span>
+              {sel.f.color_bands_um && <span>SPHEREx true-colour: {sel.f.color_bands_um.map(([lo, hi]) => `${lo.toFixed(2)}–${hi.toFixed(2)}`).join(" / ")} um, real data</span>}
               <div className="sx-actions">
                 <button className="button primary" onClick={() => go("timelapse", sel.item.field_id)}>Watch timelapse</button>
                 <button className="button secondary" onClick={() => go("compare", sel.item.field_id)}>Compare two images</button>

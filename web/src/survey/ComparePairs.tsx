@@ -3,6 +3,7 @@ import type { Field, Frame } from "../contract";
 import { imageUrl } from "../data/loader";
 import { DifferenceImage } from "../viewer/DifferenceImage";
 import { daysApart, niceDate, pairTrust, type Trust } from "./fields";
+import { MappedImage, type ColourMap } from "./MappedImage";
 
 /**
  * Compare — "Did anything move?"
@@ -59,6 +60,8 @@ export function ComparePairs({ field }: { field: Field }) {
   const [split, setSplit] = useState(50);
   const [showRisky, setShowRisky] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [showMasks, setShowMasks] = useState(false);
+  const [colourMap, setColourMap] = useState<ColourMap>("grey");
 
   useEffect(() => {
     setA(first?.a ?? frames[0]?.id);
@@ -99,8 +102,8 @@ export function ComparePairs({ field }: { field: Field }) {
     return (
       <button className={`cq-pair ${p.trust} ${on ? "on" : ""}`} onClick={() => pick(p.a, p.b)} aria-pressed={on}>
         <span className="cq-pair-thumbs" aria-hidden>
-          <img src={imageUrl(field.field_id, x.png)} alt="" />
-          <img src={imageUrl(field.field_id, y.png)} alt="" />
+          <MappedImage src={imageUrl(field.field_id, x.png)} alt="" map={colourMap} />
+          <MappedImage src={imageUrl(field.field_id, y.png)} alt="" map={colourMap} />
         </span>
         <span className="cq-pair-text">
           <b>{niceDate(x.obs_time_utc)}</b>
@@ -170,15 +173,18 @@ export function ComparePairs({ field }: { field: Field }) {
           <div className="cq-stage">
             {view === "flip" && (
               <>
-                <img src={imageUrl(field.field_id, a.png)} alt={`Sky on ${niceDate(a.obs_time_utc)}`} style={{ opacity: showB ? 0 : 1 }} />
-                <img src={imageUrl(field.field_id, b.png)} alt={`Sky on ${niceDate(b.obs_time_utc)}`} className="cq-top" style={{ opacity: showB ? 1 : 0 }} />
+                <MappedImage src={imageUrl(field.field_id, a.png)} alt={`Sky on ${niceDate(a.obs_time_utc)}`} map={colourMap} style={{ opacity: showB ? 0 : 1 }} />
+                <MappedImage src={imageUrl(field.field_id, b.png)} alt={`Sky on ${niceDate(b.obs_time_utc)}`} map={colourMap} className="cq-top" style={{ opacity: showB ? 1 : 0 }} />
+                {showMasks && (showB ? b : a).mask_png && <img className="cq-mask" src={imageUrl(field.field_id, (showB ? b : a).mask_png!)} alt="" />}
                 <span className={`cq-badge ${showB ? "b" : "a"}`}>{showB ? "B" : "A"} · {niceDate((showB ? b : a).obs_time_utc)}</span>
               </>
             )}
             {view === "swipe" && (
               <>
-                <img src={imageUrl(field.field_id, b.png)} alt={`Sky on ${niceDate(b.obs_time_utc)}`} />
-                <img src={imageUrl(field.field_id, a.png)} alt={`Sky on ${niceDate(a.obs_time_utc)}`} className="cq-top" style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }} />
+                <MappedImage src={imageUrl(field.field_id, b.png)} alt={`Sky on ${niceDate(b.obs_time_utc)}`} map={colourMap} />
+                <MappedImage src={imageUrl(field.field_id, a.png)} alt={`Sky on ${niceDate(a.obs_time_utc)}`} map={colourMap} className="cq-top" style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }} />
+                {showMasks && b.mask_png && <img className="cq-mask" src={imageUrl(field.field_id, b.mask_png)} alt="" />}
+                {showMasks && a.mask_png && <img className="cq-mask" src={imageUrl(field.field_id, a.mask_png)} alt="" style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }} />}
                 <span className="cq-split" style={{ left: `${split}%` }}><i>⟷</i></span>
                 <span className="cq-badge a corner-l">A</span>
                 <span className="cq-badge b corner-r">B</span>
@@ -188,6 +194,8 @@ export function ComparePairs({ field }: { field: Field }) {
             {view === "diff" && (
               <div className="cq-diff">
                 <DifferenceImage key={a.id + b.id} fieldId={field.field_id} a={a} b={b} path={doc?.diff_png} />
+                {showMasks && a.mask_png && <img className="cq-mask" src={imageUrl(field.field_id, a.mask_png)} alt="" />}
+                {showMasks && b.mask_png && <img className="cq-mask" src={imageUrl(field.field_id, b.mask_png)} alt="" />}
               </div>
             )}
           </div>
@@ -203,6 +211,12 @@ export function ComparePairs({ field }: { field: Field }) {
               <button className="button secondary cq-play" onClick={() => setShowB(!showB)}>Show {showB ? "A" : "B"}</button>
             )}
           </div>
+          {(a.mask_png || b.mask_png) && <>
+            <button className={`button secondary ${showMasks ? "tl-on" : ""}`} onClick={() => setShowMasks(!showMasks)} aria-pressed={showMasks}>Show masked pixels</button>
+            <p className="mask-caption">Masked pixels are filled for display; analysis uses the masked data.</p>
+          </>}
+          <button className="button secondary" onClick={() => setColourMap(m => m === "grey" ? "inferno" : "grey")}>Colour map: {colourMap === "grey" ? "Grey" : "Inferno"}</button>
+          <p className="mask-caption">One pixel = 6.15″ — SPHEREx maps the whole sky in 102 infrared colours, it is built for spectra, not sharp portraits.</p>
           <p className="cq-legend">
             <i className="sq" /> Black squares are masked detector pixels, not objects. <i className="dot" /> Each white dot is a star or galaxy.
           </p>

@@ -163,3 +163,44 @@ test('accepts microsecond UTC timestamps, dial crops of slightly different size,
   field.kind = 'static'; delete field.dial;
   assert.throws(() => validateField(field, 'fixture-static'), FieldError);
 });
+
+test('accepts optional mask and target coordinates, but rejects unsafe values and missing mask files', async t => {
+  const field = structuredClone(fixture);
+  field.schema_version = '1.1';
+  for (const frame of field.frames) Object.assign(frame, { width_px: 512, height_px: 512 });
+  field.frames[0].mask_png = 'mask/epoch-1.png';
+  field.frames[0].target_radec = { ra_deg: 2.1, dec_deg: -0.5 };
+  assert.equal(validateField(field, field.field_id).frames[0].mask_png, 'mask/epoch-1.png');
+  for (const invalid of ['../mask.png', '/mask.png', 'https://example.com/mask.png', 'mask.jpg']) {
+    const copy = structuredClone(field);
+    copy.frames[0].mask_png = invalid;
+    assert.throws(() => validateField(copy, copy.field_id), FieldError);
+  }
+  const copy = structuredClone(field);
+  copy.frames[0].target_radec.ra_deg = 360;
+  assert.throws(() => validateField(copy, copy.field_id), FieldError);
+  t.mock.method(globalThis, 'fetch', async url => {
+    if (url.endsWith('/field.json')) return Response.json(field);
+    if (url.endsWith('/timeline.json')) return new Response(null, { status: 404 });
+    return new Response(null, { status: 404 });
+  });
+  await assert.rejects(loadField(field.field_id), /HTTP 404/);
+});
+
+test('validates colour bands and requires the colour PNG asset', async t => {
+  const field = structuredClone(fixture);
+  field.schema_version = '1.1';
+  for (const frame of field.frames) Object.assign(frame, { width_px: 512, height_px: 512 });
+  field.color_png = 'color.png';
+  field.color_bands_um = [[0.75, 1.1], [1.1, 1.7], [1.7, 2.42]];
+  assert.equal(validateField(field, field.field_id).color_png, 'color.png');
+  const invalid = structuredClone(field);
+  invalid.color_bands_um[1][0] = 1.0;
+  assert.throws(() => validateField(invalid, invalid.field_id), FieldError);
+  field.color_png = '../color.png';
+  assert.throws(() => validateField(field, field.field_id), FieldError);
+  field.color_png = 'color.png';
+  t.mock.method(globalThis, 'fetch', async url => url.endsWith('/field.json')
+    ? Response.json(field) : new Response(null, { status: 404 }));
+  await assert.rejects(loadField(field.field_id), /HTTP 404/);
+});

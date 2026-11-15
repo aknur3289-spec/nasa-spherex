@@ -1,9 +1,9 @@
 export type Coordinates = { ra_deg: number; dec_deg: number };
 export type Frame = {
   width_px?: number; height_px?: number;
-  id: string; png: string; fits?: string; obs_time_utc: string; mjd: number;
+  id: string; png: string; mask_png?: string; fits?: string; obs_time_utc: string; mjd: number;
   survey_pass: number; detector: number; band?: string; wavelength_um: number;
-  center: Coordinates; bad_pixel_fraction: number;
+  center: Coordinates; target_radec?: Coordinates; bad_pixel_fraction: number;
   stretch: { kind: 'asinh'; lo: number; hi: number; unit: string };
   source_url: string; obs_id: string; processing_version: string;
 };
@@ -47,6 +47,7 @@ export type FieldSummary = {
 type FieldBase = {
   field_id: string; kind: FieldKind; title: string; description: string; center: Coordinates;
   size_arcmin: number; pixel_scale_arcsec: number; pairs: Pair[];
+  color_png?: string; color_bands_um?: [[number, number], [number, number], [number, number]];
   dial?: Dial; provenance: Provenance;
 };
 export type Field = FieldBase & (

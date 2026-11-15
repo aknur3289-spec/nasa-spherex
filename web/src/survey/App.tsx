@@ -191,7 +191,7 @@ function Background() {
   );
 }
 
-function Home({ setScreen }: { setScreen: (s: Screen) => void }) {
+function Home({ setScreen }: { setScreen: (s: Screen, id?: string) => void }) {
   return (
     <main className="home">
       <section className="hero">
@@ -275,17 +275,18 @@ function Home({ setScreen }: { setScreen: (s: Screen) => void }) {
         </Glass>
         <Glass className="feature">
           <div className="mini-film" aria-hidden="true">
-            {["m101", "nep", "ecl"].map((id) => (
-              <img key={id} src={imageUrl(id, "thumb.png")} alt="" loading="lazy" />
+            {["neptune-track", "nep", "ecl"].map((id) => (
+              <img key={id} src={imageUrl(id, id === "neptune-track" ? "color.png" : "thumb.png")} alt="" loading="lazy" />
             ))}
           </div>
           <div className="feature-copy">
             <span className="num">02</span>
             <div>
-              <h3>Timelapse</h3>
-              <p>Play real SPHEREx images of one patch of sky in date order and see what changes.</p>
+              <h3>Neptune moving against fixed stars</h3>
+              <p>Watch the known planet move through real SPHEREx images of a fixed sky field.</p>
+              <small>SPHEREx true-colour: 0.75–1.10 / 1.10–1.70 / 1.70–2.42 um, real data</small>
             </div>
-            <button aria-label="Open timelapse" onClick={() => setScreen("timelapse")}>
+            <button aria-label="Watch Neptune timelapse" onClick={() => setScreen("timelapse", "neptune-track")}>
               <Icon name="play" />
             </button>
           </div>
@@ -475,6 +476,7 @@ export default function App() {
   const catalog = index?.filter(item => item.status !== "pending" && item.synthetic === false);
   const [enhanced, setEnhanced] = useState(true);
   const selected = catalog?.find(item => item.field_id === fieldId)
+    ?? (screen === "timelapse" ? catalog?.find(item => item.field_id === "neptune-track") : undefined)
     ?? catalog?.find(item => item.synthetic === false) ?? catalog?.[0];
   const id = active ? selected?.field_id : undefined;
   const field = result?.id === id ? result?.field : undefined;
@@ -519,9 +521,17 @@ export default function App() {
       wavelengthUm: frame.wavelength_um,
       detector: frame.detector,
       src: imageUrl(field.field_id, frame.png),
+      maskSrc: frame.mask_png ? imageUrl(field.field_id, frame.mask_png) : undefined,
+      targetRadec: frame.target_radec,
+      center: frame.center,
+      widthPx: frame.width_px,
+      heightPx: frame.height_px,
       sourceUrl: field.provenance.synthetic ? undefined : frame.source_url,
     }));
   }, [field]);
+  const colorCaption = field?.color_bands_um
+    ? `SPHEREx true-colour: ${field.color_bands_um.map(([lo, hi]) => `${lo.toFixed(2)}–${hi.toFixed(2)}`).join(" / ")} um, real data`
+    : undefined;
 
   return (
     <div className="app">
@@ -558,7 +568,7 @@ export default function App() {
         {!field && !error && !fieldError && <p role="status">{catalog?.length === 0 ? "No fields available." : "Loading observations…"}</p>}
         {field && <ErrorBoundary key={screen + "/" + field.field_id}>
           {screen === "timelapse" && timeline.length > 0
-            ? <Timelapse frames={timeline} synthetic={field.provenance.synthetic} title={friendly(selected).name} backdrop={spaceImage} onBack={() => navigate("explore")} />
+            ? <Timelapse frames={timeline} synthetic={field.provenance.synthetic} title={friendly(selected).name} backdrop={spaceImage} onBack={() => navigate("explore")} heroSrc={field.color_png ? imageUrl(field.field_id, field.color_png) : undefined} heroCaption={colorCaption} />
             : <ComparePairs field={field} />}
         </ErrorBoundary>}
       </main>}
