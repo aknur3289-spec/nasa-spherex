@@ -1045,7 +1045,7 @@
       "spherex_dr1",
       "spherex_qr3"
     ],
-    "doi": "[DOI from IRSA release page]",
+    "doi": "10.26131/IRSA678 (DR1); 10.26131/IRSA662 (QR3)",
     "downloaded_utc": "2026-11-14T09:50:46.763827Z",
     "mission": "SPHEREx",
     "pipeline_commit": "48a5a05",

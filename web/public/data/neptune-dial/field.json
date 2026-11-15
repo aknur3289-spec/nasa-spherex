@@ -4778,7 +4778,7 @@
     "collections": [
       "spherex_dr1"
     ],
-    "doi": "[DOI from IRSA release page]",
+    "doi": "10.26131/IRSA678 (DR1); 10.26131/IRSA662 (QR3)",
     "downloaded_utc": "2026-11-14T16:38:45.722945Z",
     "mission": "SPHEREx",
     "pipeline_commit": "49d4dd4058dfef11000659f3795f6ebe14cbdc86",

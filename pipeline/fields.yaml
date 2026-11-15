@@ -6,7 +6,7 @@ defaults:
                                 # Add 1 and 3 only if PoC A finds too few pairs and download speed allows.
   limit: 150                    # max exposures per field, spread evenly in time (all passes represented)
   collections: [spherex_dr1, spherex_qr3]
-  doi: "[DOI from IRSA release page]"
+  doi: "10.26131/IRSA678 (DR1); 10.26131/IRSA662 (QR3)"
 
 fields:
   - id: m101

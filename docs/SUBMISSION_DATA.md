@@ -2,7 +2,7 @@
 
 ## NASA Data
 
-We use NASA SPHEREx Level 2 spectral-image cutouts served by NASA/IPAC IRSA. The published gallery contains 93 real frames: 32 in `m101` (12 high-trust pairs), 31 in `nep` (10 high-, 2 medium-, and 6 low-trust pairs), and 30 in `ecl` (12 high- and 6 low-trust pairs). Their source URLs identify 64 frames from `spherex_dr1` and 29 from `spherex_qr3`. Observations run from 2025-05-03 to 2026-09-29 UTC; every published frame records processing version `7.0.5`, observation time, detector, wavelength, and source URL. The gallery's synthetic demo is excluded from all real-data counts. Data DOI: [DOI from IRSA release page].
+We use NASA SPHEREx Level 2 spectral-image cutouts served by NASA/IPAC IRSA. The published gallery contains 93 real frames: 32 in `m101` (12 high-trust pairs), 31 in `nep` (10 high-, 2 medium-, and 6 low-trust pairs), and 30 in `ecl` (12 high- and 6 low-trust pairs). Their source URLs identify 64 frames from `spherex_dr1` and 29 from `spherex_qr3`. Observations run from 2025-05-03 to 2026-09-29 UTC; every published frame records processing version `7.0.5`, observation time, detector, wavelength, and source URL. The gallery's synthetic demo is excluded from all real-data counts. Data DOI: 10.26131/IRSA678 (DR1); 10.26131/IRSA662 (QR3).
 
 ## Space Agency Partner & Other Data
 

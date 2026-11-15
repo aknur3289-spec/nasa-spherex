@@ -377,7 +377,7 @@ def build_neptune_field_s3() -> dict:
              "center": refpos, "size_arcmin": 10, "pixel_scale_arcsec": 6.15,
              "frames": frames, "pairs": [],
              "provenance": {"mission": "SPHEREx", "archive": "NASA/IPAC IRSA",
-                            "collections": ["spherex_dr1"], "doi": "[DOI from IRSA release page]",
+                            "collections": ["spherex_dr1"], "doi": "10.26131/IRSA678 (DR1); 10.26131/IRSA662 (QR3)",
                             "downloaded_utc": max(dates),
                             "pipeline_commit": subprocess.check_output(
                                 ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
