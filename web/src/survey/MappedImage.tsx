@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { normalisedPixels } from "./displayNorm";
+import { NormImg } from "./NormImg";
 import type { CSSProperties } from "react";
 
 export type ColourMap = "grey" | "inferno";
@@ -21,17 +23,15 @@ export function MappedImage({ src, alt, map, className, style }: {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (map !== "inferno") return;
-    const image = new Image();
     let alive = true;
-    image.onload = () => {
+    normalisedPixels(src).then((source) => {
       if (!alive || !canvas.current) return;
       const output = canvas.current;
-      output.width = image.naturalWidth;
-      output.height = image.naturalHeight;
+      output.width = source.width;
+      output.height = source.height;
       const context = output.getContext("2d");
       if (!context) return;
-      context.drawImage(image, 0, 0);
-      const pixels = context.getImageData(0, 0, output.width, output.height);
+      const pixels = new ImageData(new Uint8ClampedArray(source.data), source.width, source.height);
       for (let i = 0; i < pixels.data.length; i += 4) {
         const [r, g, b] = inferno(pixels.data[i]);
         pixels.data[i] = r;
@@ -39,11 +39,10 @@ export function MappedImage({ src, alt, map, className, style }: {
         pixels.data[i + 2] = b;
       }
       context.putImageData(pixels, 0, 0);
-    };
-    image.src = src;
+    }).catch(() => undefined);
     return () => { alive = false; };
   }, [src, map]);
   return map === "grey"
-    ? <img src={src} alt={alt} className={className} style={style} />
+    ? <NormImg src={src} alt={alt} className={className} style={style} />
     : <canvas ref={canvas} role="img" aria-label={alt} className={className} style={style} />;
 }
