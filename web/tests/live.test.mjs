@@ -42,3 +42,27 @@ test('WAVE-TAB lookup interpolates the SPHEREx table layout (2, X, Y)', () => {
   assert.ok(Math.abs(wl - 1.05) < 1e-9);
   assert.ok(Math.abs(bw - 0.1) < 1e-9);
 });
+
+import { pairChange, sameColourGroup } from '../src/live/liveData.ts';
+
+function frameOf(values) {
+  const buf = Buffer.from(new Float32Array(values).buffer);
+  return { width: 50, height: 50, values: buf.toString('base64') };
+}
+function noise(seed) {
+  let s = seed;
+  return Array.from({ length: 2500 }, () => { s = (s * 16807) % 2147483647; return 1 + ((s / 2147483647) - 0.5) * 0.2; });
+}
+
+test('change test: pure noise shows no change, an injected source does', () => {
+  const a = noise(7), b = noise(11);
+  assert.equal(pairChange(frameOf(a), frameOf(b)).spots, 0);
+  const c = b.slice();
+  for (const [dx, dy] of [[0, 0], [1, 0], [0, 1], [-1, 0], [0, -1], [1, 1]]) c[(25 + dy) * 50 + 25 + dx] += 3;
+  assert.ok(pairChange(frameOf(a), frameOf(c)).spots > 0);
+});
+
+test('same-colour group picks the largest set within 2 %', () => {
+  const g = sameColourGroup([{ wavelength_um: 1.0 }, { wavelength_um: 1.01 }, { wavelength_um: 1.015 }, { wavelength_um: 1.5 }]);
+  assert.equal(g.group.length, 3);
+});

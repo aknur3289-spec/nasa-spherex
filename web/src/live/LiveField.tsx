@@ -3,7 +3,7 @@ import type { Field } from "../contract";
 import { Timelapse } from "../survey/Timelapse";
 import { ComparePairs } from "../survey/ComparePairs";
 import { fmtDec, fmtRa } from "../survey/fields";
-import { buildField, fetchFrame, listExposures, pickExposures, renderPng, type Exposure, type LiveFrame } from "./liveData";
+import { buildField, fetchFrame, listExposures, pairChange, pickExposures, renderPng, sameColourGroup, type Exposure, type LiveFrame } from "./liveData";
 
 type Rendered = LiveFrame & { src: string; lo: number; hi: number };
 type Phase = "search" | "frames" | "done" | "error";
@@ -66,10 +66,30 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
   }, [ra, dec, label]);
 
   const showNow = () => setField(buildField(ra, dec, label, framesRef.current));
-  const timeline = useMemo(() => field ? [...field.frames].sort((a, b) => a.mjd - b.mjd).map((f) => ({
-    date: f.obs_time_utc.slice(0, 10), wavelengthUm: f.wavelength_um, detector: f.detector, src: f.png, sourceUrl: f.source_url,
-  })) : [], [field]);
+  const [allColours, setAllColours] = useState(false);
+  const colour = useMemo(() => field ? sameColourGroup(field.frames) : undefined, [field]);
+  const timeline = useMemo(() => {
+    if (!field) return [];
+    const use = !allColours && colour && colour.group.length >= 4 ? colour.group : field.frames;
+    return [...use].sort((a, b) => a.mjd - b.mjd).map((f) => ({
+      date: f.obs_time_utc.slice(0, 10), wavelengthUm: f.wavelength_um, detector: f.detector, src: f.png, sourceUrl: f.source_url,
+      // "Your point" marker at the image centre.
+      targetRadec: { ra_deg: ra, dec_deg: dec }, center: { ra_deg: ra, dec_deg: dec }, widthPx: f.width_px, heightPx: f.height_px,
+    }));
+  }, [field, allColours, colour, ra, dec]);
   const honest = field?.pairs.filter((p) => p.trust === "high").length ?? 0;
+  // Change verdict from the real data of every honest pair.
+  const verdict = useMemo(() => {
+    if (!field) return undefined;
+    const byId = new Map(field.frames.map((f, i) => [f.id, i]));
+    const sorted = [...framesRef.current].sort((a, b) => a.mjd - b.mjd);
+    const results = field.pairs.filter((p) => p.trust === "high").map((p) => {
+      const fa = sorted[byId.get(p.a)!], fb = sorted[byId.get(p.b)!];
+      return fa && fb ? { ...p, ...pairChange(fa, fb) } : undefined;
+    }).filter(Boolean) as { a: string; b: string; spots: number; peakSigma: number }[];
+    const changed = results.filter((r) => r.spots > 0);
+    return { tested: results.length, changed: changed.length, maxSpots: Math.max(0, ...changed.map((r) => r.spots)) };
+  }, [field]);
   const done = frames.length + failed;
 
   return (
@@ -104,14 +124,27 @@ export function LiveField({ ra, dec, label, backdrop, onBack }: {
             <button role="tab" aria-selected={tab === "compare"} className={tab === "compare" ? "active" : ""} onClick={() => setTab("compare")}>Compare two dates</button>
           </div>
         </div>
+        {verdict && <div className={`glass live-verdict ${verdict.tested === 0 ? "none" : verdict.changed ? "changed" : "same"}`}>
+          <small>DID ANYTHING CHANGE HERE?</small>
+          {verdict.tested === 0
+            ? <p><b>Cannot tell yet.</b> None of the loaded images form a fair pair (same infrared colour, at least 150 days apart), so any difference could just be colour. Try another point or load again.</p>
+            : verdict.changed === 0
+              ? <p><b>No — everything stayed put.</b> We compared {verdict.tested} fair pairs pixel by pixel: no spot changed by more than 6× the noise. That is what stars, nebulae and galaxies should do.</p>
+              : <p><b>Something changed in {verdict.changed} of {verdict.tested} fair pairs</b> (up to {verdict.maxSpots} pixels above 6× the noise). It could be a Solar System object passing through, a variable star, or an image artefact — look for it with Compare → Changes only.</p>}
+        </div>}
         <div className="glass look-box control">
           <small>WHAT TO EXPECT HERE</small>
           <p>Stars, nebulae and galaxies do not move in a year, so in a fair (green) pair nothing should jump — that is what an honest comparison looks like.
             If an unfair (red) pair looks different, that is SPHEREx's changing infrared colour, not motion. Moving objects (planets, asteroids, comets) are only found
             near the ecliptic; Neptune is the example we measured.</p>
         </div>
+        {tab === "timelapse" && colour && colour.group.length >= 4 && <p className="live-colour">
+          {allColours
+            ? <>Showing all {field.frames.length} images in every infrared colour — brightness jumps here are colour, not motion. <button onClick={() => setAllColours(false)}>Show one colour only</button></>
+            : <>Showing the {colour.group.length} images taken in the same infrared colour ({colour.centerUm.toFixed(2)} µm ± 2%), so only real changes would blink. The ring marks your point. <button onClick={() => setAllColours(true)}>Show all {field.frames.length} images</button></>}
+        </p>}
         {tab === "timelapse"
-          ? <Timelapse key={"t" + field.frames.length} frames={timeline} synthetic={false} title={label} backdrop={backdrop} onBack={onBack} />
+          ? <Timelapse key={"t" + field.frames.length + (allColours ? "a" : "c")} frames={timeline} synthetic={false} title={label} backdrop={backdrop} onBack={onBack} />
           : <ComparePairs key={"c" + field.frames.length} field={field} />}
         <p className="live-note">Masked pixels are filled from their neighbours for display only; honesty labels use the wavelength SPHEREx measured at this exact pixel. Each image links to its source file at IRSA.</p>
       </>}

@@ -151,3 +151,58 @@ export function buildField(ra: number, dec: number, label: string, frames: (Live
     },
   };
 }
+
+/** Largest group of frames whose wavelengths agree within 2 % (one SPHEREx "colour"). */
+export function sameColourGroup<T extends { wavelength_um: number }>(frames: T[]): { group: T[]; centerUm: number } {
+  let best: T[] = [];
+  let centerUm = frames[0]?.wavelength_um ?? 0;
+  for (const f of frames) {
+    const g = frames.filter((x) => Math.abs(x.wavelength_um - f.wavelength_um) / f.wavelength_um <= 0.02);
+    if (g.length > best.length) { best = g; centerUm = f.wavelength_um; }
+  }
+  return { group: best, centerUm };
+}
+
+export type PairChange = { a: string; b: string; spots: number; peakSigma: number };
+
+/**
+ * Change test on honest pairs, using the real floats (not the display PNGs).
+ * Same wavelength, so fluxes are comparable: d = B − A, σ = 1.4826·MAD(d). A "spot" is a pixel with
+ * |d| > 6σ whose 3×3 neighbours also exceed 3σ (rejects single-pixel noise); pixels near sources that are
+ * bright in BOTH images are skipped (bright stars leave residuals that are not real changes; a mover is bright in one).
+ */
+export function pairChange(fa: LiveFrame, fb: LiveFrame): { spots: number; peakSigma: number } {
+  const a = decode(fa), b = decode(fb);
+  const w = fa.width, h = fa.height;
+  const d = new Float32Array(w * h).fill(NaN);
+  const both: number[] = [];
+  for (let i = 0; i < d.length; i++) if (Number.isFinite(a[i]) && Number.isFinite(b[i])) { d[i] = b[i] - a[i]; both.push(Math.min(a[i], b[i])); }
+  const vals = Array.from(d).filter(Number.isFinite).sort((x, y) => x - y);
+  if (vals.length < 200) return { spots: 0, peakSigma: 0 };
+  const med = vals[vals.length >> 1];
+  const mad = Array.from(vals, (v) => Math.abs(v - med)).sort((x, y) => x - y)[vals.length >> 1];
+  const sigma = 1.4826 * mad || 1e-9;
+  both.sort((x, y) => x - y);
+  // "Bright in both images" = at least 20 robust sigmas above the typical sky in both.
+  const medMin = both[both.length >> 1];
+  const madMin = both.map((v) => Math.abs(v - medMin)).sort((x, y) => x - y)[both.length >> 1];
+  const bright = medMin + 20 * 1.4826 * (madMin || 1e-9);
+  let spots = 0, peak = 0;
+  for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
+    const i = y * w + x;
+    if (!Number.isFinite(d[i])) continue;
+    const s = Math.abs(d[i] - med) / sigma;
+    if (s < 6) continue;
+    let nearBright = false, support = 0;
+    for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) {
+      const j = (y + dy) * w + (x + dx);
+      if (j < 0 || j >= d.length) continue;
+      if (Math.min(a[j], b[j]) >= bright) nearBright = true;
+      if (Math.abs(dx) <= 1 && Math.abs(dy) <= 1 && (dx || dy) && Number.isFinite(d[j]) && Math.abs(d[j] - med) / sigma > 3) support++;
+    }
+    if (nearBright || support < 2) continue;
+    spots++;
+    peak = Math.max(peak, s);
+  }
+  return { spots, peakSigma: peak };
+}

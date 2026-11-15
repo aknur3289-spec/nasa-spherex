@@ -4257,3 +4257,13 @@ input[type="range"]::-webkit-slider-thumb {
 .sx-picked line { stroke: #fbbf24; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .sx-picked-card { border-color: rgba(251,191,36,.45) !important; }
 .sx-hint { margin: 10px 4px 0; color: var(--text-3); font-size: 13px; }
+
+/* Live verdict */
+.live-verdict { padding: 16px 20px; margin: 14px 0; border-left: 4px solid #94a3b8 !important; }
+.live-verdict.same { border-left-color: #34d399 !important; }
+.live-verdict.changed { border-left-color: #fbbf24 !important; }
+.live-verdict small { letter-spacing: .14em; font-size: 11px; color: var(--text-3); }
+.live-verdict p { margin: 8px 0 0; line-height: 1.55; color: var(--text-2); font-size: 16px; }
+.live-verdict p b { color: #fff; }
+.live-colour { color: var(--text-2); font-size: 14px; margin: 6px 0 10px; }
+.live-colour button { margin-left: 8px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: var(--cyan); border-radius: 999px; padding: 4px 10px; cursor: pointer; font: inherit; font-size: 13px; }
