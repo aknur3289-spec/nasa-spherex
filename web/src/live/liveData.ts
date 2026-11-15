@@ -206,3 +206,25 @@ export function pairChange(fa: LiveFrame, fb: LiveFrame): { spots: number; peakS
   }
   return { spots, peakSigma: peak };
 }
+
+/** Saved real frames for preset points (see scripts/snapshot_live.mjs). Matched by position within 1′. */
+const SNAPSHOTS = [
+  { slug: "orion-nebula", ra: 83.822, dec: -5.391 },
+  { slug: "pleiades", ra: 56.601, dec: 24.114 },
+  { slug: "m31", ra: 10.685, dec: 41.269 },
+  { slug: "m101", ra: 210.802, dec: 54.349 },
+  { slug: "crab-nebula", ra: 83.633, dec: 22.015 },
+];
+export async function loadSnapshot(ra: number, dec: number, signal?: AbortSignal):
+  Promise<{ total: number; saved_utc: string; frames: LiveFrame[] } | undefined> {
+  const hit = SNAPSHOTS.find((p) => Math.abs(p.dec - dec) < 1 / 60 && Math.abs(((p.ra - ra + 540) % 360) - 180) * Math.cos((dec * Math.PI) / 180) < 1 / 60);
+  if (!hit) return undefined;
+  try {
+    const r = await fetch(`${import.meta.env?.BASE_URL ?? "/"}data/live/${hit.slug}.json`, { signal });
+    if (!r.ok || !(r.headers.get("content-type") ?? "").includes("json")) return undefined;
+    const j = await r.json();
+    return Array.isArray(j.frames) && j.frames.length >= 2 ? j : undefined;
+  } catch {
+    return undefined;
+  }
+}
