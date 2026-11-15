@@ -95,6 +95,8 @@ type Hit =
 export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
   const host = useRef<HTMLDivElement>(null);
   const aladin = useRef<AladinAny>(null);
+  const searchMarker = useRef<AladinAny>(null);
+  const lastSearch = useRef<{ at: RaDec; label: string; fov: number }>(null);
   const surveyGeneration = useRef(0);
   const searchNumber = useRef(0);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
@@ -143,9 +145,16 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
           showFrame: true,
           showFullscreenControl: true,
           showShareControl: false,
-          showSimbadPointerControl: false,
+          showSimbadPointerControl: true,
         });
         aladin.current = a;
+        const marker = A.catalog({ name: "Search result", sourceSize: 20, color: "#facc15", shape: "circle" });
+        a.addCatalog(marker);
+        searchMarker.current = marker;
+        if (lastSearch.current) {
+          marker.addSources([A.source(lastSearch.current.at.ra, lastSearch.current.at.dec, { name: lastSearch.current.label })]);
+          focusMap(a, lastSearch.current.at, lastSearch.current.fov);
+        }
         a.on?.("objectClicked", (obj: AladinAny) => {
           const d = obj?.data;
           if (!d?.kind) return;
@@ -205,29 +214,36 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
     else a.setImageSurvey?.(layer);
   }, [survey]);
 
+  const showSearchMarker = (at: RaDec, label: string, fov: number) => {
+    lastSearch.current = { at, label, fov };
+    focusMap(aladin.current, at, fov);
+    if (!searchMarker.current || !aladinApi) return;
+    searchMarker.current.removeAll();
+    searchMarker.current.addSources([aladinApi.source(at.ra, at.dec, { name: label })]);
+  };
+
   const search = async (text = query) => {
     const requestNumber = ++searchNumber.current;
     const q = text.trim();
     setQuery(q);
     setMessage(undefined);
     if (!q) return;
-    const a = aladin.current;
     if (/^neptune$/i.test(q)) {
       const p = NEPTUNE_PATH[1];
-      focusMap(a, p, 1.5);
+      showSearchMarker(p, q, 1.5);
       setHit({ kind: "neptune", at: { ra: p.ra, dec: p.dec }, label: "Neptune · Dec 2025" });
       return;
     }
     const c = parseCoords(q);
     if (c) {
-      focusMap(a, c, 0.5);
+      showSearchMarker(c, q, 0.5);
       setHit(classify(c, q));
       return;
     }
     try {
       const { ra, dec } = await resolveSesameName(q);
       if (requestNumber !== searchNumber.current) return;
-      focusMap(a, { ra, dec }, 0.5);
+      showSearchMarker({ ra, dec }, q, 0.5);
       setHit(classify({ ra, dec }, q));
     } catch {
       if (requestNumber === searchNumber.current) setMessage("Name not found, try coordinates");
@@ -242,21 +258,6 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
           <h2>Find any star, galaxy or coordinate</h2>
           <p>Type a name or coordinates. If the point is inside one of our three fields you can watch it change over time.</p>
         </div>
-        <form
-          className="ss-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            search();
-          }}
-        >
-          <input
-            aria-label="Object name or coordinates"
-            placeholder="M101, 210.80 54.35 or 14h03m13s +54°20′"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button className="button primary" type="submit">Find</button>
-        </form>
         <div className="ss-examples">
           <span>Try:</span>
           {EXAMPLES.map((x) => (
@@ -268,6 +269,22 @@ export function SkySearch({ fields, go }: { fields: Field[]; go: Go }) {
       <div className="ss-body">
         <div className="ss-map">
           <div ref={host} className="ss-aladin" />
+          <form
+            className="ss-form"
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              search();
+            }}
+          >
+            <input
+              aria-label="Object name or coordinates"
+              placeholder="Star, galaxy or RA Dec — e.g. Sirius, M42, 210.80 54.35"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button className="button primary" type="submit">Find</button>
+          </form>
           {status !== "ready" && (
             <div className="ss-map-status" role="status">
               {status === "loading" ? "Loading the SPHEREx sky map…" : MAP_UNAVAILABLE}
